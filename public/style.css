@@ -1,0 +1,48 @@
+@charset "utf-8";
+/**
+ * IronPHP : PHP Development Framework
+ * Copyright (c) IronPHP (https://github.com/IronPHP/IronPHP)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @package       IronPHP
+ * @copyright     Copyright (c) IronPHP (https://github.com/IronPHP/IronPHP)
+ * @link          
+ * @since         0.0.1
+ * @license       MIT License (https://opensource.org/licenses/mit-license.php)
+ * @auther        GaurangKumar Parmar <gaurangkumarp@gmail.com>
+ */
+
+a {
+    text-decoration:none
+}
+    
+h1 {
+    font-size:90px;
+    font-weight:900;
+    font-family:'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', Verdana, sans-serif;
+    text-align:center;
+    box-shadow:#767676 10px 10px 10px 10px;
+    text-shadow:#767676 10px 10px 10px;
+}
+
+.style {
+    color: #962A2B;
+    text-align:center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0 0 30px 0;
+}
+
+li {
+    padding-left: 1.8em;
+}
+
+ul li ul, ul li ul li {
+    margin: 0;
+    padding: 0;
+}

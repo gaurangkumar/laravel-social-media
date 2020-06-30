@@ -1,0 +1,6 @@
+class_name: FunctionalTester
+modules:
+    enabled:
+        - Laravel5:
+            environment_file: .env.testing
+        - \AppBundle\Helper\Functional
