@@ -16,7 +16,7 @@
 /*
  * The full path to the directory which holds "app", WITHOUT a trailing DS.
  */
-//define('ROOT', dirname(__DIR__));
+define('ROOT', dirname(__DIR__));
 
 /*
  * The actual directory name for the application directory. Normally
@@ -69,7 +69,7 @@ if (defined('ROOT')) {
  * Path to the logs directory.
  */
 if (defined('TMP')) {
-    define('LOGS', TMP.DS.'logs'.DS);
+    define('LOGS', TMP.'logs'.DS);
 }
 
 /*
@@ -89,7 +89,7 @@ if (defined('TMP')) {
  * then define('IRON_CORE_INCLUDE_PATH', ROOT );
  */
 if (defined('ROOT')) {
-    define('IRON_CORE_INCLUDE_PATH', ROOT);
+    define('IRON_CORE_INCLUDE_PATH', ROOT.DS.'vendor\ironphp\ironphp');
 }
 
 /*
@@ -99,5 +99,19 @@ if (defined('IRON_CORE_INCLUDE_PATH')) {
     define('CORE_PATH', IRON_CORE_INCLUDE_PATH.DS);
 }
 if (defined('CORE_PATH')) {
-    define('IRON', CORE_PATH.'src'.DS);
+    define('IRON_SRC', CORE_PATH.'src'.DS);
 }
+
+/*
+ * File path to the public/storage directory.
+ *
+ * To derive your file storage from your webserver change this to:
+ *
+ * @since 1.0.11
+ */
+if (defined('WEB_ROOT')) {
+    define('STORAGE', WEB_ROOT.'storage'.DS);
+}
+
+//For debug use only
+//var_dump(get_defined_constants(true)['user']);exit;

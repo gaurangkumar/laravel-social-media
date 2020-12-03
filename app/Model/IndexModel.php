@@ -9,31 +9,57 @@ use Friday\Model\ModelService;
 
 class IndexModel extends ModelService
 {
-    public function getIndex($params = null, $uri = null)
+    /**
+     * Variable.
+     *
+     * @var array
+     */
+    public $data = ['name' => 'GK'];
+
+    /**
+     * Get data from table.
+     *
+     * @return void
+     */
+    public function get($field = null, $id = null)
     {
-        $lang = 'en-us';
-        $app_name = "Agwis";
-        $app_url = "agwis.com";
-        $og_image = $brand_image = SERVER_ROOT."logo.png";
-        $favicon = SERVER_ROOT."favicon.ico";
+        if ($id == null || (is_array($id) && count($id) == 0)) {
+            return $this->table('user')->get($field);
+        } else {
+            return $this->table('user')->where($id)->get($field);
+        }
+    }
 
-        $author = "GaurangKumar";
-        $made_by = "GK";
-        $keyword_array = [''];
-        $keywords = implode(',', $keyword_array);
-        $description = "GaurangKumar is full-stack web developer specializing in PHP.";
+    /**
+     * Add data to table.
+     *
+     * @return void
+     */
+    public function add()
+    {
+        return $this->table('user')->add(['id'=>3, 'name'=>'pihu', 'user'=>'pihu', 'password'=>'123', 'status'=>1]);
+        //return $this->table('user')->add([3, 'pihu', 'pihu', '123', 1 ]);
+        //return $this->table('user')->add([3, 'pihu', 'pihu', '123', 1]);
+        //return $this->table('user')->add(3, 'pihu', 'pihu', '123', 1);
+    }
 
-        $home_title = "GaurangKumar Parmar - Full-Stack Web Developer";
+    /**
+     * Update data from table.
+     *
+     * @return void
+     */
+    public function update()
+    {
+        return $this->table('user')->where(['id'=>1])->update(['status'=>1, 'name'=>'illu']);
+    }
 
-        return [
-            'server_root'=>SERVER_ROOT,
-            'brand_image'=>$brand_image,
-            'favicon'=>$favicon,
-            'title'=>$home_title,
-            'keyword'=>$keywords,
-            'description'=>$description,
-            'author'=>$author,
-            'og_image'=>$og_image,
-        ];
+    /**
+     * Delete data from table.
+     *
+     * @return void
+     */
+    public function delete()
+    {
+        return $this->table('user')->where(['id'=>1])->delete();
     }
 }

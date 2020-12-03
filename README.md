@@ -21,6 +21,9 @@
     <a href="http://hits.dwyl.io/ironphp/ironphp/app" target="_blank">
         <img alt="HitCount" src="http://hits.dwyl.io/ironphp/ironphp/app.svg">
     </a>
+    <a href="http://php.net/" target="_blank">
+        <img alt="Minimum PHP Version" src="https://img.shields.io/badge/php-%3E%3D%207.2-ee4499.svg?style=flat-plastic">
+    </a>
 </p>
 
 ## About IronPHP
@@ -30,7 +33,7 @@ uses Front Controller, and MVC.
 
 The Framework source code can be found here: [ironphp/ironphp](https://github.com/ironphp/ironphp).
 
-> **Note:** No stable release yet - [IronPHP Framework 1.0.9 alpha1](https://github.com/ironphp/ironphp/releases/tag/1.0.9-alpha1) version has been released.
+> **Note:** No stable release yet - [IronPHP Framework 1.0.12 alpha1](https://github.com/ironphp/ironphp/releases/tag/1.0.12-alpha1) version has been released.
 
 ## Table of Contents
 

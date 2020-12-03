@@ -29,11 +29,11 @@
         }
     ],
     "require": {
-        "php": "^7.2",
-        "ironphp/ironphp": "1.0.10-alpha1"
+        "php": "^7.3",
+        "ironphp/ironphp": "1.0.12-alpha1",
+        "phpunit/phpunit": "^8.5"
     },
 	"require-dev": {
-        "phpunit/phpunit": "^8.5"
     },
     "config": {
         "optimize-autoloader": true,
@@ -52,6 +52,9 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
+		"pre-install-cmd": [
+			"@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+		],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
