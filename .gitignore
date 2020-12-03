@@ -4,7 +4,6 @@ app/tmp/debug.log
 /vendor
 /dist
 /build
-/tmp
 .env
 composer.lock
 package-lock.json

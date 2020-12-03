@@ -30,6 +30,7 @@
     ],
     "require": {
         "php": "^7.3",
+        "donatj/phpuseragentparser": "^1.1",
         "ironphp/ironphp": "1.0.12-alpha1",
         "phpunit/phpunit": "^8.5"
     },
