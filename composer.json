@@ -29,10 +29,9 @@
         }
     ],
     "require": {
-        "php": "^7.3",
-        "donatj/phpuseragentparser": "^1.1",
-        "ironphp/ironphp": "1.0.12-alpha1",
-        "phpunit/phpunit": "^8.5"
+        "php": "^7.3|^8.0",
+        "ironphp/ironphp": "@dev",
+        "phpunit/phpunit": "^9.5"
     },
 	"require-dev": {
     },
@@ -50,8 +49,8 @@
         ]
     },
     "bin": ["jarvis"],
-    "minimum-stability": "stable",
-    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "prefer-stable": false,
     "scripts": {
 		"pre-install-cmd": [
 			"@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

@@ -50,7 +50,7 @@ The Framework source code can be found here: [ironphp/ironphp](https://github.co
 
 IronPHP requires PHP 7.3 or later; we recommend using the latest PHP version whenever possible.
 
-## Installing IronPHP via Composer
+## Setup & Run agwis.com via Composer
 
 You can install IronPHP as your project using
 [Composer](https://getcomposer.org)  as
@@ -124,7 +124,7 @@ automated upgrades atleast for NOT FOR NOW, so you have to update for this app-s
 You can update The Framework `ironphp/ironphp` easily:
 
 ``` bash
-$ composer update ironphp/ironphp
+$ composer update ironphp/ironphp:"@dev"
 ```
 
 ## Configuration
