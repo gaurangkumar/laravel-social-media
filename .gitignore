@@ -11,5 +11,8 @@ desktop.ini
 npm-debug.log
 yarn-error.log
 yarn.lock
+tmp/
 tmp/logs/app.log
 tmp/logs/app.log
+_notes/dwsync.xml
+*/_notes/dwsync.xml
