@@ -28,7 +28,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        (new IpController)->track();
+        //(new IpController)->track();
         $lang = 'en-us';
         $app_name = "Agwis";
         $app_url = "agwis.com";

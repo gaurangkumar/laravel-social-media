@@ -1,4 +1,4 @@
-<h1 align="center">IronPHP Application Skeleton</h1>
+<h1 align="center">Agwis.com</h1>
 <p align="center">
     <a href="https://packagist.org/packages/ironphp/app" target="_blank">
         <img alt="Total Downloads" src="https://poser.pugx.org/ironphp/app/d/total.svg">
@@ -26,14 +26,13 @@
     </a>
 </p>
 
-## About IronPHP
+## About Agwis.com
 
-The IronPHP Framework 1.0 skeleton to create application which
-uses Front Controller, and MVC.
+Created with IronPHP Framework 1.0.
 
 The Framework source code can be found here: [ironphp/ironphp](https://github.com/ironphp/ironphp).
 
-> **Note:** No stable release yet - [IronPHP Framework 1.0.12 alpha1](https://github.com/ironphp/ironphp/releases/tag/1.0.12-alpha1) version has been released.
+> [IronPHP Framework 1.0.12 alpha1](https://github.com/ironphp/ironphp/releases/tag/1.0.12-alpha1).
 
 ## Table of Contents
 
@@ -49,7 +48,7 @@ The Framework source code can be found here: [ironphp/ironphp](https://github.co
 
 ## Requirements
 
-IronPHP requires PHP 7.2 or later; we recommend using the latest PHP version whenever possible.
+IronPHP requires PHP 7.3 or later; we recommend using the latest PHP version whenever possible.
 
 ## Installing IronPHP via Composer
 
@@ -58,43 +57,30 @@ You can install IronPHP as your project using
 a starting point. you can run the following:
 
 1. Download [Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe) or download `composer.phar` file.
-2. Run `.
+2. Run
 
-
-If Composer is installed locally, run
-
-``` bash
-$ php composer.phar create-project ironphp/app
-```
-
-If Composer is installed globally, run
+Clone repo
 
 ``` bash
-$ composer create-project ironphp/app
-```
-
-In case you want to use a custom app dir name (e.g. `/myapp/`):
-
-```bash
-$ composer create-project --prefer-dist ironphp/app myapp
-```
-
-You can directly clone this repo:
-
-```bash
-$ git clone https://github.com/ironphp/app.git myapp
-```
-
-Go to myapp dir, if installed with myapp dirname:
-
-```bash
-$ cd myapp
+$ git clone https://github.com/Agwis-Software/agwis.com.git
 ```
 
 Go to ironphp dir, if installed without dirname:
 
 ```bash
-$ cd app
+$ cd agwis.com
+```
+
+If Composer is installed locally, run
+
+``` bash
+$ php composer.phar install
+```
+
+If Composer is installed globally, run
+
+``` bash
+$ composer install
 ```
 
 If you have cloned or downloaded this repo, then you have to manually create `.env` file and generate `APP_KEY`:
@@ -104,6 +90,17 @@ $ copy .env.example .env
 $ php jarvis key
 ```
 
+Create application key:
+
+```bash
+$ jarvis key
+```
+
+Get all routes:
+
+```bash
+$ jarvis route
+```
 You can now use php developement webserver to view the default home page:
 
 ```bash
