@@ -30,12 +30,13 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
+        "doctrine/dbal": "3.0",
+        "donatj/phpuseragentparser": "^1.1",
+        "ipinfo/ipinfo": "2.1.x-dev",
         "ironphp/ironphp": "@dev",
         "phpunit/phpunit": "^9.5"
     },
-	"require-dev": {
-    },
-    "config": {
+	"config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true

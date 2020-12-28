@@ -25,5 +25,8 @@ Route::get('/diwali/wish/{?id}', 'DiwaliController@index')
 Route::post('/', 'IndexController@store')
     ->name('query');
 
+Route::get('/track', 'IpController@track')
+    ->name('track');
+
 // Route::get('/codework', 'Codework/HomeController')->name('codework');
 
