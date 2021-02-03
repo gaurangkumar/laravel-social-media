@@ -15,6 +15,10 @@ class CreatePagePostsTable extends Migration
     {
         Schema::create('page_posts', function (Blueprint $table) {
             $table->id();
+            $table->text('text');
+            $table->string('media');
+			$table->foreignId('user_id')->constrained();
+			$table->bigInteger('view_count');
             $table->timestamps();
         });
     }
