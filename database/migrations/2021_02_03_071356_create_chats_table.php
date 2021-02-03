@@ -16,15 +16,25 @@ class CreateChatsTable extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
 			$table->foreignId('user_id')->constrained();
-			$table->foreignId('groups_id')->constrained();
-			/*$table->bigInteger('group_id')->unsigned();
-			$table->foreign('group_id')->references('id')->on('groups');*/
+			$table->bigInteger('group_id')->unsigned();
+			$table->foreign('group_id')->references('id')->on('groups');
+            /*
+			$table->bigInteger('user_id')->unsigned();
+            $table->foreignId('group_id')->constrained();
+			*/
 			$table->bigInteger('rid')->unsigned();
 			$table->foreign('rid')->references('id')->on('users');
 			$table->boolean('view')->default(0);
 			$table->date('deleted')->nullable();
             $table->timestamps();
         });
+
+/*
+        Schema::table('chats', function($table) {
+            //$table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('group_id')->references('id')->on('users');
+        });
+*/
     }
 
     /**
