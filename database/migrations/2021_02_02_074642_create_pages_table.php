@@ -16,14 +16,11 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('profile');
-			$table->string('bannerimg');
-            $table->string('description');
-            $table->string('username');
-            //$table->unsignedBigInteger('user_id');
-			$table->timestamps();
-    		//$table->foreign('user_id')->references('id')->on('users');
+            $table->text('text');
+            $table->string('media');
 			$table->foreignId('user_id')->constrained();
+			$table->bigInteger('view_count');
+			$table->timestamps();
         });
     }
 
