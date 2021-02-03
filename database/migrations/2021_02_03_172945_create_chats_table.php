@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePagesTable extends Migration
+class CreateChatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('chats', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('profile');
-            $table->string('banner');
 			$table->foreignId('user_id')->constrained();
-            $table->text('description')->nullable();
-            $table->integer('view_count')->nullable();
-			$table->timestamps();
+            $table->foreignId('group_id')->constrained();
+			$table->bigInteger('rid')->unsigned();
+			$table->foreign('rid')->references('id')->on('users');
+			$table->boolean('view')->default(0);
+			$table->date('deleted')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -32,6 +32,6 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('chats');
     }
 }
