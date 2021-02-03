@@ -15,14 +15,15 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('pagename');
-            $table->string('pageprofile');
+            $table->string('name');
+            $table->string('profile');
 			$table->string('bannerimg');
-            $table->string('pagendescription');
-            $table->string('pageusername');
-            $table->int('uid');
+            $table->string('description');
+            $table->string('username');
+            //$table->unsignedBigInteger('user_id');
 			$table->timestamps();
-			
+    		//$table->foreign('user_id')->references('id')->on('users');
+			$table->foreignId('user_id')->constrained();
         });
     }
 
