@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dreams Chat - Html Template</title>
-	
-    <!-- Favicon -->
-    <link rel="icon" href="{{ asset('/template/assets/img/favicon.ico') }}">
-	
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('/template/assets/css/bootstrap.min.css') }}">
-	
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="{{ asset('/template/assets/plugins/fontawesome/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/template/assets/plugins/fontawesome/css/all.min.css') }}">
-	
-    <!-- Custom scroll CSS -->
-    <link rel="stylesheet" href="{{ asset('/template/assets/plugins/mcustomscroll/jquery.mCustomScrollbar.css') }}">
-	
-    <!-- App styles -->
-    <link rel="stylesheet" href="{{ asset('/template/assets/css/app.css') }}">
-	
-</head>
-
-<body>
-
+@extends('layouts.app')
+@section('content')
     <!-- Main Wrapper -->
     <div class="main-wrapper">
 	
@@ -1115,22 +1089,4 @@
 		
     </div>
     <!-- /Main Wrapper -->
-	
-	<!-- jQuery -->
-    <script src="{{ asset('/template/assets/js/jquery-3.4.1.min.js') }}"></script>
-	
-	<!-- Bootstrap Core JS -->
-    <script src="{{ asset('/template/assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('/template/assets/js/bootstrap.min.js') }}"></script>
-	
-	<!-- Custom Scroll JS -->
-    <script src="{{ asset('/template/assets/js/jquery.nicescroll.min.js') }}"></script>
-    <script src="{{ asset('/template/assets/plugins/mcustomscroll/jquery.mCustomScrollbar.js') }}"></script>
-	
-	<!-- Custom JS -->
-    <script src="{{ asset('/template/assets/js/script.js') }}"></script>
-	
-</body>
-
-<!-- Mirrored from dreamschat.dreamguystech.com/template/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Jan 2021 07:20:44 GMT -->
-</html>
+@endsection
