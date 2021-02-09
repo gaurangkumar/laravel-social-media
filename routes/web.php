@@ -14,6 +14,6 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/group', [HomeController::class, 'group']);
-Route::get('/call', [HomeController::class, 'call']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/group', [HomeController::class, 'group'])->name('group');
+Route::get('/call', [HomeController::class, 'call'])->name('call');
