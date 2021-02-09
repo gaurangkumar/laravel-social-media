@@ -15,12 +15,12 @@ class CreateBusinessesTable extends Migration
     {
         Schema::create('businesses', function (Blueprint $table) {
             $table->id();
-			$table->string('name');
-			$table->string('btype');
-			$table->string('address');
-			$table->text('discription');
+            $table->string('name');
+            $table->string('btype');
+            $table->string('address');
+            $table->text('description');
             $table->string('profile');
-			$table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
