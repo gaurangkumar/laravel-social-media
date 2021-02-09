@@ -13,3 +13,4 @@ yarn-error.log
 *.xml
 vendor.zip
 /_notes
+composer.lock
