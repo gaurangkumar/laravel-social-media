@@ -16,4 +16,5 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/group', [HomeController::class, 'group']);
+Route::get('/call-log', [HomeController::class, 'call-log']);
 //Route::get('/', 'HomeController@index'); //->name('home');

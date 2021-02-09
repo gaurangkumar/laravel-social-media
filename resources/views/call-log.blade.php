@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content');
-    <!-- Main Wrapper -->
+ <!-- Main Wrapper -->
     <div class="main-wrapper">
         <!-- content -->
         <div class="content main_content">
@@ -35,16 +35,16 @@
                                 <a class="nav-link" href="index-2.html">Chat</a>
                             </li>
                             <li class="nav-item ml-1">
-                                <a class="nav-link active" href="group.html">Group</a>
+                                <a class="nav-link" href="group.html">Group</a>
                             </li>
                             <li class="nav-item ml-1">
                                 <a class="nav-link" href="status.html">Status</a>
                             </li>
                             <li class="nav-item ml-1">
-                                <a class="nav-link" href="call-log.html">Call</a>
+                                <a class="nav-link  active" href="call-log.html">Call</a>
                             </li>
                         </ul>
-                        <button type="button" class="float-right btn btn-circle btn-sm header_button" data-toggle="modal" data-target="#new_group">
+                        <button type="button" class="float-right btn btn-circle btn-sm header_button" data-toggle="modal" data-target="#audiocallmodal">
                             <i class="fas fa-plus button_plus"></i>
                         </button>
                     </div>
@@ -55,182 +55,98 @@
                     <div class="sidebar-body" id="chatsidebar">
                         <ul class="user-list">
                             <li class="user-list-item">
-                                <div class="avatar">
-                                    <img src="assets/img/media2.jpg" class="rounded-circle" alt="image">
+                                <div class="avatar avatar-online">
+                                    <img src="assets/img/avatar-8.jpg" class="rounded-circle" alt="image">
                                 </div>
                                 <div class="users-list-body">
                                     <div>
-                                        <h5>Baddies and Buddies</h5>
-                                        <p>Lorem Ipsum is simply dummy text of the printing</p>
+                                        <h5>Regina Dickerson</h5>
+                                        <p><small class="text-muted">Today, 14:45 pm</small></p>
                                     </div>
-                                    <div class="avatar-group group-col">
-                                        <div>
-                                            <div class="avatar avatar-xs group_img group_header">
-                                                <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-8.jpg">
-                                            </div>
-                                            <div class="avatar avatar-xs group_img group_header">
-                                                <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-7.jpg">
-                                            </div>
-                                            <div class="avatar avatar-xs group_img group_header">
-                                                <span class="avatar-title rounded-circle border border-white">14+</span>
-                                            </div>
+                                    <div class="last-chat-time">
+                                        <div class="last-chat-time">
+                                            <i class="missed-col"><img src="assets/img/incoming-call-icon.svg" alt="" class="mCS_img_loaded"></i>
                                         </div>
-                                        <small class="text-muted float-right">08:45 am</small>
                                     </div>    
+                                </div>
+                            </li>
+                            <li class="user-list-item">
+                                <div>
+                                    <div class="avatar avatar-away">
+                                        <img src="assets/img/avatar-7.jpg" class="rounded-circle" alt="image">
+                                    </div>
+                                </div>
+                                <div class="users-list-body">
+                                    <div>
+                                        <h5>Kevin Howard</h5>
+                                        <p><small class="text-muted">Today, 08:45 pm</small></p>
+                                    </div>
+                                    <div class="last-chat-time">
+                                        <i class="missed-col"><img src="assets/img/missed-call-icon.svg" alt="" class="mCS_img_loaded"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="user-list-item">
+                                <div>
+                                    <div class="avatar avatar-offline">
+                                        <img src="assets/img/avatar-1.jpg" class="rounded-circle" alt="image">
+                                    </div>
+                                </div>
+                                <div class="users-list-body">
+                                    <div>
+                                        <h5 class="list_group_notread">Eric Knight</h5>
+                                        <small class="text-muted">Yesterday</small>
+                                    </div>
+                                    <div class="last-chat-time">
+                                        <i class="missed-col"><img src="assets/img/incoming-call-icon.svg" alt="" class="mCS_img_loaded"></i>
+                                    </div>
                                 </div>
                             </li>
                             <li class="user-list-item unread">
                                 <div>
-                                    <div class="avatar">
-                                        <img src="assets/img/carousel1.jpg" class="rounded-circle" alt="image">
+                                    <div class="avatar avatar-online">
+                                        <img src="assets/img/avatar-2.jpg" class="rounded-circle" alt="image">
                                     </div>
                                 </div>
                                 <div class="users-list-body">
                                     <div>
-                                        <h5>Dreams Team</h5>
-                                        <p>Lorem Ipsum has been the industry's standard</p>
-                                    </div>
-                                    <div class="avatar-group group-col">
-                                        <div>
-                                            <div class="avatar avatar-xs group_img group_header">
-                                                <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-1.jpg">
-                                            </div>
-                                            <div class="avatar avatar-xs group_img group_header">
-                                                <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-2.jpg">
-                                            </div>
-                                            <div class="avatar avatar-xs group_img group_header">
-                                                <span class="avatar-title rounded-circle border border-white">10+</span>
-                                            </div>
-                                        </div>
-                                        <small class="text-muted float-right">09.50 am</small>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="user-list-item">
-                                <div>
-                                    <div class="avatar">
-                                        <img src="assets/img/media3.jpg" class="rounded-circle" alt="image">
-                                    </div>
-                                </div>
-                                <div class="users-list-body">
-                                    <div>
-                                        <h5 class="list_group_notread">Chamber of Secrets</h5>
-                                        <p>Welcome to the community mate! 👍</p>
-                                    </div>
-                                    <div class="avatar-group group-col">
-                                        <div>
-                                            <div class="avatar avatar-xs group_img group_header">
-                                                <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-3.jpg">
-                                            </div>
-                                            <div class="avatar avatar-xs group_img group_header">
-                                                <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-1.jpg">
-                                            </div>
-                                            <div class="avatar avatar-xs group_img group_header">
-                                                <span class="avatar-title rounded-circle border border-white">8+</span>
-                                            </div>
-                                        </div>
-                                        <small class="text-muted float-right">Yesterday</small>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="user-list-item">
-                                <div>
-                                    <div class="avatar">
-                                        <img src="assets/img/media1.jpg" class="rounded-circle" alt="image">
-                                    </div>
-                                </div>
-                                <div class="users-list-body">
-                                    <div>
-                                        <h5>Family Matters</h5>
-                                        <p>I remember everything mate. See you later 🤘</p>
+                                        <h5>Scott Albright</h5>
+                                        <p><small class="text-muted">Today, 11:43 PM</small></p>
                                     </div>
                                     <div class="last-chat-time">
-                                        <small class="text-muted">06:18 am</small>
-                                        <div class="chat-toggle mt-1">
-                                            <div class="dropdown">
-                                                <a data-toggle="dropdown" href="#">
-                                                    <i class="fas fa-ellipsis-h ellipse_header open_drop"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item">Open</a>
-                                                    <a href="#" data-navigation-target="contact-information"
-                                                        class="dropdown-item dream_profile_menu">Profile</a>
-                                                    <a href="#" class="dropdown-item">Add to archive</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item">Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <i class="missed-col"><img src="assets/img/missed-call-icon.svg" alt="" class="mCS_img_loaded"></i>
                                     </div>
                                 </div>
                             </li>
                             <li class="user-list-item">
                                 <div>
-                                    <div class="avatar">
+                                    <div class="avatar avatar-away">
                                         <img src="assets/img/avatar-3.jpg" class="rounded-circle" alt="image">
                                     </div>
                                 </div>
                                 <div class="users-list-body">
                                     <div>
-                                        <h5 class="list_group_notread">All in the Mind</h5>
-                                        <p><i class="fa fa-camera mr-1"></i> I will miss you, too, my dear!</p>
+                                        <h5 class="list_group_notread">Irene Perkins</h5>
+                                        <p><small class="text-muted">Yesterday</small></p>
                                     </div>
                                     <div class="last-chat-time">
-                                        <small class="text-muted">Yesterday</small>
-                                        <div class="new-message-count"></div>
-                                        <div class="chat-toggle mt-1">
-                                            <div class="dropdown">
-                                                <a data-toggle="dropdown" href="#">
-                                                    <i class="fas fa-ellipsis-h ellipse_header"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item">Open</a>
-                                                    <a href="#" data-navigation-target="contact-information"
-                                                        class="dropdown-item dream_profile_menu">Profile</a>
-                                                    <a href="#" class="dropdown-item">Add to archive</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item">Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <i class="missed-col"><img src="assets/img/incoming-call-icon.svg" alt="" class="mCS_img_loaded"></i>
                                     </div>
                                 </div>
                             </li>
                             <li class="user-list-item">
                                 <div>
-                                    <div class="avatar">
+                                    <div class="avatar avatar-online">
                                         <img src="assets/img/avatar-4.jpg" class="rounded-circle" alt="image">
                                     </div>
                                 </div>
                                 <div class="users-list-body">
                                     <div>
-                                        <h5 class="list_group_notread">Smells Like Team Spirit</h5>
-                                        <p><i class="fa fa-camera mr-1"></i> Photo</p>
+                                        <h5 class="list_group_notread">Carol Andre</h5>
+                                        <p><small class="text-muted">Yesterday</small></p>
                                     </div>
                                     <div class="last-chat-time">
-                                        <small class="text-muted">Yesterday</small>
-                                        <div class="new-message-count"></div>
-                                        <div class="chat-toggle mt-1">
-                                            <div class="dropdown">
-                                                <a data-toggle="dropdown" href="#">
-                                                    <i class="fas fa-ellipsis-h ellipse_header"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item">Open</a>
-                                                    <a href="#" data-navigation-target="contact-information"
-                                                        class="dropdown-item dream_profile_menu">Profile</a>
-                                                    <a href="#" class="dropdown-item">Add to archive</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item">Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <i class="missed-col"><img src="assets/img/incoming-call-icon.svg" alt="" class="mCS_img_loaded"></i>
                                     </div>
                                 </div>
                             </li>
@@ -255,26 +171,13 @@
                             </ul>
                         </div>
                         <figure class="avatar ml-1">
-                            <img src="assets/img/carousel1.jpg" class="rounded-circle" alt="image">
+                            <img src="assets/img/avatar-2.jpg" class="rounded-circle" alt="image">
                         </figure>
                         <div class="mt-1">
-                            <h5 class="mb-1">Dreams Team</h5>
+                            <h5 class="mb-1">Scott Albright</h5>
                             <small class="text-muted mb-2">
-                                Active
+                                50 Calls
                             </small>
-                        </div>
-                    </div>
-                    <div class="avatar-group">
-                        <div class="avatar avatar-xs group_img group_header">
-                            <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                src="assets/img/avatar-1.jpg">
-                        </div>
-                        <div class="avatar avatar-xs group_img group_header">
-                            <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                src="assets/img/avatar-7.jpg">
-                        </div>
-                        <div class="avatar avatar-xs group_img group_header">
-                            <span class="avatar-title rounded-circle border border-white">10+</span>
                         </div>
                     </div>
                     <div class="chat-options">
@@ -306,182 +209,127 @@
                     </div>
                 </div>
                 <div class="chat-body">
-                    <div class="messages">
-                        <div class="chats">
-                            <div class="chat-avatar">
-                                <img src="assets/img/avatar-2.jpg" class="rounded-circle dreams_chat" alt="image">
-                            </div>
-                            <div class="chat-content">
-                                <div class="message-content">
-                                    Hi James! What’s Up?
+                    <div class="missed-call-widget mt-0">
+                        <div class="call-log-header">
+                            <div class="row">
+                                <div class="col">
+                                    <h4>Missed Calls (41)</h4>
                                 </div>
-                                <div class="chat-time">
-                                    <div>
-                                        <div class="time">Yesterday 14:26 PM</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-action-btns">
-                                <ul>
-                                    <li><a href="#" class="share-msg" title="Share"><i class="fas fa-share"></i></a>
-                                    </li>
-                                    <li><a href="#" class="edit-msg"><i class="fas fa-edit"></i></a></li>
-                                    <li><a href="#" class="del-msg"><i class="fas fa-trash-alt"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="chats chats-right">
-                            <div class="chat-content">
-                                <div class="message-content">
-                                    Oh, hello! All perfectly. I work, study and know this wonderful world!
-                                </div>
-                                <div class="chat-time">
-                                    <div>
-                                        <div class="time">Yesterday 14:38 PM <i><img src="assets/img/double-tick.png" alt=""></i></div>
-                                    </div>
+                                <div class="col-auto">
+                                    <a href="#" class="clear-all">Clear all</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="chats">
-                            <div class="chat-avatar">
-                                <img src="assets/img/avatar-2.jpg" class="rounded-circle dreams_chat" alt="image">
-                            </div>
-                            <div class="chat-content">
-                                <div class="message-content">
-                                    Ok Cool, Where you from
-                                </div>
-                                <div class="chat-time">
-                                    <div>
-                                        <div class="time">Yesterday 14:40 PM</div>
+                        <div class="card call-card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-muted mb-0">
+                                            <i class="far fa-clock mr-2"></i>Today, 11:43 PM
+                                        </h6>
+                                    </div>
+                                    <div class="col mob-auto">
+                                        <i class="missed-col"><img src="assets/img/missed-call-icon.svg" alt=""></i>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-phone-alt text-muted"></i>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="chats chats-right">
-
-                            <div class="chat-content">
-                                <div class="message-content">
-                                    I am from California, and you?
+                                <hr class="my-3">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-muted mb-0">
+                                            <i class="far fa-clock mr-2"></i>Today, 11:43 PM
+                                        </h6>
+                                    </div>
+                                    <div class="col mob-auto">
+                                        <i class="missed-col"><img src="assets/img/missed-call-icon.svg" alt=""></i>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-phone-alt text-muted"></i>
+                                    </div>
                                 </div>
-                                <div class="chat-time">
-                                    <div>
-                                        <div class="time">Yesterday 14:42 PM <i><img src="assets/img/double-tick.png" alt=""></i></div>
+                                <hr class="my-3">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-muted mb-0">
+                                            <i class="far fa-clock mr-2"></i>Today, 11:43 PM
+                                        </h6>
+                                    </div>
+                                    <div class="col mob-auto">
+                                        <i class="missed-col"><img src="assets/img/missed-call-icon.svg" alt=""></i>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-phone-alt text-muted"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-						<div class="chat-line">
-							<span class="chat-date">Today</span>
-						</div>
-
-                        <div class="chats">
-                            <div class="chat-avatar">
-                                <img src="assets/img/avatar-2.jpg" class="rounded-circle dreams_chat" alt="image">
-                            </div>
-                            <div class="chat-content">
-                                <div class="message-content">
-                                    I am from Australia, and where you working?
-                                </div>
-                                <div class="chat-time">
-                                    <div>
-                                        <div class="time">14:26 PM</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chats chats-right">
-
-                            <div class="chat-content">
-                                <div class="message-content">
-                                    Oh Cool, Yeah i am working here famous software company
-                                </div>
-                                <div class="chat-time">
-                                    <div>
-                                        <div class="time">14:29 PM <i><img src="assets/img/double-tick.png" alt=""></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chats">
-                            <div class="chat-avatar">
-                                <img src="assets/img/avatar-2.jpg" class="rounded-circle dreams_chat" alt="image">
-                            </div>
-                            <div class="chat-content">
-                                <div class="message-content">
-                                    That's Good Lol, What is your designation?
-                                </div>
-                                <div class="chat-time">
-                                    <div>
-                                        <div class="time">14:30 PM</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chats chats-right">
-
-                            <div class="chat-content">
-                                <div class="message-content">
-                                    I am senior software engineer.
-                                </div>
-                                <div class="chat-time">
-                                    <div>
-                                        <div class="time">14:32 PM <i><img src="assets/img/double-tick.png" alt=""></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-						<div class="chat-line">
-							<span class="chat-date">1 message unread</span>
-						</div>
-
-                        <div class="chats">
-                            <div class="chat-avatar">
-                                <img src="assets/img/avatar-2.jpg" class="rounded-circle dreams_chat" alt="image">
-                            </div>
-                            <div class="chat-content">
-                                <div class="message-content">
-                                    Good.!!!
-                                </div>
-                                <div class="chat-time">
-                                    <div>
-                                        <div class="time">14:33 PM</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chats chats-right">
-
-                            <div class="chat-content">
-                                <div class="message-content">
-                                    Yeah, Thank you..
-                                </div>
-                                <div class="chat-time">
-                                    <div>
-                                        <div class="time">14:34 PM <i><img src="assets/img/double-tick.png" alt=""></i></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="call-view-more">
+                            <a href="#"><i class="fas fa-chevron-down mr-1"></i> <span>39 More</span></a>
                         </div>
                     </div>
-                </div>
-                <div class="chat-footer">
-                    <form>
-                        <input type="text" class="form-control chat_form" placeholder="Write a message.">
-                        <div class="form-buttons">
-                            <button class="btn" type="button">
-                                <i class="far fa-smile"></i>
-                            </button>
-                            <button class="btn" type="button" data-toggle="modal" data-target="#drag_files">
-                                <i class="fas fa-paperclip"></i>
-                            </button>
-                            <button class="btn" type="button">
-                                <i class="fas fa-microphone-alt"></i>
-                            </button>
-                            <button class="btn send-btn" type="submit">
-                                <i class="fab fa-telegram-plane"></i>
-                            </button>
+
+                    <div class="other-call-widget mt-0">
+                        <div class="call-log-header">
+                            <div class="row">
+                                <div class="col">
+                                    <h4>Other Calls (9)</h4>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="clear-all">Clear all</a>
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                        <div class="card call-card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-muted mb-0">
+                                            <i class="far fa-clock mr-2"></i>Today, 11:43 PM
+                                        </h6>
+                                    </div>
+                                    <div class="col mob-auto">
+                                    <i class="incoming-col"><img src="assets/img/incoming-call-icon.svg" alt=""></i>
+                                </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-phone-alt text-muted"></i>
+                                    </div>
+                                </div>
+                                <hr class="my-3">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-muted mb-0">
+                                            <i class="far fa-clock mr-2"></i>Today, 11:43 PM
+                                        </h6>
+                                    </div>
+                                    <div class="col mob-auto">
+                                        <i class="incoming-col"><img src="assets/img/incoming-call-icon.svg" alt=""></i>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-video text-muted"></i>
+                                    </div>
+                                </div>
+                                <hr class="my-3">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-muted mb-0">
+                                            <i class="far fa-clock mr-2"></i>Today, 11:43 PM
+                                        </h6>
+                                    </div>
+                                    <div class="col mob-auto">
+                                        <i class="incoming-col"><img src="assets/img/incoming-call-icon.svg" alt=""></i>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-video text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="call-view-more">
+                            <a href="#"><i class="fas fa-chevron-down mr-1"></i> <span>7 More</span></a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /Chat -->
@@ -851,6 +699,391 @@
             </div>
             <!-- /New group modal -->
 
+            <!-- New call modal -->
+            <div class="modal fade" id="audiocallmodal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                Call
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-times close_icon"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Tabs -->
+                            <ul class="nav nav-tabs nav-justified newgroup_ul mt-0" role="tablist">
+                                <li class="nav-item">
+                                    <a href="#create-group-details" class="nav-link active"
+                                        data-toggle="tab" role="tab" aria-selected="true">Members</a>
+                                </li>
+                            </ul>
+                            <!-- Tabs -->
+                            <!-- Create chat -->
+                            <div class="tab-content" role="tablist">
+                                <!-- Chat details -->
+                                <div class="tab-pane fade show active"
+                                    role="tabpanel">
+                                    <!-- Chat Members -->
+                                    <nav class="list-group list-group-flush mb-n6">
+                                        <!-- Search -->
+                                        <form class="mb-3 newgroup_content">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form-control-lg newgroup_search"
+                                                    placeholder="Search for messages or users..."
+                                                    aria-label="Search for messages or users...">
+                                                <div class="input-group-append">
+                                                    <button
+                                                        class="btn btn-lg btn-ico btn-secondary btn-minimal newgroup_search_btn"
+                                                        type="submit">
+                                                        <i class="fas fa-search newgroup_fa_search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- Search -->
+                                        <div class="mb-6">
+                                            <small class="text-uppercase">A</small>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="card mb-6 group_card_mb">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="avatar avatar-online mr-5">
+                                                        <img class="avatar-img group_image"
+                                                            src="assets/img/avatar-7.jpg" alt="Anna Bridges">
+                                                    </div>
+                                                    <div
+                                                        class="media-body align-self-center mr-6 group_card_media">
+                                                        <h6 class="mb-0">Anna Bridges</h6>
+                                                        <small class="text-muted">Online</small>
+                                                    </div>
+                                                    <div class="align-self-center ml-auto members-call">
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Voice call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-phone-alt"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Video call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-video"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Label -->
+                                            <label class="stretched-label" for="id-user-1"></label>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="mb-6">
+                                            <small class="text-uppercase">B</small>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="card mb-6 group_card_mb">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="avatar mr-5">
+                                                        <img class="avatar-img group_image"
+                                                            src="assets/img/avatar-1.jpg"
+                                                            alt="Brian Dawson">
+                                                    </div>
+                                                    <div
+                                                        class="media-body align-self-center mr-6 group_card_media">
+                                                        <h6 class="mb-0">Brian Dawson</h6>
+                                                        <small class="text-muted">last seen 2 hours
+                                                            ago</small>
+                                                    </div>
+                                                    <div class="align-self-center ml-auto members-call">
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Voice call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-phone-alt"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Video call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-video"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Label -->
+                                            <label class="stretched-label" for="id-user-2"></label>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="mb-6">
+                                            <small class="text-uppercase">L</small>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="card mb-6 group_card_mb">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="avatar mr-5">
+                                                        <img class="avatar-img group_image"
+                                                            src="assets/img/avatar-2.jpg"
+                                                            alt="Leslie Sutton">
+                                                    </div>
+                                                    <div
+                                                        class="media-body align-self-center mr-6 group_card_media">
+                                                        <h6 class="mb-0">Leslie Sutton</h6>
+                                                        <small class="text-muted">last seen 3 days
+                                                            ago</small>
+                                                    </div>
+                                                    <div class="align-self-center ml-auto members-call">
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Voice call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-phone-alt"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Video call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-video"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Label -->
+                                            <label class="stretched-label" for="id-user-3"></label>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="mb-6">
+                                            <small class="text-uppercase">M</small>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="card mb-6 group_card_mb">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="avatar mr-5">
+                                                        <img class="avatar-img group_image"
+                                                            src="assets/img/avatar-3.jpg"
+                                                            alt="Matthew Wiggins">
+                                                    </div>
+                                                    <div
+                                                        class="media-body align-self-center mr-6 group_card_media">
+                                                        <h6 class="mb-0">Matthew Wiggins</h6>
+                                                        <small class="text-muted">last seen 3 days
+                                                            ago</small>
+                                                    </div>
+                                                    <div class="align-self-center ml-auto members-call">
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Voice call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-phone-alt"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Video call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-video"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Label -->
+                                            <label class="stretched-label" for="id-user-4"></label>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="mb-6">
+                                            <small class="text-uppercase">S</small>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="card mb-6 group_card_mb">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="avatar mr-5">
+                                                        <img class="avatar-img group_image"
+                                                            src="assets/img/avatar-4.jpg"
+                                                            alt="Simon Hensley">
+                                                    </div>
+                                                    <div
+                                                        class="media-body align-self-center mr-6 group_card_media">
+                                                        <h6 class="mb-0">Simon Hensley</h6>
+                                                        <small class="text-muted">last seen 3 days
+                                                            ago</small>
+                                                    </div>
+                                                    <div class="align-self-center ml-auto members-call">
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Voice call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-phone-alt"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Video call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-video"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Label -->
+                                            <label class="stretched-label" for="id-user-5"></label>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="mb-6">
+                                            <small class="text-uppercase">W</small>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="card mb-6 group_card_mb">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="avatar mr-5">
+                                                        <img class="avatar-img group_image"
+                                                            src="assets/img/avatar-5.jpg"
+                                                            alt="William Wright">
+                                                    </div>
+                                                    <div
+                                                        class="media-body align-self-center mr-6 group_card_media">
+                                                        <h6 class="mb-0">William Wright</h6>
+                                                        <small class="text-muted">last seen 3 days
+                                                            ago</small>
+                                                    </div>
+                                                    <div class="align-self-center ml-auto members-call">
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Voice call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-phone-alt"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Video call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-video"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Label -->
+                                            <label class="stretched-label" for="id-user-6"></label>
+                                        </div>
+                                        <!-- Friend -->
+                                        <!-- Friend -->
+                                        <div class="card mb-6 group_card_mb">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="avatar mr-5">
+                                                        <img class="avatar-img group_image"
+                                                            src="assets/img/avatar-6.png" alt="William Greer">
+                                                    </div>
+                                                    <div
+                                                        class="media-body align-self-center mr-6 group_card_media">
+                                                        <h6 class="mb-0">William Greer</h6>
+                                                        <small class="text-muted">last seen 10 minutes
+                                                            ago</small>
+                                                    </div>
+                                                    <div class="align-self-center ml-auto members-call">
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Voice call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-phone-alt"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Video call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-video"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Label -->
+                                            <label class="stretched-label" for="id-user-7"></label>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="mb-6">
+                                            <small class="text-uppercase">Z</small>
+                                        </div>
+                                        <!-- Friend -->
+                                        <div class="card mb-6 group_card_mb">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="avatar mr-5">
+                                                        <img class="avatar-img group_image"
+                                                            src="assets/img/avatar-8.jpg" alt="Zane Mayes">
+                                                    </div>
+                                                    <div
+                                                        class="media-body align-self-center mr-6 group_card_media">
+                                                        <h6 class="mb-0">Zane Mayes</h6>
+                                                        <small class="text-muted">last seen 3 days
+                                                            ago</small>
+                                                    </div>
+                                                    <div class="align-self-center ml-auto members-call">
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Voice call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-phone-alt"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item" data-toggle="tooltip" title=""
+                                                                data-original-title="Video call">
+                                                                <a href="javascript:void(0)" class="btn btn-outline-light" data-toggle="modal"
+                                                                    data-target="#voice_call" data-dismiss="modal">
+                                                                    <i class="fas fa-video"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Label -->
+                                            <label class="stretched-label" for="id-user-8"></label>
+                                        </div>
+                                        <!-- Friend -->
+                                    </nav>
+                                <!-- Chat Members -->
+                                </div>
+                                <!-- Chat details -->
+                            </div>
+                            <!-- Create chat -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /New call modal -->
+
             <!-- Profile Modal -->
             <div class="modal fade" id="profile_modal">
                 <div class="modal-dialog modal-dialog-centered">
@@ -974,9 +1207,9 @@
             </div>
             <!-- /Settings Modal -->
 
-            <!-- Right Sidebar -->
+            <!-- Righr Sidebar -->
             <div class="right-sidebar right_sidebar_profile" id="middle1">
-                <div class="right-sidebar-wrap profile_wrap_right member_sidebar active">
+                <div class="right-sidebar-wrap active">
                     <div class="contact-close_call mr-4 mt-4 text-right">
                         <a href="#"
                             class="btn btn-outline-light close_profile close_profile4">
@@ -984,129 +1217,68 @@
                         </a>
                     </div>
                     <div class="sidebar-body">
-                        <div class="pl-4 pr-4 right_sidebar_logo">
+                        <div class="pl-4 pr-4 mt-0 right_sidebar_logo">
                             <div class="text-center mb-3">
                                 <figure class="avatar avatar-xl mb-3">
-                                    <img src="assets/img/carousel1.jpg" class="rounded-circle" alt="image">
+                                    <img src="assets/img/avatar-2.jpg" class="rounded-circle" alt="image">
                                 </figure>
-                                <h5 class="mb-1 profile-name">Dreams Team</h5>
+                                <h5 class="profile-name">Scott Albright</h5>
                             </div>
-                            <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded nav-justified profile-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#info">Info</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#member">Members</a>
-                                </li>
-                            </ul>
-                            <!-- Tab panes -->
-                            <div class="tab-content rightside_tab">
-                                <div id="info" class="tab-pane active"><br>  
-                                    <div class="accordion-col">
-                                        <div class="accordion-title">
-                                            <h6 class="primary-title">Media (31) <i class="fas fa-chevron-right float-right"></i></h6>
-                                        </div>
-                                        <div class="accordion-content">
-                                            <div class="media-lists">
-                                                <div class="media-image">
-                                                    <img src="assets/img/media1.jpg" alt="">
-                                                </div>
-                                                <div class="media-image">
-                                                    <img src="assets/img/media2.jpg" alt="">
-                                                </div>
-                                                <div class="media-image">
-                                                    <img src="assets/img/media3.jpg" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-title">
-                                            <h6 class="primary-title">About and phone number <i class="fas fa-chevron-right float-right"></i></h6>
-                                        </div>
-                                        <div class="accordion-content">
-                                            <p class="text-muted text-center mt-1">Help people to build websites and apps + grow
-                                                awareness in social media 🔥</p>
-                                            <div class="mt-2 text-center">
-                                                <h6>Phone: <span class="text-muted ml-2">+(33 1) 45 55 01 10</span></h6>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-title">
-                                            <h6 class="primary-title">Settings <i class="fas fa-chevron-right float-right"></i></h6>
-                                        </div>
-                                        <div class="accordion-content">
-                                            <ul class="contact-action">
-                                                <li class="block-user mt-1">
-                                                    <a href="#"><i class="fas fa-ban mr-2 text-muted"></i>Block</a>
-                                                </li>
-                                                <li class="report-contact">
-                                                    <a href="#"><i class="fas fa-thumbs-down mr-2"></i> Report Contact</a>
-                                                </li>
-                                                <li class="delete-chat">
-                                                    <a href="#"><i class="fas fa-trash-alt mr-2"></i> Delete Chat</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="member" class="tab-pane"><br>
-                                    <div>
-                                        <h6 class="primary-title">20 Participants <i
-                                                class="fas fa-chevron-right float-right"></i></h6>
-                                        <div class="list-group list-group-flush">
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="media align-items-center">
-                                                    <div class="mr-3">
-                                                        <img alt="Image placeholder" src="assets/img/avatar-8.jpg"
-                                                            class="avatar  rounded-circle">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6 class="text-sm d-block text-truncate mb-0">Regina Dickerson
-                                                        </h6>
-                                                        <span class="d-block text-sm text-muted">At Work</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="media align-items-center">
-                                                    <div class="mr-3">
-                                                        <img alt="Image placeholder" src="assets/img/avatar-7.jpg"
-                                                            class="avatar  rounded-circle">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6 class="text-sm d-block text-truncate mb-0">Kevin Howard
-                                                        </h6>
-                                                        <span class="d-block text-sm text-muted">At Work</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="media align-items-center">
-                                                    <div class="mr-3">
-                                                        <img alt="Image placeholder" src="assets/img/avatar-1.jpg"
-                                                            class="avatar  rounded-circle">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6 class="text-sm d-block text-truncate mb-0">Eric Knight
-                                                        </h6>
-                                                        <span class="d-block text-sm text-muted">At Work</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <div class="view-more ml-4 mt-3">
-                                                <a href="#"><i class="fas fa-chevron-down mr-1"></i> <span>17
-                                                        More</span></a>
-                                            </div>
+                            <div>
 
+                                <div class="accordion-col">
+                                    <div class="accordion-title">
+                                        <h6 class="primary-title">Media (31) <i class="fas fa-chevron-right float-right"></i></h6>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <div class="media-lists">
+                                            <div class="media-image">
+                                                <img src="assets/img/media1.jpg" alt="">
+                                            </div>
+                                            <div class="media-image">
+                                                <img src="assets/img/media2.jpg" alt="">
+                                            </div>
+                                            <div class="media-image">
+                                                <img src="assets/img/media3.jpg" alt="">
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="accordion-title">
+                                        <h6 class="primary-title">About and phone number <i class="fas fa-chevron-right float-right"></i></h6>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p class="text-muted text-center mt-1">Help people to build websites and apps + grow
+                                            awareness in social media 🔥</p>
+                                        <div class="mt-2 text-center">
+                                            <h6>Phone: <span class="text-muted ml-2">+(33 1) 45 55 01 10</span></h6>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-title">
+                                        <h6 class="primary-title">Settings <i class="fas fa-chevron-right float-right"></i></h6>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <ul class="contact-action">
+                                            <li class="block-user mt-1">
+                                                <a href="#"><i class="fas fa-ban mr-2 text-muted"></i>Block</a>
+                                            </li>
+                                            <li class="report-contact">
+                                                <a href="#"><i class="fas fa-thumbs-down mr-2"></i> Report Contact</a>
+                                            </li>
+                                            <li class="delete-chat">
+                                                <a href="#"><i class="fas fa-trash-alt mr-2"></i> Delete Chat</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Right Sidebar -->
+            <!-- /Righr Sidebar -->
         </div>
         <!-- /Content -->
     </div>
     <!-- /Main Wrapper -->
-@endsection
+	@endsection
