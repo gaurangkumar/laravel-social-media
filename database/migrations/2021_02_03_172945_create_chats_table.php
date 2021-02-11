@@ -20,6 +20,7 @@ class CreateChatsTable extends Migration
 			$table->bigInteger('rid')->unsigned();
 			$table->foreign('rid')->references('id')->on('users');
 			$table->boolean('view')->default(0);
+			$table->longText('msg')->nullable();
 			$table->date('deleted')->nullable();
             $table->timestamps();
         });

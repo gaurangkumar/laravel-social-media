@@ -25,6 +25,6 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/group', [HomeController::class, 'group'])->name('group');
+Route::get('/page', [HomeController::class, 'page'])->name('page');
 Route::get('/call', [HomeController::class, 'call'])->name('call');
 Route::get('/status', [HomeController::class, 'status'])->name('status');

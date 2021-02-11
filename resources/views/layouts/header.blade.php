@@ -21,15 +21,15 @@
                         </div>
                         <ul class="nav nav-tabs chat-tabs mt-4">
                             <li class="nav-item">
-                                <a class="nav-link {{ $currentRoute == 'home' ? 'active' : '' }}" href="index-2.html">Chats</a>
+                                <a class="nav-link {{ $currentRoute == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Chats</a>
                             </li>
                             <li class="nav-item ml-1">
-                                <a class="nav-link {{ $currentRoute == 'page' ? 'active' : '' }}" href="group.html">Pages</a>
+                                <a class="nav-link {{ $currentRoute == 'page' ? 'active' : '' }}" href="{{ route('page') }}">Pages</a>
                             </li>
                             <li class="nav-item ml-1">
-                                <a class="nav-link {{ $currentRoute == 'status' ? 'active' : '' }}" href="status.html">Status</a>
+                                <a class="nav-link {{ $currentRoute == 'status' ? 'active' : '' }}" href="{{ route('status') }}">Status</a>
                             </li>
                             <li class="nav-item ml-1">
-                                <a class="nav-link {{ $currentRoute == 'call' ? 'active' : '' }}" href="call-log.html">Call</a>
+                                <a class="nav-link {{ $currentRoute == 'call' ? 'active' : '' }}" href="{{ route('call') }}">Call</a>
                             </li>
                         </ul>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('content')
     <!-- Main Wrapper -->
     <div class="main-wrapper">
@@ -8,7 +8,12 @@
             <div class="sidebar-group left-sidebar">
                 <!-- Chats sidebar -->
                 <div id="chats" class="left-sidebar-wrap sidebar active">
+                    <div class="header">
 @include('layouts.header')
+                        <button type="button" class="float-right btn btn-circle btn-sm header_button" data-toggle="modal" data-target="#new_group">
+                            <i class="fas fa-plus button_plus"></i>
+                        </button>
+                    </div>
                     <div class="search_chat has-search">
                         <span class="fas fa-search form-control-feedback"></span>
                         <input class="form-control chat_input" id="search-contact" type="text" placeholder="">

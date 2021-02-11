@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('content')
 
     <!-- Main Wrapper -->
@@ -10,41 +10,7 @@
                 <!-- Chats sidebar -->
                 <div id="chats" class="left-sidebar-wrap sidebar active">
                     <div class="header">
-                        <div class="header-top">
-                            <div class="logo ml-2 mt-3">
-                                <a href="index-2.html">
-                                    <img src="assets/img/logo.png" alt="" class="header_image">
-                                </a>
-                            </div>
-                            <ul class="header-action mt-4">
-                                <li>
-                                    <a href="#" data-toggle="dropdown">
-                                        <i class="fas fa-ellipsis-h ellipse_header"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right header_drop_icon">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#new_group">New
-                                            Group</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#profile_modal">Profile</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#settings_modal">Settings</a>
-                                        <a href="login.html" class="dropdown-item">Logout</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <ul class="nav nav-tabs chat-tabs mt-4">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index-2.html">Chat</a>
-                            </li>
-                            <li class="nav-item ml-1">
-                                <a class="nav-link" href="group.html">Group</a>
-                            </li>
-                            <li class="nav-item  active ml-1">
-                                <a class="nav-link active" href="status.html">Status</a>
-                            </li>
-                            <li class="nav-item ml-1">
-                                <a class="nav-link" href="call-log.html">Call</a>
-                            </li>
-                        </ul>
+@include('layouts.header')
                         <button type="button" class="float-right btn btn-circle btn-sm header_button" data-toggle="modal" data-target="#drag_files">
                             <i class="fas fa-plus button_plus"></i>
                         </button>

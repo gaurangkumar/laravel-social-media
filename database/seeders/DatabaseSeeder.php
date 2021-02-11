@@ -23,6 +23,12 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'), //Hash::make($data['password']),
         ]);
 
+        DB::table('users')->insert([
+            'name' => 'himani',
+            'email' => 'himani@abc.com',
+            'password' => bcrypt('12345678'), //Hash::make($data['password']),
+        ]);
+
         // \App\Models\User::factory(10)->create();
     }
 }

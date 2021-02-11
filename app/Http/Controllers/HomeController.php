@@ -15,8 +15,8 @@ class HomeController extends Controller
         return view('index', ['title' => 'Agwis Messenger']);
     }
 
-    public function group() {
-        return view('group', ['title' => 'Groups | Agwis Messenger']);
+    public function page() {
+        return view('page', ['title' => 'pages | Agwis Messenger']);
     }
 
 	public function call() {
