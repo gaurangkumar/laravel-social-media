@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+/*
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/group', [HomeController::class, 'group'])->name('group');
+Route::get('/call', [HomeController::class, 'call'])->name('call');
+*/
