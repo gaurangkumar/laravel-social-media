@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<<<<<<< HEAD:resources/views/call.blade.php
- <!-- Main Wrapper -->
-=======
     <!-- Main Wrapper -->
->>>>>>> 4b36bf48d9a3a276f5195b3052e2214f6c5d27d4:resources/views/call.blade.php
     <div class="main-wrapper">
         <!-- content -->
         <div class="content main_content">
