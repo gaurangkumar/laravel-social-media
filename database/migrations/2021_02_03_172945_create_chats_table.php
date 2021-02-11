@@ -16,8 +16,9 @@ class CreateChatsTable extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
 			$table->foreignId('user_id')->constrained();
-            $table->foreignId('group_id')->constrained();
-			$table->bigInteger('rid')->unsigned();
+			$table->bigInteger('group_id')->unsigned()->nullable()->default(null);
+			$table->foreign('group_id')->references('id')->on('groups');
+			$table->bigInteger('rid')->unsigned()->nullable()->default(null);
 			$table->foreign('rid')->references('id')->on('users');
 			$table->boolean('view')->default(0);
 			$table->longText('msg')->nullable();
