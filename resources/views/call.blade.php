@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content');
+@section('content')
  <!-- Main Wrapper -->
     <div class="main-wrapper">
         <!-- content -->
