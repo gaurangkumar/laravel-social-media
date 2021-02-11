@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content');
+@section('content')
     <!-- Main Wrapper -->
     <div class="main-wrapper">
         <!-- content -->
@@ -8,46 +8,7 @@
             <div class="sidebar-group left-sidebar">
                 <!-- Chats sidebar -->
                 <div id="chats" class="left-sidebar-wrap sidebar active">
-                    <div class="header">
-                        <div class="header-top">
-                            <div class="logo ml-2 mt-3">
-                                <a href="index-2.html">
-                                    <img src="assets/img/logo.png" alt="" class="header_image">
-                                </a>
-                            </div>
-                            <ul class="header-action mt-4">
-                                <li>
-                                    <a href="#" data-toggle="dropdown">
-                                        <i class="fas fa-ellipsis-h ellipse_header"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right header_drop_icon">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#new_group">New
-                                            Group</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#profile_modal">Profile</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#settings_modal">Settings</a>
-                                        <a href="login.html" class="dropdown-item">Logout</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <ul class="nav nav-tabs chat-tabs mt-4">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index-2.html">Chat</a>
-                            </li>
-                            <li class="nav-item ml-1">
-                                <a class="nav-link active" href="group.html">Group</a>
-                            </li>
-                            <li class="nav-item ml-1">
-                                <a class="nav-link" href="status.html">Status</a>
-                            </li>
-                            <li class="nav-item ml-1">
-                                <a class="nav-link" href="call-log.html">Call</a>
-                            </li>
-                        </ul>
-                        <button type="button" class="float-right btn btn-circle btn-sm header_button" data-toggle="modal" data-target="#new_group">
-                            <i class="fas fa-plus button_plus"></i>
-                        </button>
-                    </div>
+@include('layouts.header')
                     <div class="search_chat has-search">
                         <span class="fas fa-search form-control-feedback"></span>
                         <input class="form-control chat_input" id="search-contact" type="text" placeholder="">
@@ -56,7 +17,7 @@
                         <ul class="user-list">
                             <li class="user-list-item">
                                 <div class="avatar">
-                                    <img src="assets/img/media2.jpg" class="rounded-circle" alt="image">
+                                    <img src="{{ asset('/template/assets/img/media2.jpg') }}" class="rounded-circle" alt="image">
                                 </div>
                                 <div class="users-list-body">
                                     <div>
@@ -67,11 +28,11 @@
                                         <div>
                                             <div class="avatar avatar-xs group_img group_header">
                                                 <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-8.jpg">
+                                                    src="{{ asset('/template/assets/img/avatar-8.jpg') }}">
                                             </div>
                                             <div class="avatar avatar-xs group_img group_header">
                                                 <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-7.jpg">
+                                                    src="{{ asset('/template/assets/img/avatar-7.jpg') }}">
                                             </div>
                                             <div class="avatar avatar-xs group_img group_header">
                                                 <span class="avatar-title rounded-circle border border-white">14+</span>
@@ -84,7 +45,7 @@
                             <li class="user-list-item unread">
                                 <div>
                                     <div class="avatar">
-                                        <img src="assets/img/carousel1.jpg" class="rounded-circle" alt="image">
+                                        <img src="{{ asset('/template/assets/img/carousel1.jpg') }}" class="rounded-circle" alt="image">
                                     </div>
                                 </div>
                                 <div class="users-list-body">
@@ -96,11 +57,11 @@
                                         <div>
                                             <div class="avatar avatar-xs group_img group_header">
                                                 <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-1.jpg">
+                                                    src="{{ asset('/template/assets/img/avatar-1.jpg') }}">
                                             </div>
                                             <div class="avatar avatar-xs group_img group_header">
                                                 <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-2.jpg">
+                                                    src="{{ asset('/template/assets/img/avatar-2.jpg') }}">
                                             </div>
                                             <div class="avatar avatar-xs group_img group_header">
                                                 <span class="avatar-title rounded-circle border border-white">10+</span>
@@ -113,7 +74,7 @@
                             <li class="user-list-item">
                                 <div>
                                     <div class="avatar">
-                                        <img src="assets/img/media3.jpg" class="rounded-circle" alt="image">
+                                        <img src="{{ asset('/template/assets/img/media3.jpg') }}" class="rounded-circle" alt="image">
                                     </div>
                                 </div>
                                 <div class="users-list-body">
@@ -125,11 +86,11 @@
                                         <div>
                                             <div class="avatar avatar-xs group_img group_header">
                                                 <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-3.jpg">
+                                                    src="{{ asset('/template/assets/img/avatar-3.jpg') }}">
                                             </div>
                                             <div class="avatar avatar-xs group_img group_header">
                                                 <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                                    src="assets/img/avatar-1.jpg">
+                                                    src="{{ asset('/template/assets/img/avatar-1.jpg') }}">
                                             </div>
                                             <div class="avatar avatar-xs group_img group_header">
                                                 <span class="avatar-title rounded-circle border border-white">8+</span>
@@ -142,7 +103,7 @@
                             <li class="user-list-item">
                                 <div>
                                     <div class="avatar">
-                                        <img src="assets/img/media1.jpg" class="rounded-circle" alt="image">
+                                        <img src="{{ asset('/template/assets/img/media1.jpg') }}" class="rounded-circle" alt="image">
                                     </div>
                                 </div>
                                 <div class="users-list-body">
@@ -173,7 +134,7 @@
                             <li class="user-list-item">
                                 <div>
                                     <div class="avatar">
-                                        <img src="assets/img/avatar-3.jpg" class="rounded-circle" alt="image">
+                                        <img src="{{ asset('/template/assets/img/avatar-3.jpg') }}" class="rounded-circle" alt="image">
                                     </div>
                                 </div>
                                 <div class="users-list-body">
@@ -205,7 +166,7 @@
                             <li class="user-list-item">
                                 <div>
                                     <div class="avatar">
-                                        <img src="assets/img/avatar-4.jpg" class="rounded-circle" alt="image">
+                                        <img src="{{ asset('/template/assets/img/avatar-4.jpg') }}" class="rounded-circle" alt="image">
                                     </div>
                                 </div>
                                 <div class="users-list-body">
@@ -255,7 +216,7 @@
                             </ul>
                         </div>
                         <figure class="avatar ml-1">
-                            <img src="assets/img/carousel1.jpg" class="rounded-circle" alt="image">
+                            <img src="{{ asset('/template/assets/img/carousel1.jpg') }}" class="rounded-circle" alt="image">
                         </figure>
                         <div class="mt-1">
                             <h5 class="mb-1">Dreams Team</h5>
@@ -267,11 +228,11 @@
                     <div class="avatar-group">
                         <div class="avatar avatar-xs group_img group_header">
                             <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                src="assets/img/avatar-1.jpg">
+                                src="{{ asset('/template/assets/img/avatar-1.jpg') }}">
                         </div>
                         <div class="avatar avatar-xs group_img group_header">
                             <img class="avatar-img rounded-circle border border-white" alt="User Image"
-                                src="assets/img/avatar-7.jpg">
+                                src="{{ asset('/template/assets/img/avatar-7.jpg') }}">
                         </div>
                         <div class="avatar avatar-xs group_img group_header">
                             <span class="avatar-title rounded-circle border border-white">10+</span>
@@ -309,7 +270,7 @@
                     <div class="messages">
                         <div class="chats">
                             <div class="chat-avatar">
-                                <img src="assets/img/avatar-2.jpg" class="rounded-circle dreams_chat" alt="image">
+                                <img src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="rounded-circle dreams_chat" alt="image">
                             </div>
                             <div class="chat-content">
                                 <div class="message-content">
@@ -337,14 +298,14 @@
                                 </div>
                                 <div class="chat-time">
                                     <div>
-                                        <div class="time">Yesterday 14:38 PM <i><img src="assets/img/double-tick.png" alt=""></i></div>
+                                        <div class="time">Yesterday 14:38 PM <i><img src="{{ asset('/template/assets/img/double-tick.png') }}" alt=""></i></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="chats">
                             <div class="chat-avatar">
-                                <img src="assets/img/avatar-2.jpg" class="rounded-circle dreams_chat" alt="image">
+                                <img src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="rounded-circle dreams_chat" alt="image">
                             </div>
                             <div class="chat-content">
                                 <div class="message-content">
@@ -365,7 +326,7 @@
                                 </div>
                                 <div class="chat-time">
                                     <div>
-                                        <div class="time">Yesterday 14:42 PM <i><img src="assets/img/double-tick.png" alt=""></i></div>
+                                        <div class="time">Yesterday 14:42 PM <i><img src="{{ asset('/template/assets/img/double-tick.png') }}" alt=""></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -376,7 +337,7 @@
 
                         <div class="chats">
                             <div class="chat-avatar">
-                                <img src="assets/img/avatar-2.jpg" class="rounded-circle dreams_chat" alt="image">
+                                <img src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="rounded-circle dreams_chat" alt="image">
                             </div>
                             <div class="chat-content">
                                 <div class="message-content">
@@ -397,14 +358,14 @@
                                 </div>
                                 <div class="chat-time">
                                     <div>
-                                        <div class="time">14:29 PM <i><img src="assets/img/double-tick.png" alt=""></i></div>
+                                        <div class="time">14:29 PM <i><img src="{{ asset('/template/assets/img/double-tick.png') }}" alt=""></i></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="chats">
                             <div class="chat-avatar">
-                                <img src="assets/img/avatar-2.jpg" class="rounded-circle dreams_chat" alt="image">
+                                <img src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="rounded-circle dreams_chat" alt="image">
                             </div>
                             <div class="chat-content">
                                 <div class="message-content">
@@ -425,7 +386,7 @@
                                 </div>
                                 <div class="chat-time">
                                     <div>
-                                        <div class="time">14:32 PM <i><img src="assets/img/double-tick.png" alt=""></i></div>
+                                        <div class="time">14:32 PM <i><img src="{{ asset('/template/assets/img/double-tick.png') }}" alt=""></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -436,7 +397,7 @@
 
                         <div class="chats">
                             <div class="chat-avatar">
-                                <img src="assets/img/avatar-2.jpg" class="rounded-circle dreams_chat" alt="image">
+                                <img src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="rounded-circle dreams_chat" alt="image">
                             </div>
                             <div class="chat-content">
                                 <div class="message-content">
@@ -457,7 +418,7 @@
                                 </div>
                                 <div class="chat-time">
                                     <div>
-                                        <div class="time">14:34 PM <i><img src="assets/img/double-tick.png" alt=""></i></div>
+                                        <div class="time">14:34 PM <i><img src="{{ asset('/template/assets/img/double-tick.png') }}" alt=""></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -519,7 +480,7 @@
                                 <div class="call-wrapper">
                                     <div class="call-inner">
                                         <div class="call-user">
-                                            <img alt="User Image" src="assets/img/avatar-2.jpg" class="call-avatar">
+                                            <img alt="User Image" src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="call-avatar">
                                             <h4>Tobbias Williams</h4>
                                             <span class="chat_cal">calling...</span>
                                         </div>
@@ -547,7 +508,7 @@
                                 <div class="call-wrapper">
                                     <div class="call-inner">
                                         <div class="call-user">
-                                            <img alt="User Image" src="assets/img/avatar-2.jpg" class="call-avatar">
+                                            <img alt="User Image" src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="call-avatar">
                                             <h4>Tobbias Williams</h4>
                                             <span class="chat_cal">calling...</span>
                                         </div>
@@ -635,7 +596,7 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="avatar avatar-online mr-5">
-                                                        <img class="avatar-img group_image" src="assets/img/avatar-7.jpg" alt="Anna Bridges">
+                                                        <img class="avatar-img group_image" src="{{ asset('/template/assets/img/avatar-7.jpg') }}" alt="Anna Bridges">
                                                     </div>
                                                     <div
                                                         class="media-body align-self-center mr-6 group_card_media">
@@ -662,7 +623,7 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="avatar mr-5">
-                                                        <img class="avatar-img group_image" src="assets/img/avatar-1.jpg" alt="Brian Dawson">
+                                                        <img class="avatar-img group_image" src="{{ asset('/template/assets/img/avatar-1.jpg') }}" alt="Brian Dawson">
                                                     </div>
                                                     <div class="media-body align-self-center mr-6 group_card_media">
                                                         <h6 class="mb-0">Brian Dawson</h6>
@@ -688,7 +649,7 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="avatar mr-5">
-                                                        <img class="avatar-img group_image" src="assets/img/avatar-2.jpg" alt="Leslie Sutton">
+                                                        <img class="avatar-img group_image" src="{{ asset('/template/assets/img/avatar-2.jpg') }}" alt="Leslie Sutton">
                                                     </div>
                                                     <div class="media-body align-self-center mr-6 group_card_media">
                                                         <h6 class="mb-0">Leslie Sutton</h6>
@@ -714,7 +675,7 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="avatar mr-5">
-                                                        <img class="avatar-img group_image" src="assets/img/avatar-3.jpg" alt="Matthew Wiggins">
+                                                        <img class="avatar-img group_image" src="{{ asset('/template/assets/img/avatar-3.jpg') }}" alt="Matthew Wiggins">
                                                     </div>
                                                     <div class="media-body align-self-center mr-6 group_card_media">
                                                         <h6 class="mb-0">Matthew Wiggins</h6>
@@ -740,7 +701,7 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="avatar mr-5">
-                                                        <img class="avatar-img group_image" src="assets/img/avatar-4.jpg" alt="Simon Hensley">
+                                                        <img class="avatar-img group_image" src="{{ asset('/template/assets/img/avatar-4.jpg') }}" alt="Simon Hensley">
                                                     </div>
                                                     <div class="media-body align-self-center mr-6 group_card_media">
                                                         <h6 class="mb-0">Simon Hensley</h6>
@@ -766,7 +727,7 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="avatar mr-5">
-                                                        <img class="avatar-img group_image" src="assets/img/avatar-5.jpg" alt="William Wright">
+                                                        <img class="avatar-img group_image" src="{{ asset('/template/assets/img/avatar-5.jpg') }}" alt="William Wright">
                                                     </div>
                                                     <div class="media-body align-self-center mr-6 group_card_media">
                                                         <h6 class="mb-0">William Wright</h6>
@@ -789,7 +750,7 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="avatar mr-5">
-                                                        <img class="avatar-img group_image" src="assets/img/avatar-6.png" alt="William Greer">
+                                                        <img class="avatar-img group_image" src="{{ asset('/template/assets/img/avatar-6.png') }}" alt="William Greer">
                                                     </div>
                                                     <div class="media-body align-self-center mr-6 group_card_media">
                                                         <h6 class="mb-0">William Greer</h6>
@@ -815,7 +776,7 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="avatar mr-5">
-                                                        <img class="avatar-img group_image" src="assets/img/avatar-8.jpg" alt="Zane Mayes">
+                                                        <img class="avatar-img group_image" src="{{ asset('/template/assets/img/avatar-8.jpg') }}" alt="Zane Mayes">
                                                     </div>
                                                     <div
                                                         class="media-body align-self-center mr-6 group_card_media">
@@ -870,7 +831,7 @@
                                     <div class="text-center py-6">
                                         <!-- Photo -->
                                         <div class="avatar avatar-xl mb-3">
-                                            <img class="avatar-img rounded-circle mCS_img_loaded" src="assets/img/avatar-5.jpg" alt="">
+                                            <img class="avatar-img rounded-circle mCS_img_loaded" src="{{ asset('/template/assets/img/avatar-5.jpg') }}" alt="">
                                         </div>
                                         <h5>John Janousek</h5>
                                         <p class="text-muted m-0">Last seen: Today</p>
@@ -987,7 +948,7 @@
                         <div class="pl-4 pr-4 right_sidebar_logo">
                             <div class="text-center mb-3">
                                 <figure class="avatar avatar-xl mb-3">
-                                    <img src="assets/img/carousel1.jpg" class="rounded-circle" alt="image">
+                                    <img src="{{ asset('/template/assets/img/carousel1.jpg') }}" class="rounded-circle" alt="image">
                                 </figure>
                                 <h5 class="mb-1 profile-name">Dreams Team</h5>
                             </div>
@@ -1009,13 +970,13 @@
                                         <div class="accordion-content">
                                             <div class="media-lists">
                                                 <div class="media-image">
-                                                    <img src="assets/img/media1.jpg" alt="">
+                                                    <img src="{{ asset('/template/assets/img/media1.jpg') }}" alt="">
                                                 </div>
                                                 <div class="media-image">
-                                                    <img src="assets/img/media2.jpg" alt="">
+                                                    <img src="{{ asset('/template/assets/img/media2.jpg') }}" alt="">
                                                 </div>
                                                 <div class="media-image">
-                                                    <img src="assets/img/media3.jpg" alt="">
+                                                    <img src="{{ asset('/template/assets/img/media3.jpg') }}" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -1055,7 +1016,7 @@
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="media align-items-center">
                                                     <div class="mr-3">
-                                                        <img alt="Image placeholder" src="assets/img/avatar-8.jpg"
+                                                        <img alt="Image placeholder" src="{{ asset('/template/assets/img/avatar-8.jpg') }}"
                                                             class="avatar  rounded-circle">
                                                     </div>
                                                     <div class="media-body">
@@ -1068,7 +1029,7 @@
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="media align-items-center">
                                                     <div class="mr-3">
-                                                        <img alt="Image placeholder" src="assets/img/avatar-7.jpg"
+                                                        <img alt="Image placeholder" src="{{ asset('/template/assets/img/avatar-7.jpg') }}"
                                                             class="avatar  rounded-circle">
                                                     </div>
                                                     <div class="media-body">
@@ -1081,7 +1042,7 @@
                                             <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="media align-items-center">
                                                     <div class="mr-3">
-                                                        <img alt="Image placeholder" src="assets/img/avatar-1.jpg"
+                                                        <img alt="Image placeholder" src="{{ asset('/template/assets/img/avatar-1.jpg') }}"
                                                             class="avatar  rounded-circle">
                                                     </div>
                                                     <div class="media-body">
