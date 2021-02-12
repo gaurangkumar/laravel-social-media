@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Chat;
 
 class HomeController extends Controller
 {
     public function __construct() {
+        $this->middleware('auth');
         \View::share ( 'currentRoute', Route::currentRouteName() );
     }
 
     public function index() {
-        return view('index', ['title' => 'Agwis Messenger']);
+        $title = 'Agwis Messenger';
+        $user = auth()->user();
+        $chats = Chat::where('rid','=',$user->id)->get();
+        echo '<pre>';print_r($chats);exit;
+        return view('index', compact('title', 'chats'));
     }
 
     public function page() {

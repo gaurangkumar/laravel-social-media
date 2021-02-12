@@ -22,6 +22,36 @@
                     </div>
                     <div class="sidebar-body" id="chatsidebar">
                         <ul class="user-list">
+                            @foreach($chats as $chat)
+                            <li class="user-list-item">
+                                <div class="avatar avatar-online">
+                                    <img src="{{ asset('/template/assets/img/avatar-8.jpg') }}" class="rounded-circle" alt="image">
+                                </div>
+                                <div class="users-list-body">
+                                    <div>
+                                        <h5>{{ $chat->user_id }}</h5>
+                                        <p>{{ $chat->msg }}</p>
+                                    </div>
+                                    <div class="last-chat-time">
+                                        <small class="text-muted">14:45 pm</small>
+                                        <div class="chat-toggle mt-1">
+                                            <div class="dropdown">
+                                                <a data-toggle="dropdown" href="#">
+                                                    <i class="fas fa-ellipsis-h ellipse_header"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="#" class="dropdown-item">Open</a>
+                                                    <a href="#" class="dropdown-item dream_profile_menu">Profile</a>
+                                                    <a href="#" class="dropdown-item">Add to archive</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="#" class="dropdown-item">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </li>
+                            @endforeach
                             <li class="user-list-item">
                                 <div class="avatar avatar-online">
                                     <img src="{{ asset('/template/assets/img/avatar-8.jpg') }}" class="rounded-circle" alt="image">
