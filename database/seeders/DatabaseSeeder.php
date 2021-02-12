@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Jone Doe',
             'email' => 'admin@abc.com',
+            'profile' => 'template\assets\img\avatar-1.jpg',
             'password' => bcrypt('12345678'), //Hash::make($data['password']),
         ]);
 
