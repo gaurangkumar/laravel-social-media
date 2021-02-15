@@ -17,12 +17,12 @@ class HomeController extends Controller
         $title = 'Agwis Messenger';
         $user = auth()->user();
         $chats = Chat::where('rid','=',$user->id)->get();
-        echo '<pre>';print_r($chats);exit;
+        //echo '<pre>';print_r($chats);exit;
         return view('index', compact('title', 'chats'));
     }
 
     public function page() {
-        return view('page', ['title' => 'pages | Agwis Messenger']);
+        return view('page', ['title' => 'Pages | Agwis Messenger']);
     }
 
 	public function call() {
