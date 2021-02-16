@@ -25,7 +25,7 @@
                             @foreach($chats as $chat)
                             <li class="user-list-item">
                                 <div class="avatar avatar-online">
-                                    <img src="{{ asset('/template/assets/img/avatar-8.jpg') }}" class="rounded-circle" alt="image">
+                                    <img src="{{ asset($chat->users->profile) }}" class="rounded-circle" alt="image">
                                 </div>
                                 <div class="users-list-body">
                                     <div>
@@ -33,7 +33,7 @@
                                         <p>{{ $chat->msg }}</p>
                                     </div>
                                     <div class="last-chat-time">
-                                        <small class="text-muted">14:45 pm</small>
+                                        <small class="text-muted">{{ date("H:i a", strtotime($chat->created_at)) }}</small>
                                         <div class="chat-toggle mt-1">
                                             <div class="dropdown">
                                                 <a data-toggle="dropdown" href="#">
@@ -52,6 +52,7 @@
                                 </div>
                             </li>
                             @endforeach
+                            <!--
                             <li class="user-list-item">
                                 <div class="avatar avatar-online">
                                     <img src="{{ asset('/template/assets/img/avatar-8.jpg') }}" class="rounded-circle" alt="image">
@@ -238,6 +239,7 @@
                                     </div>
                                 </div>
                             </li>
+                            -->
                         </ul>
                     </div>
                 </div>

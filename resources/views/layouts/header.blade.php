@@ -14,7 +14,14 @@
                                             Group</a>
                                         <a class="dropdown-item" data-toggle="modal" data-target="#profile_modal">Profile</a>
                                         <a class="dropdown-item" data-toggle="modal" data-target="#settings_modal">Settings</a>
-                                        <a href="login.html" class="dropdown-item">Logout</a>
+                                        <form method="POST" action="{{ route('logout') }}" class="dropdown-item">
+                                            @csrf
+                                            <x-dropdown-link :href="route('logout')"
+                                                    onclick="event.preventDefault();
+                                                                this.closest('form').submit();">
+                                                {{ __('Logout') }}
+                                            </x-dropdown-link>
+                                        </form>
                                     </div>
                                 </li>
                             </ul>
