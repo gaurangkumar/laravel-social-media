@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Chat;
+use App\Models\Chat;
 
 class ChatSeeder extends Seeder
 {
