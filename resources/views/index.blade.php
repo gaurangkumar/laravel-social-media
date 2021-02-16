@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="users-list-body">
                                     <div>
-                                        <h5>{{ $chat->user_id }}</h5>
+                                        <h5>{{ $chat->users->name }}</h5>
                                         <p>{{ $chat->msg }}</p>
                                     </div>
                                     <div class="last-chat-time">

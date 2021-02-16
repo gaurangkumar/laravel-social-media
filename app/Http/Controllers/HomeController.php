@@ -16,8 +16,9 @@ class HomeController extends Controller
     public function index() {
         $title = 'Agwis Messenger';
         $user = auth()->user();
+        $chats = Chat::where('rid','=',$user->id)->with('users')->get();
+        //echo '<pre>';print_r($chats->users->name);exit;
         $chats = Chat::where('rid','=',$user->id)->get();
-        //echo '<pre>';print_r($chats);exit;
         return view('index', compact('title', 'chats'));
     }
 
