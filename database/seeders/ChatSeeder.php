@@ -14,31 +14,45 @@ class ChatSeeder extends Seeder
      */
     public function run()
     {
-        Chat::create([
-            'user_id' => 1,
-            'rid' => 2,
-            'msg' => 'hi',
-        ]);
-        Chat::create([
-            'user_id' => 2,
-            'rid' => 1,
-            'msg' => 'Hello',
-        ]);
-        Chat::create([
-            'user_id' => 1,
-            'rid' => 3,
-            'msg' => 'Good morning',
-        ]);
-        Chat::create([
-            'user_id' => 3,
-            'rid' => 1,
-            'msg' => 'Good night',
-        ]);
+        $msgs = ['what up?', 'hello', 'good morning', 'hey', 'how\'s it going', 'good night', 'good afternoon', 'Welcome', 'how are you'];
+        mt_srand((double)microtime() * 1000000);
 
-        Chat::create([
-            'user_id' => 3,
-            'rid' => 1,
-            'msg' => 'Good night',
-        ]);
+        $datetime = time();
+
+        $u = 8;
+        for($s = 1; $s <= $u; $s++) {
+            for($r = 1; $r <= $u; $r++) {
+                if($s != $r) {
+                    $n = mt_rand(0, count($msgs) - 1);
+                    Chat::create([
+                        'user_id' => $s,
+                        'rid' => $r,
+                        'msg' => $msgs[$n],
+                        'created_at' => date('Y-m-d H:i:s', $datetime)
+                    ]);
+                    $datetime = strtotime("+1 minutes", $datetime);
+                }
+            }
+        }
+
+        foreach( $msgs as $msg ) {
+            $s = mt_rand(1, 8);
+            $r = mt_rand(1, 8);
+            if($s == $r) {
+                if($r == 8) {
+                    $r = 1;
+                }
+                else {
+                    $r++;
+                }
+            }
+            Chat::create([
+                'user_id' => $s,
+                'rid' => $r,
+                'msg' => $msg,
+                'created_at' => date('Y-m-d H:i:s', $datetime)
+            ]);
+            $datetime = strtotime("+1 minutes", $datetime);
+        }
     }
 }

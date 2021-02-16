@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-//use Database\Seeders\UserSeeder;
-use Database\Seeders\ChatSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,9 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-		(new ChatSeeder)->run();
-		//(new UserSeeder)->run();
-        //DB::table('users')->truncate();
+        //DB::table('chats')->truncate();
+
+        $this->call([
+            UserSeeder::class,
+            ChatSeeder::class,
+        ]);
+
         // \App\Models\User::factory(10)->create();
     }
 }
