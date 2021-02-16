@@ -14,11 +14,26 @@ class HomeController extends Controller
     }
 
     public function index() {
+        ini_set('memory_limit', '1024M');
         $title = 'Agwis Messenger';
         $user = auth()->user();
-        $chats = Chat::where('rid','=',$user->id)->with('users')->get();
-        //echo '<pre>';print_r($chats->users->name);exit;
-        $chats = Chat::where('rid','=',$user->id)->get();
+
+        $senders = Chat::where('rid',$user->id)
+            ->with('users')
+            ->select('user_id')//'id','user_id', 'view', 'msg', 'created_at'
+            ->distinct('user_id')
+            ->get();
+        
+        $chats = [];
+        foreach($senders as $sender) {
+        //echo '<pre>';print_r($sender->users->id);exit;
+            $chats[] = Chat::where('rid',$user->id)
+                ->where('user_id',$sender->users->id)
+                ->with('users')
+                //->select('user_id')//'id','user_id', 'view', 'msg', 'created_at'
+                ->first();
+        }
+        //$chats = Chat::where('rid','=',$user->id)->get();
         return view('index', compact('title', 'chats'));
     }
 
