@@ -6,5 +6,7 @@
 <body>
 @yield('content')
 @include('layouts.javascript')
+
+@yield('scripts')
 </body>
 </html>

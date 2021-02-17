@@ -112,6 +112,7 @@
                 <img src="assets/img/status-icon.png" alt="" class="status_content">
                 <h3 class="status_content_h3">Click on a contact to view their status updates</h3>
             </div>
+
             <div class="chat" id="middle">
                 <div class="chat-header">
                     <div class="user-details">

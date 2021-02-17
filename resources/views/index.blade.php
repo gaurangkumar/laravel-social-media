@@ -22,8 +22,9 @@
                     </div>
                     <div class="sidebar-body" id="chatsidebar">
                         <ul class="user-list">
-                            @foreach($chats as $chat)
+                            @foreach($side_chats as $chat)
                             <li class="user-list-item">
+                                <a href="{{ route('chat', $chat->user_id) }}">
                                 <div class="avatar avatar-online">
                                     <img src="{{ asset($chat->users->profile) }}" class="rounded-circle" alt="image">
                                 </div>
@@ -50,6 +51,7 @@
                                         </div>
                                     </div>    
                                 </div>
+                                </a>
                             </li>
                             @endforeach
                             <!--
@@ -247,7 +249,15 @@
             </div>
             <!-- /Sidebar group -->
 
+            @if($sender == null)
+            <div class="status_update">
+                <img src="assets/img/status-icon.png" alt="" class="status_content">
+                <h3 class="status_content_h3">Click on a contact to view their chats</h3>
+            </div>
             <!-- Chat -->
+            <div class="chat" id="middle">
+            </div>
+            @else
             <div class="chat" id="middle">
                 <div class="chat-header">
                     <div class="user-details">
@@ -261,10 +271,10 @@
                             </ul>
                         </div>
                         <figure class="avatar ml-1">
-                            <img src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="rounded-circle" alt="image">
+                            <img src="{{ asset($sender->profile) }}" class="rounded-circle" alt="image">
                         </figure>
                         <div class="mt-1">
-                            <h5 class="mb-1">Scott Albright</h5>
+                            <h5 class="mb-1">{{ $sender->name }}</h5>
                             <small class="text-muted mb-2">
                                 Active 35m ago
                             </small>
@@ -300,9 +310,10 @@
                 </div>
                 <div class="chat-body">
                     <div class="messages">
+                        <?php /*
                         <div class="chats">
                             <div class="chat-avatar">
-                                <img src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="rounded-circle dreams_chat" alt="image">
+                                <img src="{{ asset($sender->profile) }}" class="rounded-circle dreams_chat" alt="image">
                             </div>
                             <div class="chat-content">
                                 <div class="message-content">
@@ -335,6 +346,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="chats">
                             <div class="chat-avatar">
                                 <img src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="rounded-circle dreams_chat" alt="image">
@@ -423,38 +435,47 @@
                                 </div>
                             </div>
                         </div>
-						<div class="chat-line">
+                        */ ?>
+
+                        @foreach($chats as $chat)
+<!--
+                        <div class="chat-line">
 							<span class="chat-date">1 message unread</span>
 						</div>
-
+-->
+                            @if($chat->user_id == $sender->id)
                         <div class="chats">
                             <div class="chat-avatar">
-                                <img src="{{ asset('/template/assets/img/avatar-2.jpg') }}" class="rounded-circle dreams_chat" alt="image">
+                                <img src="{{ asset($sender->profile) }}" class="rounded-circle dreams_chat" alt="image">
                             </div>
                             <div class="chat-content">
                                 <div class="message-content">
-                                    Good.!!!
+                                    {{ $chat->msg }}
                                 </div>
                                 <div class="chat-time">
                                     <div>
-                                        <div class="time">14:33 PM</div>
+                                        <div class="time">{{ date("H:i a", strtotime($chat->created_at)) }}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                            @else
                         <div class="chats chats-right">
 
                             <div class="chat-content">
                                 <div class="message-content">
-                                    Yeah, Thank you..
+                                    {{ $chat->msg }}
                                 </div>
                                 <div class="chat-time">
                                     <div>
-                                        <div class="time">14:34 PM <i><img src="{{ asset('/template/assets/img/double-tick.png') }}" alt=""></i></div>
+                                        <div class="time">{{ date("H:i a", strtotime($chat->created_at)) }} <i><img src="{{ asset('/template/assets/img/double-tick.png') }}" alt=""></i></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                            @endif
+                        @endforeach
+
                     </div>
                 </div>
                 <div class="chat-footer">
@@ -477,6 +498,7 @@
                     </form>
                 </div>
             </div>
+            @endif
             <!-- /Chat -->
 
             <!-- Upload Documents -->
@@ -886,7 +908,7 @@
             <!-- /New group modal -->
 
             <!-- Profile Modal -->
-            <div class="modal fade" id="profile_modal">
+            <div class="modal fade" id="profile_modal" style="display: none">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -1084,4 +1106,13 @@
 		
     </div>
     <!-- /Main Wrapper -->
+
+@endsection
+
+@section('scripts')
+    <script>
+        $('.right-sidebar').removeClass('show-right-sidebar');
+        $('.right-sidebar').addClass('hide-right-sidebar');
+        $('.close_profile').click();
+    </script>
 @endsection
