@@ -479,8 +479,9 @@
                     </div>
                 </div>
                 <div class="chat-footer">
-                    <form>
-                        <input type="text" class="form-control chat_form" placeholder="Write a message.">
+                    <form method="post" action="{{ route('sendchat') }}">
+                        @csrf
+                        <input type="text" name="msg" class="form-control chat_form" placeholder="Write a message.">
                         <div class="form-buttons">
                             <button class="btn" type="button">
                                 <i class="far fa-smile"></i>

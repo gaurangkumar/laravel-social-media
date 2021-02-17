@@ -80,4 +80,34 @@ class HomeController extends Controller
 
         return view('index', compact('title', 'side_chats', 'chats', 'sender'));
 	}
+
+	public function sendchat(Request $request) {
+        echo '<pre>';print_r($request->toArray());exit;
+        $title = 'Chat | Agwis Messenger';
+        $user = auth()->user();
+
+        $senders = Chat::where('rid',$user->id)
+            ->with('users')
+            ->select('user_id')//'id','user_id', 'view', 'msg', 'created_at'
+            ->distinct('user_id')
+            ->get();
+        
+        $side_chats = [];
+        foreach($senders as $sender) {
+            $side_chats[] = Chat::where('rid',$user->id)
+                ->where('user_id',$sender->users->id)
+                ->with('users')
+                //->select('user_id')//'id','user_id', 'view', 'msg', 'created_at'
+                ->first();
+        }
+
+        $sender_id = Route::current()->parameter('user_id');
+        $sender = User::find($sender_id);
+
+        $chats = Chat::whereIn('rid', [$sender->id, $user->id])
+            ->whereIn('user_id', [$sender->id, $user->id])
+            ->get();
+
+        return view('index', compact('title', 'side_chats', 'chats', 'sender'));
+	}
 }
