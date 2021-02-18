@@ -10,8 +10,21 @@ class Chat extends Model
 {
     use HasFactory;
 
-    public function users()
+    protected $fillable = [
+        'user_id',
+        'rid',
+        'group_id',
+		'msg',
+
+    ];
+
+	public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+	public function recievers()
+    {
+        return $this->belongsTo(User::class, 'rid');
     }
 }
