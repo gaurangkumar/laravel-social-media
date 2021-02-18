@@ -82,7 +82,9 @@ class HomeController extends Controller
 	}
 
 	public function sendchat(Request $request) {
-        echo '<pre>';print_r($request->toArray());exit;
+        $sender_id = Route::current()->parameter('user_id');
+        $sender = User::find($sender_id);
+        echo '<pre>';print_r($sender->toArray());exit;
         $title = 'Chat | Agwis Messenger';
         $user = auth()->user();
 

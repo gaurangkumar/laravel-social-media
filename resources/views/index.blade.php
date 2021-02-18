@@ -479,7 +479,7 @@
                     </div>
                 </div>
                 <div class="chat-footer">
-                    <form method="post" action="{{ route('sendchat') }}">
+                    <form method="post" action="{{ route('sendchat', $sender->id) }}">
                         @csrf
                         <input type="text" name="msg" class="form-control chat_form" placeholder="Write a message.">
                         <div class="form-buttons">
