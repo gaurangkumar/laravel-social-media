@@ -26,12 +26,24 @@
                             <li class="user-list-item">
                                 <a href="{{ route('chat', $chat->user_id) }}">
                                 <div class="avatar avatar-online">
-                                    <img src="{{ asset($chat->users->profile) }}" class="rounded-circle" alt="image">
+                                    <img src="
+                                            @if($chat->user_id == auth()->user()->id)
+                                                {{ asset($chat->recievers->profile) }}
+                                            @else
+                                                {{ asset($chat->users->profile) }}
+                                            @endif
+                                            " class="rounded-circle" alt="image">
                                 </div>
                                 <div class="users-list-body">
                                     <div>
-                                        <h5>{{ $chat->users->name }}</h5>
-                                        <p>{{ $chat->msg }}</p>
+                                        <h5>
+                                            @if($chat->user_id == auth()->user()->id)
+                                                {{ $chat->recievers->name }}
+                                            @else
+                                                {{ $chat->users->name }}
+                                            @endif
+                                        </h5>
+                                        <p>{{ '['.$chat->id.'] '.$chat->msg }}</p>
                                     </div>
                                     <div class="last-chat-time">
                                         <small class="text-muted">{{ date("H:i a", strtotime($chat->created_at)) }}</small>
