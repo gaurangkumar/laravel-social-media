@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Models\Chat;
 use App\Models\User;
 
@@ -19,7 +19,58 @@ class HomeController extends Controller
         $title = 'Agwis Messenger';
         $user = auth()->user();
 
+        /*
+        select * from chats where id in (select max(id) from chats where user_id = 3 group by rid) ORDER by created_at desc
+        
+        SELECT * FROM chats WHERE id IN( SELECT MAX(id) FROM chats WHERE rid = 3 GROUP BY user_id ) ORDER BY created_at DESC
+        
+        SELECT * FROM chats WHERE
+        id in (select max(id) from chats where user_id = 3 group by rid)
+        OR
+        id IN( SELECT MAX(id) FROM chats WHERE rid = 3 GROUP BY user_id )
+        ORDER BY created_at DESC
+        
+        SELECT * FROM `chats` WHERE id in (SELECT DISTINCT id FROM `chats` WHERE `user_id` = 3 ORDER BY `created_at` DESC) or id in (SELECT DISTINCT id FROM `chats` WHERE `rid` = 3 ORDER BY `created_at` DESC)
 
+        SELECT * FROM `chats` WHERE id in (SELECT id FROM chats where user_id=4 group by rid order by created_at)
+
+        SELECT DISTINCT * FROM `chats` WHERE `user_id` = 3 ORDER BY `created_at` DESC
+        SELECT DISTINCT * FROM `chats` WHERE `rid` = 3 ORDER BY `created_at` DESC
+        // "select * from chats where id in (select max(id) from chats group by user_id)"
+        
+        // $query = "select chats.* from chats join (select max(created_at) maxtime,user_id from chats group by user_id) latest on chats.created_at=latest.maxtime and chats.user_id=latest.user_id";
+        */
+        
+        //SELECT * FROM chats WHERE id IN( SELECT MAX(id) FROM chats WHERE user_id = 4 GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = 4 GROUP BY user_id ) ORDER BY created_at DESC
+        
+        $query = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$user->id} GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = ".$user->id." GROUP BY user_id )";
+        
+        //$results = DB::select( DB::raw($query) );
+        $results = Chat::whereRaw($query)
+            ->with('recievers')
+			->with('users')
+			->orderBy('created_at', 'DESC')
+            ->get();
+
+// echo '<pre>';print_r($results->toArray());exit;
+        $side_chats = [];
+        $uid = [];
+        foreach($results as $result) {
+            if($result->user_id == $user->id) {
+                if ( !in_array($result->rid, $uid) ) {
+                    array_push($side_chats, $result);
+                    $uid[] = $result->rid;
+                }
+            }
+            else {
+                if ( !in_array($result->user_id, $uid) ) {
+                    $side_chats[] = $result;
+                    $uid[] = $result->user_id;
+                }
+            }
+        }
+
+        /*
         $recievers = Chat::where('user_id', $user->id)
             //->orWhere('',$user->id)
             //->with('recievers')
@@ -35,7 +86,6 @@ class HomeController extends Controller
             ->distinct('user_id')
 			->orderBy('created_at', 'DESC')
             ->get();
-		echo '<pre>';print_r($recievers->toArray());exit;
         
         $side_chats = [];
         foreach($senders as $sender) {
@@ -45,6 +95,7 @@ class HomeController extends Controller
                 //->select('user_id')//'id','user_id', 'view', 'msg', 'created_at'
                 ->first();
         }
+        */
 
         $sender = null;
         //$chats = Chat::where('rid','=',$user->id)->get();
