@@ -24,7 +24,13 @@
                         <ul class="user-list">
                             @foreach($side_chats as $chat)
                             <li class="user-list-item">
-                                <a href="{{ route('chat', $chat->user_id) }}">
+                                <a href="
+                                        @if($chat->user_id == auth()->user()->id)
+                                            {{ route('chat', $chat->rid) }}
+                                        @else
+                                            {{ route('chat', $chat->user_id) }}
+                                        @endif
+                                        ">
                                 <div class="avatar avatar-online">
                                     <img src="
                                             @if($chat->user_id == auth()->user()->id)

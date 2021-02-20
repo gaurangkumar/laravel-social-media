@@ -43,33 +43,9 @@ class HomeController extends Controller
         
         //SELECT * FROM chats WHERE id IN( SELECT MAX(id) FROM chats WHERE user_id = 4 GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = 4 GROUP BY user_id ) ORDER BY created_at DESC
 
-        $query = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$user->id} GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = ".$user->id." GROUP BY user_id )";
-        
-        //$results = DB::select( DB::raw($query) );
-        $results = Chat::whereRaw($query)
-            ->with('recievers')
-			->with('users')
-			->orderBy('created_at', 'DESC')
-            ->get();
+        $side_chats = $this->get_last_chats($user->id);
 
-        $side_chats = [];
-        $uid = [];
-        foreach($results as $result) {
-            if($result->user_id == $user->id) {
-                if ( !in_array($result->rid, $uid) ) {
-                    array_push($side_chats, $result);
-                    $uid[] = $result->rid;
-                }
-            }
-            else {
-                if ( !in_array($result->user_id, $uid) ) {
-                    $side_chats[] = $result;
-                    $uid[] = $result->user_id;
-                }
-            }
-        }
-
-//echo '<pre>';print_r($user->toArray());exit;
+        //echo '<pre>';print_r($user->toArray());exit;
         /*
         $recievers = Chat::where('user_id', $user->id)
             //->orWhere('',$user->id)
@@ -118,31 +94,7 @@ class HomeController extends Controller
         $title = 'Chat | Agwis Messenger';
         $user = auth()->user();
 
-        $query = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$user->id} GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = ".$user->id." GROUP BY user_id )";
-        
-        //$results = DB::select( DB::raw($query) );
-        $results = Chat::whereRaw($query)
-            ->with('recievers')
-			->with('users')
-			->orderBy('created_at', 'DESC')
-            ->get();
-
-        $side_chats = [];
-        $uid = [];
-        foreach($results as $result) {
-            if($result->user_id == $user->id) {
-                if ( !in_array($result->rid, $uid) ) {
-                    array_push($side_chats, $result);
-                    $uid[] = $result->rid;
-                }
-            }
-            else {
-                if ( !in_array($result->user_id, $uid) ) {
-                    $side_chats[] = $result;
-                    $uid[] = $result->user_id;
-                }
-            }
-        }
+        $side_chats = $this->get_last_chats($user->id);
 
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
@@ -173,4 +125,35 @@ class HomeController extends Controller
 		return redirect()->route('chat',$sender->id);
 		
 	}
+
+    public function get_last_chats($uid) {
+        $query = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$uid} GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = ".$uid." GROUP BY user_id )";
+        
+        //$results = DB::select( DB::raw($query) );
+        $results = Chat::whereRaw($query)
+            ->with('recievers')
+			->with('users')
+			->orderBy('created_at', 'DESC')
+            ->get();
+
+        $side_chats = [];
+        $uid = [];
+        foreach($results as $result) {
+            if($result->user_id != $result->rid) {
+                if($result->user_id == $uid) {
+                    if ( !in_array($result->rid, $uid) ) {
+                        array_push($side_chats, $result);
+                        $uid[] = $result->rid;
+                    }
+                }
+                else {
+                    if ( !in_array($result->user_id, $uid) ) {
+                        $side_chats[] = $result;
+                        $uid[] = $result->user_id;
+                    }
+                }
+            }
+        }
+        return $side_chats;
+    }
 }
