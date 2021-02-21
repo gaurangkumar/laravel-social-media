@@ -1050,8 +1050,8 @@
             <!-- /Settings Modal -->
 
             <!-- Right sidebar -->
-            <div class="right-sidebar right_sidebar_profile" id="middle1">
-                <div class="right-sidebar-wrap active">
+            <div class="right-sidebar right_sidebar_profile1 hide-right-sidebar" id="" style="middle1">
+                <div class="right-sidebar-wrap active1">
                     <div class="contact-close_call mr-4 mt-4 text-right">
                         <a href="#"
                             class="btn btn-outline-light close_profile close_profile4">
