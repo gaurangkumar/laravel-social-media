@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-
-
-<!-- Mirrored from dreamschat.dreamguystech.com/template/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Jan 2021 07:21:06 GMT -->
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dreams Chat - Html Template</title>
+    <title>Signup | Agwis Messanger</title>
 	
     <!-- Favicon -->
-    <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="icon" href="{{ asset('/template/assets/img/favicon.ico') }}">
 	
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('/template/assets/css/bootstrap.min.css') }}">
 	
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('/template/assets/plugins/fontawesome/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/template/assets/plugins/fontawesome/css/all.min.css') }}">
 	
     <!-- Custom scroll CSS -->
-    <link rel="stylesheet" href="assets/plugins/mcustomscroll/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="{{ asset('/template/assets/plugins/mcustomscroll/jquery.mCustomScrollbar.css') }}">
 	
     <!-- App styles -->
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="{{ asset('/template/assets/css/app.css') }}">
 
 </head>
 
@@ -44,26 +41,30 @@
 									<div class="col-md-12 col-lg-6 login-right">
 										<div class="login-header">
 											<!-- <h3>Login <br><span>Access to our Chat</span></h3> -->
-											<a href="index-2.html">
-			                                    <img src="assets/img/logo.png" alt="" class="header_image">
+											<a href="">
+			                                    <img src="{{ asset('/template/assets/img/logo.png') }}" alt="" class="header_image">
 			                                </a>
 										</div>
-										<form action="https://dreamschat.dreamguystech.com/template/login.html">
+										<form method="POST" action="{{ route('register') }}">
                                             <div class="form-group">
-                                                <label>Name</label>
-                                                <input class="form-control form-control-lg group_formcontrol" name="new-chat-title" type="text" placeholder="Enter your Name">
+                                                <label for="name" :value="__('Name')">Name</label>
+                                                <input class="form-control form-control-lg group_formcontrol" name="name" type="text" placeholder="Enter your Name" :value="old('name')" required autofocus>
                                             </div>
                                             <div class="form-group">
-                                                <label>Email</label>
-                                                <input class="form-control form-control-lg group_formcontrol" name="new-chat-title" type="email" placeholder="Enter your email">
+                                                <label for="email" :value="__('Email')">Email</label>
+                                                <input class="form-control form-control-lg group_formcontrol" name="email" type="email" placeholder="Enter your email" :value="old('email')" required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="new-chat-topic">Create Password</label>
-                                                <input class="form-control form-control-lg group_formcontrol" name="new-chat-topic" id="new-chat-topic" type="text" placeholder="Enter your password">
+                                                <label for="password" :value="__('Password')">Password</label>
+                                                <input class="form-control form-control-lg group_formcontrol" name="password" id="password" type="password" placeholder="Enter your password" required autocomplete="new-password">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password_confirmation" :value="__('Confirm Password')">Confirm Password</label>
+                                                <input class="form-control form-control-lg group_formcontrol" name="password_confirmation" id="password_confirmation" type="text" placeholder="Enter your password" required>
                                             </div>
                                             <div class="pt-1">
 			                                	<div class="text-center">
-			                                     	<button class="btn newgroup_create btn-block d-block w-100" type="submit">Register</button>
+			                                     	<button class="btn newgroup_create btn-block d-block w-100" type="submit">{{ __('Register') }}</button>
 			                                    </div>
 			                                </div>
 										</form>
@@ -73,13 +74,13 @@
 										</div>
 										<div class="row form-row social-login">
 											<div class="col-6">
-												<a href="https://www.facebook.com/" target="_blank" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
+												<a href="#" target="_blank" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
 											</div>
 											<div class="col-6">
-												<a href="https://mail.google.com/" class="btn btn-google btn-block" target="_blank"><i class="fab fa-google mr-1"></i> Login</a>
+												<a href="#" class="btn btn-google btn-block" target="_blank"><i class="fab fa-google mr-1"></i> Login</a>
 											</div>
 										</div>
-										<div class="text-center dont-have">Already have an account? <a href="login.html">Login</a></div>
+										<div class="text-center dont-have"> <a href="{{ route('login') }}">{{ __('Already registered?') }} Login</a></div>
 									</div>
 								</div>
 							</div>
@@ -93,20 +94,18 @@
 		<!-- /Main Wrapper -->
 	  
 	<!-- jQuery -->
-    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="{{ asset('/template/assets/js/jquery-3.4.1.min.js') }}"></script>
 	
 	<!-- Bootstrap Core JS -->
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-	
+    <script src="{{ asset('/template/assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('/template/assets/js/bootstrap.min.js') }}"></script>
+
 	<!-- Custom Scroll JS -->
-    <script src="assets/js/jquery.nicescroll.min.js"></script>
-    <script src="assets/plugins/mcustomscroll/jquery.mCustomScrollbar.js"></script>
+    <script src="{{ asset('/template/assets/js/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('/template/assets/plugins/mcustomscroll/jquery.mCustomScrollbar.js') }}"></script>
 	
 	<!-- Custom JS -->
-    <script src="assets/js/script.js"></script>
+    <script src="{{ asset('/template/assets/js/script.js') }}"></script>
 	
 </body>
-
-<!-- Mirrored from dreamschat.dreamguystech.com/template/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Jan 2021 07:21:06 GMT -->
 </html>
