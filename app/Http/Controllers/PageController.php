@@ -14,7 +14,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        ini_set('memory_limit', '1024M');
+        $title = 'Agwis Messenger';
+        $user = auth()->user();
     }
 
     /**
