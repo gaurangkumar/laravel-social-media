@@ -927,7 +927,7 @@
             <!-- /New group modal -->
 
             <!-- Profile Modal -->
-            <div class="modal fade" id="profile_modal" style="display: none">
+            <div class="modal fade" id="" style="profile_modal">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -1130,8 +1130,8 @@
 
 @section('scripts')
     <script>
-        $('.right-sidebar').removeClass('show-right-sidebar');
-        $('.right-sidebar').addClass('hide-right-sidebar');
-        $('.close_profile').click();
+        //$('.right-sidebar').removeClass('show-right-sidebar');
+        //$('.right-sidebar').addClass('hide-right-sidebar');
+        //$('.close_profile').click();
     </script>
 @endsection
