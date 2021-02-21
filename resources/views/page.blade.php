@@ -20,6 +20,7 @@
                     </div>
                     <div class="sidebar-body" id="chatsidebar">
                         <ul class="user-list">
+							@foreach($pages as $page)
                             <li class="user-list-item">
                                 <div class="avatar">
                                     <img src="{{ asset('/template/assets/img/media2.jpg') }}" class="rounded-circle" alt="image">
@@ -47,6 +48,7 @@
                                     </div>    
                                 </div>
                             </li>
+							@endforeach
                             <li class="user-list-item unread">
                                 <div>
                                     <div class="avatar">
