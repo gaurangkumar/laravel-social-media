@@ -486,6 +486,7 @@
                                     </button>
 
                                     <!-- Friends -->
+									
                                     <nav class="mb-n6">
 
                                         <div class="mb-6">
@@ -495,9 +496,8 @@
                                         <!-- Friend -->
                                         <div class="card mb-6">
                                             <div class="card-body">
-
+                                          
                                                 <div class="media">
-                                                    
                                                     <div class="avatar avatar-online mr-5">
                                                         <img class="avatar-img" src="assets/images/avatars/10.jpg" alt="Anna Bridges">
                                                     </div>
@@ -529,6 +529,7 @@
                                                 <a href="chat-2.html" class="stretched-link"></a>
 
                                             </div>
+											
                                         </div>
                                         <!-- Friend -->
 
@@ -962,29 +963,41 @@
 <!-- Chat link -->
                                         <a class="text-reset nav-link p-0 mb-6" href="chat-2.html">
                                             <div class="card card-active-listener">
+												@foreach($side_chats as $chat)
                                                 <div class="card-body">
 
                                                     <div class="media">
                                                         
                                                         <div class="avatar avatar-online mr-5">
-                                                            <img class="avatar-img" src="assets/images/avatars/10.jpg" alt="Anna Bridges">
+                                                            <img class="avatar-img" src="@if($chat->user_id == auth()->user()->id)
+                                                                  {{ asset($chat->recievers->profile) }}
+                                                               @else
+                                               					 {{ asset($chat->users->profile) }}
+                                           						@endif">
                                                         </div>
                                                         
                                                         
                                                         <div class="media-body overflow-hidden">
                                                             <div class="d-flex align-items-center mb-1">
-                                                                <h6 class="text-truncate mb-0 mr-auto">Anna Bridges</h6>
-                                                                <p class="small text-muted text-nowrap ml-4">10:42 am</p>
+                                                                <h6 class="text-truncate mb-0 mr-auto">
+																	@if($chat->user_id == auth()->user()->id)
+                                                						{{ $chat->recievers->name }}
+                                            						@else
+                                              							  {{ $chat->users->name }}
+                                            						@endif</h6>
+                                                                <p class="small text-muted text-nowrap ml-4">{{ date("H:i a", strtotime($chat->created_at)) }}</p>
                                                             </div>
-                                                            <div class="text-truncate">is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span></div>
+															<div class="text-truncate would be o">{{$chat->msg }}</div>
+                                                            <!--<div class="text-truncate">is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span></div>-->
                                                         </div>
                                                     </div>
 
                                                 </div>
 
-                                                
+                                                @endforeach
                                             </div>
                                         </a>
+										<?php /*
                                         <!-- Chat link -->
 <!-- Chat link -->
                                         <a class="text-reset nav-link p-0 mb-6" href="#">
@@ -1184,7 +1197,7 @@
 
                         </div>
                     </div>
-
+           */ ?>
                     <div class="tab-pane fade h-100" id="tab-content-demos" role="tabpanel">
                         <div class="d-flex flex-column h-100">
 
