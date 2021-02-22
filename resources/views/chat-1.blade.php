@@ -1,23 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.main')
 
-    <!-- Head -->
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no">
-        <title>Messenger - Responsive Bootstrap Application</title>
+@section('styles')
+@endsection
 
-        <!-- Template core CSS -->
-        
-        <link href="assets/css/template.min.css" rel="stylesheet">
-        <link href="assets/css/template.dark.min.css" rel="stylesheet" media="(prefers-color-scheme: dark)">
-        
-        
-        
-    </head>
-    <!-- Head -->
-
-    <body>
+@section('content')
 
         <div class="layout">
 
@@ -3407,14 +3393,10 @@
                 </div>
             </div>
         </div>
-        <!-- Modal: Invite friends -->
+        @endsection
 
-        <!-- Scripts -->
-        <script src="assets/js/libs/jquery.min.js"></script>
-        <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/plugins/plugins.bundle.js"></script>
-        <script src="assets/js/template.js"></script>
-        <!-- Scripts -->
+@section('scripts')
+@endsection
 
     </body>
 </html>
