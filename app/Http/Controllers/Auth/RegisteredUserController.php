@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
     public function create()
     {
         //return view('auth.register');
-        return view('register');
+        return view('register', ['title' => 'Signup | Agwis Messenger']);
     }
 
     /**
