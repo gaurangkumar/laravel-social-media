@@ -12,7 +12,7 @@
 
                 <!-- Brand -->
                 <a href="#" class="d-none d-xl-block mb-6">
-                    <img src="assets/images/brand.svg" class="mx-auto fill-primary" data-inject-svg="" alt="" style="height: 46px;">
+                    <img src="{{ asset('assets/images/brand.svg') }}" class="mx-auto fill-primary" data-inject-svg="" alt="" style="height: 46px;">
                 </a>
 
                 <!-- Menu -->
@@ -486,7 +486,6 @@
                                     </button>
 
                                     <!-- Friends -->
-									
                                     <nav class="mb-n6">
 
                                         <div class="mb-6">
@@ -496,8 +495,9 @@
                                         <!-- Friend -->
                                         <div class="card mb-6">
                                             <div class="card-body">
-                                          
+
                                                 <div class="media">
+                                                    
                                                     <div class="avatar avatar-online mr-5">
                                                         <img class="avatar-img" src="assets/images/avatars/10.jpg" alt="Anna Bridges">
                                                     </div>
@@ -529,7 +529,6 @@
                                                 <a href="chat-2.html" class="stretched-link"></a>
 
                                             </div>
-											
                                         </div>
                                         <!-- Friend -->
 
@@ -636,6 +635,7 @@
                                                         <img class="avatar-img" src="assets/images/avatars/4.jpg" alt="Matthew Wiggins">
                                                     </div>
                                                     
+
                                                     <div class="media-body align-self-center">
                                                         <h6 class="mb-0">Matthew Wiggins</h6>
                                                         <small class="text-muted">last seen 3 days ago</small>
@@ -929,7 +929,7 @@
 
                                     <!-- Chats -->
                                     <nav class="nav d-block list-discussions-js mb-n6">
-                                        <!-- Chat link -->
+                                        <!-- group 
                                         <a class="text-reset nav-link p-0 mb-6" href="chat-1.html">
                                             <div class="card card-active-listener">
                                                 <div class="card-body">
@@ -959,234 +959,59 @@
                                                 
                                             </div>
                                         </a>
-                                        <!-- Chat link -->
-<!-- Chat link -->
-                                        <a class="text-reset nav-link p-0 mb-6" href="chat-2.html">
-                                            <div class="card card-active-listener">
-												@foreach($side_chats as $chat)
-                                                <div class="card-body">
+                                        -->
 
+                                        @foreach($side_chats as $chat)
+                                        <a class="text-reset nav-link p-0 mb-6" href="
+                                            @if($chat->user_id == auth()->user()->id)
+                                                {{ route('chat', $chat->rid) }}
+                                            @else
+                                                {{ route('chat', $chat->user_id) }}
+                                            @endif
+                                        ">
+                                            <div class="card card-active-listener">
+                                                <div class="card-body">
                                                     <div class="media">
-                                                        
+                                                        <!--for offline - <div class="avatar mr-5">-->
                                                         <div class="avatar avatar-online mr-5">
-                                                            <img class="avatar-img" src="@if($chat->user_id == auth()->user()->id)
-                                                                  {{ asset($chat->recievers->profile) }}
-                                                               @else
-                                               					 {{ asset($chat->users->profile) }}
-                                           						@endif">
+                                                            <img class="avatar-img" src="
+                                                                @if($chat->user_id == auth()->user()->id)
+                                                                    {{ asset($chat->recievers->profile) }}
+                                                                @else
+                                                                    {{ asset($chat->users->profile) }}
+                                                                @endif" alt="
+                                                                    @if($chat->user_id == auth()->user()->id)
+                                                                        {{ $chat->recievers->name }}
+                                                                    @else
+                                                                        {{ $chat->users->name }}
+                                                                    @endif
+                                                                             ">
                                                         </div>
-                                                        
-                                                        
                                                         <div class="media-body overflow-hidden">
                                                             <div class="d-flex align-items-center mb-1">
                                                                 <h6 class="text-truncate mb-0 mr-auto">
-																	@if($chat->user_id == auth()->user()->id)
-                                                						{{ $chat->recievers->name }}
-                                            						@else
-                                              							  {{ $chat->users->name }}
-                                            						@endif</h6>
-                                                                <p class="small text-muted text-nowrap ml-4">{{ date("H:i a", strtotime($chat->created_at)) }}</p>
+                                                                    @if($chat->user_id == auth()->user()->id)
+                                                                        {{ $chat->recievers->name }}
+                                                                    @else
+                                                                        {{ $chat->users->name }}
+                                                                    @endif
+                                                                </h6>
+                                                                <p class="small text-muted text-nowrap ml-4">
+                                                                    {{ date("H:i a", strtotime($chat->created_at)) }}
+                                                                </p>
                                                             </div>
-															<div class="text-truncate would be o">{{$chat->msg }}</div>
-                                                            <!--<div class="text-truncate">is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span></div>-->
+                                                            <!-- last chat -->
+                                                            <div class="text-truncate">
+                                                                <!--you send last msg '['.$chat->id.'] '. - <h6 class='d-inline'>You:</h6>-->
+                                                                {{ $chat->msg }}
+                                                            </div>
+                                                            <!-- typing <div class="text-truncate">is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span></div>-->
                                                         </div>
                                                     </div>
-
                                                 </div>
-
-                                                @endforeach
                                             </div>
                                         </a>
-										<?php /*
-                                        <!-- Chat link -->
-<!-- Chat link -->
-                                        <a class="text-reset nav-link p-0 mb-6" href="#">
-                                            <div class="card card-active-listener">
-                                                <div class="card-body">
-
-                                                    <div class="media">
-                                                        
-                                                        
-                                                        <div class="avatar mr-5">
-                                                            <img class="avatar-img" src="assets/images/avatars/7.jpg" alt="Simon Hensley">
-                                                        </div>
-                                                        
-                                                        <div class="media-body overflow-hidden">
-                                                            <div class="d-flex align-items-center mb-1">
-                                                                <h6 class="text-truncate mb-0 mr-auto">Simon Hensley</h6>
-                                                                <p class="small text-muted text-nowrap ml-4">10:38 am</p>
-                                                            </div>
-                                                            <div class="text-truncate">I’m sorry, this question would be out of my expertise.</div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                
-                                            </div>
-                                        </a>
-                                        <!-- Chat link -->
-<!-- Chat link -->
-                                        <a class="text-reset nav-link p-0 mb-6" href="#">
-                                            <div class="card card-active-listener">
-                                                <div class="card-body">
-
-                                                    <div class="media">
-                                                        
-                                                        
-                                                        <div class="avatar mr-5">
-                                                            <img class="avatar-img" src="assets/images/avatars/9.jpg" alt="William Wright">
-                                                        </div>
-                                                        
-                                                        <div class="media-body overflow-hidden">
-                                                            <div class="d-flex align-items-center mb-1">
-                                                                <h6 class="text-truncate mb-0 mr-auto">William Wright</h6>
-                                                                <p class="small text-muted text-nowrap ml-4">10:20 am</p>
-                                                            </div>
-                                                            <div class="text-truncate">Hello! Let me transfer you to the marketing department.</div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                
-                                            </div>
-                                        </a>
-                                        <!-- Chat link -->
-<!-- Chat link -->
-                                        <a class="text-reset nav-link p-0 mb-6" href="#">
-                                            <div class="card card-active-listener">
-                                                <div class="card-body">
-
-                                                    <div class="media">
-                                                        
-                                                        
-                                                        <div class="avatar mr-5">
-                                                            <img class="avatar-img" src="assets/images/avatars/5.jpg" alt="Leslie Sutton">
-                                                        </div>
-                                                        
-                                                        <div class="media-body overflow-hidden">
-                                                            <div class="d-flex align-items-center mb-1">
-                                                                <h6 class="text-truncate mb-0 mr-auto">Leslie Sutton</h6>
-                                                                <p class="small text-muted text-nowrap ml-4">09:55 am</p>
-                                                            </div>
-                                                            <div class="text-truncate"><h6 class='d-inline'>You:</h6> I’m sorry, I don’t have the information on that.</div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                
-                                            </div>
-                                        </a>
-                                        <!-- Chat link -->
-<!-- Chat link -->
-                                        <a class="text-reset nav-link p-0 mb-6" href="#">
-                                            <div class="card card-active-listener">
-                                                <div class="card-body">
-
-                                                    <div class="media">
-                                                        
-                                                        
-                                                        <div class="avatar mr-5">
-                                                            <img class="avatar-img" src="assets/images/avatars/4.jpg" alt="Matthew Wiggins">
-                                                        </div>
-                                                        
-                                                        <div class="media-body overflow-hidden">
-                                                            <div class="d-flex align-items-center mb-1">
-                                                                <h6 class="text-truncate mb-0 mr-auto">Matthew Wiggins</h6>
-                                                                <p class="small text-muted text-nowrap ml-4">09:25 am</p>
-                                                            </div>
-                                                            <div class="text-truncate">Matthew, let me transfer you to the marketing department.</div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                
-                                            </div>
-                                        </a>
-                                        <!-- Chat link -->
-<!-- Chat link -->
-                                        <a class="text-reset nav-link p-0 mb-6" href="#">
-                                            <div class="card card-active-listener">
-                                                <div class="card-body">
-
-                                                    <div class="media">
-                                                        
-                                                        
-                                                        <div class="avatar mr-5">
-                                                            <img class="avatar-img" src="assets/images/avatars/3.jpg" alt="Thomas Walker">
-                                                        </div>
-                                                        
-                                                        <div class="media-body overflow-hidden">
-                                                            <div class="d-flex align-items-center mb-1">
-                                                                <h6 class="text-truncate mb-0 mr-auto">Thomas Walker</h6>
-                                                                <p class="small text-muted text-nowrap ml-4">09:00 am</p>
-                                                            </div>
-                                                            <div class="text-truncate">I am really sorry to hear that. Is there anything I can do to help you?</div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                
-                                            </div>
-                                        </a>
-                                        <!-- Chat link -->
-<!-- Chat link -->
-                                        <a class="text-reset nav-link p-0 mb-6" href="#">
-                                            <div class="card card-active-listener">
-                                                <div class="card-body">
-
-                                                    <div class="media">
-                                                        
-                                                        
-                                                        <div class="avatar mr-5">
-                                                            <img class="avatar-img" src="assets/images/avatars/2.jpg" alt="Zane Mayes">
-                                                        </div>
-                                                        
-                                                        <div class="media-body overflow-hidden">
-                                                            <div class="d-flex align-items-center mb-1">
-                                                                <h6 class="text-truncate mb-0 mr-auto">Zane Mayes</h6>
-                                                                <p class="small text-muted text-nowrap ml-4">08:05 am</p>
-                                                            </div>
-                                                            <div class="text-truncate">That is a good question, let me find out for you.</div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                
-                                            </div>
-                                        </a>
-                                        <!-- Chat link -->
-<!-- Chat link -->
-                                        <a class="text-reset nav-link p-0 mb-6" href="#">
-                                            <div class="card card-active-listener">
-                                                <div class="card-body">
-
-                                                    <div class="media">
-                                                        
-                                                        
-                                                        <div class="avatar mr-5">
-                                                            <img class="avatar-img" src="assets/images/avatars/6.jpg" alt="Brian Dawson">
-                                                        </div>
-                                                        
-                                                        <div class="media-body overflow-hidden">
-                                                            <div class="d-flex align-items-center mb-1">
-                                                                <h6 class="text-truncate mb-0 mr-auto">Brian Dawson</h6>
-                                                                <p class="small text-muted text-nowrap ml-4">08:00 am</p>
-                                                            </div>
-                                                            <div class="text-truncate">I’m not sure, but let me find out for you.</div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                
-                                            </div>
-                                        </a>
+                                        @endforeach
                                         <!-- Chat link -->
 
                                     </nav>
@@ -1197,7 +1022,7 @@
 
                         </div>
                     </div>
-           */ ?>
+
                     <div class="tab-pane fade h-100" id="tab-content-demos" role="tabpanel">
                         <div class="d-flex flex-column h-100">
 
