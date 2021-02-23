@@ -274,12 +274,12 @@
                                                             
                                                             
                                                             <div class="avatar mr-5">
-                                                                <img class="avatar-img" src="assets/images/avatars/4.jpg" alt="Matthew Wiggins">
+                                                                <img class="avatar-img" src="assets/images/avatars/4.jpg" alt="{{ $user->name }}">
                                                             </div>
                                                             
 
                                                             <div class="media-body align-self-center mr-6">
-                                                                <h6 class="mb-0">Matthew Wiggins</h6>
+                                                                <h6 class="mb-0">{{ $user->name }}</h6>
                                                                 <small class="text-muted">last seen 3 days ago</small>
                                                             </div>
 
@@ -632,12 +632,12 @@
                                                     
                                                     
                                                     <div class="avatar mr-5">
-                                                        <img class="avatar-img" src="assets/images/avatars/4.jpg" alt="Matthew Wiggins">
+                                                        <img class="avatar-img" src="assets/images/avatars/4.jpg" alt="{{ $user->name }}">
                                                     </div>
                                                     
 
                                                     <div class="media-body align-self-center">
-                                                        <h6 class="mb-0">Matthew Wiggins</h6>
+                                                        <h6 class="mb-0">{{ $user->name }}</h6>
                                                         <small class="text-muted">last seen 3 days ago</small>
                                                     </div>
 
@@ -1194,10 +1194,10 @@
                                             <div class="text-center py-6">
                                                 <!-- Photo -->
                                                 <div class="avatar avatar-xl mb-5">
-                                                    <img class="avatar-img" src="assets/images/avatars/12.jpg" alt="">
+                                                    <img class="avatar-img" src="{{ asset($user->profile) }}" alt="">
                                                 </div>
 
-                                                <h5>Matthew Wiggins</h5>
+                                                <h5>{{ $user->name }}</h5>
                                                 <p class="text-muted">Bootstrap is an open source toolkit for developing web with HTML.</p>
                                             </div>
                                         </div>
@@ -1310,9 +1310,6 @@
 
                         </div>
 
-
-
-
                     </div>
                 </div>
             </div>
@@ -1326,10 +1323,10 @@
                     <div class="container-xxl">
 
                         <div class="avatar avatar-lg mb-5">
-                            <img class="avatar-img" src="assets/images/avatars/12.jpg" alt="">
+                            <img class="avatar-img" src="{{ asset($user->profile) }}" alt="">
                         </div>
 
-                        <h6>Hey, Matthew!</h6>
+                        <h6>Hey, {{ explode(' ', $user->name)[0] }}!</h6>
                         <p>Please select a chat to start messaging.</p>
                     </div>
                 </div>
@@ -1423,6 +1420,7 @@
             </div>
         </div>
         <!-- Modal: Invite friends -->
+
 @endsection
 
 @section('scripts')
