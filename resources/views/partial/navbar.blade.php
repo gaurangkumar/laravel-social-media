@@ -1,7 +1,7 @@
             <div class="navigation navbar navbar-light justify-content-center py-xl-7">
 
                 <!-- Brand -->
-                <a href="#" class="d-none d-xl-block mb-6">
+                <a href="{{ route('home') }}" class="d-none d-xl-block mb-6">
                     <img src="{{ asset('assets/images/brand.svg') }}" class="mx-auto fill-primary" data-inject-svg="" alt="" style="height: 46px;">
                 </a>
 
@@ -53,7 +53,7 @@
 
                     <!-- Settings -->
                     <li class="nav-item mt-xl-9">
-                        <a class="nav-link position-relative p-0 py-xl-3" href="settings.html" title="Settings">
+                        <a class="nav-link position-relative p-0 py-xl-3" href="{{ route('settings') }}" title="Settings">
                             <i class="icon-lg fe-settings"></i>
                         </a>
                     </li>
