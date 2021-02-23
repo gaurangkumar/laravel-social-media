@@ -103,7 +103,7 @@ class HomeController extends Controller
             ->whereIn('user_id', [$sender->id, $user->id])
             ->get();
 
-        return view('chat', compact('title', 'side_chats', 'chats', 'sender'));
+        return view('chat', compact('title', 'side_chats', 'chats', 'sender','user'));
 	}
 
 	public function sendchat(Request $request) {
