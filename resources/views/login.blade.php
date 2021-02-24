@@ -19,35 +19,63 @@
                         <p class="text-center mb-6">Welcome to the official Chat web-client.</p>
 
                         <!-- Form -->
-                        <form class="mb-6" action="{{ route('login') }}">
-							@csrf
-                            <!-- Email -->
-                            <div class="form-group">
-                                <label for="email" class="sr-only">Email Address</label>
-                                <input type="email" class="form-control form-control-lg" id="email" placeholder="Enter your email" required autofocus >
-                            </div>
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                            <!-- Password -->
-                            <div class="form-group">
-                                <label for="password" class="sr-only">Password</label>
-                                <input type="password" class="form-control form-control-lg" id="password" placeholder="Enter your password">
-                            </div>
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                            <div class="form-group d-flex justify-content-between">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" checked="" id="checkbox-remember">
-                                    <label class="custom-control-label" for="checkbox-remember">{{ __('Remember me') }}</label>
-                                </div>
-                                <a href="password-reset.html">Reset password</a>
-                            </div>
+        <form method="POST" action="{{ route('login') }}" class="mb-6">
+            @csrf
 
-                            <!-- Submit -->
-                            <button class="btn btn-lg btn-block btn-primary" type="submit"> {{ __('Login') }}</button>
-                        </form>
+            <!-- Email Address -->
+            <div class="form-group">
+                <x-label for="email" :value="__('Email')" class="sr-only" />
 
+                <x-input id="email" class="form-control form-control-lg" type="email" name="email" :value="old('email')" required autofocus />
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <x-label for="password" :value="__('Password')" class="sr-only" />
+
+                <x-input id="password" class="form-control form-control-lg"
+                                type="password"
+                                name="password"
+                                required autocomplete="current-password" />
+            </div>
+
+            <!-- Remember Me -->
+            <div class="form-group d-flex justify-content-between">
+				 <div class="custom-control custom-checkbox">
+                <label for="remember_me" class="custom-control-input">
+                    <input id="remember_me" type="checkbox" class="custom-control-input" name="remember">
+					<label class="custom-control-label" for="checkbox-remember">{{ __('Remember me') }}</label>
+                    
+                </label>
+				</div>
+				 @if (Route::has('password.request'))
+                    <a  href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
+
+            </div>
+
+            <div>
+                
+
+                <x-button class="btn btn-lg btn-block btn-primary">
+                    {{ __('Login') }}
+                </x-button>
+            </div>
+        </form>
+
+						
+                          
                         <!-- Text -->
                         <p class="text-center">
-                            Don't have an account yet <a href="signup.html">Sign up</a>.
+                            Don't have an account yet <a href="register">Sign up</a>.
                         </p>
 
                     </div>

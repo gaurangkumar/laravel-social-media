@@ -1146,7 +1146,7 @@
                                                     <div class="media align-items-center">
                                                         <div class="media-body">
                                                             <p class="small text-muted mb-0">Phone</p>
-                                                            <p>+39 02 87 21 43 19</p>
+                                                            <p>{{ $user->mobile }}</p>
                                                         </div>
                                                         <i class="text-muted icon-sm fe-mic"></i>
                                                     </div>
@@ -1156,7 +1156,7 @@
                                                     <div class="media align-items-center">
                                                         <div class="media-body">
                                                             <p class="small text-muted mb-0">Email</p>
-                                                            <p>anna@gmail.com</p>
+                                                            <p>{{ $user->email }}</p>
                                                         </div>
                                                         <i class="text-muted icon-sm fe-mail"></i>
                                                     </div>
@@ -1221,11 +1221,16 @@
                                         </div>
 
                                         <div class="col">
-                                            <!-- Button -->
-                                            <button type="button" class="btn btn-lg btn-block btn-basic d-flex align-items-center">
-                                                Logout
-                                                <span class="fe-log-out ml-auto"></span>
+                                        <form method="POST" action="{{ route('logout') }}" >
+                                            @csrf
+                                            <button href="route('logout')"
+													   type="button" class="btn btn-lg btn-block btn-basic d-flex align-items-center"
+                                                    onclick="event.preventDefault();
+                                                                this.closest('form').submit();">
+                                                {{ __('Logout') }}
+												<span class="fe-log-out ml-auto"></span>
                                             </button>
+                                        </form>
                                         </div>
                                     </div>
 
