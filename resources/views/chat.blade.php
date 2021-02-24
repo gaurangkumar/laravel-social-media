@@ -257,7 +257,7 @@
                                             <div class="input-group">
 
                                                 <!-- Textarea -->
-                                                <textarea id="chat-id-2-input"  name="msg"  class="form-control bg-transparent border-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true"></textarea>
+                                                <textarea id="chat-id-2-input" name="msg" class="form-control bg-transparent border-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true"></textarea>
 
                                                 <!-- Emoji button -->
                                                 <div class="input-group-append">
@@ -311,7 +311,7 @@
 
                                         <!-- Title(mobile) -->
                                         <li class="text-center d-block d-lg-none">
-                                            <h6 class="mb-n2">Anna Bridges</h6>
+                                            <h6 class="mb-n2">{{ $sender->name }}</h6>
                                             <small class="text-muted">Chat Details</small>
                                         </li>
 
@@ -345,9 +345,9 @@
                                 <div class="border-bottom text-center py-9 px-10">
                                     <!-- Photo -->
                                     <div class="avatar avatar-xl mx-5 mb-5">
-                                        <img class="avatar-img" src="assets/images/avatars/10.jpg" alt="">
+                                        <img class="avatar-img" src="{{ asset($sender->profile) }}" alt="{{ $sender->name }}">
                                     </div>
-                                    <h5>Anna Bridges</h5>
+                                    <h5>{{ $sender->name }}</h5>
                                     <p class="text-muted">Bootstrap is an open source toolkit for developing web with HTML, CSS, and JS.</p>
                                 </div>
 
@@ -376,7 +376,7 @@
                                                 <div class="media align-items-center">
                                                     <div class="media-body">
                                                         <p class="small text-muted mb-0">Phone</p>
-                                                        <p>+39 02 87 21 43 19</p>
+                                                        <p>{{ $sender->mobile }}</p>
                                                     </div>
                                                     <i class="text-muted icon-sm fe-mic"></i>
                                                 </div>
@@ -386,7 +386,7 @@
                                                 <div class="media align-items-center">
                                                     <div class="media-body">
                                                         <p class="small text-muted mb-0">Email</p>
-                                                        <p>anna@gmail.com</p>
+                                                        <p>{{ $sender->email }}</p>
                                                     </div>
                                                     <i class="text-muted icon-sm fe-mail"></i>
                                                 </div>
