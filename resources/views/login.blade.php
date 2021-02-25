@@ -30,7 +30,7 @@
 
             <!-- Email Address -->
             <div class="form-group">
-                <x-label for="email" :value="__('Email')" class="sr-only" />
+                <x-label   class="sr-only" for="email" :value="__('Email')" />
 
                 <x-input id="email" class="form-control form-control-lg" type="email" name="email" :value="old('email')" required autofocus />
             </div>
@@ -65,9 +65,9 @@
             <div>
                 
 
-                <x-button class="btn btn-lg btn-block btn-primary">
+                <button class="btn btn-lg btn-block btn-primary">
                     {{ __('Login') }}
-                </x-button>
+                </button>
             </div>
         </form>
 
