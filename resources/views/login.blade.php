@@ -30,16 +30,21 @@
 
             <!-- Email Address -->
             <div class="form-group">
-                <x-label   class="sr-only" for="email" :value="__('Email')" />
+				<label class="block font-medium text-sm" for="email">
+				{{ __('Email') }}
+				</label>
 
-                <x-input id="email" class="form-control form-control-lg" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="form-control " type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
             <!-- Password -->
             <div class="form-group">
-                <x-label for="password" :value="__('Password')" class="sr-only" />
+				<label class="block font-medium text-sm" for="password">
+					{{ __('Password') }}
+				</label>
 
-                <x-input id="password" class="form-control form-control-lg"
+
+                <x-input id="password" class="form-control "
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />
@@ -48,11 +53,10 @@
             <!-- Remember Me -->
             <div class="form-group d-flex justify-content-between">
 				 <div class="custom-control custom-checkbox">
-                <label for="remember_me" class="custom-control-input">
-                    <input id="remember_me" type="checkbox" class="custom-control-input" name="remember">
-					<label class="custom-control-label" for="checkbox-remember">{{ __('Remember me') }}</label>
+					 <label class="custom-control-label" for="remember">{{ __('Remember me') }}</label>
+
+                    <x-input id="remember" type="checkbox" class="custom-control-input" name="remember" />
                     
-                </label>
 				</div>
 				 @if (Route::has('password.request'))
                     <a  href="{{ route('password.request') }}">
