@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Models\Chat;
 use App\Models\User;
+use App\Models\Contact;
 
 class HomeController extends Controller
 {
@@ -19,63 +20,13 @@ class HomeController extends Controller
         $title = 'Agwis Messenger';
         $user = auth()->user();
 
-        /*
-        select * from chats where id in (select max(id) from chats where user_id = 3 group by rid) ORDER by created_at desc
-        
-        SELECT * FROM chats WHERE id IN( SELECT MAX(id) FROM chats WHERE rid = 3 GROUP BY user_id ) ORDER BY created_at DESC
-        
-        SELECT * FROM chats WHERE
-        id in (select max(id) from chats where user_id = 3 group by rid)
-        OR
-        id IN( SELECT MAX(id) FROM chats WHERE rid = 3 GROUP BY user_id )
-        ORDER BY created_at DESC
-        
-        SELECT * FROM `chats` WHERE id in (SELECT DISTINCT id FROM `chats` WHERE `user_id` = 3 ORDER BY `created_at` DESC) or id in (SELECT DISTINCT id FROM `chats` WHERE `rid` = 3 ORDER BY `created_at` DESC)
-
-        SELECT * FROM `chats` WHERE id in (SELECT id FROM chats where user_id=4 group by rid order by created_at)
-
-        SELECT DISTINCT * FROM `chats` WHERE `user_id` = 3 ORDER BY `created_at` DESC
-        SELECT DISTINCT * FROM `chats` WHERE `rid` = 3 ORDER BY `created_at` DESC
-        // "select * from chats where id in (select max(id) from chats group by user_id)"
-        
-        // $query = "select chats.* from chats join (select max(created_at) maxtime,user_id from chats group by user_id) latest on chats.created_at=latest.maxtime and chats.user_id=latest.user_id";
-        */
-        
-        //SELECT * FROM chats WHERE id IN( SELECT MAX(id) FROM chats WHERE user_id = 4 GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = 4 GROUP BY user_id ) ORDER BY created_at DESC
-
         $side_chats = $this->get_last_chats($user->id);
 
-        //echo '<pre>';print_r($user->toArray());exit;
-        /*
-        $recievers = Chat::where('user_id', $user->id)
-            //->orWhere('',$user->id)
-            //->with('recievers')
-			->orderBy('created_at', 'DESC')
-            ->select('rid')//'id','user_id', 'view', 'msg', 'created_at'
-            ->distinct('rid')
-            ->get();
-
-		$senders = Chat::where('rid',$user->id)
-            //->orWhere('user_id',$user->id)
-            //->with('users')
-            ->select('user_id')//'id','user_id', 'view', 'msg', 'created_at'
-            ->distinct('user_id')
-			->orderBy('created_at', 'DESC')
-            ->get();
-        
-        $side_chats = [];
-        foreach($senders as $sender) {
-            $side_chats[] = Chat::where('rid',$user->id)
-                ->where('user_id',$sender->users->id)
-                ->with('users')
-                //->select('user_id')//'id','user_id', 'view', 'msg', 'created_at'
-                ->first();
-        }
-        */
+        $friends = $this->get_friends($user->id);
 
         $sender = null;
-        //$chats = Chat::where('rid','=',$user->id)->get();
-        return view('index', compact('title', 'side_chats', 'sender', 'user'));
+
+        return view('index', compact('title', 'side_chats', 'sender', 'user', 'friends'));
     }
 
     public function page() {
@@ -103,7 +54,9 @@ class HomeController extends Controller
             ->whereIn('user_id', [$sender->id, $user->id])
             ->get();
 
-        return view('chat', compact('title', 'side_chats', 'chats', 'sender','user'));
+        $friends = $this->get_friends($user->id);
+
+        return view('chat', compact('title', 'side_chats', 'chats', 'sender','user', 'friends'));
 	}
 
 	public function sendchat(Request $request) {
@@ -120,7 +73,7 @@ class HomeController extends Controller
 			'rid' => $sender->id,
 			'msg'=> $request->msg
 		];
-		$data=Chat::create($data);
+		$data = Chat::create($data);
         
 		return redirect()->route('chat',$sender->id);
 		
@@ -188,5 +141,25 @@ class HomeController extends Controller
 
         if (!$full) $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) . ' ago' : 'just now';
+    }
+
+    public function get_friends($uid) {
+        $contacts = User::whereIn('id', function($query) {
+            $query->select('cid')
+                ->from('contacts')
+                ->where('user_id', auth()->user()->id);
+        })
+        ->orderBy('name', 'ASC')
+        ->get();
+
+        $friends = [];
+        foreach($contacts as $contact) {
+            $friends[
+                $contact->name[0]
+            ][] = $contact;
+        }
+        //echo '<pre>';print_r([$friends]);exit;
+
+        return $friends;
     }
 }

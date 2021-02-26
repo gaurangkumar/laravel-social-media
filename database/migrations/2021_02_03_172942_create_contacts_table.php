@@ -18,7 +18,7 @@ class CreateContactsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->bigInteger('cid')->unsigned();
             $table->foreign('cid')->references('id')->on('users')->onDelete('cascade');
-            $table->boolean('blocked');
+            $table->boolean('blocked')->nullable();
             $table->timestamps();
         });
     }
