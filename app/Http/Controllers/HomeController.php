@@ -90,23 +90,24 @@ class HomeController extends Controller
             ->get();
 
         $side_chats = [];
-        $uid = [];
+        $uids = [];
         foreach($results as $result) {
             if($result->user_id != $result->rid) {
                 if($result->user_id == $uid) {
-                    if ( !in_array($result->rid, $uid) ) {
+                    if ( !in_array($result->rid, $uids) ) {
                         array_push($side_chats, $result);
-                        $uid[] = $result->rid;
+                        $uids[] = $result->rid;
                     }
                 }
                 else {
-                    if ( !in_array($result->user_id, $uid) ) {
+                    if ( !in_array($result->user_id, $uids) ) {
                         $side_chats[] = $result;
-                        $uid[] = $result->user_id;
+                        $uids[] = $result->user_id;
                     }
                 }
             }
         }
+        //echo '<pre>';foreach($side_chats as $i => $chat) print_r($uids[$i].' '.$chat->recievers->name.' => '.$chat->users->name."\n");exit;
         return $side_chats;
     }
 
@@ -158,7 +159,6 @@ class HomeController extends Controller
                 $contact->name[0]
             ][] = $contact;
         }
-        //echo '<pre>';print_r($friends);exit;
 
         return $friends;
     }
