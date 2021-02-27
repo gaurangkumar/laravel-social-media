@@ -158,7 +158,7 @@ class HomeController extends Controller
                 $contact->name[0]
             ][] = $contact;
         }
-        //echo '<pre>';print_r([$friends]);exit;
+        //echo '<pre>';print_r($friends);exit;
 
         return $friends;
     }

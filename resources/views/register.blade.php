@@ -20,7 +20,7 @@
                         <p class="text-center mb-6">Welcome to the official Chat web-client.</p>
 							<x-auth-validation-errors class="text-center mb-6" :errors="$errors" />
                         <!-- Form -->
-                               <form class="mb-6" method="POST" action="{{ route('register') }}" >
+                               <form class="mb-6" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
             					@csrf
 
             <!-- Name -->
@@ -87,6 +87,7 @@
                                                         <input id="profile" class="d-none" type="file"  name="profile" required >
                                                         <label class="stretched-label mb-0" for="profile"></label>
                                                     </div>
+                                                    {!!$errors->first('profile', '<span class="text-danger">:message</span>')!!}
                                                 </div>
 
               
