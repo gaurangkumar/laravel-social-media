@@ -496,7 +496,7 @@
 
                                     <!-- Favourites -->
                                     <div class="text-center hide-scrollbar d-flex my-7" data-horizontal-scroll="">
-                                        <a href="#" class="d-block text-reset mr-7 mr-lg-6">
+                                        <a href="#" class="d-block text-reset mr-7 mr-lg-6" data-toggle="modal" data-target="#status-modal">
                                             <div class="avatar avatar-sm avatar-online mb-3">
                                                 <img class="avatar-img" src="assets/images/avatars/2.jpg" alt="Image Description">
                                             </div>
@@ -947,3 +947,54 @@
                     </div>
                 </div>
             </div>
+
+    <!-- Status modal -->
+    <div class="modal status-modal fade" id="status-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="inner-popup">
+                    <span class="close custom-status-close" data-dismiss="modal"><i class="fas fa-times"></i></span>
+                    <div id="carouselExampleIndicators" class="carousel slide slider" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner status_slider" role="listbox">
+                            <div class="carousel-item active">
+                                <img src="template/assets/img/carousel.jpg" alt="">
+                            </div>
+                            <div id="target" class="carousel-item">
+                                <img src="template/assets/img/carousel1.jpg" alt="">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="template/assets/img/carousel2.jpg" alt="">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="bottom-message-col">
+                        <ul>
+                            <li>
+                                <form class="chat_status mt-4">
+                                    <input type="text" class="form-control text_status mx-auto d-block form_status"
+                                    placeholder="Reply">
+                                    <button class="btn btn-primary send-btn_status" type="submit">
+                                        <i class="fab fa-telegram-plane status_telegram"></i>
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Status Modal -->

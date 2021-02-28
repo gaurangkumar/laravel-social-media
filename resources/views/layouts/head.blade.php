@@ -8,3 +8,5 @@
         <!-- Template core CSS -->
         <link href="{{ asset('assets/css/template.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/template.dark.min.css') }}" rel="stylesheet" media="(prefers-color-scheme: dark)">
+
+        <!--<link href="{{ asset('assets/css/app.css?a='.time()) }}" rel="stylesheet">-->

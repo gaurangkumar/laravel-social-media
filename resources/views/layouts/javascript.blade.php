@@ -4,3 +4,5 @@
         <script src="{{ asset('assets/js/plugins/plugins.bundle.js') }}"></script>
         <script src="{{ asset('assets/js/template.js') }}"></script>
         <!-- Scripts -->
+
+        <!--<script src="{{ asset('assets/js/script.js') }}"></script>-->
