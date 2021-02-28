@@ -4,7 +4,6 @@
 @endsection
 
 @section('content')
-
         <div class="layout">
 
             <div class="container d-flex flex-column">
@@ -31,10 +30,10 @@
                             <!-- Email Address -->
                             <div class="form-group">
                                 <label class="block font-medium text-sm" for="email">
-                                {{ __('Email') }}
+                                    {{ __('Email') }}
                                 </label>
 
-                                <x-input id="email" class="form-control " type="email" name="email" :value="old('email')" required autofocus />
+                                <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
                             </div>
 
                             <!-- Password -->
@@ -66,7 +65,7 @@
                           
                         <!-- Text -->
                         <p class="text-center">
-                            Don't have an account yet <a href="{{ route('register') }}">Sign up</a>.
+                            Don't have an account yet <a href="{{ route('register') }}">{{ __('Signup') }}</a>.
                         </p>
 
                     </div>

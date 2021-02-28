@@ -15,7 +15,8 @@ class PasswordResetLinkController extends Controller
      */
     public function create()
     {
-        return view('auth.forgot-password');
+        //return view('auth.forgot-password');
+        return view('forgot-password', ['title' => 'Forget Password | Agwis Messanger']);
     }
 
     /**
