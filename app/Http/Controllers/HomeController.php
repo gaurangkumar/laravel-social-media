@@ -49,6 +49,7 @@ class HomeController extends Controller
 
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
+        if(empty($sender)) {echo '<pre>';print_r($sender_id);exit;}
 
         $chats = Chat::whereIn('rid', [$sender->id, $user->id])
             ->whereIn('user_id', [$sender->id, $user->id])

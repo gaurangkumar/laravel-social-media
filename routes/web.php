@@ -25,9 +25,9 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/settings', [HomeController::class, 'settings'])->name('settings');
 Route::get('/{user_id}', [HomeController::class, 'chat'])->name('chat');
 Route::post('/{user_id}', [HomeController::class, 'sendchat'])->name('sendchat');
 Route::get('/page', [HomeController::class, 'page'])->name('page');
 Route::get('/call', [HomeController::class, 'call'])->name('call');
 Route::get('/status', [HomeController::class, 'status'])->name('status');
-Route::get('/settings', [HomeController::class, 'settings'])->name('settings');
