@@ -5,4 +5,4 @@
         <script src="{{ asset('assets/js/template.js') }}"></script>
         <!-- Scripts -->
 
-        <!--<script src="{{ asset('assets/js/script.js') }}"></script>-->
+        <script src="{{ asset('assets/js/script.js') }}"></script>

@@ -18,68 +18,55 @@
                         <!-- Text -->
                         <p class="text-center mb-6">Welcome to the official Chat web-client.</p>
 
+                        <!-- Session Status -->
+                        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                        <!-- Validation Errors -->
+                        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
                         <!-- Form -->
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+                        <form method="POST" action="{{ route('login') }}" class="mb-6">
+                            @csrf
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                            <!-- Email Address -->
+                            <div class="form-group">
+                                <label class="block font-medium text-sm" for="email">
+                                {{ __('Email') }}
+                                </label>
 
-        <form method="POST" action="{{ route('login') }}" class="mb-6">
-            @csrf
+                                <x-input id="email" class="form-control " type="email" name="email" :value="old('email')" required autofocus />
+                            </div>
 
-            <!-- Email Address -->
-            <div class="form-group">
-				<label class="block font-medium text-sm" for="email">
-				{{ __('Email') }}
-				</label>
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label class="block font-medium text-sm" for="password">
+                                    {{ __('Password') }}
+                                </label>
 
-                <x-input id="email" class="form-control " type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+                                <x-input id="password" class="form-control"
+                                         type="password"
+                                         name="password"
+                                         required autocomplete="current-password" />
+                            </div>
 
-            <!-- Password -->
-            <div class="form-group">
-				<label class="block font-medium text-sm" for="password">
-					{{ __('Password') }}
-				</label>
+                            <!-- Remember Me -->
+                            <div class="form-group d-flex justify-content-between">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" checked="" id="remember" name="remember">
+                                    <label class="custom-control-label" for="remember">{{ __('Remember me') }}</label>
+                                </div>
+                                @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
+                                @endif
+                            </div>
 
-
-                <x-input id="password" class="form-control "
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="form-group d-flex justify-content-between">
-				 <div class="custom-control custom-checkbox">
-					 <label class="custom-control-label" for="remember">{{ __('Remember me') }}</label>
-
-                    <x-input id="remember" type="checkbox" class="custom-control-input" name="remember" />
-                    
-				</div>
-				 @if (Route::has('password.request'))
-                    <a  href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-            </div>
-
-            <div>
-                
-
-                <button class="btn btn-lg btn-block btn-primary">
-                    {{ __('Login') }}
-                </button>
-            </div>
-        </form>
-
-						
+                            <!-- Submit -->
+                            <button class="btn btn-block btn-primary" type="submit">{{ __('Login') }}</button>
+                        </form>
                           
                         <!-- Text -->
                         <p class="text-center">
-                            Don't have an account yet <a href="register">Sign up</a>.
+                            Don't have an account yet <a href="{{ route('register') }}">Sign up</a>.
                         </p>
 
                     </div>
@@ -87,8 +74,7 @@
             </div>
 
         </div><!-- .layout -->
-
-         @endsection
+@endsection
 
 @section('scripts')
 @endsection
