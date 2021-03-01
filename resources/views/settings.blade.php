@@ -4,15 +4,15 @@
 @endsection
 
 @section('content')
-<div class="layout">
+        <div class="layout">
 
-            <!-- Navigation -->
-		@include('partial.navbar')            
-	<!-- Navigation -->
+            <!-- Navbar -->
+@include('partial.navbar')
+            <!-- Navbar -->
 
             <!-- Sidebar -->
-		@include('partial.sidebar')            
-	<!-- Sidebar -->
+@include('partial.sidebar')
+            <!-- Sidebar -->
 
             <!-- Main Content -->
             <div class="main main-visible" data-mobile-height="">
@@ -375,10 +375,10 @@
         <!-- Layout -->
 
         <!-- Modal: Invite friends -->
-		@include('partial.invite')        
-<!-- Modal: Invite friends -->
+@include('partial.invite')
+        <!-- Modal: Invite friends -->
 
-        @endsection
+@endsection
 
 @section('scripts')
 @endsection

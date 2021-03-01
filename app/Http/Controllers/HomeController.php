@@ -113,7 +113,16 @@ class HomeController extends Controller
     }
 
     public function settings() {
-        return view('settings', ['title' => 'Settings | Agwis Messenger']);
+        $title = 'Settings | Agwis Messenger';
+        $user = auth()->user();
+
+        $side_chats = $this->get_last_chats($user->id);
+
+        $friends = $this->get_friends($user->id);
+
+        $sender = null;
+
+        return view('settings', compact('title', 'side_chats', 'sender', 'user', 'friends'));
     }
 
     public function time_elapsed_string($datetime, $full = false) {

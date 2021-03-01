@@ -958,9 +958,9 @@
                         <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="inner-popup">
+                <div class="inner-popup mx-auto">
                     <!--<span class="close custom-status-close" data-dismiss="modal"><i class="fas fa-times"></i></span>-->
-                    <div id="carouselExampleIndicators" class="carousel slide slider" data-ride="carousel">
+                    <div id="carouselExampleIndicators" class="carousel slide slider mx-auto" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -1034,7 +1034,6 @@
     </div>
     <!-- /Status Modal -->
 
-    <?php /*
     <div class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content ">
@@ -1123,4 +1122,3 @@
             </div>
         </div>
     </div>
-    */ ?>
