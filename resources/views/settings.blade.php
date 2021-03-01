@@ -85,38 +85,56 @@
 
                                             <div id="profile-settings-account" class="collapse" data-parent="#profile-settings">
                                                 <div class="card-body">
-                                                    <form action="#">
+                                                    <form action="{{ route('profile') }}"
+                                                          method="post"
+                                                          enctype="multipart/form-data">
+                                                        @csrf
+
                                                         <div class="form-group">
                                                             <label class="small">Avatar</label>
+                                                            @if(!empty($user->profile))
+                                                            <div class="row">
+                                                                <div class="col-8 offset-2">
+                                                                <div class="avatar avatar-xl mb-5">
+                                                                    <img class="avatar-img"
+                                                                         src="{{ asset($user->profile) }}"
+                                                                         alt="{{ $user->name }}">
+                                                                </div>
+                                                                <button class="btn btn-danger">
+                                                                    <i class="fa fa-trash"></i> Remove
+                                                                </button>
+                                                                </div>
+                                                            </div>
+                                                            @endif
                                                             <div class="position-relative text-center bg-secondary rounded p-6">
                                                                 <div class="avatar bg-primary text-white mb-5">
                                                                     <i class="icon-md fe-image"></i>
                                                                 </div>
 
                                                                 <p class="small text-muted mb-0">You can upload jpg, gif or png files. <br> Max file size 3mb.</p>
-                                                                <input id="upload-user-photo" class="d-none" type="file">
+                                                                <input id="upload-user-photo" class="d-none" type="file" name="profile">
                                                                 <label class="stretched-label mb-0" for="upload-user-photo"></label>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-name">Name</label>
-                                                            <input class="form-control form-control-lg" name="profile-name" id="profile-name" type="text" placeholder="Type your name">
+                                                            <input class="form-control form-control-lg" name="profile-name" id="profile-name" type="text" placeholder="Type your name" name="name">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-phone">Phone</label>
-                                                            <input class="form-control form-control-lg" name="profile-phone" id="profile-phone" type="text" placeholder="(123) 456-7890">
+                                                            <input class="form-control form-control-lg" name="profile-phone" id="profile-phone" type="text" placeholder="(123) 456-7890" name="mobile">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-email">Email</label>
-                                                            <input class="form-control form-control-lg" name="profile-email" id="profile-email" type="email" placeholder="you@yoursite.com">
+                                                            <input class="form-control form-control-lg" name="profile-email" id="profile-email" type="email" placeholder="you@yoursite.com" name="email">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-about">Bio</label>
-                                                            <textarea class="form-control form-control-lg" id="profile-about" rows="3" placeholder="Express yourself" data-autosize="true"></textarea>
+                                                            <textarea class="form-control form-control-lg" id="profile-about" rows="3" placeholder="Express yourself" data-autosize="true" name="bio"></textarea>
                                                         </div>
 
                                                         <button class="btn btn-lg btn-primary btn-block" type="submit">Save Preferences</button>
@@ -232,7 +250,9 @@
 
                                             <div id="profile-settings-security" class="collapse" data-parent="#profile-settings">
                                                 <div class="card-body">
-                                                    <form action="#">
+                                                    <form action="{{ route('password') }}" method="post">
+                                                        @csrf
+
                                                         <div class="form-group">
                                                             <label class="small" for="current-password">Current password</label>
                                                             <input name="current-password" id="current-password" type="password" class="form-control form-control-lg" placeholder="Current password">
@@ -280,7 +300,9 @@
                                             <div id="profile-settings-social" class="collapse" data-parent="#profile-settings">
                                                 <div class="card-body">
 
-                                                    <form action="#">
+                                                    <form action="{{ route('social') }}" method="post">
+                                                        @csrf
+
                                                         <!-- Twitter -->
                                                         <div class="form-group">
                                                             <label class="small" for="profile-twitter">Twitter</label>
