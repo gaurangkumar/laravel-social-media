@@ -119,17 +119,23 @@
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-name">Name</label>
+															@if(!empty($user->name))
                                                             <input class="form-control form-control-lg" name="profile-name" id="profile-name" type="text" placeholder="Type your name" name="name">
+															 @endif
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-phone">Phone</label>
+															@if(!empty($user->mobile))
                                                             <input class="form-control form-control-lg" name="profile-phone" id="profile-phone" type="text" placeholder="(123) 456-7890" name="mobile">
+															@endif
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-email">Email</label>
+															@if(!empty($user->email))
                                                             <input class="form-control form-control-lg" name="profile-email" id="profile-email" type="email" placeholder="you@yoursite.com" name="email">
+															@endif
                                                         </div>
 
                                                         <div class="form-group">
