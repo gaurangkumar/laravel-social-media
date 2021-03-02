@@ -172,4 +172,10 @@ class HomeController extends Controller
 
         return $friends;
     }
+
+	public function profile(Request $request) {
+	}
+
+	public function social(Request $request) {
+	}
 }
