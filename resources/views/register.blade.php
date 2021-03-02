@@ -42,7 +42,7 @@
                 </label>
 
 
-                                <x-input id="email"  class="form-control" type="email" name="email" :value="old('email')" required />
+                                <x-input id="email"  class="form-control" type="email" name="email" :value="old('email')" placeholder="Enter your Email" required />
                             </div>
 
                             <!-- Password -->
@@ -55,7 +55,7 @@
                                 <x-input id="password"  class="form-control"
                                                 type="password"
                                                 name="password"
-                                                required autocomplete="new-password" />
+                                                required autocomplete="new-password" placeholder="Enter your Password" />
                             </div>
 
                             <!-- Confirm Password -->
@@ -66,7 +66,7 @@
 
                                 <x-input id="password_confirmation"  class="form-control"
                                                 type="password"
-                                                name="password_confirmation" required />
+                                                name="password_confirmation" required placeholder="Enter your confirm Password" />
                             </div>
 
                             <!-- Phone -->
@@ -78,7 +78,7 @@
                                 <x-input id="mobile"
                                          class="form-control"
                                          type="numeric"
-                                         name="mobile" required />
+                                         name="mobile" required placeholder="Enter your Phone" />
                             </div>
 
                             <!-- Photo -->

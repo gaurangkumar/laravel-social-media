@@ -119,29 +119,23 @@
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-name">Name</label>
-															@if(!empty($user->name))
-                                                            <input class="form-control form-control-lg" name="profile-name" id="profile-name" type="text" placeholder="Type your name" name="name">
-															 @endif
+                                                            <input class="form-control form-control-lg" name="profile-name" id="profile-name" type="text" placeholder="Type your name" name="name" value="{{ $user->name }}">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-phone">Phone</label>
-															@if(!empty($user->mobile))
-                                                            <input class="form-control form-control-lg" name="profile-phone" id="profile-phone" type="text" placeholder="(123) 456-7890" name="mobile">
-															@endif
+                                                            <input class="form-control form-control-lg" name="profile-phone" id="profile-phone" type="text" placeholder="(123) 456-7890" name="mobile value="{{ $user->mobile }}"">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-email">Email</label>
-															@if(!empty($user->email))
-                                                            <input class="form-control form-control-lg" name="profile-email" id="profile-email" type="email" placeholder="you@yoursite.com" name="email">
-															@endif
+                                                            <input class="form-control form-control-lg" name="profile-email" id="profile-email" type="email" placeholder="you@yoursite.com" name="email" value="{{ $user->email }}">
                                                         </div>
 
-                                                        <div class="form-group">
+                                                       <!-- <div class="form-group">
                                                             <label class="small" for="profile-about">Bio</label>
                                                             <textarea class="form-control form-control-lg" id="profile-about" rows="3" placeholder="Express yourself" data-autosize="true" name="bio"></textarea>
-                                                        </div>
+                                                        </div>-->
 
                                                         <button class="btn btn-lg btn-primary btn-block" type="submit">Save Preferences</button>
                                                     </form>

@@ -63,17 +63,19 @@ class HomeController extends Controller
 	public function sendchat(Request $request) {
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
-        $title = 'Chat | Agwis Messenger';
-        $user = auth()->user();
+
+		$user = auth()->user();
 
 		$request ->validate([
 			'msg'=> 'required'
 		]);
+
 		$data = [
 			'user_id' => $user->id,
 			'rid' => $sender->id,
 			'msg'=> $request->msg
 		];
+
 		$data = Chat::create($data);
         
 		return redirect()->route('chat',$sender->id);
@@ -174,6 +176,32 @@ class HomeController extends Controller
     }
 
 	public function profile(Request $request) {
+		$user = auth()->user();
+		 $find = User::find($user->id);
+//echo '<pre>';print_r($request->toArray);exit;
+		$request ->validate([
+						'email'=> 'required',
+		]);
+		
+        
+		$data = [
+			'id' => $user->id,
+			'profile'=> $user-> profile,
+			'name' => $user->name,
+			'email'=> $$request->email,
+			'mobile'=> $user->mobile,
+		];
+		 $upadte_detail= User::where('id',$user)->update([
+			 'profile'=>$data['profile'],
+			 'name'=>$data['name'],
+			 'email'=>$data['email'],
+			 'mobile'=>$data['mobile'],
+		 ]);
+		echo '<pre>';print_r($upadte_detail->toArray);exit;
+
+		  return $upadte_detail;
+			  redirect()->back();
+
 	}
 
 	public function social(Request $request) {
