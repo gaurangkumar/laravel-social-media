@@ -85,13 +85,10 @@
 
                                             <div id="profile-settings-account" class="collapse" data-parent="#profile-settings">
                                                 <div class="card-body">
-                                                    <form action="{{ route('profile') }}"
-                                                          method="post"
-                                                          enctype="multipart/form-data">
+                                                    <form action="{{ route('delete-profile') }}" method="post">
                                                         @csrf
 
                                                         <div class="form-group">
-                                                            <label class="small">Avatar</label>
                                                             @if(!empty($user->profile))
                                                             <div class="row">
                                                                 <div class="col-8 offset-2">
@@ -100,12 +97,33 @@
                                                                          src="{{ asset($user->profile) }}"
                                                                          alt="{{ $user->name }}">
                                                                 </div>
-                                                                <button class="btn btn-danger">
+                                                                <button class="btn btn-danger" type="submit">
                                                                     <i class="fa fa-trash"></i> Remove
                                                                 </button>
                                                                 </div>
                                                             </div>
+															@else
+                                                            <div class="row">
+                                                                <div class="avatar avatar-xl mb-5">
+																	<i class="fa fa-user avatar-img"></i>
+                                                                </div>
+															</div>
                                                             @endif
+														</div>
+													</form>
+
+													<form action="{{ route('profile') }}"
+                                                          method="post"
+														  id="profile-form"
+                                                          enctype="multipart/form-data">
+                                                        @csrf
+
+                                                        <div class="form-group">
+                        									<x-auth-validation-errors class="text-center mb-6" :errors="$errors" />
+														</div>
+
+														<div class="form-group">
+                                                            <label class="small">Avatar</label>
                                                             <div class="position-relative text-center bg-secondary rounded p-6">
                                                                 <div class="avatar bg-primary text-white mb-5">
                                                                     <i class="icon-md fe-image"></i>
@@ -119,17 +137,17 @@
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-name">Name</label>
-                                                            <input class="form-control form-control-lg" name="profile-name" id="profile-name" type="text" placeholder="Type your name" name="name" value="{{ $user->name }}">
+                                                            <input class="form-control form-control-lg" id="name" type="text" placeholder="Type your name" name="name" value="{{ $user->name }}">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-phone">Phone</label>
-                                                            <input class="form-control form-control-lg" name="profile-phone" id="profile-phone" type="text" placeholder="(123) 456-7890" name="mobile value="{{ $user->mobile }}"">
+                                                            <input class="form-control form-control-lg" id="mobile" type="text" placeholder="(123) 456-7890" name="mobile" value="{{ $user->mobile }}">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="small" for="profile-email">Email</label>
-                                                            <input class="form-control form-control-lg" name="profile-email" id="profile-email" type="email" placeholder="you@yoursite.com" name="email" value="{{ $user->email }}">
+                                                            <input class="form-control form-control-lg" id="email" type="email" placeholder="you@yoursite.com" name="email" value="{{ $user->email }}">
                                                         </div>
 
                                                        <!-- <div class="form-group">
@@ -403,4 +421,10 @@
 @endsection
 
 @section('scripts')
+<script>
+	$('#profile-form input#upload-user-photo').val('');
+	$('#profile-form input#name').val('{{ $user->name }}');
+	$('#profile-form input#email').val('{{ $user->email }}');
+	$('#profile-form input#mobile').val('{{ $user->mobile }}');
+</script>
 @endsection

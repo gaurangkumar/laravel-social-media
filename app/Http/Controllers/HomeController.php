@@ -177,31 +177,47 @@ class HomeController extends Controller
 
 	public function profile(Request $request) {
 		$user = auth()->user();
-		 $find = User::find($user->id);
-//echo '<pre>';print_r($request->toArray);exit;
-		$request ->validate([
-						'email'=> 'required',
+
+		$request->validate([
+			'name' => 'required|string|max:255',
+			'mobile' => 'required|digits:10',
 		]);
-		
-        
+
+		if($user->email != $request->email) {
+			$request->validate([
+				'email' => 'required|string|email|max:255|unique:users',
+			]);
+		}
+
 		$data = [
-			'id' => $user->id,
-			'profile'=> $user-> profile,
-			'name' => $user->name,
-			'email'=> $$request->email,
-			'mobile'=> $user->mobile,
+			'name' => $request->name,
+			'email'=> $request->email,
+			'mobile'=> $request->mobile,
 		];
-		 $upadte_detail= User::where('id',$user)->update([
-			 'profile'=>$data['profile'],
-			 'name'=>$data['name'],
-			 'email'=>$data['email'],
-			 'mobile'=>$data['mobile'],
-		 ]);
-		echo '<pre>';print_r($upadte_detail->toArray);exit;
 
-		  return $upadte_detail;
-			  redirect()->back();
+		if(!empty($request->profile)) {
+			$request->validate([
+				'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+			]);
 
+        	$image = str_replace('public/', 'storage/', $request->profile->store('public/profile'));
+
+			$data['profile'] = $image;
+		}
+
+		$result = $user->update($data);
+        //echo '<pre>';var_dump($result);exit;
+
+		return redirect()->route('settings');
+	}
+
+	public function delete_profile(Request $request) {
+		$user = auth()->user();
+
+		$result = $user->update(['profile' => null]);
+        //echo '<pre>';var_dump($result);exit;
+
+		return redirect()->route('settings');
 	}
 
 	public function social(Request $request) {

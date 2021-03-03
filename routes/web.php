@@ -30,6 +30,7 @@ Route::get('/page', [HomeController::class, 'page'])->name('page');
 Route::get('/call', [HomeController::class, 'call'])->name('call');
 Route::get('/status', [HomeController::class, 'status'])->name('status');
 Route::post('/profile', [HomeController::class, 'profile'])->name('profile');
+Route::post('/delete-profile', [HomeController::class, 'delete_profile'])->name('delete-profile');
 Route::post('/password', [HomeController::class, 'password'])->name('password');
 Route::post('/social', [HomeController::class, 'social'])->name('social');
 
