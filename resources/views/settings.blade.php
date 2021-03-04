@@ -90,24 +90,26 @@
 
                                                         <div class="form-group">
                                                             @if(!empty($user->profile))
-                                                            <div class="row">
+                                                            <div class="row justify-content-md-center">
                                                                 <div class="col-8 offset-2">
-                                                                <div class="avatar avatar-xl mb-5">
-                                                                    <img class="avatar-img"
-                                                                         src="{{ asset($user->profile) }}"
-                                                                         alt="{{ $user->name }}">
-                                                                </div>
-                                                                <button class="btn btn-danger" type="submit">
-                                                                    <i class="fa fa-trash"></i> Remove
-                                                                </button>
+																	<div class="avatar avatar-xl mb-5">
+																		<img class="avatar-img"
+																			 src="{{ asset(\Storage::url($user->profile)) }}"
+																			 alt="{{ $user->name }}">
+																	</div>
+																	<button class="btn btn-danger" type="submit">
+																		<i class="fa fa-trash"></i> Remove
+																	</button>
                                                                 </div>
                                                             </div>
 															@else
-                                                            <div class="row">
-                                                                <div class="avatar avatar-xl mb-5">
-																	<i class="fa fa-user avatar-img"></i>
-                                                                </div>
-															</div>
+                                                            <div class="row justify-content-md-center">
+																<div class="avatar avatar-xl mb-5">
+																	<img class="avatar-img"
+																		 src="{{ asset('storage/index.jpg') }}"
+																		 alt="{{ $user->name }}">
+																</div>
+                                                            </div>
                                                             @endif
 														</div>
 													</form>

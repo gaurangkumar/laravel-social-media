@@ -425,7 +425,7 @@
 
                                                 <div class="media">
                                                     <div class="avatar avatar-online mr-5">
-                                                        <img class="avatar-img" src="{{ empty($friend->profile) ? '#' : asset($friend->profile) }}" alt="{{ $friend->name }}">
+                                                        <img class="avatar-img" src="{{ empty($friend->profile) ? asset('storage/index.jpg') : asset(\Storage::url($friend->profile)) }}" alt="{{ $friend->name }}">
                                                     </div>
                                                     
                                                     
@@ -603,9 +603,15 @@
                                                         <div class="avatar avatar-online mr-5">
                                                             <img class="avatar-img" src="
                                                                 @if($chat->user_id == auth()->user()->id)
-                                                                    {{ asset($chat->recievers->profile) }}
+                                                                    {{ empty($chat->recievers->profile) ?
+																						 asset('storage/index.jpg') :
+																						 asset(\Storage::url($chat->recievers->profile))
+																	}}
                                                                 @else
-                                                                    {{ asset($chat->users->profile) }}
+                                                                    {{ empty($chat->users->profile) ?
+																						 asset('storage/index.jpg') :
+																						 asset(\Storage::url($chat->users->profile))
+																	}}
                                                                 @endif" alt="
                                                                     @if($chat->user_id == auth()->user()->id)
                                                                         {{ $chat->recievers->name }}
@@ -823,7 +829,10 @@
                                             <div class="text-center py-6">
                                                 <!-- Photo -->
                                                 <div class="avatar avatar-xl mb-5">
-                                                    <img class="avatar-img" src="{{ asset($user->profile) }}" alt="">
+                                                    <img class="avatar-img" src="{{ empty($user->profile) ?
+																						 asset('storage/index.jpg') :
+																						 asset(\Storage::url($user->profile))
+																				 }}" alt="">
                                                 </div>
 
                                                 <h5>{{ $user->name }}</h5>

@@ -45,7 +45,10 @@
                                     <div class="col-6 col-xl-6">
                                         <div class="media text-center text-xl-left">
                                             <div class="avatar avatar-sm avatar-online d-none d-lg-inline-block mr-5">
-                                                <img src="{{ asset($sender->profile) }}" class="avatar-img" alt="{{ $sender->name }}">
+                                                <img src="{{ empty($sender->profile) ?
+																 asset('storage/index.jpg') :
+																 asset(\Storage::url($sender->profile))
+														  }}" class="avatar-img" alt="{{ $sender->name }}">
                                             </div>
 
                                             <div class="media-body align-self-center text-truncate">
@@ -125,7 +128,10 @@
                                 <div class="message">
                                     <!-- Avatar -->
                                     <a class="avatar avatar-sm mr-4 mr-lg-5" href="#" data-chat-sidebar-toggle="#chat-2-info">
-                                        <img class="avatar-img" src="{{ asset($sender->profile) }}" alt="">
+                                        <img class="avatar-img" src="{{ empty($sender->profile) ?
+																		 asset('storage/index.jpg') :
+																		 asset(\Storage::url($sender->profile))
+														  		     }}" alt="">
                                     </a>
 
                                     <!-- Message: body -->
@@ -181,7 +187,10 @@
                                 <div class="message message-right">
                                     <!-- Avatar -->
                                     <div class="avatar avatar-sm ml-4 ml-lg-5 d-none d-lg-block">
-                                        <img class="avatar-img" src="{{ asset($user->profile) }}" alt="">
+                                        <img class="avatar-img" src="{{ empty($user->profile) ?
+																 		asset('storage/index.jpg') :
+																 		asset(\Storage::url($user->profile))
+														  			 }}" alt="">
                                     </div>
 
                                     <!-- Message: body -->

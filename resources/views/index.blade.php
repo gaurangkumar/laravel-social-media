@@ -23,7 +23,10 @@
                     <div class="container-xxl">
 
                         <div class="avatar avatar-lg mb-5">
-                            <img class="avatar-img" src="{{ asset($user->profile) }}" alt="">
+                            <img class="avatar-img" src="{{ empty($user->profile) ?
+															asset('storage/index.jpg') :
+															asset(\Storage::url($user->profile))
+														 }}" alt="">
                         </div>
 
                         <h6>Hey, {{ explode(' ', $user->name)[0] }}!</h6>

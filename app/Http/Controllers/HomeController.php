@@ -84,7 +84,7 @@ class HomeController extends Controller
 
     public function get_last_chats($uid) {
         $query = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$uid} GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = ".$uid." GROUP BY user_id )";
-        
+         
         //$results = DB::select( DB::raw($query) );
         $results = Chat::whereRaw($query)
             ->with('recievers')
@@ -200,13 +200,13 @@ class HomeController extends Controller
 				'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
 			]);
 
-        	$image = str_replace('public/', 'storage/', $request->profile->store('public/profile'));
+        	$image = $request->profile->store('profile', ['disk' => 'public']);
+        	//echo '<pre>';var_dump();exit;
 
 			$data['profile'] = $image;
 		}
 
 		$result = $user->update($data);
-        //echo '<pre>';var_dump($result);exit;
 
 		return redirect()->route('settings');
 	}

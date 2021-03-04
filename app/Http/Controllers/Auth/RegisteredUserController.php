@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
             'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ]);
 
-        $image = str_replace('public/', 'storage/', $request->profile->store('public/profile'));
+		$image = $request->profile->store('profile', ['disk' => 'public']);
 
         Auth::login($user = User::create([
             'name' => $request->name,
