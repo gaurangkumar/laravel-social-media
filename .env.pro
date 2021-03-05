@@ -2,7 +2,7 @@ APP_NAME="Agwis Messenager"
 APP_ENV=local
 APP_KEY=base64:351TonjJzPDV3MhP8YpDDK4agw6eY3OSQcb3dYeXl9c=
 APP_DEBUG=true
-APP_URL=http://localhost
+APP_URL=https://agwis.com/
 
 LOG_CHANNEL=stack
 LOG_LEVEL=debug
