@@ -15,10 +15,10 @@ class CreateCallsTable extends Migration
     {
         Schema::create('calls', function (Blueprint $table) {
             $table->id();
-			$table->foreignId('user_id')->constrained();
-			$table->bigInteger('receiver_id')->unsigned();
-			$table->foreign('receiver_id')->references('id')->on('users');
-			$table->integer('duration');
+            $table->foreignId('user_id')->constrained();
+            $table->bigInteger('receiver_id')->unsigned();
+            $table->foreign('receiver_id')->references('id')->on('users');
+            $table->integer('duration');
             $table->timestamps();
         });
     }

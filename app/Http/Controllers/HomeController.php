@@ -1,21 +1,23 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
 use App\Models\Chat;
 use App\Models\User;
-use App\Models\Contact;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 class HomeController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
-        \View::share ( 'currentRoute', Route::currentRouteName() );
+        \View::share('currentRoute', Route::currentRouteName());
     }
 
-    public function index() {
+    public function index()
+    {
         ini_set('memory_limit', '1024M');
         $title = 'Agwis Messenger';
         $user = auth()->user();
@@ -29,19 +31,23 @@ class HomeController extends Controller
         return view('index', compact('title', 'side_chats', 'sender', 'user', 'friends'));
     }
 
-    public function page() {
-        return view('page', ['title' => 'Pages | Agwis Messenger']);
+    public function page()
+    {
+        return view('page', array('title' => 'Pages | Agwis Messenger'));
     }
 
-	public function call() {
-        return view('call', ['title' => 'Calls | Agwis Messenger']);
+    public function call()
+    {
+        return view('call', array('title' => 'Calls | Agwis Messenger'));
     }
 
-	public function status() {
-        return view('status', ['title' => 'Status | Agwis Messenger']);
-	}
+    public function status()
+    {
+        return view('status', array('title' => 'Status | Agwis Messenger'));
+    }
 
-	public function chat(Request $request) {
+    public function chat(Request $request)
+    {
         $title = 'Chat | Agwis Messenger';
         $user = auth()->user();
 
@@ -49,61 +55,65 @@ class HomeController extends Controller
 
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
-        if(empty($sender)) {echo '<pre>';print_r($sender_id);exit;}
+        if (empty($sender)) {
+            echo '<pre>';
+            print_r($sender_id);
+            exit;
+        }
 
-        $chats = Chat::whereIn('rid', [$sender->id, $user->id])
-            ->whereIn('user_id', [$sender->id, $user->id])
+        $chats = Chat::whereIn('rid', array($sender->id, $user->id))
+            ->whereIn('user_id', array($sender->id, $user->id))
             ->get();
 
         $friends = $this->get_friends($user->id);
 
-        return view('chat', compact('title', 'side_chats', 'chats', 'sender','user', 'friends'));
-	}
+        return view('chat', compact('title', 'side_chats', 'chats', 'sender', 'user', 'friends'));
+    }
 
-	public function sendchat(Request $request) {
+    public function sendchat(Request $request)
+    {
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
 
-		$user = auth()->user();
+        $user = auth()->user();
 
-		$request ->validate([
-			'msg'=> 'required'
-		]);
+        $request->validate(array(
+            'msg' => 'required',
+        ));
 
-		$data = [
-			'user_id' => $user->id,
-			'rid' => $sender->id,
-			'msg'=> $request->msg
-		];
+        $data = array(
+            'user_id' => $user->id,
+            'rid' => $sender->id,
+            'msg' => $request->msg,
+        );
 
-		$data = Chat::create($data);
-        
-		return redirect()->route('chat',$sender->id);
-		
-	}
+        $data = Chat::create($data);
 
-    public function get_last_chats($uid) {
-        $query = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$uid} GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = ".$uid." GROUP BY user_id )";
-         
+        return redirect()->route('chat', $sender->id);
+    }
+
+    public function get_last_chats($uid)
+    {
+        $query = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$uid} GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = ".$uid.' GROUP BY user_id )';
+
         //$results = DB::select( DB::raw($query) );
         $results = Chat::whereRaw($query)
             ->with('recievers')
-			->with('users')
-			->orderBy('created_at', 'DESC')
+            ->with('users')
+            ->orderBy('created_at', 'DESC')
             ->get();
 
-        $side_chats = [];
-        $uids = [];
-        foreach($results as $result) {
-            if($result->user_id != $result->rid) {
-                if($result->user_id == $uid) {
-                    if ( !in_array($result->rid, $uids) ) {
+        $side_chats = array();
+        $uids = array();
+        foreach ($results as $result) {
+            if ($result->user_id !== $result->rid) {
+                if ($result->user_id === $uid) {
+                    if (!in_array($result->rid, $uids)) {
                         array_push($side_chats, $result);
                         $uids[] = $result->rid;
                     }
-                }
-                else {
-                    if ( !in_array($result->user_id, $uids) ) {
+                } else {
+                    if (!in_array($result->user_id, $uids)) {
                         $side_chats[] = $result;
                         $uids[] = $result->user_id;
                     }
@@ -114,7 +124,8 @@ class HomeController extends Controller
         return $side_chats;
     }
 
-    public function settings() {
+    public function settings()
+    {
         $title = 'Settings | Agwis Messenger';
         $user = auth()->user();
 
@@ -127,8 +138,9 @@ class HomeController extends Controller
         return view('settings', compact('title', 'side_chats', 'sender', 'user', 'friends'));
     }
 
-    public function time_elapsed_string($datetime, $full = false) {
-        $now = new DateTime;
+    public function time_elapsed_string($datetime, $full = false)
+    {
+        $now = new DateTime();
         $ago = new DateTime($datetime);
         $diff = $now->diff($ago);
 
@@ -146,18 +158,22 @@ class HomeController extends Controller
         );
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+                $v = $diff->$k.' '.$v.($diff->$k > 1 ? 's' : '');
             } else {
                 unset($string[$k]);
             }
         }
 
-        if (!$full) $string = array_slice($string, 0, 1);
-        return $string ? implode(', ', $string) . ' ago' : 'just now';
+        if (!$full) {
+            $string = array_slice($string, 0, 1);
+        }
+
+        return $string ? implode(', ', $string).' ago' : 'just now';
     }
 
-    public function get_friends($uid) {
-        $contacts = User::whereIn('id', function($query) {
+    public function get_friends($uid)
+    {
+        $contacts = User::whereIn('id', function ($query) {
             $query->select('cid')
                 ->from('contacts')
                 ->where('user_id', auth()->user()->id);
@@ -165,8 +181,8 @@ class HomeController extends Controller
         ->orderBy('name', 'ASC')
         ->get();
 
-        $friends = [];
-        foreach($contacts as $contact) {
+        $friends = array();
+        foreach ($contacts as $contact) {
             $friends[
                 $contact->name[0]
             ][] = $contact;
@@ -175,51 +191,54 @@ class HomeController extends Controller
         return $friends;
     }
 
-	public function profile(Request $request) {
-		$user = auth()->user();
+    public function profile(Request $request)
+    {
+        $user = auth()->user();
 
-		$request->validate([
-			'name' => 'required|string|max:255',
-			'mobile' => 'required|digits:10',
-		]);
+        $request->validate(array(
+            'name' => 'required|string|max:255',
+            'mobile' => 'required|digits:10',
+        ));
 
-		if($user->email != $request->email) {
-			$request->validate([
-				'email' => 'required|string|email|max:255|unique:users',
-			]);
-		}
+        if ($user->email !== $request->email) {
+            $request->validate(array(
+                'email' => 'required|string|email|max:255|unique:users',
+            ));
+        }
 
-		$data = [
-			'name' => $request->name,
-			'email'=> $request->email,
-			'mobile'=> $request->mobile,
-		];
+        $data = array(
+            'name' => $request->name,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+        );
 
-		if(!empty($request->profile)) {
-			$request->validate([
-				'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-			]);
+        if (!empty($request->profile)) {
+            $request->validate(array(
+                'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            ));
 
-        	$image = $request->profile->store('profile', ['disk' => 'public']);
-        	//echo '<pre>';var_dump();exit;
+            $image = $request->profile->store('profile', array('disk' => 'public'));
+            //echo '<pre>';var_dump();exit;
 
-			$data['profile'] = $image;
-		}
+            $data['profile'] = $image;
+        }
 
-		$result = $user->update($data);
+        $result = $user->update($data);
 
-		return redirect()->route('settings');
-	}
+        return redirect()->route('settings');
+    }
 
-	public function delete_profile(Request $request) {
-		$user = auth()->user();
+    public function delete_profile(Request $request)
+    {
+        $user = auth()->user();
 
-		$result = $user->update(['profile' => null]);
+        $result = $user->update(array('profile' => null));
         //echo '<pre>';var_dump($result);exit;
 
-		return redirect()->route('settings');
-	}
+        return redirect()->route('settings');
+    }
 
-	public function social(Request $request) {
-	}
+    public function social(Request $request)
+    {
+    }
 }

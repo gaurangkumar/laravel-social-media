@@ -4,26 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Chat extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillable = array(
         'user_id',
         'rid',
         'group_id',
-		'msg',
+        'msg',
 
-    ];
+    );
 
-	public function users()
+    public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-	public function recievers()
+    public function recievers()
     {
         return $this->belongsTo(User::class, 'rid');
     }

@@ -16,22 +16,23 @@ class PasswordResetLinkController extends Controller
     public function create()
     {
         //return view('auth.forgot-password');
-        return view('forgot-password', ['title' => 'Forget Password | Agwis Messanger']);
+        return view('forgot-password', array('title' => 'Forget Password | Agwis Messanger'));
     }
 
     /**
      * Handle an incoming password reset link request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param \Illuminate\Http\Request $request
      *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(array(
             'email' => 'required|email',
-        ]);
+        ));
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
@@ -40,9 +41,9 @@ class PasswordResetLinkController extends Controller
             $request->only('email')
         );
 
-        return $status == Password::RESET_LINK_SENT
+        return $status === Password::RESET_LINK_SENT
                     ? back()->with('status', __($status))
                     : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+                            ->withErrors(array('email' => __($status)));
     }
 }

@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         //DB::table('chats')->truncate();
 
-        $this->call([
+        $this->call(array(
             UserSeeder::class,
             ChatSeeder::class,
-        ]);
+        ));
 
         // \App\Models\User::factory(10)->create();
     }

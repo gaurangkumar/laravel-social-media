@@ -21,8 +21,8 @@ class CallFactory extends Factory
      */
     public function definition()
     {
-        return [
+        return array(
             //
-        ];
+        );
     }
 }

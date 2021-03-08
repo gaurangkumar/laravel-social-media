@@ -20,36 +20,37 @@ class RegisteredUserController extends Controller
     public function create()
     {
         //return view('auth.register');
-        return view('register', ['title' => 'Signup | Agwis Messenger']);
+        return view('register', array('title' => 'Signup | Agwis Messenger'));
     }
 
     /**
      * Handle an incoming registration request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param \Illuminate\Http\Request $request
      *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(array(
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
-			'mobile' => 'required|digits:10',
+            'mobile' => 'required|digits:10',
             'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-        ]);
+        ));
 
-		$image = $request->profile->store('profile', ['disk' => 'public']);
+        $image = $request->profile->store('profile', array('disk' => 'public'));
 
-        Auth::login($user = User::create([
+        Auth::login($user = User::create(array(
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'mobile' => $request->mobile,
             'profile' => $image,
-       ]));
+        )));
 
         event(new Registered($user));
 
