@@ -15,8 +15,8 @@ class CreatePageFollowersTable extends Migration
     {
         Schema::create('page_followers', function (Blueprint $table) {
             $table->id();
-			$table->foreignId('user_id')->constrained();
-			$table->foreignId('page_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('page_id')->constrained();
             $table->boolean('follow')->default(1);
             $table->timestamps();
         });

@@ -9,9 +9,9 @@ class Page extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillable = array(
         'name',
         'email',
         'password',
-    ];
+    );
 }

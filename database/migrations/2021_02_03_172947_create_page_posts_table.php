@@ -17,8 +17,8 @@ class CreatePagePostsTable extends Migration
             $table->id();
             $table->text('text');
             $table->string('media');
-			$table->foreignId('user_id')->constrained();
-			$table->bigInteger('view_count');
+            $table->foreignId('user_id')->constrained();
+            $table->bigInteger('view_count');
             $table->timestamps();
         });
     }

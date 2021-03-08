@@ -1,6 +1,6 @@
 <?php
 
-return [
+return array(
 
     /*
     |--------------------------------------------------------------------------
@@ -28,22 +28,22 @@ return [
     |
     */
 
-    'disks' => [
+    'disks' => array(
 
-        'local' => [
+        'local' => array(
             'driver' => 'local',
             'root' => storage_path('app'),
-        ],
+        ),
 
-        'public' => [
+        'public' => array(
             'driver' => 'local',
             //'root' => storage_path('app/public'),
-       		'root'   => public_path('storage'),
+            'root' => public_path('storage'),
             'url' => env('APP_URL').'/public/storage',
             'visibility' => 'public',
-		],
+        ),
 
-        's3' => [
+        's3' => array(
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
@@ -51,9 +51,9 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
-        ],
+        ),
 
-    ],
+    ),
 
     /*
     |--------------------------------------------------------------------------
@@ -66,8 +66,8 @@ return [
     |
     */
 
-    'links' => [
+    'links' => array(
         public_path('storage') => storage_path('app/public'),
-    ],
+    ),
 
-];
+);

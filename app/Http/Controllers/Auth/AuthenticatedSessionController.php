@@ -18,13 +18,14 @@ class AuthenticatedSessionController extends Controller
     public function create()
     {
         //return view('auth.login');
-        return view('login', ['title' => 'Login | Agwis Messenger']);
+        return view('login', array('title' => 'Login | Agwis Messenger'));
     }
 
     /**
      * Handle an incoming authentication request.
      *
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
+     * @param \App\Http\Requests\Auth\LoginRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(LoginRequest $request)
@@ -39,7 +40,8 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request)

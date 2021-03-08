@@ -28,29 +28,29 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        return array(
             'email' => 'required|string|email',
             'password' => 'required|string',
-        ];
+        );
     }
 
     /**
      * Attempt to authenticate the request's credentials.
      *
-     * @return void
-     *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return void
      */
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->filled('remember'))) {
+        if (!Auth::attempt($this->only('email', 'password'), $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
-            throw ValidationException::withMessages([
+            throw ValidationException::withMessages(array(
                 'email' => __('auth.failed'),
-            ]);
+            ));
         }
 
         RateLimiter::clear($this->throttleKey());
@@ -59,13 +59,13 @@ class LoginRequest extends FormRequest
     /**
      * Ensure the login request is not rate limited.
      *
-     * @return void
-     *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return void
      */
     public function ensureIsNotRateLimited()
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -73,12 +73,12 @@ class LoginRequest extends FormRequest
 
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
-        throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
+        throw ValidationException::withMessages(array(
+            'email' => trans('auth.throttle', array(
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
-            ]),
-        ]);
+            )),
+        ));
     }
 
     /**

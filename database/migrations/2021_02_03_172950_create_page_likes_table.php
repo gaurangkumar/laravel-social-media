@@ -15,8 +15,8 @@ class CreatePageLikesTable extends Migration
     {
         Schema::create('page_likes', function (Blueprint $table) {
             $table->id();
-			$table->foreignId('user_id')->constrained();
-			$table->foreignId('page_post_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('page_post_id')->constrained();
             $table->boolean('like')->default(1);
             $table->timestamps();
         });

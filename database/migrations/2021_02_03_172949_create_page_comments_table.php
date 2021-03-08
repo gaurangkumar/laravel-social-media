@@ -15,8 +15,8 @@ class CreatePageCommentsTable extends Migration
     {
         Schema::create('page_comments', function (Blueprint $table) {
             $table->id();
-			$table->foreignId('user_id')->constrained();
-			$table->foreignId('page_post_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('page_post_id')->constrained();
             $table->string('comment')->nullable();
             $table->timestamps();
         });
