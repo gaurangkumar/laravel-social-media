@@ -48,7 +48,8 @@
                                                 <img src="{{ empty($sender->profile) ?
 																 asset('storage/index.jpg') :
 																 asset(\Storage::url($sender->profile))
-														  }}" class="avatar-img" alt="{{ $sender->name }}">
+														  }}"
+                                                     class="avatar-img" alt="{{ $sender->name }}">
                                             </div>
 
                                             <div class="media-body align-self-center text-truncate">
@@ -128,10 +129,11 @@
                                 <div class="message">
                                     <!-- Avatar -->
                                     <a class="avatar avatar-sm mr-4 mr-lg-5" href="#" data-chat-sidebar-toggle="#chat-2-info">
-                                        <img class="avatar-img" src="{{ empty($sender->profile) ?
-																		 asset('storage/index.jpg') :
-																		 asset(\Storage::url($sender->profile))
-														  		     }}" alt="">
+                                        <img class="avatar-img"
+                                             src="{{ empty($sender->profile) ?
+                                                 asset('storage/index.jpg') :
+                                                 asset(\Storage::url($sender->profile))
+                                             }}" alt="">
                                     </a>
 
                                     <!-- Message: body -->
@@ -143,8 +145,8 @@
 
                                                 <!-- Message: content -->
                                                 <div class="message-content bg-light">
-                                                    <h6 class="mb-2">{{ $sender->name }}</h6>
-                                                    <div>{{ $sender->msg }}</div>
+                                                    <!--<h6 class="mb-2">{{ $sender->name }}</h6>-->
+                                                    <div>{{ $chat->msg }}</div>
 
                                                     <div class="mt-1">
                                                         <small class="opacity-65">
@@ -187,10 +189,11 @@
                                 <div class="message message-right">
                                     <!-- Avatar -->
                                     <div class="avatar avatar-sm ml-4 ml-lg-5 d-none d-lg-block">
-                                        <img class="avatar-img" src="{{ empty($user->profile) ?
-																 		asset('storage/index.jpg') :
-																 		asset(\Storage::url($user->profile))
-														  			 }}" alt="">
+                                        <img class="avatar-img"
+                                             src="{{ empty($user->profile) ?
+                                                asset('storage/index.jpg') :
+                                                asset(\Storage::url($user->profile))
+                                             }}" alt="">
                                     </div>
 
                                     <!-- Message: body -->
@@ -222,6 +225,7 @@
 
                                                 <!-- Message: content -->
                                                 <div class="message-content bg-primary text-white">
+                                                    <!--<h6 class="mb-2">{{ $user->name }}</h6>-->
                                                     <div>{{ $chat->msg }}</div>
 
                                                     <div class="mt-1">
@@ -259,7 +263,7 @@
                         <div class="chat-footer border-top py-4 py-lg-6 px-lg-8">
                             <div class="container-xxl">
 
-                                <form id="chat-id-2-form" action="{{ route('sendchat', $sender->id) }}" data-emoji-form="">
+                                <form id="chat-id-2-form" action="{{ route('sendchat', $sender->id) }}" data-emoji-form="" method="post">
 									@csrf
                                     <div class="form-row align-items-center">
                                         <div class="col">
