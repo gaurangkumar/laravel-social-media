@@ -706,7 +706,7 @@
 
                                         @foreach($pages as $page)
                                         <a class="text-reset nav-link p-0 mb-6"
-                                           href="{{ route('page', $page->id) }}">
+                                           href="{{ route('page', $page->pages->uname) }}">
                                             <div class="card card-active-listener">
                                                 <div class="card-body">
                                                     <div class="media">

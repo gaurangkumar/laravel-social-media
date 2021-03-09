@@ -46,6 +46,11 @@ class HomeController extends Controller
         return $pages;
     }
 
+    public function page(Request $request)
+    {
+        return view('page', array('title' => ' | Agwis Messenger'));
+    }
+
     public function call()
     {
         return view('call', array('title' => 'Calls | Agwis Messenger'));
