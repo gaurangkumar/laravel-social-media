@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use App\Models\User;
+use App\Models\PageFollower;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -26,14 +27,23 @@ class HomeController extends Controller
 
         $friends = $this->get_friends($user->id);
 
+        $pages = $this->get_pages($user->id);
+
         $sender = null;
 
-        return view('index', compact('title', 'side_chats', 'sender', 'user', 'friends'));
+        return view('index', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends'));
     }
 
-    public function page()
+    public function get_pages($uid)
     {
-        return view('page', array('title' => 'Pages | Agwis Messenger'));
+        $pages = PageFollower::where('user_id', $uid)
+            ->with('users')
+            ->with('pages')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        //echo '<pre>';print_r($pages->toArray());exit;
+        return $pages;
     }
 
     public function call()
@@ -53,12 +63,12 @@ class HomeController extends Controller
 
         $side_chats = $this->get_last_chats($user->id);
 
+        $pages = $this->get_pages($user->id);
+
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
         if (empty($sender)) {
-            echo '<pre>';
-            print_r($sender_id);
-            exit;
+            echo '<pre>';print_r($sender_id);exit;
         }
 
         $chats = Chat::whereIn('rid', array($sender->id, $user->id))
@@ -67,7 +77,7 @@ class HomeController extends Controller
 
         $friends = $this->get_friends($user->id);
 
-        return view('chat', compact('title', 'side_chats', 'chats', 'sender', 'user', 'friends'));
+        return view('chat', compact('title', 'side_chats', 'pages', 'chats', 'sender', 'user', 'friends'));
     }
 
     public function sendchat(Request $request)
@@ -131,11 +141,13 @@ class HomeController extends Controller
 
         $side_chats = $this->get_last_chats($user->id);
 
+        $pages = $this->get_pages($user->id);
+
         $friends = $this->get_friends($user->id);
 
         $sender = null;
 
-        return view('settings', compact('title', 'side_chats', 'sender', 'user', 'friends'));
+        return view('settings', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends'));
     }
 
     public function time_elapsed_string($datetime, $full = false)

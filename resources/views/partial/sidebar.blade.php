@@ -656,7 +656,7 @@
                         </div>
                     </div>
 
-                    <!-- demos -->
+                    <!-- pages -->
                     <div class="tab-pane fade h-100" id="tab-content-demos" role="tabpanel">
                         <div class="d-flex flex-column h-100">
 
@@ -664,7 +664,7 @@
                                 <div class="container-fluid py-6">
 
                                     <!-- Title -->
-                                    <h2 class="font-bold mb-6">Demos</h2>
+                                    <h2 class="font-bold mb-6">Pages</h2>
                                     <!-- Title -->
 
                                     <!-- Search -->
@@ -690,9 +690,9 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <h5 class="mb-0">
-                                                        <a href="documentation/index.html" class="text-basic-inverse stretched-link">Documentation</a>
+                                                        <a href="documentation/index.html" class="text-basic-inverse stretched-link">Create New Page</a>
                                                     </h5>
-                                                    <p>Quick setup and build tools.</p>
+                                                    <!--p>Quick setup and build tools.</p-->
                                                 </div>
                                             </div>
 
@@ -700,99 +700,49 @@
                                     </div>
                                     <!-- Card -->
 
-                                    <h5 class="my-6">Chat Pages:</h5>
+                                    <h5 class="my-6">Pages:</h5>
 
-                                    <!-- Card -->
-                                    <div class="card mb-6">
-                                        <img class="card-img-top" alt="" src="assets/images/demos/chat.jpg">
-                                        <div class="card-body border-top">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h5 class="mb-0">Light mode</h5>
-                                                </div>
-                                                <div class="align-self-center">
-                                                    <a href="demo-light/index.html" class="text-muted stretched-link">
-                                                        <i class="fe-link"></i>
-                                                    </a>
+                                    <nav class="nav d-block list-discussions-js mb-n6">
+
+                                        @foreach($pages as $page)
+                                        <a class="text-reset nav-link p-0 mb-6"
+                                           href="{{ route('page', $page->id) }}">
+                                            <div class="card card-active-listener">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <!--for offline - <div class="avatar mr-5">-->
+                                                        <div class="avatar avatar-online mr-5">
+                                                            <img class="avatar-img"
+                                                                 src="
+                                                                {{
+                                                                   empty($page->pages->profile) ? asset('storage/index.jpg') :
+                                                                   asset(\Storage::url($page->pages->profile))
+																}}"
+                                                                 alt="{{ $page->pages->name }}">
+                                                        </div>
+                                                        <div class="media-body overflow-hidden">
+                                                            <div class="d-flex align-items-center mb-1">
+                                                                <h6 class="text-truncate mb-0 mr-auto">
+                                                                    {{ $page->pages->name }}
+                                                                </h6>
+                                                                <p class="small text-muted text-nowrap ml-4">
+                                                                    {{ date("H:i a", strtotime($page->pages->created_at)) }}
+                                                                </p>
+                                                            </div>
+                                                            <!-- last chat -->
+                                                            <div class="text-truncate">
+                                                                <!--you send last msg '['.$chat->id.'] '. - <h6 class='d-inline'>You:</h6>-->
+                                                                {{ $page->pages->description }}
+                                                            </div>
+                                                            <!-- typing <div class="text-truncate">is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span></div>-->
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card -->
-
-                                    <!-- Card -->
-                                    <div class="card mb-6">
-                                        <img class="card-img-top" alt="" src="assets/images/demos/chat-dark.jpg">
-                                        <div class="card-body border-top">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h5 class="mb-0">Dark mode</h5>
-                                                </div>
-                                                <div class="align-self-center">
-                                                    <a href="demo-dark/index.html" class="text-muted stretched-link">
-                                                        <i class="fe-link"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card -->
-
-                                    <h5 class="my-6">Account Pages:</h5>
-
-                                    <!-- Card -->
-                                    <div class="card mb-6">
-                                        <img class="card-img-top" alt="" src="assets/images/demos/sign-in-dark.jpg">
-                                        <div class="card-body border-top">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h5 class="mb-0">Sign In</h5>
-                                                </div>
-                                                <div class="align-self-center">
-                                                    <a href="signin.html" class="text-muted stretched-link">
-                                                        <i class="fe-link"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card -->
-
-                                    <!-- Card -->
-                                    <div class="card mb-6">
-                                        <img class="card-img-top" alt="" src="assets/images/demos/sign-up-dark.jpg">
-                                        <div class="card-body border-top">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h5 class="mb-0">Sign Up</h5>
-                                                </div>
-                                                <div class="align-self-center">
-                                                    <a href="signup.html" class="text-muted stretched-link">
-                                                        <i class="fe-link"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card -->
-
-                                    <!-- Card -->
-                                    <div class="card mb-6">
-                                        <img class="card-img-top" alt="" src="assets/images/demos/password-reset-dark.jpg">
-                                        <div class="card-body border-top">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h5 class="mb-0">Password Reset</h5>
-                                                </div>
-                                                <div class="align-self-center">
-                                                    <a href="password-reset.html" class="text-muted stretched-link">
-                                                        <i class="fe-link"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card -->
+                                        </a>
+                                        @endforeach
+                                        <!-- Chat link -->
+                                    </nav>
 
                                 </div>
                             </div>

@@ -18,6 +18,7 @@ class CreatePagesTable extends Migration
             $table->string('name');
             $table->string('profile');
             $table->string('banner');
+            $table->string('uname')->unique();
             $table->foreignId('user_id')->constrained();
             $table->text('description')->nullable();
             $table->integer('view_count')->nullable();
