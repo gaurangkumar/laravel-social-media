@@ -107,6 +107,29 @@ class HomeController extends Controller
         return redirect()->route('chat', $sender->id);
     }
 
+    public function page_create(Request $request)
+    {
+        echo '<pre>';var_dump($request->toArray());exit;
+        $sender_id = Route::current()->parameter('user_id');
+        $sender = User::find($sender_id);
+
+        $user = auth()->user();
+
+        $request->validate(array(
+            'msg' => 'required',
+        ));
+
+        $data = array(
+            'user_id' => $user->id,
+            'rid' => $sender->id,
+            'msg' => $request->msg,
+        );
+
+        $data = Chat::create($data);
+
+        return redirect()->route('chat', $sender->id);
+    }
+
     public function get_last_chats($uid)
     {
         $query = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$uid} GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = ".$uid.' GROUP BY user_id )';
@@ -235,7 +258,6 @@ class HomeController extends Controller
             ));
 
             $image = $request->profile->store('profile', array('disk' => 'public'));
-            //echo '<pre>';var_dump();exit;
 
             $data['profile'] = $image;
         }

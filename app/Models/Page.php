@@ -11,7 +11,9 @@ class Page extends Model
 
     protected $fillable = array(
         'name',
-        'email',
-        'password',
+        'profile',
+        'uname',
+        'user_id',
+        'description',
     );
 }
