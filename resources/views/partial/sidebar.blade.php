@@ -703,68 +703,63 @@
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="createPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Create New page</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              <span aria-hidden="true">&times;</span>
-                                            </button>
-                                          </div>
-                                          <div class="modal-body">
-                                                                                <form action="{{ route('page_create') }}"
-                                                                                      method="post"
-                                                                                      enctype="multipart/form-data">
-                                                                                    @csrf
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Create New page</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('page_create') }}"
+                                                          method="post"
+                                                          enctype="multipart/form-data">
+                                                        @csrf
 
-                                                                                    <div class="form-group">
-                                                                                        <label class="small" for="profile">Photo</label>
-                                                                                        <div class="position-relative text-center bg-secondary rounded p-6">
-                                                                                            <div class="avatar bg-primary text-white mb-5">
-                                                                                                <i class="icon-md fe-image"></i>
-                                                                                            </div>
+                                                        <div class="form-group">
+                                                            <label class="small" for="profile">Photo</label>
+                                                            <div class="position-relative text-center bg-secondary rounded p-6">
+                                                                <div class="avatar bg-primary text-white mb-5">
+                                                                    <i class="icon-md fe-image"></i>
+                                                                </div>
 
-                                                                                            <p class="small text-muted mb-0">You can upload jpg, gif or png files. <br> Max file size 3mb.</p>
-                                                                                            <input id="profile" class="d-none" type="file" name="profile">
-                                                                                            <label class="stretched-label mb-0" for="profile"></label>
-                                                                                        </div>
-                                                                                    </div>
+                                                                <p class="small text-muted mb-0">You can upload jpg, gif or png files. <br> Max file size 3mb.</p>
+                                                                <input id="profile" class="d-none" type="file" name="profile">
+                                                                <label class="stretched-label mb-0" for="profile"></label>
+                                                            </div>
+                                                        </div>
 
-                                                                                    <div class="form-group">
-                                                                                        <label class="small" for="new-chat-title">Name</label>
-                                                                                        <input class="form-control form-control-lg" id="new-chat-title" type="text" placeholder="Page Name" name="name">
-                                                                                    </div>
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-title">Name</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-title" type="text" placeholder="Page Name" name="name">
+                                                        </div>
 
-                                                                                    <div class="form-group">
-                                                                                        <label class="small" for="new-chat-topic">Unique Name</label>
-                                                                                        <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder="Page Unique Name" name="uname">
-                                                                                    </div>
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-topic">Unique Name</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder="Page Unique Name" name="uname">
+                                                        </div>
 
-                                                                                    <div class="form-group">
-                                                                                        <label class="small" for="new-chat-description">Description</label>
-                                                                                        <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Page Description" name="description"></textarea>
-                                                                                    </div>
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-description">Description</label>
+                                                            <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Page Description" name="description"></textarea>
+                                                        </div>
 
-                                                                                    <div class="form-group mb-0">
-                                                                                        <div class="row">
-                                                                                            <div class=" col-6">
-                                                                                                <button type="button" class="btn btn-lg btn-secondary btn-block" data-dismiss="modal">Close</button>
-                                                                                            </div>
-                                                                                            <div class=" col-6">
-                                                                                                <button class="btn btn-lg btn-primary btn-block" type="submit">Create Page</button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
+                                                        <div class="form-group mb-0">
+                                                            <div class="row">
+                                                                <div class=" col-6">
+                                                                    <button type="button" class="btn btn-lg btn-secondary btn-block" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                                <div class=" col-6">
+                                                                    <button class="btn btn-lg btn-primary btn-block" type="submit">Create Page</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                                                                                </form>
-                                          </div>
-                                    <!--
-                                          <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                          </div>
-                                    -->
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
-                                      </div>
                                     </div>
 
                                     <h5 class="my-6">Pages:</h5>

@@ -111,16 +111,16 @@ class HomeController extends Controller
 
     public function page_create(Request $request)
     {
+        $user = auth()->user();
         echo '<pre>';
         var_dump($request->toArray());
         exit;
-        $sender_id = Route::current()->parameter('user_id');
-        $sender = User::find($sender_id);
-
-        $user = auth()->user();
 
         $request->validate(array(
-            'msg' => 'required',
+            'name' => 'required|string',
+            'uname' => 'required|unique:pages',
+            'description' => 'required|string',
+            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ));
 
         $data = array(
@@ -276,7 +276,6 @@ class HomeController extends Controller
         $user = auth()->user();
 
         $result = $user->update(array('profile' => null));
-        //echo '<pre>';var_dump($result);exit;
 
         return redirect()->route('settings');
     }
