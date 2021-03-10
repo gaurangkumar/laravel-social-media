@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
-use App\Models\User;
 use App\Models\PageFollower;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -73,7 +73,9 @@ class HomeController extends Controller
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
         if (empty($sender)) {
-            echo '<pre>';print_r($sender_id);exit;
+            echo '<pre>';
+            print_r($sender_id);
+            exit;
         }
 
         $chats = Chat::whereIn('rid', array($sender->id, $user->id))
@@ -109,7 +111,9 @@ class HomeController extends Controller
 
     public function page_create(Request $request)
     {
-        echo '<pre>';var_dump($request->toArray());exit;
+        echo '<pre>';
+        var_dump($request->toArray());
+        exit;
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
 
