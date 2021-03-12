@@ -15,5 +15,6 @@ class Page extends Model
         'uname',
         'user_id',
         'description',
+        'banner',
     );
 }

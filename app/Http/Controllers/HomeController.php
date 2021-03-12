@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use App\Models\PageFollower;
+use App\Models\Page;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -112,9 +113,6 @@ class HomeController extends Controller
     public function page_create(Request $request)
     {
         $user = auth()->user();
-        echo '<pre>';
-        var_dump($request->toArray());
-        exit;
 
         $request->validate(array(
             'name' => 'required|string',
@@ -123,15 +121,31 @@ class HomeController extends Controller
             'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ));
 
+        $image = $request->profile->store('page', array('disk' => 'public'));
+
         $data = array(
+            'name' => $request->name,
+            'uname' => $request->uname,
+            'description' => $request->description,
+            'profile' => $image,
+            'banner' => '',
             'user_id' => $user->id,
-            'rid' => $sender->id,
-            'msg' => $request->msg,
         );
 
-        $data = Chat::create($data);
+        $page = Page::create($data);
 
-        return redirect()->route('chat', $sender->id);
+        $follow = PageFollower::create([
+            'user_id' => $user->id,
+            'page_id' => $page->id,
+            'follow' => true,
+        ]);
+
+        echo '<pre>';
+        var_dump($page->toArray());
+        var_dump($follow->toArray());
+        exit;
+
+        return redirect()->back();
     }
 
     public function get_last_chats($uid)
@@ -176,7 +190,6 @@ class HomeController extends Controller
         $pages = $this->get_pages($user->id);
 
         $friends = $this->get_friends($user->id);
-
         $sender = null;
 
         return view('settings', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends'));

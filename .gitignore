@@ -1,3 +1,6 @@
+
+
+
 /node_modules
 /public/hot
 /storage/*.key
@@ -14,3 +17,5 @@ yarn-error.log
 /_notes
 composer.lock
 package-lock.json
+public/storage/page/*
+public/storage/profile/*
