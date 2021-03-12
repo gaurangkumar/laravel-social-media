@@ -26,7 +26,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/', array(HomeController::class, 'index'))->name('home');
 Route::get('/settings', array(HomeController::class, 'settings'))->name('settings');
-Route::get('/page/{page_id}', array(HomeController::class, 'page'))->name('page');
+Route::get('/page/{page_uname}', array(HomeController::class, 'page'))->name('page');
 Route::post('/page/create', array(HomeController::class, 'page_create'))->name('page_create');
 Route::get('/call', array(HomeController::class, 'call'))->name('call');
 Route::get('/status', array(HomeController::class, 'status'))->name('status');

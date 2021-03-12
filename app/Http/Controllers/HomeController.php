@@ -49,7 +49,22 @@ class HomeController extends Controller
 
     public function page(Request $request)
     {
-        return view('page', array('title' => ' | Agwis Messenger'));
+        $uname = Route::current()->parameter('page_uname');
+        $page = Page::where('uname', $uname)
+            ->first();
+        echo '<pre>';
+        var_dump($page->toArray());
+        exit;
+        $title = '| Agwis Messenger';
+        $user = auth()->user();
+
+        $side_chats = $this->get_last_chats($user->id);
+
+        $friends = $this->get_friends($user->id);
+
+        $pages = $this->get_pages($user->id);
+
+        return view('page', compact('title', 'side_chats', 'pages', 'user', 'friends'));
     }
 
     public function call()
@@ -139,11 +154,6 @@ class HomeController extends Controller
             'page_id' => $page->id,
             'follow' => true,
         ]);
-
-        echo '<pre>';
-        var_dump($page->toArray());
-        var_dump($follow->toArray());
-        exit;
 
         return redirect()->back();
     }
