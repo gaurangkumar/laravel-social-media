@@ -52,10 +52,19 @@ class HomeController extends Controller
         $uname = Route::current()->parameter('page_uname');
         $page = Page::where('uname', $uname)
             ->first();
+
+        $followers_count = $this->number_abbr(
+            PageFollower::where('page_id',$page->id)
+            ->count()
+            );
+
+        $posts = PagePost::
+        /*
         echo '<pre>';
-        var_dump($page->toArray());
+        var_dump($followers_count);
         exit;
-        $title = '| Agwis Messenger';
+*/
+        $title = ucfirst($page->name).' | Agwis Messenger';
         $user = auth()->user();
 
         $side_chats = $this->get_last_chats($user->id);
@@ -64,7 +73,7 @@ class HomeController extends Controller
 
         $pages = $this->get_pages($user->id);
 
-        return view('page', compact('title', 'side_chats', 'pages', 'user', 'friends'));
+        return view('page', compact('title', 'side_chats', 'pages', 'user', 'friends', 'page', 'followers_count'));
     }
 
     public function call()
@@ -305,5 +314,20 @@ class HomeController extends Controller
 
     public function social(Request $request)
     {
+    }
+
+    public function number_abbr($number) {
+        $abbrevs = [12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => ''];
+
+        foreach ($abbrevs as $exponent => $abbrev) {
+            if (abs($number) >= pow(10, $exponent)) {
+                $display = $number / pow(10, $exponent);
+                $decimals = ($exponent >= 3 && round($display) < 100) ? 1 : 0;
+                $number = number_format($display, $decimals).$abbrev;
+                break;
+            }
+        }
+
+        return $number;
     }
 }

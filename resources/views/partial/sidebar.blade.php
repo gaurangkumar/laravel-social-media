@@ -498,56 +498,56 @@
                                     <div class="text-center hide-scrollbar d-flex my-7" data-horizontal-scroll="">
                                         <a href="#" class="d-block text-reset mr-7 mr-lg-6" data-toggle="modal" data-target="#status-modal">
                                             <div class="avatar avatar-sm avatar-online mb-3">
-                                                <img class="avatar-img" src="assets/images/avatars/2.jpg" alt="Image Description">
+                                                <img class="avatar-img" src="{{ asset('assets/images/avatars/2.jpg') }}" alt="Image Description">
                                             </div>
                                             <div class="small">William</div>
                                         </a>
 
                                         <a href="#" class="d-block text-reset mr-7 mr-lg-6" data-toggle="modal" data-target="#exampleModalPreview">
                                             <div class="avatar avatar-sm avatar-online mb-3">
-                                                <img class="avatar-img" src="assets/images/avatars/3.jpg" alt="Image Description">
+                                                <img class="avatar-img" src="{{ asset('assets/images/avatars/3.jpg') }}" alt="Image Description">
                                             </div>
                                             <div class="small">Simon</div>
                                         </a>
 
                                         <a href="#" class="d-block text-reset mr-7 mr-lg-6" data-toggle="modal" data-target="#full-modal">
                                             <div class="avatar avatar-sm avatar-online mb-3">
-                                                <img class="avatar-img" src="assets/images/avatars/4.jpg" alt="Image Description">
+                                                <img class="avatar-img" src="{{ asset('assets/images/avatars/4.jpg') }}" alt="Image Description">
                                             </div>
                                             <div class="small">Thomas</div>
                                         </a>
 
                                         <a href="#" class="d-block text-reset mr-7 mr-lg-6">
                                             <div class="avatar avatar-sm avatar-online mb-3">
-                                                <img class="avatar-img" src="assets/images/avatars/5.jpg" alt="Image Description">
+                                                <img class="avatar-img" src="{{ asset('assets/images/avatars/5.jpg') }}" alt="Image Description">
                                             </div>
                                             <div class="small">Zane</div>
                                         </a>
 
                                         <a href="#" class="d-block text-reset mr-7 mr-lg-6">
                                             <div class="avatar avatar-sm mb-3">
-                                                <img class="avatar-img" src="assets/images/avatars/6.jpg" alt="Image Description">
+                                                <img class="avatar-img" src="{{ asset('assets/images/avatars/6.jpg') }}" alt="Image Description">
                                             </div>
                                             <div class="small">Thomas</div>
                                         </a>
 
                                         <a href="#" class="d-block text-reset mr-7 mr-lg-6">
                                             <div class="avatar avatar-sm mb-3">
-                                                <img class="avatar-img" src="assets/images/avatars/7.jpg" alt="Image Description">
+                                                <img class="avatar-img" src="{{ asset('assets/images/avatars/7.jpg') }}" alt="Image Description">
                                             </div>
                                             <div class="small">William</div>
                                         </a>
 
                                         <a href="#" class="d-block text-reset mr-7 mr-lg-6">
                                             <div class="avatar avatar-sm mb-3">
-                                                <img class="avatar-img" src="assets/images/avatars/8.jpg" alt="Image Description">
+                                                <img class="avatar-img" src="{{ asset('assets/images/avatars/8.jpg') }}" alt="Image Description">
                                             </div>
                                             <div class="small">Simon</div>
                                         </a>
 
                                         <a href="#" class="d-block text-reset mr-7 mr-lg-6">
                                             <div class="avatar avatar-sm mb-3">
-                                                <img class="avatar-img" src="assets/images/avatars/9.jpg" alt="Image Description">
+                                                <img class="avatar-img" src="{{ asset('assets/images/avatars/9.jpg') }}" alt="Image Description">
                                             </div>
                                             <div class="small">Thomas</div>
                                         </a>
