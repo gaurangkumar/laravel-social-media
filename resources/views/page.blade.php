@@ -123,7 +123,7 @@
                         <!-- Chat: Content-->
                         <div class="chat-content px-lg-8">
                             <div class="container-xxl py-6 py-lg-10">			
-							foreach($posts as $post)
+							@foreach($posts as $post)
                                 <!-- Message -->
                                 <div class="message">
                                     <!-- Avatar -->
@@ -144,11 +144,11 @@
 
                                                 <!-- Message: content -->
                                                 <div class="message-content bg-light">
-                                                    <div>{{ '$chat->msg' }}</div>
+                                                    <div>{{ $post->text }}</div>
 
                                                     <div class="mt-1">
                                                         <small class="opacity-65">
-                                                             date("H:i a", strtotime($chat->created_at)) 
+                                                             {{ date("H:i a", strtotime($post->created_at)) }} 
                                                         </small>
                                                     </div>
                                                 </div>
@@ -182,7 +182,7 @@
                                     <!-- Message: Body -->
                                 </div>
                                 <!-- Message -->
-                            endforeach
+                            @endforeach
 
                                 <!-- Divider -->
 
@@ -200,8 +200,9 @@
                         <div class="chat-footer border-top py-4 py-lg-6 px-lg-8">
                             <div class="container-xxl">
 
-                                <form id="chat-id-2-form" action="" data-emoji-form="" method="post">
+                                <form id="chat-id-2-form" action="" data-emoji-form="" method="post" >
 									@csrf
+                                    <fieldset {{ ($page->user_id == $user->id) ? '' : 'disabled' }}>
                                     <div class="form-row align-items-center">
                                         <div class="col">
                                             <div class="input-group">
@@ -212,14 +213,14 @@
                                                 <!-- Emoji button -->
                                                 <div class="input-group-append">
                                                     <button class="btn btn-ico btn-secondary btn-minimal bg-transparent border-0" type="button" data-emoji-btn="">
-                                                        <img src="assets/images/smile.svg" data-inject-svg="" alt="">
+                                                        <img src="{{ asset('assets/images/smile.svg') }}" data-inject-svg="" alt="">
                                                     </button>
                                                 </div>
 
                                                 <!-- Upload button -->
                                                 <div class="input-group-append">
                                                     <button id="chat-upload-btn-2" class="btn btn-ico btn-secondary btn-minimal bg-transparent border-0 dropzone-button-js" type="button">
-                                                        <img src="assets/images/paperclip.svg" data-inject-svg="" alt="">
+                                                        <img src="{{ asset('assets/images/paperclip.svg') }}" data-inject-svg="" alt="">
                                                     </button>
                                                 </div>
 
@@ -234,6 +235,7 @@
                                         </div>
 
                                     </div>
+                                    </fieldset>
 
                                 </form>
 

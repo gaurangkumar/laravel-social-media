@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\PageFollower;
 use App\Models\Page;
+use App\Models\PagePost;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -58,10 +59,12 @@ class HomeController extends Controller
             ->count()
             );
 
-        $posts = PagePost::
-        /*
+        $posts = PagePost::where('page_id',$page->id)
+            ->orderby('created_at', 'DESC')
+            ->get();
+/*
         echo '<pre>';
-        var_dump($followers_count);
+        var_dump($posts[0]->text);
         exit;
 */
         $title = ucfirst($page->name).' | Agwis Messenger';
@@ -73,7 +76,7 @@ class HomeController extends Controller
 
         $pages = $this->get_pages($user->id);
 
-        return view('page', compact('title', 'side_chats', 'pages', 'user', 'friends', 'page', 'followers_count'));
+        return view('page', compact('title', 'side_chats', 'pages', 'user', 'friends', 'page', 'followers_count', 'posts'));
     }
 
     public function call()
