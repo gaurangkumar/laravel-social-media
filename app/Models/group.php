@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class group extends Model
 {
     use HasFactory;
-        protected $fillable = [
+    protected $fillable = array(
         'user_id',
         'name',
         'profile',
         'description',
-    ];
-
+    );
 }
