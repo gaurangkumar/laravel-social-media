@@ -200,7 +200,7 @@
                         <div class="chat-footer border-top py-4 py-lg-6 px-lg-8">
                             <div class="container-xxl">
 
-                                <form id="chat-id-2-form" action="" data-emoji-form="" method="post" >
+                                <form id="chat-id-2-form" action="{{ route('post_create', $page->id) }}" data-emoji-form="" method="post" enctype="multipart/form-data">
 									@csrf
                                     <fieldset {{ ($page->user_id == $user->id) ? '' : 'disabled' }}>
                                     <div class="form-row align-items-center">

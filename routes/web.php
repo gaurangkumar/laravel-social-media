@@ -27,6 +27,7 @@ require __DIR__.'/auth.php';
 Route::get('/', array(HomeController::class, 'index'))->name('home');
 Route::get('/settings', array(HomeController::class, 'settings'))->name('settings');
 Route::get('/page/{page_uname}', array(HomeController::class, 'page'))->name('page');
+Route::post('/post/{page_id}', array(HomeController::class, 'post_create'))->name('post_create');
 Route::post('/page/create', array(HomeController::class, 'page_create'))->name('page_create');
 Route::get('/call', array(HomeController::class, 'call'))->name('call');
 Route::get('/status', array(HomeController::class, 'status'))->name('status');
@@ -34,6 +35,6 @@ Route::post('/profile', array(HomeController::class, 'profile'))->name('profile'
 Route::post('/delete-profile', array(HomeController::class, 'delete_profile'))->name('delete-profile');
 Route::post('/password', array(HomeController::class, 'password'))->name('password');
 Route::post('/social', array(HomeController::class, 'social'))->name('social');
-
+Route::post('/group/create', array(HomeController::class, 'group_create'))->name('group_create');
 Route::get('/{user_id}', array(HomeController::class, 'chat'))->name('chat');
 Route::post('/{user_id}', array(HomeController::class, 'sendchat'))->name('sendchat');

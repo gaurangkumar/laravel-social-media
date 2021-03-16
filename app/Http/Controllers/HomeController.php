@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\PageFollower;
 use App\Models\Page;
+use App\Models\Group;
 use App\Models\PagePost;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -60,13 +61,8 @@ class HomeController extends Controller
             );
 
         $posts = PagePost::where('page_id',$page->id)
-            ->orderby('created_at', 'DESC')
+            ->orderby('created_at', 'ASC')
             ->get();
-/*
-        echo '<pre>';
-        var_dump($posts[0]->text);
-        exit;
-*/
         $title = ucfirst($page->name).' | Agwis Messenger';
         $user = auth()->user();
 
@@ -77,6 +73,58 @@ class HomeController extends Controller
         $pages = $this->get_pages($user->id);
 
         return view('page', compact('title', 'side_chats', 'pages', 'user', 'friends', 'page', 'followers_count', 'posts'));
+    }
+
+    public function group_create(Request $request)
+    {
+        echo '<pre>';
+        var_dump($request->toArray());
+        exit;
+        $page_id = Route::current()->parameter('page_id');
+        $page = Page::find($page_id);
+
+
+        $user = auth()->user();
+
+        $request->validate(array(
+            'msg' => 'required',
+        ));
+
+        $data = array(
+            'user_id' => $user->id,
+            'page_id' => $page->id,
+            'text' => $request->msg,
+        );
+
+        $result = PagePost::create($data);
+
+        return redirect()->route('page', $page->uname);
+    }
+
+    public function post_create(Request $request)
+    {
+        $page_id = Route::current()->parameter('page_id');
+        $page = Page::find($page_id);
+
+        /*echo '<pre>';
+        var_dump($request->toArray());
+        exit;*/
+
+        $user = auth()->user();
+
+        $request->validate(array(
+            'msg' => 'required',
+        ));
+
+        $data = array(
+            'user_id' => $user->id,
+            'page_id' => $page->id,
+            'text' => $request->msg,
+        );
+
+        $result = PagePost::create($data);
+
+        return redirect()->route('page', $page->uname);
     }
 
     public function call()
