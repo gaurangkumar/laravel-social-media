@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
-use App\Models\PageFollower;
 use App\Models\Page;
 use App\Models\Group;
 use App\Models\GroupMember;
+use App\Models\PageFollower;
 use App\Models\PagePost;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -59,9 +59,9 @@ class HomeController extends Controller
         $followers_count = HomeController::number_abbr(
             PageFollower::where('page_id',$page->id)
             ->count()
-            );
+        );
 
-        $posts = PagePost::where('page_id',$page->id)
+        $posts = PagePost::where('page_id', $page->id)
             ->orderby('created_at', 'ASC')
             ->get();
         $title = ucfirst($page->name).' | Agwis Messenger';
@@ -78,6 +78,14 @@ class HomeController extends Controller
 
     public function group_create(Request $request)
     {
+/*
+        echo '<pre>';
+        var_dump($request->toArray());
+        exit;
+*/
+        $page_id = Route::current()->parameter('page_id');
+        $page = Page::find($page_id);
+
         $user = auth()->user();
 
         $validated = $request->validate(array(
@@ -219,11 +227,11 @@ class HomeController extends Controller
 
         $page = Page::create($data);
 
-        $follow = PageFollower::create([
+        $follow = PageFollower::create(array(
             'user_id' => $user->id,
             'page_id' => $page->id,
             'follow' => true,
-        ]);
+        ));
 
         return redirect()->back();
     }
@@ -379,6 +387,7 @@ class HomeController extends Controller
 
     public static function number_abbr($number) {
         $abbrevs = [12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => ''];
+        $abbrevs = array(12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => '');
 
         foreach ($abbrevs as $exponent => $abbrev) {
             if (abs($number) >= pow(10, $exponent)) {
