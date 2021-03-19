@@ -319,37 +319,6 @@
 
                                     <!-- Chats -->
                                     <nav class="nav d-block list-discussions-js mb-n6">
-                                        <!-- group 
-                                        <a class="text-reset nav-link p-0 mb-6" href="chat-1.html">
-                                            <div class="card card-active-listener">
-                                                <div class="card-body">
-
-                                                    <div class="media">
-                                                        
-                                                        
-                                                        <div class="avatar mr-5">
-                                                            <img class="avatar-img" src="assets/images/avatars/11.jpg" alt="Bootstrap Themes">
-                                                        </div>
-                                                        
-                                                        <div class="media-body overflow-hidden">
-                                                            <div class="d-flex align-items-center mb-1">
-                                                                <h6 class="text-truncate mb-0 mr-auto">Bootstrap Themes</h6>
-                                                                <p class="small text-muted text-nowrap ml-4">10:42 am</p>
-                                                            </div>
-                                                            <div class="text-truncate">Anna Bridges: Hey, Maher! How are you? The weather is great isn't it?</div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                
-                                                <div class="badge badge-circle badge-primary badge-border-light badge-top-right">
-                                                    <span>3</span>
-                                                </div>
-                                                
-                                            </div>
-                                        </a>
-                                        -->
 
                                         @foreach($side_chats as $chat)
                                         <a class="text-reset nav-link p-0 mb-6" href="
@@ -364,31 +333,43 @@
                                             @endif
                                         ">
                                             {{ $chat->msg }}
-                                            <?php /*
+                                            
                                             <div class="card card-active-listener">
                                                 <div class="card-body">
                                                     <div class="media">
                                                         <!--for offline - <div class="avatar mr-5">-->
                                                         <div class="avatar avatar-online mr-5">
                                                             <img class="avatar-img" src="
-                                                                @if($chat->user_id == auth()->user()->id)
-                                                                    {{ empty($chat->recievers->profile) ?
-																						 asset('storage/index.jpg') :
-																						 asset(\Storage::url($chat->recievers->profile))
-																	}}
-                                                                @else
-                                                                    {{ empty($chat->users->profile) ?
-																						 asset('storage/index.jpg') :
-																						 asset(\Storage::url($chat->users->profile))
-																	}}
-                                                                @endif" alt="
-                                                                    @if($chat->user_id == auth()->user()->id)
-                                                                        {{ $chat->recievers->name }}
-                                                                    @else
-                                                                        {{ $chat->users->name }}
-                                                                    @endif
-                                                                             ">
+                                            @if($chat->group_id)
+                                                {{ empty($chat->groups->profile) ?
+                                                     asset('storage/index.jpg') :
+                                                     asset(\Storage::url($chat->groups->profile))
+                                                }}
+                                            @else
+                                                @if($chat->user_id == $user->id)
+                                                    {{ empty($chat->recievers->profile) ?
+                                                         asset('storage/index.jpg') :
+                                                         asset(\Storage::url($chat->recievers->profile))
+                                                    }}
+                                                @else
+                                                    {{ empty($chat->users->profile) ?
+                                                         asset('storage/index.jpg') :
+                                                         asset(\Storage::url($chat->users->profile))
+                                                    }}
+                                                @endif
+                                            @endif
+                                                            " alt="
+                                            @if($chat->group_id)
+                                                {{ $chat->groups->name }}
+                                                @if($chat->user_id == $user->id)
+                                                    {{ $chat->recievers->name }}
+                                                @else
+                                                    {{ $chat->users->name }}
+                                                @endif
+                                            @endif
+                                                            ">
                                                         </div>
+                                                        <?php /*
                                                         <div class="media-body overflow-hidden">
                                                             <div class="d-flex align-items-center mb-1">
                                                                 <h6 class="text-truncate mb-0 mr-auto">
@@ -409,10 +390,14 @@
                                                             </div>
                                                             <!-- typing <div class="text-truncate">is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span></div>-->
                                                         </div>
+                                                        */ ?>
                                                     </div>
                                                 </div>
                                             </div>
-                                            */ ?>
+
+                                            <div class="badge badge-circle badge-primary badge-border-light badge-top-right">
+                                                <span>3</span>
+                                            </div>
                                         </a>
                                         @endforeach
                                         <!-- Chat link -->
