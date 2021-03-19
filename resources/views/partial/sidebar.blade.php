@@ -353,12 +353,18 @@
 
                                         @foreach($side_chats as $chat)
                                         <a class="text-reset nav-link p-0 mb-6" href="
-                                            @if($chat->user_id == auth()->user()->id)
-                                                {{ route('chat', $chat->rid) }}
+                                            @if($chat->group_id)
+                                                {{ route('group.show', $chat->group_id) }}
                                             @else
-                                                {{ route('chat', $chat->user_id) }}
+                                                @if($chat->user_id == $user->id)
+                                                    {{ route('chat', $chat->rid) }}
+                                                @else
+                                                    {{ route('chat', $chat->user_id) }}
+                                                @endif
                                             @endif
                                         ">
+                                            {{ $chat->msg }}
+                                            <?php /*
                                             <div class="card card-active-listener">
                                                 <div class="card-body">
                                                     <div class="media">
@@ -406,6 +412,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            */ ?>
                                         </a>
                                         @endforeach
                                         <!-- Chat link -->

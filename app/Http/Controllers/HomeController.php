@@ -233,12 +233,15 @@ class HomeController extends Controller
 
     public function get_last_chats($uid)
     {
-        $send_chats = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$uid} GROUP BY rid )";
+        $send_chats = "id IN( SELECT MAX(id) FROM chats WHERE group_id = null AND user_id = {$uid} GROUP BY rid )";
 
         $recieved_chats = "id IN( SELECT MAX(id) FROM chats WHERE rid = ".$uid." GROUP BY user_id )";
 
-        $group_chats = "group_id IN( SELECT MAX(group_id) FROM group_members WHERE
-                user_id = {$uid} GROUP BY group_id)";
+        $group_chats = "id IN( SELECT MAX(id) FROM chats WHERE
+                group_id IN (SELECT group_id FROM group_members WHERE
+                user_id = {$uid}) GROUP BY group_id)";
+        //$group_chats = "group_id IN( SELECT MAX(group_id) FROM group_members WHERE
+                //user_id = {$uid} GROUP BY group_id)";
 
         //$results = DB::select( DB::raw($query) );
         $results = Chat::whereRaw("$send_chats OR $recieved_chats OR $group_chats")
