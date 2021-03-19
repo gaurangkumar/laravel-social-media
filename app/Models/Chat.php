@@ -17,13 +17,18 @@ class Chat extends Model
 
     );
 
-    public function users()
+    public function groups()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Group::class, 'group_id');
     }
 
     public function recievers()
     {
         return $this->belongsTo(User::class, 'rid');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

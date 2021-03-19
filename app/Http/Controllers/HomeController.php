@@ -78,11 +78,6 @@ class HomeController extends Controller
 
     public function group_create(Request $request)
     {
-/*
-        echo '<pre>';
-        var_dump($request->toArray());
-        exit;
-*/
         $page_id = Route::current()->parameter('page_id');
         $page = Page::find($page_id);
 
@@ -238,14 +233,26 @@ class HomeController extends Controller
 
     public function get_last_chats($uid)
     {
-        $query = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$uid} GROUP BY rid ) OR id IN( SELECT MAX(id) FROM chats WHERE rid = ".$uid.' GROUP BY user_id )';
+        $send_chats = "id IN( SELECT MAX(id) FROM chats WHERE user_id = {$uid} GROUP BY rid )";
+
+        $recieved_chats = "id IN( SELECT MAX(id) FROM chats WHERE rid = ".$uid." GROUP BY user_id )";
+
+        $group_chats = "group_id IN( SELECT MAX(group_id) FROM group_members WHERE
+                user_id = {$uid} GROUP BY group_id)";
 
         //$results = DB::select( DB::raw($query) );
-        $results = Chat::whereRaw($query)
+        $results = Chat::whereRaw("$send_chats OR $recieved_chats OR $group_chats")
             ->with('recievers')
             ->with('users')
+            ->with('groups')
             ->orderBy('created_at', 'DESC')
             ->get();
+
+/*
+        echo '<pre>';
+        var_dump($results->toArray());
+        exit;
+*/
 
         $side_chats = array();
         $uids = array();
