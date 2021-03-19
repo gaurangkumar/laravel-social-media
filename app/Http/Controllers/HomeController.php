@@ -6,6 +6,7 @@ use App\Models\Chat;
 use App\Models\PageFollower;
 use App\Models\Page;
 use App\Models\Group;
+use App\Models\GroupMember;
 use App\Models\PagePost;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -55,7 +56,7 @@ class HomeController extends Controller
         $page = Page::where('uname', $uname)
             ->first();
 
-        $followers_count = $this->number_abbr(
+        $followers_count = HomeController::number_abbr(
             PageFollower::where('page_id',$page->id)
             ->count()
             );
@@ -77,28 +78,37 @@ class HomeController extends Controller
 
     public function group_create(Request $request)
     {
-        echo '<pre>';
-        var_dump($request->toArray());
-        exit;
-        $page_id = Route::current()->parameter('page_id');
-        $page = Page::find($page_id);
-
-
         $user = auth()->user();
 
-        $request->validate(array(
-            'msg' => 'required',
+        $validated = $request->validate(array(
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'members' => 'required|array|min:2',
+            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ));
+
+        $image = $request->profile->store('group', array('disk' => 'public'));
 
         $data = array(
             'user_id' => $user->id,
-            'page_id' => $page->id,
-            'text' => $request->msg,
+            'name' => $request->name,
+            'profile' => $image,
+            'description' => $request->description,
         );
 
-        $result = PagePost::create($data);
+        $group = Group::create($data);
 
-        return redirect()->route('page', $page->uname);
+        //$validated['members'][] = $user->id;
+        array_push($validated['members'], $user->id);
+
+        foreach($validated['members'] as $member) {
+            GroupMember::create([
+                'user_id' => $member,
+                'group_id' => $group->id,
+            ]);
+        }
+
+        return redirect()->route('group.show', $group->id);
     }
 
     public function post_create(Request $request)
@@ -367,7 +377,7 @@ class HomeController extends Controller
     {
     }
 
-    public function number_abbr($number) {
+    public static function number_abbr($number) {
         $abbrevs = [12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => ''];
 
         foreach ($abbrevs as $exponent => $abbrev) {

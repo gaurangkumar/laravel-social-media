@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\group;
+use App\Models\Chat;
+use App\Models\Group;
+use App\Models\GroupMember;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -46,9 +48,33 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(group $group)
+    public function show(Group $group)
     {
-        //
+        $members_count = HomeController::number_abbr(
+            GroupMember::where('group_id', $group->id)
+            ->count()
+            );
+
+        $chats = Chat::where('group_id',$group->id)
+            ->orderby('created_at', 'ASC')
+            ->get();
+
+        $title = ucfirst($group->name).' | Agwis Messenger';
+        $user = auth()->user();
+
+        $home = new HomeController;
+        $side_chats = $home->get_last_chats($user->id);
+
+        $friends = $home->get_friends($user->id);
+
+        $pages = $home->get_pages($user->id);
+
+/*
+        echo '<pre>';
+        var_dump( compact('title', 'side_chats', 'pages', 'user', 'friends', 'group', 'members_count', 'chats') );
+        exit;
+*/
+        return view('group', compact('title', 'side_chats', 'pages', 'user', 'friends', 'group', 'members_count', 'chats'));
     }
 
     /**
@@ -58,7 +84,7 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(group $group)
+    public function edit(Group $group)
     {
         //
     }
@@ -71,7 +97,7 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, group $group)
+    public function update(Request $request, Group $group)
     {
         //
     }
@@ -83,7 +109,7 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(group $group)
+    public function destroy(Group $group)
     {
         //
     }

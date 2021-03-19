@@ -710,7 +710,7 @@
 @include('partial.invite')
         <!-- Modal: Invite friends -->
 
-       @endsection
+@endsection
 
 @section('scripts')
 @endsection

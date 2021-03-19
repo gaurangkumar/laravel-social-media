@@ -37,86 +37,97 @@
                                     <!-- Tabs -->
 
                                     <!-- Create group -->
-
-                                            <form id="createGroup" action="{{route ('group_create')}}" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                    <div class="tab-content" role="tablist">
-                                        <!-- Group details -->
-                                        <div id="create-group-details" class="tab-pane fade show active" role="tabpanel">
-                                                <div class="form-group">
-                                                    <label class="small">Photo</label>
-                                                    <div class="position-relative text-center bg-secondary rounded p-6">
-                                                        <div class="avatar bg-primary text-white mb-5">
-                                                            <i class="icon-md fe-image"></i>
-                                                        </div>
-
-                                                        <p class="small text-muted mb-0">You can upload jpg, gif or png files. <br> Max file size 3mb.</p>
-                                                        <input id="upload-group-photo" name="profile" class="d-none" type="file">
-                                                        <label class="stretched-label mb-0" for="upload-group-photo"></label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="small" for="name">Name</label>
-                                                    <input class="form-control form-control-lg" name="name" id="name" type="text" placeholder="Group Name">
-                                                </div>
-
-                                                
-                                                <div class="form-group mb-0">
-                                                    <label class="small" for="description">Description</label>
-                                                    <textarea class="form-control form-control-lg" name="description" id="description" rows="6" placeholder="Group Description"></textarea>
-                                                </div>
-
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
                                         </div>
-                                        <!-- Chat details -->
+                                    @endif
+                                    <form id="createGroup" action="{{route ('group_create')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
 
-                                        <!-- Chat Members -->
-                                        <div id="create-group-members" class="tab-pane fade" role="tabpanel">
-                                            <nav class="list-group list-group-flush mb-n6">
-
-                                                @foreach($friends as $letter => $friend_list)
-                                                <div class="mb-6">
-                                                    <small class="text-uppercase">{{ $letter }}</small>
-                                                </div>
-
-                                                @foreach($friend_list as $friend)
-                                                <!-- Friend -->
-                                                <div class="card mb-6">
-                                                    <div class="card-body">
-
-                                                        <div class="media">
-                                                            <div class="avatar avatar-online mr-5">
-                                                                <img class="avatar-img" src="{{ empty($friend->profile) ? asset('storage/index.jpg') : asset(\Storage::url($friend->profile)) }}" alt="{{ $friend->name }}">
+                                        <div class="tab-content" role="tablist">
+                                            <!-- Group details -->
+                                            <div id="create-group-details" class="tab-pane fade show active" role="tabpanel">
+                                                    <div class="form-group">
+                                                        <label class="small">Photo</label>
+                                                        <div class="position-relative text-center bg-secondary rounded p-6">
+                                                            <div class="avatar bg-primary text-white mb-5">
+                                                                <i class="icon-md fe-image"></i>
                                                             </div>
 
-                                                            <div class="media-body align-self-center mr-6">
-                                                                <h6 class="mb-0">{{ $friend->name }}</h6>
-                                                                <small class="text-muted">Online</small>
-                                                            </div>
+                                                            <p class="small text-muted mb-0">You can upload jpg, gif or png files. <br> Max file size 3mb.</p>
+                                                            <input id="upload-group-photo" name="profile" class="d-none" type="file">
+                                                            <label class="stretched-label mb-0" for="upload-group-photo"></label>
+                                                        </div>
+                                                    </div>
 
-                                                            <div class="align-self-center ml-auto">
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input class="custom-control-input" id="id-user-{{ $friend->id }}" type="checkbox" name="members[]" value="{{ $friend->id }}">
-                                                                    <label class="custom-control-label" for="id-user-{{ $friend->id }}"></label>
+                                                    <div class="form-group">
+                                                        <label class="small" for="name">Name</label>
+                                                        <input class="form-control form-control-lg" name="name" id="name" type="text" placeholder="Group Name">
+                                                    </div>
+
+
+                                                    <div class="form-group mb-0">
+                                                        <label class="small" for="description">Description</label>
+                                                        <textarea class="form-control form-control-lg" name="description" id="description" rows="6" placeholder="Group Description"></textarea>
+                                                    </div>
+
+                                            </div>
+                                            <!-- Chat details -->
+
+                                            <!-- Chat Members -->
+                                            <div id="create-group-members" class="tab-pane fade" role="tabpanel">
+                                                <nav class="list-group list-group-flush mb-n6">
+
+                                                    @foreach($friends as $letter => $friend_list)
+                                                    <div class="mb-6">
+                                                        <small class="text-uppercase">{{ $letter }}</small>
+                                                    </div>
+
+                                                    @foreach($friend_list as $friend)
+                                                    <!-- Friend -->
+                                                    <div class="card mb-6">
+                                                        <div class="card-body">
+
+                                                            <div class="media">
+                                                                <div class="avatar avatar-online mr-5">
+                                                                    <img class="avatar-img" src="{{ empty($friend->profile) ? asset('storage/index.jpg') : asset(\Storage::url($friend->profile)) }}" alt="{{ $friend->name }}">
+                                                                </div>
+
+                                                                <div class="media-body align-self-center mr-6">
+                                                                    <h6 class="mb-0">{{ $friend->name }}</h6>
+                                                                    <small class="text-muted">Online</small>
+                                                                </div>
+
+                                                                <div class="align-self-center ml-auto">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input class="custom-control-input" id="id-user-{{ $friend->id }}" type="checkbox" name="members[]" value="{{ $friend->id }}">
+                                                                        <label class="custom-control-label" for="id-user-{{ $friend->id }}"></label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
+
                                                         </div>
 
+                                                        <!-- Label -->
+                                                        <label class="stretched-label" for="id-user-{{ $friend->id }}"></label>
                                                     </div>
+                                                    <!-- Friend -->
+                                                    @endforeach
+                                                    @endforeach
 
-                                                    <!-- Label -->
-                                                    <label class="stretched-label" for="id-user-{{ $friend->id }}"></label>
-                                                </div>
-                                                <!-- Friend -->
-                                                @endforeach
-                                                @endforeach
-
-                                            </nav>
+                                                </nav>
+                                            </div>
+                                            <!-- Chat Members -->
                                         </div>
-                                        <!-- Chat Members -->
-                                    </div>
-                                            </form>
-
+                                    </form>
                                     <!-- Create chat -->
 
                                 </div>
