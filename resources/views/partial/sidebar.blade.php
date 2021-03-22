@@ -332,7 +332,7 @@
                                                 @endif
                                             @endif
                                         ">
-                                            {{ $chat->msg }}
+                                            
                                             
                                             <div class="card card-active-listener">
                                                 <div class="card-body">
@@ -369,15 +369,27 @@
                                             @endif
                                                             ">
                                                         </div>
-                                                        <?php /*
+                                                        
                                                         <div class="media-body overflow-hidden">
                                                             <div class="d-flex align-items-center mb-1">
                                                                 <h6 class="text-truncate mb-0 mr-auto">
-                                                                    @if($chat->user_id == auth()->user()->id)
-                                                                        {{ $chat->recievers->name }}
-                                                                    @else
-                                                                        {{ $chat->users->name }}
-                                                                    @endif
+                                                                  @if($chat->group_id)
+                                                                    {{
+                                                                    $chat->groups->profile 
+                                                     
+                                                                    }}
+                                                                @else
+                                                                @if($chat->user_id == $user->id)
+                                                                     {{$chat->recievers->name
+                                                        
+                                                    }}
+                                                @else
+                                                    {{ 
+                                                         $chat->users->name
+                                                    }}
+                                                @endif
+                                            @endif
+                                                        
                                                                 </h6>
                                                                 <p class="small text-muted text-nowrap ml-4">
                                                                     {{ date("H:i a", strtotime($chat->created_at)) }}
@@ -386,11 +398,11 @@
                                                             <!-- last chat -->
                                                             <div class="text-truncate">
                                                                 <!--you send last msg '['.$chat->id.'] '. - <h6 class='d-inline'>You:</h6>-->
-                                                                {{ $chat->msg }}
+                                                                          {{ $chat->msg }}
                                                             </div>
                                                             <!-- typing <div class="text-truncate">is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span></div>-->
                                                         </div>
-                                                        */ ?>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
