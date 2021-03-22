@@ -134,11 +134,17 @@
                         <div class="chat-content px-lg-8">
                             <div class="container-xxl py-6 py-lg-10">
 
+                            @foreach($chats as $chat)
+                                <!-- Message -->
+                                @if($chat->user_id != $user->id)
                                 <!-- Message -->
                                 <div class="message">
                                     <!-- Avatar -->
                                     <a class="avatar avatar-sm mr-4 mr-lg-5" href="#" data-chat-sidebar-toggle="#chat-1-user-profile">
-                                        <img class="avatar-img" src="assets/images/avatars/7.jpg" alt="">
+                                        <img class="avatar-img" src="{{ empty($chat->users->profile) ?
+                                                 asset('storage/index.jpg') :
+                                                 asset(\Storage::url($chat->users->profile))
+                                             }}" alt="">
                                     </a>
 
                                     <!-- Message: body -->
@@ -187,7 +193,7 @@
                                     <!-- Message: Body -->
                                 </div>
                                 <!-- Message -->
-
+                                @else
                                 <!-- Message -->
                                 <div class="message message-right">
                                     <!-- Avatar -->
@@ -289,316 +295,8 @@
                                     <!-- Message: body -->
                                 </div>
                                 <!-- Message -->
-
-                                <!-- Divider -->
-                                <div class="message-divider my-9 mx-lg-5">
-                                    <div class="row align-items-center">
-
-                                        <div class="col">
-                                            <hr>
-                                        </div>
-
-                                        <div class="col-auto">
-                                            <small class="text-muted">Today</small>
-                                        </div>
-
-                                        <div class="col">
-                                            <hr>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Divider -->
-
-                                <!-- Message -->
-                                <div class="message">
-                                    <!-- Avatar -->
-                                    <a class="avatar avatar-sm mr-4 mr-lg-5" href="#" data-chat-sidebar-toggle="#chat-1-user-profile">
-                                        <img class="avatar-img" src="assets/images/avatars/7.jpg" alt="">
-                                    </a>
-
-                                    <!-- Message: body -->
-                                    <div class="message-body">
-
-                                        <!-- Message: row -->
-                                        <div class="message-row">
-                                            <div class="d-flex align-items-center">
-
-                                                <!-- Message: content -->
-                                                <div class="message-content bg-light w-100">
-                                                    <h6 class="mb-2">William Wright shared 3 photos:</h6>
-                                                    <div class="form-row py-3">
-                                                        <div class="col">
-                                                            <img class="img-fluid rounded" src="../Boomerang/1.2/assets/images/team/1.jpg" data-action="zoom" alt="">
-                                                        </div>
-                                                        <div class="col">
-                                                            <img class="img-fluid rounded" src="../Boomerang/1.2/assets/images/team/2.jpg" data-action="zoom" alt="">
-                                                        </div>
-                                                        <div class="col">
-                                                            <img class="img-fluid rounded" src="../Boomerang/1.2/assets/images/team/3.jpg" data-action="zoom" alt="">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mt-1">
-                                                        <small class="opacity-65">8 mins ago</small>
-                                                    </div>
-                                                </div>
-                                                <!-- Message: content -->
-
-                                                <!-- Message: dropdown -->
-                                                <div class="dropdown">
-                                                    <a class="text-muted opacity-60 ml-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fe-more-vertical"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Edit <span class="ml-auto fe-edit-3"></span>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Share <span class="ml-auto fe-share-2"></span>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Delete <span class="ml-auto fe-trash-2"></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!-- Message: dropdown -->
-
-                                            </div>
-                                        </div>
-                                        <!-- Message: row -->
-
-                                        <!-- Message: row -->
-                                        <div class="message-row">
-                                            <div class="d-flex align-items-center">
-
-                                                <!-- Message: content -->
-                                                <div class="message-content bg-light">
-                                                    <div>Yeah, I'm going to meet a friend of mine at the department store. I have to buy some presents for my parents.</div>
-
-                                                    <div class="mt-1">
-                                                        <small class="opacity-65">8 mins ago</small>
-                                                    </div>
-                                                </div>
-                                                <!-- Message: content -->
-
-                                                <!-- Message: dropdown -->
-                                                <div class="dropdown">
-                                                    <a class="text-muted opacity-60 ml-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fe-more-vertical"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Edit <span class="ml-auto fe-edit-3"></span>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Share <span class="ml-auto fe-share-2"></span>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Delete <span class="ml-auto fe-trash-2"></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!-- Message: dropdown -->
-
-                                            </div>
-                                        </div>
-                                        <!-- Message: row -->
-
-                                    </div>
-                                    <!-- Message: body -->
-                                </div>
-                                <!-- Message -->
-
-                                <!-- Message -->
-                                <div class="message message-right">
-                                    <!-- Avatar -->
-                                    <div class="avatar avatar-sm ml-4 ml-lg-5 d-none d-lg-block">
-                                        <img class="avatar-img" src="assets/images/avatars/12.jpg" alt="">
-                                    </div>
-
-                                    <!-- Message: body -->
-                                    <div class="message-body">
-
-                                        <!-- Message: row -->
-                                        <div class="message-row">
-                                            <div class="d-flex align-items-center justify-content-end">
-
-                                                <!-- Message: dropdown -->
-                                                <div class="dropdown">
-                                                    <a class="text-muted opacity-60 mr-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fe-more-vertical"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Edit <span class="ml-auto fe-edit-3"></span>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Share <span class="ml-auto fe-share-2"></span>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Delete <span class="ml-auto fe-trash-2"></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!-- Message: dropdown -->
-
-                                                <!-- Message: content -->
-                                                <div class="message-content bg-primary text-white">
-                                                    <div>I'm going to meet a friend of mine at the department store. Yeah, I have to buy some presents for my parents.</div>
-
-                                                    <div class="mt-1">
-                                                        <small class="opacity-65">8 mins ago</small>
-                                                    </div>
-                                                </div>
-                                                <!-- Message: content -->
-
-                                            </div>
-                                        </div>
-                                        <!-- Message: row -->
-
-                                    </div>
-                                    <!-- Message: body -->
-                                </div>
-                                <!-- Message -->
-
-                                <!-- Message -->
-                                <div class="message">
-                                    <!-- Avatar -->
-                                    <a class="avatar avatar-sm mr-4 mr-lg-5" href="#" data-chat-sidebar-toggle="#chat-1-user-profile">
-                                        <img class="avatar-img" src="assets/images/avatars/9.jpg" alt="">
-                                    </a>
-
-                                    <!-- Message: body -->
-                                    <div class="message-body">
-
-                                        <!-- Message: row -->
-                                        <div class="message-row">
-                                            <div class="d-flex align-items-center">
-
-                                                <!-- Message: content -->
-                                                <div class="message-content bg-light">
-                                                    <h6 class="mb-2">Matthew Wiggins</h6>
-                                                    <div>I'm going to meet a friend of mine at the department store. Yeah, I have to buy some presents for my parents.</div>
-
-                                                    <div class="mt-1">
-                                                        <small class="opacity-65">8 mins ago</small>
-                                                    </div>
-                                                </div>
-                                                <!-- Message: content -->
-
-                                                <!-- Message: dropdown -->
-                                                <div class="dropdown">
-                                                    <a class="text-muted opacity-60 ml-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fe-more-vertical"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Edit <span class="ml-auto fe-edit-3"></span>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Share <span class="ml-auto fe-share-2"></span>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Delete <span class="ml-auto fe-trash-2"></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!-- Message: dropdown -->
-
-                                            </div>
-                                        </div>
-                                        <!-- Message: row -->
-
-                                    </div>
-                                    <!-- Message: body -->
-                                </div>
-                                <!-- Message -->
-
-                                <!-- Message -->
-                                <div class="message message-right">
-                                    <!-- Avatar -->
-                                    <div class="avatar avatar-sm ml-4 ml-lg-5 d-none d-lg-block">
-                                        <img class="avatar-img" src="assets/images/avatars/12.jpg" alt="">
-                                    </div>
-
-                                    <!-- Message: body -->
-                                    <div class="message-body">
-
-                                        <!-- Message: row -->
-                                        <div class="message-row">
-                                            <div class="d-flex align-items-center justify-content-end">
-
-                                                <!-- Message: dropdown -->
-                                                <div class="dropdown">
-                                                    <a class="text-muted opacity-60 mr-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fe-more-vertical"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Edit <span class="ml-auto fe-edit-3"></span>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Share <span class="ml-auto fe-share-2"></span>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Delete <span class="ml-auto fe-trash-2"></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!-- Message: dropdown -->
-
-                                                <!-- Message: content -->
-                                                <div class="message-content bg-primary text-white">
-                                                    <div>Yeah, I'm going to meet a friend of mine at the department store. I have to buy some presents for my parents.</div>
-
-                                                    <div class="mt-1">
-                                                        <small class="opacity-65">8 mins ago</small>
-                                                    </div>
-                                                </div>
-                                                <!-- Message: content -->
-
-                                            </div>
-                                        </div>
-                                        <!-- Message: row -->
-
-                                    </div>
-                                    <!-- Message: body -->
-                                </div>
-                                <!-- Message -->
-
-                                <!-- Message: Typing -->
-                                <div class="message">
-                                    <!-- Avatar -->
-                                    <a class="avatar avatar-sm mr-4 mr-lg-5" href="#" data-chat-sidebar-toggle="#chat-1-user-profile">
-                                        <img class="avatar-img" src="assets/images/avatars/7.jpg" alt="">
-                                    </a>
-
-                                    <!-- Message: body -->
-                                    <div class="message-body">
-
-                                        <!-- Message: row -->
-                                        <div class="message-row">
-                                            <div class="d-flex align-items-center">
-
-                                                <!-- Message: content -->
-                                                <div class="message-content bg-light">
-                                                    <div>William is typing<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span></div>
-                                                </div>
-                                                <!-- Message: content -->
-
-                                            </div>
-                                        </div>
-                                        <!-- Message: row -->
-
-                                    </div>
-                                    <!-- Message: body -->
-                                </div>
-                                <!-- Message: Typing -->
+                                @endif
+                            @endforeach
 
                             </div>
 

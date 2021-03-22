@@ -46,82 +46,14 @@ class HomeController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
 
-        //echo '<pre>';print_r($pages->toArray());exit;
         return $pages;
     }
 
-    public function page(Request $request)
-    {
-        $uname = Route::current()->parameter('page_uname');
-        $page = Page::where('uname', $uname)
-            ->first();
-
-        $followers_count = HomeController::number_abbr(
-            PageFollower::where('page_id',$page->id)
-            ->count()
-        );
-
-        $posts = PagePost::where('page_id', $page->id)
-            ->orderby('created_at', 'ASC')
-            ->get();
-        $title = ucfirst($page->name).' | Agwis Messenger';
-        $user = auth()->user();
-
-        $side_chats = $this->get_last_chats($user->id);
-
-        $friends = $this->get_friends($user->id);
-
-        $pages = $this->get_pages($user->id);
-
-        return view('page', compact('title', 'side_chats', 'pages', 'user', 'friends', 'page', 'followers_count', 'posts'));
-    }
-
-    public function group_create(Request $request)
-    {
-        $page_id = Route::current()->parameter('page_id');
-        $page = Page::find($page_id);
-
-        $user = auth()->user();
-
-        $validated = $request->validate(array(
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'members' => 'required|array|min:2',
-            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-        ));
-
-        $image = $request->profile->store('group', array('disk' => 'public'));
-
-        $data = array(
-            'user_id' => $user->id,
-            'name' => $request->name,
-            'profile' => $image,
-            'description' => $request->description,
-        );
-
-        $group = Group::create($data);
-
-        //$validated['members'][] = $user->id;
-        array_push($validated['members'], $user->id);
-
-        foreach($validated['members'] as $member) {
-            GroupMember::create([
-                'user_id' => $member,
-                'group_id' => $group->id,
-            ]);
-        }
-
-        return redirect()->route('group.show', $group->id);
-    }
-
+   
     public function post_create(Request $request)
     {
         $page_id = Route::current()->parameter('page_id');
         $page = Page::find($page_id);
-
-        /*echo '<pre>';
-        var_dump($request->toArray());
-        exit;*/
 
         $user = auth()->user();
 
@@ -135,9 +67,12 @@ class HomeController extends Controller
             'text' => $request->msg,
         );
 
-        $result = PagePost::create($data);
-
-        return redirect()->route('page', $page->uname);
+        $post = PagePost::create($data);
+/*        echo '<pre>';
+        var_dump($page->toArray());
+        exit;
+*/
+        return redirect()->route('page.show', $page->uname);
     }
 
     public function call()
@@ -198,39 +133,6 @@ class HomeController extends Controller
         return redirect()->route('chat', $sender->id);
     }
 
-    public function page_create(Request $request)
-    {
-        $user = auth()->user();
-
-        $request->validate(array(
-            'name' => 'required|string',
-            'uname' => 'required|unique:pages',
-            'description' => 'required|string',
-            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-        ));
-
-        $image = $request->profile->store('page', array('disk' => 'public'));
-
-        $data = array(
-            'name' => $request->name,
-            'uname' => $request->uname,
-            'description' => $request->description,
-            'profile' => $image,
-            'banner' => '',
-            'user_id' => $user->id,
-        );
-
-        $page = Page::create($data);
-
-        $follow = PageFollower::create(array(
-            'user_id' => $user->id,
-            'page_id' => $page->id,
-            'follow' => true,
-        ));
-
-        return redirect()->back();
-    }
-
     public function get_last_chats($uid)
     {
         $send_chats = "id IN( SELECT MAX(id) FROM chats WHERE group_id = null AND user_id = {$uid} GROUP BY rid )";
@@ -244,15 +146,15 @@ class HomeController extends Controller
                 //user_id = {$uid} GROUP BY group_id)";
 
         //$results = DB::select( DB::raw($query) );
-        $results = Chat::whereRaw("$send_chats OR $recieved_chats OR $group_chats")
+        $results = Chat::whereRaw("$send_chats OR $recieved_chats OR $group_chats") //
             ->with('recievers')
             ->with('users')
             ->with('groups')
             ->orderBy('created_at', 'DESC')
             ->get();
 
-/*
-        echo '<pre>';
+
+        /*echo '<pre>';
         var_dump($results->toArray());
         exit;
 */

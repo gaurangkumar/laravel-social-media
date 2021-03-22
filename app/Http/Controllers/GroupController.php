@@ -38,7 +38,38 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $user = auth()->user();
+
+        $validated = $request->validate(array(
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'members' => 'required|array|min:2',
+            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+        ));
+
+        $image = $request->profile->store('group', array('disk' => 'public'));
+
+        $data = array(
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'profile' => $image,
+            'description' => $request->description,
+        );
+
+        $group = Group::create($data);
+
+        //$validated['members'][] = $user->id;
+        array_push($validated['members'], $user->id);
+
+        foreach($validated['members'] as $member) {
+            GroupMember::create([
+                'user_id' => $member,
+                'group_id' => $group->id,
+            ]);
+        }
+
+        return redirect()->route('group.show', $group->id);
     }
 
     /**
@@ -69,11 +100,6 @@ class GroupController extends Controller
 
         $pages = $home->get_pages($user->id);
 
-/*
-        echo '<pre>';
-        var_dump( compact('title', 'side_chats', 'pages', 'user', 'friends', 'group', 'members_count', 'chats') );
-        exit;
-*/
         return view('group', compact('title', 'side_chats', 'pages', 'user', 'friends', 'group', 'members_count', 'chats'));
     }
 

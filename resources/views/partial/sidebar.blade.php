@@ -49,7 +49,7 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <form id="createGroup" action="{{route ('group_create')}}" method="post" enctype="multipart/form-data">
+                                    <form id="createGroup" action="{{route ('group.store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
 
                                         <div class="tab-content" role="tablist">
@@ -362,7 +362,7 @@
                                             @if($chat->group_id)
                                                 {{ $chat->groups->name }}
                                                 @if($chat->user_id == $user->id)
-                                                    {{ $chat->recievers->name }}
+                                                    {{ $chat->recievers->name ?? null }}
                                                 @else
                                                     {{ $chat->users->name }}
                                                 @endif
@@ -375,7 +375,7 @@
                                                                 <h6 class="text-truncate mb-0 mr-auto">
                                                                   @if($chat->group_id)
                                                                     {{
-                                                                    $chat->groups->profile 
+                                                                    $chat->groups->name 
                                                      
                                                                     }}
                                                                 @else
@@ -479,7 +479,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="{{ route('page_create') }}"
+                                                    <form action="{{ route('page.store') }}"
                                                           method="post"
                                                           enctype="multipart/form-data">
                                                         @csrf
@@ -535,7 +535,7 @@
 
                                         @foreach($pages as $page)
                                         <a class="text-reset nav-link p-0 mb-6"
-                                           href="{{ route('page', $page->pages->uname) }}">
+                                           href="{{ route('page.show', $page->pages->uname) }}">
                                             <div class="card card-active-listener">
                                                 <div class="card-body">
                                                     <div class="media">
