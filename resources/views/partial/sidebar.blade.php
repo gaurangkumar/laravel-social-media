@@ -737,7 +737,7 @@
             </div>
 
     <!-- Status modal -->
-    <div class="modal status-modal fade" id="status-modal">
+    <div class="modal status-modal fade" id="status-modal" style="background: ">
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class=" modal-header-full-width   modal-header text-center">
