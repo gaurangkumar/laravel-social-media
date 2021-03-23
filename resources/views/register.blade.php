@@ -2,20 +2,26 @@
 @extends('layouts.main')
 
 @section('styles')
+<style type="text/css">
+    body{
+        background: url({{ asset('assets/wp2722825.jpg') }}) ; 
+        background-size:cover;
+    }
+</style>
 @endsection
 
 @section('content')
 
 
-        <div class="layout" style="background: url({{ asset('assets/pexels-skitterphoto-630754.jpg') }});background-size: cover;">
+        <div class="layout">
 
             <div class="container d-flex flex-column">
                 <div class="row align-items-center justify-content-center no-gutters min-vh-100">
 
-                    <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11" style="color:black !important">
+                    <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11" style="color:white !important">
 
                         <!-- Heading -->
-                        <h1 class="font-bold text-center">Sign up</h1>
+                        <h1 class="font-bold text-center text-white">Sign up</h1>
 
                         <!-- Text -->
                         <p class="text-center mb-6">Welcome to the official Agwis Chat web-client.</p>
@@ -107,8 +113,8 @@
 
                         </form>
 
-                        <p class="text-center">
-                            <a  href="{{ route('login') }}">{{ __('Already registered?') }}</a>
+                        <p class="text-center text-white">
+                            <a  class="text-white" href="{{ route('login') }}">{{ __('Already registered?') }}</a>
                         </p>
 
                     </div>

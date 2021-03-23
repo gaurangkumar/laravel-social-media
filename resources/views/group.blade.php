@@ -52,7 +52,7 @@
                                             </div>
 
                                             <div class="media-body align-self-center text-truncate">
-                                                <h6 class="text-truncate mb-n1">{{ $group->name }}</h6>
+                                                <h6 class="text-truncate mb-n1">{{ucfirst($group->name) }}</h6>
                                                 <small class="text-muted">{{$members_count}} members</small>
                                                 <small class="text-muted mx-2"> • </small>
                                                 <small class="text-muted">{{$group->description}}</small>
@@ -156,11 +156,11 @@
 
                                                 <!-- Message: content -->
                                                 <div class="message-content bg-light">
-                                                    <h6 class="mb-2">{{$chat->$user->name }}</h6>
-                                                    <div>Yeah, I'm going to meet a friend of mine at the department store. I have to buy some presents for my parents.</div>
+                                                    <h6 class="mb-2">{{$chat->users->name }}</h6>
+                                                    <div>{{$chat->msg}}</div>
 
                                                     <div class="mt-1">
-                                                        <small class="opacity-65">8 mins ago</small>
+                                                        <small class="opacity-65">{{ date("H:i a", strtotime($chat->created_at)) }}</small>
                                                     </div>
                                                 </div>
                                                 <!-- Message: content -->
@@ -198,7 +198,10 @@
                                 <div class="message message-right">
                                     <!-- Avatar -->
                                     <div class="avatar avatar-sm ml-4 ml-lg-5 d-none d-lg-block">
-                                        <img class="avatar-img" src="assets/images/avatars/12.jpg" alt="">
+                                        <img class="avatar-img" src= "{{ empty($chat->users->profile) ?
+                                                 asset('storage/index.jpg') :
+                                                 asset(\Storage::url($chat->users->profile))
+                                             }}" alt="">
                                     </div>
 
                                     <!-- Message: body -->
@@ -267,7 +270,7 @@
                                                 <!-- Message: dropdown -->
 
                                                 <!-- Message: content -->
-                                               <!--  <div class="message-content bg-primary text-white">
+                                                <div class="message-content bg-primary text-white">
                                                     <div class="media">
                                                         <a href="#" class="icon-shape mr-5">
                                                             <i class="fe-paperclip"></i>
@@ -284,7 +287,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                </div> -->
+                                                </div>
                                                 <!-- Message: content -->
 
                                             </div>
@@ -317,13 +320,14 @@
                         <div class="chat-footer border-top py-4 py-lg-6 px-lg-8">
                             <div class="container-xxl">
 
-                                <form id="chat-id-1-form" action="https://themes.2the.me/Messenger-1.1/assets/php/upload.php" data-emoji-form="">
+                                <form id="chat-id-1-form" action="{{ route('group_chat', $group->id) }}"  data-emoji-form="">
+                                    @csrf
                                     <div class="form-row align-items-center">
                                         <div class="col">
                                             <div class="input-group">
 
                                                 <!-- Textarea -->
-                                                <textarea id="chat-id-1-input" class="form-control bg-transparent border-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true"></textarea>
+                                                <textarea id="chat-id-1-input" name="msg" class="form-control bg-transparent border-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true"></textarea>
 
                                                 <!-- Emoji button -->
                                                 <div class="input-group-append">

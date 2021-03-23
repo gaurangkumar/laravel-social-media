@@ -4,12 +4,12 @@
 @endsection
 
 @section('content')
-        <div class="layout">
+        <div class="layout" style="background: url({{ asset('assets/pexels-skitterphoto-630754.jpg') }});background-size: cover;">
 
             <div class="container d-flex flex-column">
                 <div class="row align-items-center justify-content-center no-gutters min-vh-100">
 
-                    <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11">
+                    <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11" style="color:black !important">
 
                         <!-- Heading -->
                         <h1 class="font-bold text-center">Password Reset</h1>
