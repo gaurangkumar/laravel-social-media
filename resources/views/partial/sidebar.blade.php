@@ -376,10 +376,10 @@
                                                                   @if($chat->group_id)
                                                                     {{
                                                                      ucfirst($chat->groups->name) 
-                                                     
+                                                                      
                                                                     }}
                                                                      <div class="badge badge-circle badge-primary badge-border-light badge-top-right">
-                                                                        <span>{{$members_count}}</span>
+                                                                        <span> {{$members_count}} </span>
                                                                      </div>
                                                                 @else
                                                                 @if($chat->user_id == $user->id)
@@ -410,9 +410,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- <div class="badge badge-circle badge-primary badge-border-light badge-top-right">
-                                                <span>3</span>
-                                            </div> -->
+
                                         </a>
                                         @endforeach
                                         <!-- Chat link -->
