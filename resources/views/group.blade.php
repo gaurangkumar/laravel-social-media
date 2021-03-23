@@ -156,7 +156,7 @@
 
                                                 <!-- Message: content -->
                                                 <div class="message-content bg-light">
-                                                    <h6 class="mb-2">William Wright</h6>
+                                                    <h6 class="mb-2">{{$chat->$user->name }}</h6>
                                                     <div>Yeah, I'm going to meet a friend of mine at the department store. I have to buy some presents for my parents.</div>
 
                                                     <div class="mt-1">
@@ -230,10 +230,10 @@
 
                                                 <!-- Message: content -->
                                                 <div class="message-content bg-primary text-white">
-                                                    <div>Yeah, I'm going to meet a friend of mine at the department store. I have to buy some presents for my parents.</div>
+                                                    <div>{{ $chat->msg}}</div>
 
                                                     <div class="mt-1">
-                                                        <small class="opacity-65">8 mins ago</small>
+                                                        <small class="opacity-65">{{ date("H:i a", strtotime($chat->created_at)) }}</small>
                                                     </div>
                                                 </div>
                                                 <!-- Message: content -->
@@ -267,7 +267,7 @@
                                                 <!-- Message: dropdown -->
 
                                                 <!-- Message: content -->
-                                                <div class="message-content bg-primary text-white">
+                                               <!--  <div class="message-content bg-primary text-white">
                                                     <div class="media">
                                                         <a href="#" class="icon-shape mr-5">
                                                             <i class="fe-paperclip"></i>
@@ -284,7 +284,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!-- Message: content -->
 
                                             </div>
