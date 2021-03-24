@@ -15,4 +15,9 @@ class group extends Model
         'profile',
         'description',
     ];
+
+    public function members()
+    {
+        return $this->hasMany(GroupMember::class);
+    }
 }

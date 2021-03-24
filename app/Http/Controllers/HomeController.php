@@ -68,10 +68,7 @@ class HomeController extends Controller
         );
 
         $post = PagePost::create($data);
-/*        echo '<pre>';
-        var_dump($page->toArray());
-        exit;
-*/
+
         return redirect()->route('page.show', $page->uname);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Chat;
 use App\Models\Group;
 use App\Models\GroupMember;
@@ -81,10 +82,27 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        $members_count = HomeController::number_abbr(
-            GroupMember::where('group_id', $group->id)
-            ->count()
-            );
+        $members = User::whereIn('id', function ($query) use ($group) {
+            $query->select('user_id')
+                ->from('group_members')
+                ->where('group_id', $group->id);
+        })
+        ->orderBy('name', 'ASC')
+        ->get();
+
+        $group_members = array();
+        foreach ($members as $member) {
+            $group_members[
+                $member->name[0]
+            ][] = $member;
+        }
+/*
+        echo '<pre>';
+        var_dump();
+        exit;
+*/
+
+        $members_count = $group->members->count();
 
         $chats = Chat::where('group_id',$group->id)
             ->orderby('created_at', 'ASC')
@@ -100,7 +118,7 @@ class GroupController extends Controller
 
         $pages = $home->get_pages($user->id);
 
-        return view('group', compact('title', 'side_chats', 'pages', 'user', 'friends', 'group', 'members_count', 'chats'));
+        return view('group', compact('title', 'side_chats', 'pages', 'user', 'friends', 'group', 'members_count', 'chats', 'group_members'));
     }
 
     /**

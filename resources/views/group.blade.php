@@ -48,14 +48,14 @@
                                                 <img src="{{ empty($group->profile) ?
 																 asset('storage/index.jpg') :
 																 asset(\Storage::url($group->profile))
-														  }}" class="avatar-img" alt="{{ $group->name }}">
+														  }}" class="avatar-img" alt="{{ ucwords($group->name) }}">
                                             </div>
 
                                             <div class="media-body align-self-center text-truncate">
-                                                <h6 class="text-truncate mb-n1">{{ucfirst($group->name) }}</h6>
-                                                <small class="text-muted">{{$members_count}} members</small>
+                                                <h6 class="text-truncate mb-n1">{{ ucwords($group->name)  }}</h6>
+                                                <small class="text-muted">{{ $members_count }} members</small>
                                                 <small class="text-muted mx-2"> • </small>
-                                                <small class="text-muted">{{$group->description}}</small>
+                                                <small class="text-muted">{{ $group->description }}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -382,7 +382,7 @@
 
                                         <!-- Title(mobile) -->
                                         <li class="text-center d-block d-lg-none">
-                                            <h6 class="mb-n2">Bootstrap Themes</h6>
+                                            <h6 class="mb-n2">{{ $group->name }}</h6>
                                             <small class="text-muted">Chat Details</small>
                                         </li>
 
@@ -416,10 +416,13 @@
                                 <div class="border-bottom text-center py-9 px-10">
                                     <!-- Photo -->
                                     <div class="avatar avatar-xl mx-5 mb-5">
-                                        <img class="avatar-img" src="assets/images/avatars/11.jpg" alt="">
+                                        <img class="avatar-img" src="{{ empty($group->profile) ?
+																 asset('storage/index.jpg') :
+																 asset(\Storage::url($group->profile))
+														  }}" alt="{{ ucwords($group->name) }}">
                                     </div>
-                                    <h5>Bootstrap Themes</h5>
-                                    <p class="text-muted">Bootstrap is an open source toolkit for developing web with HTML, CSS, and JS.</p>
+                                    <h5>{{ ucwords($group->name) }}</h5>
+                                    <p class="text-muted">{{ $group->description }}</p>
                                 </div>
 
                                 <!-- Navs -->
@@ -437,21 +440,23 @@
                                     <!-- Members -->
                                     <div id="chat-id-1-members" class="tab-pane fade show active">
                                         <ul class="list-group list-group-flush list-group-no-border-first">
+                                            @foreach($group_members as $members)
+                                                @foreach($members as $member)
                                             <!-- Member -->
                                             <li class="list-group-item py-6">
                                                 <div class="media align-items-center">
 
-                                                    
                                                     <div class="avatar avatar-sm avatar-online mr-5">
-                                                        <img class="avatar-img" src="assets/images/avatars/10.jpg" alt="Anna Bridges">
+                                                        <img class="avatar-img" src="{{ empty($member->profile) ? asset('storage/index.jpg') : asset(\Storage::url($member->profile)) }}" alt="{{ ucwords($member->name) }}">
                                                     </div>
-                                                    
                                                     
                                                     <div class="media-body">
                                                         <h6 class="mb-0">
-                                                            <a href="#" class="text-reset">Anna Bridges</a>
+                                                            <a href="#" class="text-reset">
+                                                                {{ ucwords($member->name) }}
+                                                            </a>
                                                         </h6>
-                                                        <small class="text-muted">Online</small>
+                                                        <!--<small class="text-muted">Online</small>-->
                                                     </div>
 
                                                     <div class="align-self-center ml-5">
@@ -476,319 +481,8 @@
                                                 </div>
                                             </li>
                                             <!-- Member -->
-<!-- Member -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-
-                                                    
-                                                    <div class="avatar avatar-sm avatar-online mr-5">
-                                                        <img class="avatar-img" src="assets/images/avatars/7.jpg" alt="Simon Hensley">
-                                                    </div>
-                                                    
-                                                    
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">
-                                                            <a href="#" class="text-reset">Simon Hensley</a>
-                                                        </h6>
-                                                        <small class="text-muted">Online</small>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Promote <span class="ml-auto fe-trending-up"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Restrict <span class="ml-auto fe-trending-down"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-user-x"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- Member -->
-<!-- Member -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-
-                                                    
-                                                    
-                                                    <div class="avatar avatar-sm mr-5">
-                                                        <img class="avatar-img" src="assets/images/avatars/9.jpg" alt="William Wright">
-                                                    </div>
-                                                    
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">
-                                                            <a href="#" class="text-reset">William Wright</a>
-                                                        </h6>
-                                                        <small class="text-muted">last seen 7 hours ago</small>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Promote <span class="ml-auto fe-trending-up"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Restrict <span class="ml-auto fe-trending-down"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-user-x"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- Member -->
-<!-- Member -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-
-                                                    
-                                                    
-                                                    <div class="avatar avatar-sm mr-5">
-                                                        <img class="avatar-img" src="assets/images/avatars/5.jpg" alt="Leslie Sutton">
-                                                    </div>
-                                                    
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">
-                                                            <a href="#" class="text-reset">Leslie Sutton</a>
-                                                        </h6>
-                                                        <small class="text-muted">last seen 6 days ago</small>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Promote <span class="ml-auto fe-trending-up"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Restrict <span class="ml-auto fe-trending-down"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-user-x"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- Member -->
-<!-- Member -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-
-                                                    
-                                                    
-                                                    <div class="avatar avatar-sm mr-5">
-                                                        <img class="avatar-img" src="assets/images/avatars/4.jpg" alt="Matthew Wiggins">
-                                                    </div>
-                                                    
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">
-                                                            <a href="#" class="text-reset">Matthew Wiggins</a>
-                                                        </h6>
-                                                        <small class="text-muted">last seen 2 days ago</small>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Promote <span class="ml-auto fe-trending-up"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Restrict <span class="ml-auto fe-trending-down"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-user-x"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- Member -->
-<!-- Member -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-
-                                                    
-                                                    
-                                                    <div class="avatar avatar-sm mr-5">
-                                                        <img class="avatar-img" src="assets/images/avatars/3.jpg" alt="Thomas Walker">
-                                                    </div>
-                                                    
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">
-                                                            <a href="#" class="text-reset">Thomas Walker</a>
-                                                        </h6>
-                                                        <small class="text-muted">last seen 10 minutes ago</small>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Promote <span class="ml-auto fe-trending-up"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Restrict <span class="ml-auto fe-trending-down"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-user-x"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- Member -->
-<!-- Member -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-
-                                                    
-                                                    
-                                                    <div class="avatar avatar-sm mr-5">
-                                                        <img class="avatar-img" src="assets/images/avatars/2.jpg" alt="Zane Mayes">
-                                                    </div>
-                                                    
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">
-                                                            <a href="#" class="text-reset">Zane Mayes</a>
-                                                        </h6>
-                                                        <small class="text-muted">last seen 6 days ago</small>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Promote <span class="ml-auto fe-trending-up"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Restrict <span class="ml-auto fe-trending-down"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-user-x"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- Member -->
-<!-- Member -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-
-                                                    
-                                                    
-                                                    <div class="avatar avatar-sm mr-5">
-                                                        <img class="avatar-img" src="assets/images/avatars/6.jpg" alt="Brian Dawson">
-                                                    </div>
-                                                    
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">
-                                                            <a href="#" class="text-reset">Brian Dawson</a>
-                                                        </h6>
-                                                        <small class="text-muted">last seen 2 days ago</small>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Promote <span class="ml-auto fe-trending-up"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Restrict <span class="ml-auto fe-trending-down"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-user-x"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- Member -->
-<!-- Member -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media align-items-center">
-
-                                                    
-                                                    
-                                                    <div class="avatar avatar-sm mr-5">
-                                                        <img class="avatar-img" src="assets/images/avatars/3.jpg" alt="William Greer">
-                                                    </div>
-                                                    
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">
-                                                            <a href="#" class="text-reset">William Greer</a>
-                                                        </h6>
-                                                        <small class="text-muted">last seen 10 minutes ago</small>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Promote <span class="ml-auto fe-trending-up"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Restrict <span class="ml-auto fe-trending-down"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-user-x"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- Member -->
-
+                                                @endforeach
+                                            @endforeach
                                         </ul>
                                     </div>
                                     <!-- Members -->
