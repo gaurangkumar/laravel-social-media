@@ -258,7 +258,7 @@
                                     <!-- Search -->
 
                                     <!-- Favourites -->
-                                    <div class="text-center hide-scrollbar d-flex my-7" data-horizontal-scroll="">
+                                    <!--<div class="text-center hide-scrollbar d-flex my-7" data-horizontal-scroll="">
                                         <a href="#" class="d-block text-reset mr-7 mr-lg-6" data-toggle="modal" data-target="#status-modal">
                                             <div class="avatar avatar-sm avatar-online mb-3">
                                                 <img class="avatar-img" src="{{ asset('assets/images/avatars/2.jpg') }}" alt="Image Description">
@@ -314,94 +314,65 @@
                                             </div>
                                             <div class="small">Thomas</div>
                                         </a>
-                                    </div>
+                                    </div>-->
                                     <!-- Favourites -->
 
                                     <!-- Chats -->
                                     <nav class="nav d-block list-discussions-js mb-n6">
 
+                                        <!-- Chat link -->
                                         @foreach($side_chats as $chat)
-                                        <a class="text-reset nav-link p-0 mb-6" href="
-                                            @if($chat->group_id)
-                                                {{ route('group.show', $chat->group_id) }}
-                                            @else
-                                                @if($chat->user_id == $user->id)
-                                                    {{ route('chat', $chat->rid) }}
-                                                @else
-                                                    {{ route('chat', $chat->user_id) }}
-                                                @endif
-                                            @endif
-                                        ">
-                                            
-                                            
+                                            @php
+                                                if($chat->group_id) {
+                                                    $chat_link = route('group.show', $chat->group_id);
+
+                                                    $chat_img = $chat->groups->profile;
+
+                                                    $chat_user = ucwords($chat->groups->name);
+                                                }
+                                                elseif($chat->user_id == $user->id) {
+                                                    $chat_link = route('chat', $chat->rid);
+
+                                                    $chat_img = $chat->users->profile;
+
+                                                    $chat_user = ucwords($chat->recievers->name);
+                                                }
+                                                else {
+                                                    $chat_link = route('chat', $chat->user_id);
+
+                                                    $chat_img = $chat->users->profile;
+
+                                                    $chat_user = ucwords($chat->users->name);
+                                                }
+                                                $chat_img = empty($chat_img) ?
+                                                     asset('storage/index.jpg') :
+                                                     asset(\Storage::url($chat_img));
+                                            @endphp
+                                        <a class="text-reset nav-link p-0 mb-6" href="{{ $chat_link }}">
                                             <div class="card card-active-listener">
                                                 <div class="card-body">
                                                     <div class="media">
-                                                        <!--for offline - <div class="avatar mr-5">-->
-                                                        <div class="avatar avatar-online mr-5">
-                                                            <img class="avatar-img" src="
-                                            @if($chat->group_id)
-                                                {{ empty($chat->groups->profile) ?
-                                                     asset('storage/index.jpg') :
-                                                     asset(\Storage::url($chat->groups->profile))
-                                                }}
-                                            @else
-                                                @if($chat->user_id == $user->id)
-                                                    {{ empty($chat->recievers->profile) ?
-                                                         asset('storage/index.jpg') :
-                                                         asset(\Storage::url($chat->recievers->profile))
-                                                    }}
-                                                @else
-                                                    {{ empty($chat->users->profile) ?
-                                                         asset('storage/index.jpg') :
-                                                         asset(\Storage::url($chat->users->profile))
-                                                    }}
-                                                @endif
-                                            @endif
-                                                            " alt="
-                                            @if($chat->group_id)
-                                                {{ $chat->groups->name }}
-                                                @if($chat->user_id == $user->id)
-                                                    {{ $chat->recievers->name ?? null }}
-                                                @else
-                                                    {{ $chat->users->name }}
-                                                @endif
-                                            @endif
-                                                            ">
+                                                        <!--for online - add avatar-online class-->
+                                                        <div class="avatar mr-5">
+                                                            <img class="avatar-img" src="{{ $chat_img }}" alt="{{ $chat_user }}">
                                                         </div>
                                                         
                                                         <div class="media-body overflow-hidden">
                                                             <div class="d-flex align-items-center mb-1">
                                                                 <h6 class="text-truncate mb-0 mr-auto">
-                                                                  @if($chat->group_id)
-                                                                    {{
-                                                                     ucfirst($chat->groups->name) 
-                                                                      
-                                                                    }}
-                                                                     <div class="badge badge-circle badge-primary badge-border-light badge-top-right">
-                                                                        <span> {{$members_count}} </span>
-                                                                     </div>
-                                                                @else
-                                                                @if($chat->user_id == $user->id)
-                                                                     {{$chat->recievers->name
-                                                        
-                                                    }}
-                                                @else
-                                                    {{ 
-                                                         $chat->users->name
-                                                    }}
-                                                @endif
-                                            @endif
-                                                        
+                                                                    {{ $chat_user }}
+                                                                    <!--<div class="badge badge-circle badge-primary badge-border-light badge-top-right">
+                                                                        <span>3</span>
+                                                                    </div>-->
                                                                 </h6>
                                                                 <p class="small text-muted text-nowrap ml-4">
-                                                                    {{ date("H:i a", strtotime($chat->created_at)) }}
+                                                                    {{ date("H:i A", strtotime($chat->created_at)) }}
                                                                 </p>
                                                             </div>
                                                             <!-- last chat -->
                                                             <div class="text-truncate">
                                                                 <!--you send last msg '['.$chat->id.'] '. - <h6 class='d-inline'>You:</h6>-->
-                                                                          {{ $chat->msg }}
+                                                                {{ $chat->msg }}
                                                             </div>
                                                             <!-- typing <div class="text-truncate">is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span></div>-->
                                                         </div>
@@ -409,8 +380,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </a>
                                         @endforeach
                                         <!-- Chat link -->
