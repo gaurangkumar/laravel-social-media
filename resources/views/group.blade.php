@@ -479,9 +479,10 @@
                                                     </div>
 
                                                 </div>
+                                                @endforeach
                                             </li>
                                             <!-- Member -->
-                                                @endforeach
+                                                
                                             @endforeach
                                         </ul>
                                     </div>
@@ -800,42 +801,47 @@
                                 <!-- Search -->
 
                                 <!-- Members -->
-                                <form action="#">
+                                <form action="{{route ('group.store')}}"  method="post">
+                                    @csrf
+
                                     <ul class="list-group list-group-flush">
+                                        @foreach($friends as $letter => $friend_list)
                                         <li class="list-group-item py-4">
-                                            <small class="text-uppercase">A</small>
+                                            <small class="text-uppercase">{{ $letter }}</small>
                                         </li>
 
                                         <!-- Member -->
+                                         @foreach($friend_list as $friend)
                                         <li class="list-group-item py-6">
                                             <div class="media align-items-center">
 
                                                 
                                                 <div class="avatar avatar-sm avatar-online mr-5">
-                                                    <img class="avatar-img" src="assets/images/avatars/10.jpg" alt="Anna Bridges">
+                                                    <img class="avatar-img" src="{{ empty($friend->profile) ? asset('storage/index.jpg') : asset(\Storage::url($friend->profile)) }}" alt="{{ $friend->name }}">
                                                 </div>
                                                 
                                                 
                                                 <div class="media-body">
-                                                    <h6 class="mb-0">Anna Bridges</h6>
+                                                    <h6 class="mb-0">{{ $friend->name }}</h6>
                                                     <small class="text-muted">Online</small>
                                                 </div>
 
                                                 <div class="align-self-center ml-auto">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-1" type="checkbox">
-                                                        <label class="custom-control-label" for="id-add-user-chat-1-user-1"></label>
+                                                        <input class="custom-control-input" id="id-add-user-{{ $friend->id }}" type="checkbox" name="members[]" value="{{ $friend->id }}">
+                                                        <label class="custom-control-label" for="id-add-user-{{ $friend->id }}">
+                                                        </label>
                                                     </div>
                                                 </div>
 
                                             </div>
 
                                             <!-- Label -->
-                                            <label class="stretched-label" for="id-add-user-chat-1-user-1"></label>
+                                            <label class="stretched-label" for="id-add-user-{{ $friend->id }}"></label>
                                         </li>
                                         <!-- Member -->
 
-
+                                        <?php /*
                                         <li class="list-group-item py-4">
                                             <small class="text-uppercase">B</small>
                                         </li>
@@ -1064,9 +1070,10 @@
 
                                             <!-- Label -->
                                             <label class="stretched-label" for="id-add-user-chat-1-user-8"></label>
-                                        </li>
+                                        </li> */ ?>
                                         <!-- Member -->
-
+                                         @endforeach
+                                         @endforeach
                                     </ul>
                                 </form>
                                 <!-- Members -->
