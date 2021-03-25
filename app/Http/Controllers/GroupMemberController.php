@@ -87,4 +87,26 @@ class GroupMemberController extends Controller
     {
         //
     }
+
+    public function group_members(Request $request)
+    {
+        $sender_id = Route::current()->parameter('user_id');
+        $sender = User::find($sender_id);
+
+        $user = auth()->user();
+
+        $request->validate(array(
+            'msg' => 'required',
+        ));
+
+        $data = array(
+            'user_id' => $user->id,
+            'rid' => $sender->id,
+            'msg' => $request->msg,
+        );
+
+        $data = Chat::create($data);
+
+        return redirect()->route('chat', $sender->id);
+    }
 }

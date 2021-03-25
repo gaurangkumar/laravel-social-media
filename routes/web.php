@@ -35,6 +35,7 @@ Route::get('/page/{page_uname}', array(PageController::class, 'show'))->name('pa
 Route::post('/post/{page_id}', array(HomeController::class, 'post_create'))->name('post_create');
 
 Route::post('/group/{group_id}', array(HomeController::class, 'group_chat'))->name('group_chat');
+Route::post('/group_members/{group_id}', array(GroupMemberController::class, 'group_members'))->name('group_members');
 
 Route::get('/call', array(HomeController::class, 'call'))->name('call');
 Route::get('/status', array(HomeController::class, 'status'))->name('status');
