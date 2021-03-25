@@ -9,12 +9,12 @@ class group extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillable = array(
         'user_id',
         'name',
         'profile',
         'description',
-    ];
+    );
 
     public function members()
     {

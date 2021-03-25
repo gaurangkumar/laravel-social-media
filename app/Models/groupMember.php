@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GroupMember extends Model
+class groupMember extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillable = array(
         'user_id',
         'group_id',
-    ];
+    );
 }
