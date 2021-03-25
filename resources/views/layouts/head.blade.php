@@ -4,7 +4,11 @@
         <title>{{ $title }}</title>
 
         <!-- Favicon -->
-        <link rel="icon" href="{{ asset('favicon.ico') }}">
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
+        <link id="favicon" rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
+        <link rel="apple-touch-icon" sizes="194x194" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
+
+        <meta name="og:image" content="{{ asset('favicon.ico') }}"/>
 
         <!-- Template core CSS -->
         <link href="{{ asset('assets/css/template.min.css') }}" rel="stylesheet">

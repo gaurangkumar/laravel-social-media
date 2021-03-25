@@ -18,3 +18,4 @@ public/storage/page/*
 public/storage/profile/*
 public/storage/group/*
 .env
+.env.pro
