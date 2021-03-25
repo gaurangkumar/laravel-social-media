@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Chat;
 use App\Models\Group;
 use App\Models\GroupMember;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -39,7 +39,6 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-       
         $user = auth()->user();
 
         $validated = $request->validate(array(
@@ -63,11 +62,11 @@ class GroupController extends Controller
         //$validated['members'][] = $user->id;
         array_push($validated['members'], $user->id);
 
-        foreach($validated['members'] as $member) {
-            GroupMember::create([
+        foreach ($validated['members'] as $member) {
+            GroupMember::create(array(
                 'user_id' => $member,
                 'group_id' => $group->id,
-            ]);
+            ));
         }
 
         return redirect()->route('group.show', $group->id);
@@ -96,22 +95,22 @@ class GroupController extends Controller
                 $member->name[0]
             ][] = $member;
         }
-/*
-        echo '<pre>';
-        var_dump();
-        exit;
-*/
+        /*
+                echo '<pre>';
+                var_dump();
+                exit;
+        */
 
         $members_count = $group->members->count();
 
-        $chats = Chat::where('group_id',$group->id)
+        $chats = Chat::where('group_id', $group->id)
             ->orderby('created_at', 'ASC')
             ->get();
 
         $title = ucfirst($group->name).' | Agwis Messenger';
         $user = auth()->user();
 
-        $home = new HomeController;
+        $home = new HomeController();
         $side_chats = $home->get_last_chats($user->id);
 
         $friends = $home->get_friends($user->id);

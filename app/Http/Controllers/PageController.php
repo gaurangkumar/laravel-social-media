@@ -86,7 +86,7 @@ class PageController extends Controller
             ->first();
 
         $followers_count = HomeController::number_abbr(
-            PageFollower::where('page_id',$page->id)
+            PageFollower::where('page_id', $page->id)
             ->count()
         );
 
@@ -97,7 +97,7 @@ class PageController extends Controller
         $title = ucfirst($page->name).' | Agwis Messenger';
         $user = auth()->user();
 
-        $home = new HomeController;
+        $home = new HomeController();
         $side_chats = $home->get_last_chats($user->id);
 
         $friends = $home->get_friends($user->id);

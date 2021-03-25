@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
-use App\Models\Page;
 use App\Models\Group;
-use App\Models\GroupMember;
+use App\Models\Page;
 use App\Models\PageFollower;
 use App\Models\PagePost;
 use App\Models\User;
@@ -49,7 +48,6 @@ class HomeController extends Controller
         return $pages;
     }
 
-   
     public function post_create(Request $request)
     {
         $page_id = Route::current()->parameter('page_id');
@@ -134,13 +132,13 @@ class HomeController extends Controller
     {
         $send_chats = "id IN( SELECT MAX(id) FROM chats WHERE group_id = null AND user_id = {$uid} GROUP BY rid )";
 
-        $recieved_chats = "id IN( SELECT MAX(id) FROM chats WHERE rid = ".$uid." GROUP BY user_id )";
+        $recieved_chats = 'id IN( SELECT MAX(id) FROM chats WHERE rid = '.$uid.' GROUP BY user_id )';
 
         $group_chats = "id IN( SELECT MAX(id) FROM chats WHERE
                 group_id IN (SELECT group_id FROM group_members WHERE
                 user_id = {$uid}) GROUP BY group_id)";
         //$group_chats = "group_id IN( SELECT MAX(group_id) FROM group_members WHERE
-                //user_id = {$uid} GROUP BY group_id)";
+        //user_id = {$uid} GROUP BY group_id)";
 
         //$results = DB::select( DB::raw($query) );
         $results = Chat::whereRaw("$send_chats OR $recieved_chats OR $group_chats") //
@@ -149,7 +147,6 @@ class HomeController extends Controller
             ->with('groups')
             ->orderBy('created_at', 'DESC')
             ->get();
-
 
         $side_chats = array();
         $uids = array();
@@ -289,8 +286,9 @@ class HomeController extends Controller
     {
     }
 
-    public static function number_abbr($number) {
-        $abbrevs = [12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => ''];
+    public static function number_abbr($number)
+    {
+        $abbrevs = array(12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => '');
         $abbrevs = array(12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => '');
 
         foreach ($abbrevs as $exponent => $abbrev) {
