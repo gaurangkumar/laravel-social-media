@@ -4,8 +4,8 @@
         <title>{{ $title }}</title>
 
         <!-- Favicon -->
-        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
-        <link id="favicon" rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
+        <link type="image/x-icon" href="{{ asset('favicon.ico') }}" rel="icon"/>
+        <link type="image/x-icon" href="{{ asset('favicon.ico') }}" rel="shortcut icon" id="favicon"/>
         <link rel="apple-touch-icon" sizes="194x194" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
 
         <meta name="og:image" content="{{ asset('favicon.ico') }}"/>
