@@ -81,10 +81,10 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-/*                echo '<pre>';
-                print_r($group->members[0]->users->toArray());
-                exit;
-*/
+        /*                echo '<pre>';
+                        print_r($group->members[0]->users->toArray());
+                        exit;
+        */
         $members = User::whereIn('id', function ($query) use ($group) {
             $query->select('user_id')
                 ->from('group_members')
@@ -122,20 +122,19 @@ class GroupController extends Controller
     }
 
     public function edit_members($group_id)
-     {
-         $gmembers = User::whereIn('id', function ($query) use ($group_id) {
+    {
+        $gmembers = User::whereIn('id', function ($query) use ($group_id) {
             $query->select('user_id')
                 ->from('group_members')
                 ->where('group_id', $group_id);
         })
          ->orWhereIn('id', function ($query) {
-            $query->select('cid')
+             $query->select('cid')
                 ->from('contacts')
                 ->where('user_id', auth()->user()->id);
-        })
+         })
         ->orderBy('name', 'ASC')
         ->get();
-
 
         $edit_members = array();
         foreach ($gmembers as $contact) {
@@ -145,8 +144,7 @@ class GroupController extends Controller
         }
 
         return $edit_members;
-
-     }
+    }
 
     /**
      * Show the form for editing the specified resource.

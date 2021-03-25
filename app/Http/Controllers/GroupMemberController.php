@@ -92,7 +92,8 @@ class GroupMemberController extends Controller
 
     public function group_members(Request $request, $group_id)
     {
-        var_dump($group_id);exit();
+        var_dump($group_id);
+        exit();
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
 
