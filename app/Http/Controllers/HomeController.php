@@ -151,11 +151,6 @@ class HomeController extends Controller
             ->get();
 
 
-        /*echo '<pre>';
-        var_dump($results->toArray());
-        exit;
-*/
-
         $side_chats = array();
         $uids = array();
         foreach ($results as $result) {

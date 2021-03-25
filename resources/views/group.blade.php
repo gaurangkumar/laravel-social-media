@@ -750,7 +750,7 @@
 
                                         <!-- Title(mobile) -->
                                         <li class="text-center d-block d-lg-none">
-                                            <h6 class="mb-n2">Bootstrap Themes</h6>
+                                            <h6 class="mb-n2">{{ ucwords($group->name) }}</h6>
                                             <small class="text-muted">Add Members</small>
                                         </li>
 
@@ -800,31 +800,33 @@
                                 <!-- Search -->
 
                                 <!-- Members -->
-                                <form action="#">
+                                <form action="{{ route('group_members', $group->id) }}" method="post">
                                     <ul class="list-group list-group-flush">
+                                        @foreach($group_members as $letter => $members)
                                         <li class="list-group-item py-4">
-                                            <small class="text-uppercase">A</small>
+                                            <small class="text-uppercase">{{ strtoupper($letter) }}</small>
                                         </li>
 
+                                            @foreach($members as $member)
                                         <!-- Member -->
                                         <li class="list-group-item py-6">
                                             <div class="media align-items-center">
 
                                                 
                                                 <div class="avatar avatar-sm avatar-online mr-5">
-                                                    <img class="avatar-img" src="assets/images/avatars/10.jpg" alt="Anna Bridges">
+                                                    <img class="avatar-img" src="{{ empty($member->profile) ? asset('storage/index.jpg') : asset(\Storage::url($member->profile)) }}" alt="{{ ucwords($member->name) }}">
                                                 </div>
                                                 
                                                 
                                                 <div class="media-body">
-                                                    <h6 class="mb-0">Anna Bridges</h6>
+                                                    <h6 class="mb-0">{{ ucwords($member->name) }}</h6>
                                                     <small class="text-muted">Online</small>
                                                 </div>
 
                                                 <div class="align-self-center ml-auto">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-1" type="checkbox">
-                                                        <label class="custom-control-label" for="id-add-user-chat-1-user-1"></label>
+                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-{{ $member->id }}" type="checkbox" value="{{ $member->id }}" name="members[]">
+                                                        <label class="custom-control-label" for="id-add-user-chat-1-user-{{ $member->id }}"></label>
                                                     </div>
                                                 </div>
 
@@ -834,238 +836,8 @@
                                             <label class="stretched-label" for="id-add-user-chat-1-user-1"></label>
                                         </li>
                                         <!-- Member -->
-
-
-                                        <li class="list-group-item py-4">
-                                            <small class="text-uppercase">B</small>
-                                        </li>
-
-                                        <!-- Member -->
-                                        <li class="list-group-item py-6">
-                                            <div class="media align-items-center">
-
-                                                
-                                                
-                                                <div class="avatar avatar-sm mr-5">
-                                                    <img class="avatar-img" src="assets/images/avatars/6.jpg" alt="Brian Dawson">
-                                                </div>
-                                                
-                                                <div class="media-body">
-                                                    <h6 class="mb-0">Brian Dawson</h6>
-                                                    <small class="text-muted">last seen 2 hours ago</small>
-                                                </div>
-
-                                                <div class="align-self-center ml-auto">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-2" type="checkbox">
-                                                        <label class="custom-control-label" for="id-add-user-chat-1-user-2"></label>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Label -->
-                                            <label class="stretched-label" for="id-add-user-chat-1-user-2"></label>
-                                        </li>
-                                        <!-- Member -->
-
-
-                                        <li class="list-group-item py-4">
-                                            <small class="text-uppercase">L</small>
-                                        </li>
-
-                                        <!-- Member -->
-                                        <li class="list-group-item py-6">
-                                            <div class="media align-items-center">
-
-                                                
-                                                
-                                                <div class="avatar avatar-sm mr-5">
-                                                    <img class="avatar-img" src="assets/images/avatars/5.jpg" alt="Leslie Sutton">
-                                                </div>
-                                                
-                                                <div class="media-body">
-                                                    <h6 class="mb-0">Leslie Sutton</h6>
-                                                    <small class="text-muted">last seen 3 days ago</small>
-                                                </div>
-
-                                                <div class="align-self-center ml-auto">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-3" type="checkbox">
-                                                        <label class="custom-control-label" for="id-add-user-chat-1-user-3"></label>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Label -->
-                                            <label class="stretched-label" for="id-add-user-chat-1-user-3"></label>
-                                        </li>
-                                        <!-- Member -->
-
-
-                                        <li class="list-group-item py-4">
-                                            <small class="text-uppercase">M</small>
-                                        </li>
-
-                                        <!-- Member -->
-                                        <li class="list-group-item py-6">
-                                            <div class="media align-items-center">
-
-                                                
-                                                
-                                                <div class="avatar avatar-sm mr-5">
-                                                    <img class="avatar-img" src="assets/images/avatars/4.jpg" alt="Matthew Wiggins">
-                                                </div>
-                                                
-                                                <div class="media-body">
-                                                    <h6 class="mb-0">Matthew Wiggins</h6>
-                                                    <small class="text-muted">last seen 3 days ago</small>
-                                                </div>
-
-                                                <div class="align-self-center ml-auto">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-4" type="checkbox">
-                                                        <label class="custom-control-label" for="id-add-user-chat-1-user-4"></label>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Label -->
-                                            <label class="stretched-label" for="id-add-user-chat-1-user-4"></label>
-                                        </li>
-                                        <!-- Member -->
-
-
-                                        <li class="list-group-item py-4">
-                                            <small class="text-uppercase">S</small>
-                                        </li>
-
-                                        <!-- Member -->
-                                        <li class="list-group-item py-6">
-                                            <div class="media align-items-center">
-
-                                                
-                                                
-                                                <div class="avatar avatar-sm mr-5">
-                                                    <img class="avatar-img" src="assets/images/avatars/7.jpg" alt="Simon Hensley">
-                                                </div>
-                                                
-                                                <div class="media-body">
-                                                    <h6 class="mb-0">Simon Hensley</h6>
-                                                    <small class="text-muted">last seen 3 days ago</small>
-                                                </div>
-
-                                                <div class="align-self-center ml-auto">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-5" type="checkbox">
-                                                        <label class="custom-control-label" for="id-add-user-chat-1-user-5"></label>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Label -->
-                                            <label class="stretched-label" for="id-add-user-chat-1-user-5"></label>
-                                        </li>
-                                        <!-- Member -->
-
-
-                                        <li class="list-group-item py-4">
-                                            <small class="text-uppercase">W</small>
-                                        </li>
-
-                                        <!-- Member -->
-                                        <li class="list-group-item py-6">
-                                            <div class="media align-items-center">
-
-                                                
-                                                
-                                                <div class="avatar avatar-sm mr-5">
-                                                    <img class="avatar-img" src="assets/images/avatars/9.jpg" alt="William Wright">
-                                                </div>
-                                                
-                                                <div class="media-body">
-                                                    <h6 class="mb-0">William Wright</h6>
-                                                    <small class="text-muted">last seen 3 days ago</small>
-                                                </div>
-
-                                                <div class="align-self-center ml-auto">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-6" type="checkbox">
-                                                        <label class="custom-control-label" for="id-add-user-chat-1-user-6"></label>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Label -->
-                                            <label class="stretched-label" for="id-add-user-chat-1-user-6"></label>
-                                        </li>
-                                        <!-- Member -->
-<!-- Member -->
-                                        <li class="list-group-item py-6">
-                                            <div class="media align-items-center">
-
-                                                
-                                                
-                                                <div class="avatar avatar-sm mr-5">
-                                                    <img class="avatar-img" src="assets/images/avatars/3.jpg" alt="William Greer">
-                                                </div>
-                                                
-                                                <div class="media-body">
-                                                    <h6 class="mb-0">William Greer</h6>
-                                                    <small class="text-muted">last seen 10 minutes ago</small>
-                                                </div>
-
-                                                <div class="align-self-center ml-auto">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-7" type="checkbox">
-                                                        <label class="custom-control-label" for="id-add-user-chat-1-user-7"></label>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Label -->
-                                            <label class="stretched-label" for="id-add-user-chat-1-user-7"></label>
-                                        </li>
-                                        <!-- Member -->
-
-
-                                        <li class="list-group-item py-4">
-                                            <small class="text-uppercase">Z</small>
-                                        </li>
-
-                                        <!-- Member -->
-                                        <li class="list-group-item py-6">
-                                            <div class="media align-items-center">
-
-                                                
-                                                
-                                                <div class="avatar avatar-sm mr-5">
-                                                    <img class="avatar-img" src="assets/images/avatars/7.jpg" alt="Zane Mayes">
-                                                </div>
-                                                
-                                                <div class="media-body">
-                                                    <h6 class="mb-0">Zane Mayes</h6>
-                                                    <small class="text-muted">last seen 3 days ago</small>
-                                                </div>
-
-                                                <div class="align-self-center ml-auto">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-8" type="checkbox">
-                                                        <label class="custom-control-label" for="id-add-user-chat-1-user-8"></label>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Label -->
-                                            <label class="stretched-label" for="id-add-user-chat-1-user-8"></label>
-                                        </li>
-                                        <!-- Member -->
+                                            @endforeach
+                                        @endforeach
 
                                     </ul>
                                 </form>
