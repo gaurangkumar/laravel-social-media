@@ -802,10 +802,10 @@
 
                                 <!-- Members -->
 
-                                <form action="{{ route('group_members', $group->id) }}" method="post">
+                                <form action="{{ route('group_members', $group->id) }}" method="post" id="editgroup">
                                     @csrf
                                     <ul class="list-group list-group-flush">
-                                        @foreach($group_members as $letter => $members)
+                                        @foreach($edit_members as $letter => $members)
                                         <li class="list-group-item py-4">
                                             <small class="text-uppercase">{{ strtoupper($letter) }}</small>
 
@@ -832,7 +832,7 @@
                                                 <div class="align-self-center ml-auto">
                                                     <div class="custom-control custom-checkbox">
 
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-{{ $member->id }}" type="checkbox" value="{{ $member->id }}" name="members[]">
+                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-{{ $member->id }}" type="checkbox" value="{{ $member->id }}" name="members[]" checked>
                                                         <label class="custom-control-label" for="id-add-user-chat-1-user-{{ $member->id }}"></label>
                                                     </div>
                                                 </div>
@@ -840,7 +840,7 @@
                                             </div>
 
                                             <!-- Label -->
-                                            <label class="stretched-label" for="id-add-user-{{ $friend->id }}"></label>
+                                            <label class="stretched-label" for="id-add-user-chat-1-user-{{ $member->id }}"></label>
                                         </li>
                                         <!-- Member -->
                                             @endforeach
@@ -854,7 +854,7 @@
                             <!-- Button -->
                             <div class="border-top py-7">
                                 <div class="container-fluid">
-                                    <button class="btn btn-lg btn-block btn-primary d-flex align-items-center" type="submit">
+                                    <button class="btn btn-lg btn-block btn-primary d-flex align-items-center" type="submit" onClick="$('#editgroup').submit()">
                                         Add members
                                         <span class="fe-user-plus ml-auto"></span>
                                     </button>

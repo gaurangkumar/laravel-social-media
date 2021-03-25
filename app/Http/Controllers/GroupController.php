@@ -81,6 +81,10 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
+/*                echo '<pre>';
+                print_r($group->members[0]->users->toArray());
+                exit;
+*/
         $members = User::whereIn('id', function ($query) use ($group) {
             $query->select('user_id')
                 ->from('group_members')
@@ -95,11 +99,6 @@ class GroupController extends Controller
                 $member->name[0]
             ][] = $member;
         }
-        /*
-                echo '<pre>';
-                var_dump();
-                exit;
-        */
 
         $members_count = $group->members->count();
 
@@ -110,6 +109,8 @@ class GroupController extends Controller
         $title = ucfirst($group->name).' | Agwis Messenger';
         $user = auth()->user();
 
+        $edit_members = $this->edit_members($group->id);
+
         $home = new HomeController();
         $side_chats = $home->get_last_chats($user->id);
 
@@ -117,8 +118,35 @@ class GroupController extends Controller
 
         $pages = $home->get_pages($user->id);
 
-        return view('group', compact('title', 'side_chats', 'pages', 'user', 'friends', 'group', 'members_count', 'chats', 'group_members'));
+        return view('group', compact('title', 'side_chats', 'pages', 'user', 'friends', 'group', 'members_count', 'chats', 'group_members', 'edit_members'));
     }
+
+    public function edit_members($group_id)
+     {
+         $gmembers = User::whereIn('id', function ($query) use ($group_id) {
+            $query->select('user_id')
+                ->from('group_members')
+                ->where('group_id', $group_id);
+        })
+         ->orWhereIn('id', function ($query) {
+            $query->select('cid')
+                ->from('contacts')
+                ->where('user_id', auth()->user()->id);
+        })
+        ->orderBy('name', 'ASC')
+        ->get();
+
+
+        $edit_members = array();
+        foreach ($gmembers as $contact) {
+            $edit_members[
+                $contact->name[0]
+            ][] = $contact;
+        }
+
+        return $edit_members;
+
+     }
 
     /**
      * Show the form for editing the specified resource.

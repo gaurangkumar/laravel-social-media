@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\groupMember;
+use App\Models\GroupMember;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class GroupMemberController extends Controller
 {
@@ -88,8 +90,9 @@ class GroupMemberController extends Controller
         //
     }
 
-    public function group_members(Request $request)
+    public function group_members(Request $request, $group_id)
     {
+        var_dump($group_id);exit();
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
 
