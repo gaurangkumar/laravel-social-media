@@ -7,9 +7,16 @@ use App\Models\Group;
 use App\Models\GroupMember;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class GroupController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        \View::share('currentRoute', Route::currentRouteName());
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +24,6 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -81,10 +87,6 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        /*                echo '<pre>';
-                        print_r($group->members[0]->users->toArray());
-                        exit;
-        */
         $members = User::whereIn('id', function ($query) use ($group) {
             $query->select('user_id')
                 ->from('group_members')

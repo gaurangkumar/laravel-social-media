@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\GroupMember;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use Route;
 
 class GroupMemberController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        \View::share('currentRoute', Route::currentRouteName());
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +23,6 @@ class GroupMemberController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -92,25 +98,34 @@ class GroupMemberController extends Controller
 
     public function group_members(Request $request, $group_id)
     {
-        var_dump($group_id);
-        exit();
-        $sender_id = Route::current()->parameter('user_id');
-        $sender = User::find($sender_id);
+        $group = Group::find($group_id);
 
+        $group_members = array_column($group->members->toArray(), 'user_id');
         $user = auth()->user();
 
         $request->validate(array(
-            'msg' => 'required',
+            'members' => 'required|array|min:3',
         ));
 
-        $data = array(
-            'user_id' => $user->id,
-            'rid' => $sender->id,
-            'msg' => $request->msg,
-        );
+        foreach($request->members as $member) {
+            $key = array_search($member, $group_members);
+            if($key === false) {
+                $obj = GroupMember::create([
+                    'user_id' => $member,
+                    'group_id' => $group_id,
+                ]);
+            }
+        }
 
-        $data = Chat::create($data);
+        foreach($group_members as $member) {
+            $key = in_array($member, $request->members);
+            if($key == false) {
+                $result = GroupMember::where('user_id', $member)
+                ->where('group_id', $group_id)
+                ->delete();
+            }
+        }
 
-        return redirect()->route('chat', $sender->id);
+        return redirect()->route('group.show', $group_id);
     }
 }

@@ -812,6 +812,15 @@
                                         </li>
 
                                             @foreach($members as $member)
+                                            @php
+                                            $key = array_search($member->id, array_column($group->members->toArray(), 'user_id'));
+                                            if($key === false) {
+                                                $checked = '';
+                                            }
+                                            else {
+                                                $checked = 'checked';
+                                            }
+                                            @endphp
                                         <!-- Member -->
                                         <li class="list-group-item py-6">
                                             <div class="media align-items-center">
@@ -832,7 +841,7 @@
                                                 <div class="align-self-center ml-auto">
                                                     <div class="custom-control custom-checkbox">
 
-                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-{{ $member->id }}" type="checkbox" value="{{ $member->id }}" name="members[]" checked>
+                                                        <input class="custom-control-input" id="id-add-user-chat-1-user-{{ $member->id }}" type="checkbox" value="{{ $member->id }}" name="members[]" {{ $checked }}>
                                                         <label class="custom-control-label" for="id-add-user-chat-1-user-{{ $member->id }}"></label>
                                                     </div>
                                                 </div>
