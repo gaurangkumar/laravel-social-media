@@ -297,9 +297,12 @@
                                 <div class="border-bottom text-center py-9 px-10">
                                     <!-- Photo -->
                                     <div class="avatar avatar-xl mx-5 mb-5">
-                                        <img class="avatar-img" src="{{ asset($page->profile) }}" alt="{{ $page->name }}">
+                                        <img class="avatar-img" src="{{ empty($page->profile) ?
+                                                                 asset('storage/index.jpg') :
+                                                                 asset(\Storage::url($page->profile))
+                                                          }}" alt="{{ $page->name }}">
                                     </div>
-                                    <h5>{{ $page->name }}</h5>
+                                    <h5> {{ $page->name }} </h5>
                                     <p class="text-muted">Bootstrap is an open source toolkit for developing web with HTML, CSS, and JS.</p>
                                 </div>
 
@@ -328,7 +331,7 @@
                                                 <div class="media align-items-center">
                                                     <div class="media-body">
                                                         <p class="small text-muted mb-0">Phone</p>
-                                                        <p>{{ '$page->mobile' }}</p>
+                                                        <p>{{ $page->mobile }}</p>
                                                     </div>
                                                     <i class="text-muted icon-sm fe-mic"></i>
                                                 </div>
@@ -338,7 +341,7 @@
                                                 <div class="media align-items-center">
                                                     <div class="media-body">
                                                         <p class="small text-muted mb-0">Email</p>
-                                                        <p>{{ '$page->email' }}</p>
+                                                        <p>{{ $page->email }}</p>
                                                     </div>
                                                     <i class="text-muted icon-sm fe-mail"></i>
                                                 </div>
