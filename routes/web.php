@@ -7,6 +7,7 @@ use App\Http\Controllers\PageController;
 
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,7 +57,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', array(AdminHomeController::class, 'index'))->name('home');
     Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
     Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
+    Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
+    Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
 });
 
-Route::get('/{user_id}', array(HomeController::class, 'chat'))->name('chat');
-Route::post('/{user_id}', array(HomeController::class, 'sendchat'))->name('sendchat');
+Route::get('/{user_id}', array(HomeController::class, 'chat'))
+	->name('chat')
+	->where('id', '[0-9]+');
+Route::post('/{user_id}', array(HomeController::class, 'sendchat'))
+	->name('sendchat')
+	->where('id', '[0-9]+');

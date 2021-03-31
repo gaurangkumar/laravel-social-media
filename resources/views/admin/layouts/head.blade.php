@@ -5,23 +5,23 @@
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
     <title>Dashboard Modern | Materialize - Material Design Admin Template</title>
-    <link rel="apple-touch-icon" href="/agwis.com/public/theme/app-assets/images/favicon/apple-touch-icon-152x152.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/agwis.com/public/theme/app-assets/images/favicon/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="{{ asset('theme/app-assets/images/favicon/apple-touch-icon-152x152.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('theme/app-assets/images/favicon/favicon-32x32.png') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- BEGIN: VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="/agwis.com/public/theme/app-assets/vendors/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="/agwis.com/public/theme/app-assets/vendors/animate-css/animate.css">
-    <link rel="stylesheet" type="text/css" href="/agwis.com/public/theme/app-assets/vendors/chartist-js/chartist.min.css">
-    <link rel="stylesheet" type="text/css" href="/agwis.com/public/theme/app-assets/vendors/chartist-js/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/vendors/vendors.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/vendors/animate-css/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/vendors/chartist-js/chartist.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/vendors/chartist-js/chartist-plugin-tooltip.css') }}">
     <!-- END: VENDOR CSS-->
     <!-- BEGIN: Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="/agwis.com/public/theme/app-assets/css/themes/vertical-modern-menu-templ/materialize.min.6.delay">
-    <link rel="stylesheet" type="text/css" href="/agwis.com/public/theme/app-assets/css/themes/vertical-modern-menu-template/style.min.css">
-    <link rel="stylesheet" type="text/css" href="/agwis.com/public/theme/app-assets/css/pages/dashboard-modern.css">
-    <link rel="stylesheet" type="text/css" href="/agwis.com/public/theme/app-assets/css/pages/intro.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/themes/vertical-modern-menu-templ/materialize.min.6.delay') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/themes/vertical-modern-menu-template/style.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/dashboard-modern.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/intro.min.css') }}">
     <!-- END: Page Level CSS-->
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="/agwis.com/public/theme/app-assets/css/custom/custom.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/custom/custom.css') }}">
     <!-- END: Custom CSS-->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />

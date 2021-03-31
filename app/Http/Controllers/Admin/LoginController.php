@@ -3,26 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class LoginController extends Controller
 {
 	public function __construct() {
 		session_start();
-		if( !isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
-			header('Location: '.route('admin.login'));
+		if( isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
+			header('Location: '.route('admin.home'));
 			exit;
 		}
 	}
 
-	/**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.index'); 
+        return view('admin.login');
     }
 
     /**
@@ -43,7 +44,22 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(array(
+            'email' => 'required',
+            'password' => 'required',
+        ));
+
+        $admin = Admin::where('email', $request->email)
+			->where('password', $request->password)
+			->first();
+
+		if(empty($admin)) {
+			return redirect()->route('admin.login');
+		}
+		else {
+			$_SESSION['admin'] = $admin->id;
+			return redirect()->route('admin.home');
+		}
     }
 
     /**
@@ -88,6 +104,8 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        unset($_SESSION['admin']);
+		header('Location: '.route('admin.login'));
+		exit;
     }
 }
