@@ -4,7 +4,9 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,8 +52,10 @@ Route::post('/social', array(HomeController::class, 'social'))->name('social');
 Route::resource('group', GroupController::class);
 //Route::resource('page', PageController::class);
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', array(AdminHomeController::class, 'index'));
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', array(AdminHomeController::class, 'index'))->name('home');
+    Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
+    Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
 });
 
 Route::get('/{user_id}', array(HomeController::class, 'chat'))->name('chat');
