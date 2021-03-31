@@ -15,7 +15,7 @@
       <li class="auto-suggestion"><a class="collection-item" href="#">
           <div class="display-flex">
             <div class="display-flex align-item-center flex-grow-1">
-              <div class="avatar"><img src="../../../app-assets/images/icon/pdf-image.png" width="24" height="30" alt="sample image"></div>
+              <div class="avatar"><img src="{{ asset('theme/app-assets/images/icon/pdf-image.png') }}" width="24" height="30" alt="sample image"></div>
               <div class="member-info display-flex flex-column"><span class="black-text">Two new item submitted</span><small class="grey-text">Marketing Manager</small></div>
             </div>
             <div class="status"><small class="grey-text">17kb</small></div>
@@ -23,7 +23,7 @@
       <li class="auto-suggestion"><a class="collection-item" href="#">
           <div class="display-flex">
             <div class="display-flex align-item-center flex-grow-1">
-              <div class="avatar"><img src="../../../app-assets/images/icon/doc-image.png" width="24" height="30" alt="sample image"></div>
+              <div class="avatar"><img src="{{ asset('theme/app-assets/images/icon/doc-image.png') }}" width="24" height="30" alt="sample image"></div>
               <div class="member-info display-flex flex-column"><span class="black-text">52 Doc file Generator</span><small class="grey-text">FontEnd Developer</small></div>
             </div>
             <div class="status"><small class="grey-text">550kb</small></div>
@@ -83,11 +83,9 @@
       <li class="auto-suggestion"><a class="collection-item display-flex align-items-center" href="#"><span class="material-icons">error_outline</span><span class="member-info">No results found.</span></a></li>
     </ul>
 
-
-
     <!-- BEGIN: SideNav-->
-      @include('admin.layouts.sidebar')
-  <!-- END: SideNav-->
+	@include('admin.layouts.sidebar')
+	<!-- END: SideNav-->
 
     <!-- BEGIN: Page Main-->
     <div id="main">
@@ -144,7 +142,7 @@
               <select class="form-control" id="users-list-role">
                 <option value="">Any</option>
                 <option value="User">User</option>
-                <option value="Staff">Staff</option>
+                <option value="Staff">Admin</option>
               </select>
             </div>
           </div>
@@ -180,10 +178,11 @@
                 <th>email</th>
                 <th>created</th>
                 <th>verified</th>
-                <th>role</th>
+                <!--<th>role</th>-->
                 <th>status</th>
                 <th>edit</th>
                 <th>view</th>
+                <th>block</th>
               </tr>
             </thead>
             <tbody>
@@ -196,13 +195,14 @@
                 </td>
                 <td>{{ $user->created_at}}</td>
                 <td>{{$user->email_verified_at== null ? 'No' :'Yes'}}</td>
-                <td>Staff</td>
+                <!--<td>Staff</td>-->
                 <td><span class="chip green lighten-5">
-                    <span class="green-text">Active</span>
+                    <span class="green-text">{{$user->blocked == 1 ? 'Blocked' : 'Active'}}</span>
                   </span>
                 </td>
                 <td><a href="page-users-edit.html"><i class="material-icons">edit</i></a></td>
                 <td><a href="page-users-view.html"><i class="material-icons">remove_red_eye</i></a></td>
+                <td><a href="page-users-view.html"><i class="material-icons">close</i></a></td>
               </tr>
               @endforeach
             </tbody>              
@@ -1001,15 +1001,6 @@
 </div>
 <!--/ Theme Customizer -->
 
-<a
-   href="https://1.envato.market/materialize_admin"
-   target="_blank"
-   class="btn btn-buy-now gradient-45deg-indigo-purple gradient-shadow white-text tooltipped buy-now-animated tada"
-   data-position="left"
-   data-tooltip="Buy Now!"
-   ><i class="material-icons">add_shopping_cart</i></a
->
-    
     <!-- BEGIN: Footer-->
 
     @endsection
