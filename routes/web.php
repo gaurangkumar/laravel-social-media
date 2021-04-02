@@ -8,6 +8,9 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\Admin\GroupController as AdminGroupController;
+use App\Http\Controllers\Admin\PageController   as AdminPageController;
+use App\Http\Controllers\Admin\BusinessController as AdminBusinessController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +60,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', array(AdminHomeController::class, 'index'))->name('home');
     Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
     Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
+    Route::get('/group', array(AdminGroupController::class, 'index'))->name('group');
+    Route::get('/group/{group_id}', array(AdminGroupController::class, 'show'))->name('group.show');
+    Route::get('/page', array(AdminPageController::class, 'index'))->name('page');
+    Route::get('/page/{page_id}', array(AdminPageController::class, 'show'))->name('page.show');
+    Route::get('/business', array(AdminBusinessController::class, 'index'))->name('business');
+    Route::get('/business/{business_id}', array(AdminBusinessController::class, 'show'))->name('business.show');
     Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
     Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
 });

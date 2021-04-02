@@ -17,6 +17,12 @@
         </li>
         <li class="bold"><a class="waves-effect waves-cyan " href="{{ route('admin.user') }}"><i class="far fa-user"></i><span class="menu-title" data-i18n="Home">Users</span></a>
         </li>
+         <li class="bold"><a class="waves-effect waves-cyan " href="{{ route('admin.group') }}"><i class="fas fa-users"></i><span class="menu-title" data-i18n="Home">Group</span></a>
+        </li>
+        <li class="bold"><a class="waves-effect waves-cyan " href="{{ route('admin.page') }}"><i class="fas fa-file-alt"></i><span class="menu-title" data-i18n="Home">Page</span></a>
+        </li>
+        <li class="bold"><a class="waves-effect waves-cyan " href="{{ route('admin.business') }}"><i class="far fa-building"></i><span class="menu-title" data-i18n="Home">Business</span></a>
+        </li>
 
       </ul>
       <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
