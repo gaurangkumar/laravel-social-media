@@ -174,8 +174,7 @@
               <tr>
                 <th></th>
                 <th>id</th>
-                <th>name</th>
-                <th>email</th>
+                <th>name/email</th>
                 <th>created</th>
                 <th>verified</th>
                 <!--<th>role</th>-->
@@ -190,8 +189,8 @@
               <tr>
                 <td></td>
                 <td>{{ $user->id}}</td>
-                <td>{{ $user->name}}</td>
-                <td><a href="{{route('admin.user.show',$user->id)}}">{{ $user->email}}</a>
+<!--                 <td>{{ $user->name}}</td> -->
+                <td>{{ $user->name}}</br><a href="{{route('admin.user.show',$user->id)}}">{{ $user->email}} </a>
                 </td>
                 <td>{{ $user->created_at}}</td>
                 <td>{{$user->email_verified_at== null ? 'No' :'Yes'}}</td>

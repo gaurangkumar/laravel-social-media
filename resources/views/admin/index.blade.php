@@ -201,7 +201,7 @@
           </div>
         </div>
       </div>
-      <div class="slide-out-right-body row pl-3">
+     <!--  <div class="slide-out-right-body row pl-3">
         <div id="messages" class="col s12 pb-0">
           <div class="collection border-none mb-0">
             <input class="header-search-input mt-4 mb-2" type="text" name="Search" placeholder="Search Messages" />
@@ -588,7 +588,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 
