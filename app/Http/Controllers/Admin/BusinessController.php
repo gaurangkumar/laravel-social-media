@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Business;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class BusinessController extends Controller
 {
+    public function __construct() {
+        session_start();
+        if( !isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
+            header('Location: '.route('admin.login'));
+            exit;
+        }
+        \View::share('currentRoute', Route::currentRouteName());
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -13,15 +13,15 @@
 <!--         <li class="navigation-header"><a class="navigation-header-text" href="{{ route('admin.home') }}">Home</a><i class="navigation-header-icon material-icons">more_horiz</i>
         </li>
  -->
-        <li class="active bold"><a class="waves-effect waves-cyan " href="{{ route('admin.home') }}"><i class="fas fa-home"></i><span class="menu-title" data-i18n="Home">Home</span></a>
+        <li class=" bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.home' ? 'active' : ''}}" href="{{ route('admin.home') }}"><i class="fas fa-home"></i><span class="menu-title" data-i18n="Home">Home</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="{{ route('admin.user') }}"><i class="far fa-user"></i><span class="menu-title" data-i18n="Home">Users</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.user' ? 'active' : ''}}" href="{{ route('admin.user') }}"><i class="far fa-user"></i><span class="menu-title" data-i18n="Home">Users</span></a>
         </li>
-         <li class="bold"><a class="waves-effect waves-cyan " href="{{ route('admin.group') }}"><i class="fas fa-users"></i><span class="menu-title" data-i18n="Home">Group</span></a>
+         <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.group' ? 'active' : ''}}" href="{{ route('admin.group') }}"><i class="fas fa-users"></i><span class="menu-title" data-i18n="Home">Group</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="{{ route('admin.page') }}"><i class="fas fa-file-alt"></i><span class="menu-title" data-i18n="Home">Page</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.page' ? 'active' : ''}}" href="{{ route('admin.page') }}"><i class="fas fa-file-alt"></i><span class="menu-title" data-i18n="Home">Page</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="{{ route('admin.business') }}"><i class="far fa-building"></i><span class="menu-title" data-i18n="Home">Business</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.business' ? 'active' : ''}}" href="{{ route('admin.business') }}"><i class="far fa-building"></i><span class="menu-title" data-i18n="Home">Business</span></a>
         </li>
 
       </ul>

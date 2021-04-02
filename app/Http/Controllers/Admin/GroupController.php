@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Group;
+use Illuminate\Support\Facades\Route;
 
 class GroupController extends Controller
 {
@@ -14,6 +15,7 @@ class GroupController extends Controller
             header('Location: '.route('admin.login'));
             exit;
         }
+        \View::share('currentRoute', Route::currentRouteName());
     }
 
     /**

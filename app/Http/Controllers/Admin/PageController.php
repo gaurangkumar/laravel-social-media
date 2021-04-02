@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class PageController extends Controller
 {
@@ -14,6 +15,7 @@ class PageController extends Controller
             header('Location: '.route('admin.login'));
             exit;
         }
+        \View::share('currentRoute', Route::currentRouteName());
     }
 
     /**
