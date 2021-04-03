@@ -4,6 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Business;
+use App\Models\Group;
+use App\Models\Page;
+use App\Models\Chat;
+use App\Models\Contact;
+use App\Models\GroupMember;
+use App\Models\PageComment;
+use App\Models\PageFollower;
+use App\Models\PageLike;
+use App\Models\PagePost;
+use App\Models\Product;
+use App\Models\Call;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,17 +43,19 @@ class HomeController extends Controller
 		$title = 'Admin Home';
 		$user_id = $_SESSION['admin'];
 		$user = User::find($user_id);
+
 		$count = new \StdClass;
 		$today = date('Y-m-d', strtotime('+1 day'));
+
 		$count->users_total = User::all()->count();
 		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
-			//->get()
-			->toSql();
-		var_dump($count->users_last_week);
+			->get()
+			->count();
+
+		$count->users_total = User::all()->count();
 		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
-			->get()->toArray();
-		var_dump($count->users_last_week);
-		exit;
+			->get()
+			->count();
 
 		return view('admin.index', compact('title', 'user', 'count'));
     }
