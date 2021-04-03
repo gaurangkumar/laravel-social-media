@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.index', array('title' => 'Admin Home'));
+		$title = 'Admin Home';
+		$user_id = $_SESSION['admin'];
+		$user = User::find($user_id);
+		$count = new \StdClass;
+		$today = date('Y-m-d', strtotime('+1 day'));
+		$count->users_total = User::all()->count();
+		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
+			//->get()
+			->toSql();
+		var_dump($count->users_last_week);
+		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
+			->get()->toArray();
+		var_dump($count->users_last_week);
+		exit;
+
+		return view('admin.index', compact('title', 'user', 'count'));
     }
 
     /**
