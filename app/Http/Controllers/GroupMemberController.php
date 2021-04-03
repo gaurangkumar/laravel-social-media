@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\GroupMember;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Route;
 
@@ -107,19 +106,19 @@ class GroupMemberController extends Controller
             'members' => 'required|array|min:3',
         ));
 
-        foreach($request->members as $member) {
+        foreach ($request->members as $member) {
             $key = array_search($member, $group_members);
-            if($key === false) {
-                $obj = GroupMember::create([
+            if ($key === false) {
+                $obj = GroupMember::create(array(
                     'user_id' => $member,
                     'group_id' => $group_id,
-                ]);
+                ));
             }
         }
 
-        foreach($group_members as $member) {
+        foreach ($group_members as $member) {
             $key = in_array($member, $request->members);
-            if($key == false) {
+            if ($key === false) {
                 $result = GroupMember::where('user_id', $member)
                 ->where('group_id', $group_id)
                 ->delete();

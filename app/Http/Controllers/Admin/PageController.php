@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 class PageController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         session_start();
-        if( !isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
+        if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
             header('Location: '.route('admin.login'));
             exit;
         }
@@ -25,10 +26,10 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('admin.page.index', [
+        return view('admin.page.index', array(
             'pages' => Page::all(),
-            'title' => 'Page'
-        ]);
+            'title' => 'Page',
+        ));
     }
 
     /**
@@ -44,7 +45,8 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,19 +57,22 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Page  $page
+     * @param \App\Models\Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Page $id)
     {
-        $page= page::find($id);
-        return view('admin.page.show',$page);
+        $page = page::find($id);
+
+        return view('admin.page.show', $page);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Page  $page
+     * @param \App\Models\Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Page $page)
@@ -78,8 +83,9 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Page  $page
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Page         $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Page $page)
@@ -90,7 +96,8 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Page  $page
+     * @param \App\Models\Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Page $page)
