@@ -1,16 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\BusinessController as AdminBusinessController;
+use App\Http\Controllers\Admin\GroupController as AdminGroupController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\Admin\PageController   as AdminPageController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
-
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-use App\Http\Controllers\Admin\UserController as AdminUserController;
-use App\Http\Controllers\Admin\LoginController as AdminLoginController;
-use App\Http\Controllers\Admin\GroupController as AdminGroupController;
-use App\Http\Controllers\Admin\PageController   as AdminPageController;
-use App\Http\Controllers\Admin\BusinessController as AdminBusinessController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,8 +70,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('/{user_id}', array(HomeController::class, 'chat'))
-	->name('chat')
-	->where('id', '[0-9]+');
+    ->name('chat')
+    ->where('id', '[0-9]+');
 Route::post('/{user_id}', array(HomeController::class, 'sendchat'))
-	->name('sendchat')
-	->where('id', '[0-9]+');
+    ->name('sendchat')
+    ->where('id', '[0-9]+');

@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Group;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 class GroupController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         session_start();
-        if( !isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
+        if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
             header('Location: '.route('admin.login'));
             exit;
         }
@@ -25,10 +26,10 @@ class GroupController extends Controller
      */
     public function index()
     {
-         return view('admin.group.index', [
+        return view('admin.group.index', array(
             'groups' => Group::all(),
-            'title' => 'Group'
-        ]);
+            'title' => 'Group',
+        ));
     }
 
     /**
@@ -44,7 +45,8 @@ class GroupController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,19 +57,22 @@ class GroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $group= Group::find($id);
-        return view('admin.group.show',$group);
+        $group = Group::find($id);
+
+        return view('admin.group.show', $group);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -78,8 +83,9 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -90,7 +96,8 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
