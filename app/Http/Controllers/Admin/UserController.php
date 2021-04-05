@@ -64,10 +64,11 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        /*int_r($user);
+        exit;*/
 
         return view('admin.user.show', $user);
-        echo $user;
-        exit;
+
     }
 
     /**

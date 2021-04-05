@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\business;
+use App\Models\Business;
 use Illuminate\Http\Request;
 
 class BusinessController extends Controller
@@ -14,7 +14,9 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        //
+       ini_set('memory_limit', '1024M');
+        $title = 'Agwis Messenger';
+        $user = auth()->user();
     }
 
     /**
@@ -36,7 +38,30 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = auth()->user();
+
+        $request->validate(array(
+            'name' => 'required|string',
+            'btype' => 'required|string',
+            'address' => 'required|string',
+            'description' => 'required|string',
+            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+        ));
+
+        $image = $request->profile->store('business', array('disk' => 'public'));
+
+        $data = array(
+            'name' => $request->name,
+            'btype' => $request->btype,
+            'address' => $request->address,
+            'description' => $request->description,
+            'profile' => $image,
+            'user_id' => $user->id,
+        );
+        $business = Business::create($data);
+
+//echo '<pre>';var_dump($business->toArray());exit;
+        return redirect()->route('business.show', $business->id);
     }
 
     /**
@@ -46,9 +71,21 @@ class BusinessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(business $business)
+    public function show(Business $business)
     {
-        //
+        $title = ucfirst($business->name).' | Agwis Messenger';
+        $user = auth()->user();
+
+        $home = new HomeController();
+        $side_chats = $home->get_last_chats($user->id);
+
+        $friends = $home->get_friends($user->id);
+
+        $pages = $home->get_pages($user->id);
+
+        $businesses = $home->get_businesses($business->id);
+
+        return view('business', compact('title', 'side_chats', 'pages', 'user', 'friends', 'business', ));
     }
 
     /**

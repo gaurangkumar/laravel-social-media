@@ -33,13 +33,13 @@ class HomeController extends Controller
 		$today = date('Y-m-d', strtotime('+1 day'));
 		$count->users_total = User::all()->count();
 		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
-			//->get()
-			->toSql();
-		var_dump($count->users_last_week);
+		    ->get();
+		  
+		//var_dump($count->users_last_week);
 		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
-			->get()->toArray();
-		var_dump($count->users_last_week);
-		exit;
+			->get();
+		/*var_dump($count->users_last_week);
+		exit;*/
 
 		return view('admin.index', compact('title', 'user', 'count'));
     }

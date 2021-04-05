@@ -10,6 +10,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\BusinessController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,7 +54,7 @@ Route::post('/password', array(HomeController::class, 'password'))->name('passwo
 Route::post('/social', array(HomeController::class, 'social'))->name('social');
 
 Route::resource('group', GroupController::class);
-//Route::resource('page', PageController::class);
+Route::resource('business', BusinessController::class);
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', array(AdminHomeController::class, 'index'))->name('home');

@@ -46,7 +46,7 @@
       <li class="auto-suggestion"><a class="collection-item" href="#">
           <div class="display-flex">
             <div class="display-flex align-item-center flex-grow-1">
-              <div class="avatar"><img class="circle" src="../../../app-assets/images/avatar/avatar-7.png" width="30" alt="sample image"></div>
+              <div class="avatar"><img class="circle" src="/agwis.com/public/theme/app-assets/images/avatar/avatar-7.png" width="30" alt="sample image"></div>
               <div class="member-info display-flex flex-column"><span class="black-text">John Doe</span><small class="grey-text">UI designer</small></div>
             </div>
           </div></a></li>
@@ -134,12 +134,12 @@
           </a>
           <div class="media-body">
             <h6 class="media-heading">
-              <span class="users-view-name"> {{  $user->name  }} </span>
+              <span class="users-view-name"> </span>
               <<!-- span class="grey-text">@</span>
               <span class="users-view-username grey-text">candy007</span>
             </h6> -->
             <span>ID:</span>
-            <span class="users-view-id">{{ $user->id }}</span>
+            <span class="users-view-id"></span>
           </div> 
         </div>
       </div>
@@ -160,11 +160,11 @@
             <tbody>
               <tr>
                 <td>Registered:</td>
-                <td>{{ $user->created_at }}</td>
+                <td></td>
               </tr>
               <tr>
                 <td>Latest Activity:</td>
-                <td class="users-view-latest-activity">{{ $user->created_at }}</td>
+                <td class="users-view-latest-activity"></td>
               </tr>
               <tr>
                 <td>Verified:</td>

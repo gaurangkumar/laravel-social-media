@@ -105,7 +105,7 @@
 									<p>Users</p>
 								 </div>
 								 <div class="col s5 m5 right-align">
-									<h5 class="mb-0 white-text">{{ $count->users_last_week }}</h5>
+									<h5 class="mb-0 white-text"><?php /*{{ $count->users_last_week }}*/?></h5>
 									<p class="no-margin">New</p>
 									<p>{{ $count->users_total }}</p>
 								 </div>

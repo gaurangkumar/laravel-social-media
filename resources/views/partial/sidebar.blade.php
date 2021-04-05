@@ -234,7 +234,7 @@
                     </div>
 
                     <!-- chats-->
-                    <div class="tab-pane fade h-100 show active" id="tab-content-dialogs" role="tabpanel">
+                    <div class="tab-pane fade h-100" id="tab-content-dialogs" role="tabpanel">
                         <div class="d-flex flex-column h-100">
 
                             <div class="hide-scrollbar">
@@ -548,6 +548,178 @@
                         </div>
                     </div>
 
+                    <!-- pages -->
+                    <div class="tab-pane fade h-100 show active" id="tab-content-bus" role="tabpanel">
+                        <div class="d-flex flex-column h-100">
+
+                            <div class="hide-scrollbar">
+                                <div class="container-fluid py-6">
+
+                                    <!-- Title -->
+                                    <h2 class="font-bold mb-6">Business</h2>
+                                    <!-- Title -->
+
+                                    <!-- Search -->
+                                    <form class="mb-6">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Search for messages or users..." aria-label="Search for messages or users...">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-lg btn-ico btn-secondary btn-minimal" type="submit">
+                                                    <i class="fe-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- Search -->
+
+                                    <!-- Card -->
+                                    <div class="card mb-6">
+                                        <div class="card-body">
+
+                                            <div class="media align-items-center text-primary">
+                                                <div class="mr-5">
+                                                    <i class="fas fa-2x fa-plus-circle"></i>
+                                                    <!--<img src="assets/images/brand.svg" class="fill-primary" data-inject-svg="" alt="" style="height: 46px; width: 46px;">-->
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="mb-0">
+                                                        <a href="#" class="text-basic-inverse stretched-link text-primary" data-toggle="modal" data-target="#createPage1">Create New Business</a>
+                                                    </h5>
+                                                    <!--p>Quick setup and build tools.</p-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- Card -->
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="createPage1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Create New Business</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('business.store') }}"
+                                                          method="post"
+                                                          enctype="multipart/form-data">
+                                                        @csrf
+
+                                                        <div class="form-group">
+                                                            <label class="small" for="profile">Photo</label>
+                                                            <div class="position-relative text-center bg-secondary rounded p-6">
+                                                                <div class="avatar bg-primary text-white mb-5">
+                                                                    <i class="icon-md fe-image"></i>
+                                                                </div>
+
+                                                                <p class="small text-muted mb-0">You can upload jpg, gif or png files. <br> Max file size 3mb.</p>
+                                                                <input id="busProfile" class="d-none" type="file" name="profile">
+                                                                <label class="stretched-label mb-0" for="busProfile"></label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-title">Name</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-title" type="text" placeholder="Page Name" name="name">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-topic">Business Type</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder="Business Type" name="btype">
+                                                        </div>
+
+                                                         <div class="form-group">
+                                                            <label class="small" for="new-chat-topic">Address</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder="Adress" name="address">
+                                                        </div>
+                                                       
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-description">Description</label>
+                                                            <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Page Description" name="description"></textarea>
+                                                        </div>
+
+                                                        <div class="form-group mb-0">
+                                                            <div class="row">
+                                                                <div class=" col-6">
+                                                                    <button type="button" class="btn btn-lg btn-secondary btn-block" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                                <div class=" col-6">
+                                                                    <button class="btn btn-lg btn-primary btn-block" type="submit">Create Business</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h5 class="my-6">Pages:</h5>
+
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                    <nav class="nav d-block list-discussions-js mb-n6">
+
+                                        @foreach($pages as $page)
+                                        <a class="text-reset nav-link p-0 mb-6"
+                                           href="{{ route('page.show', $page->pages->uname) }}">
+                                            <div class="card card-active-listener">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <!--for offline - <div class="avatar mr-5">-->
+                                                        <div class="avatar avatar-online mr-5">
+                                                            <img class="avatar-img"
+                                                                 src="
+                                                                {{
+                                                                   empty($page->pages->profile) ? asset('storage/index.jpg') :
+                                                                   asset(\Storage::url($page->pages->profile))
+                                                                }}"
+                                                                 alt="{{ $page->pages->name }}">
+                                                        </div>
+                                                        <div class="media-body overflow-hidden">
+                                                            <div class="d-flex align-items-center mb-1">
+                                                                <h6 class="text-truncate mb-0 mr-auto">
+                                                                    {{ $page->pages->name }}
+                                                                </h6>
+                                                                <p class="small text-muted text-nowrap ml-4">
+                                                                    {{ date("H:i a", strtotime($page->pages->created_at)) }}
+                                                                </p>
+                                                            </div>
+                                                            <!-- last chat -->
+                                                            <div class="text-truncate">
+                                                                <!--you send last msg '['.$chat->id.'] '. - <h6 class='d-inline'>You:</h6>-->
+                                                                {{ $page->pages->description }}
+                                                            </div>
+                                                            <!-- typing <div class="text-truncate">is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span></div>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        @endforeach
+                                        <!-- Chat link -->
+                                    </nav>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- user-profile -->
                     <div class="tab-pane fade h-100" id="tab-content-user" role="tabpanel">
                         <div class="d-flex flex-column h-100">
@@ -707,7 +879,7 @@
             </div>
 
     <!-- Status modal -->
-    <div class="modal status-modal fade" id="status-modal" style="background: ">
+    <div class="modal status-modal fade" id="status-modal" style="">
         <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
             <div class="modal-content-full-width modal-content">
                 <div class=" modal-header-full-width   modal-header text-center">

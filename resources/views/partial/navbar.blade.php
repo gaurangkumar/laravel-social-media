@@ -14,8 +14,16 @@
                             <i class="icon-lg fe-x"></i>
                         </a>
                     </li>
+                    
+
 
                     <!-- Create group -->
+                     <li class="nav-item">
+                        <a class="nav-link position-relative p-0 py-xl-3 active" data-toggle="tab" href="#tab-content-bus" title="Business" role="tab">
+                       <i  class=" icon-lg far fa-building"></i>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#tab-content-create-chat" title="Create chat" role="tab">
                             <i class="icon-lg fe-edit"></i>
@@ -31,7 +39,7 @@
 
                     <!-- Chats -->
                     <li class="nav-item mt-xl-9">
-                        <a class="nav-link position-relative p-0 py-xl-3 active" data-toggle="tab" href="#tab-content-dialogs" title="Chats" role="tab">
+                        <a class="nav-link position-relative p-0 py-xl-3 " data-toggle="tab" href="#tab-content-dialogs" title="Chats" role="tab">
                             <i class="icon-lg fe-message-square"></i>
                             <div class="badge badge-dot badge-primary badge-bottom-center"></div>
                         </a>
@@ -46,7 +54,7 @@
 
                     <!-- Demo only: Documentation -->
                     <li class="nav-item mt-xl-9 d-none d-xl-block flex-xl-grow-1">
-                        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#tab-content-demos" title="Demos" role="tab">
+                        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#tab-content-demos" title="Pages" role="tab">
                             <i class="icon-lg fe-layers"></i>
                         </a>
                     </li>
@@ -57,6 +65,7 @@
                             <i class="icon-lg fe-settings"></i>
                         </a>
                     </li>
+
 
                 </ul>
                 <!-- Menu -->
