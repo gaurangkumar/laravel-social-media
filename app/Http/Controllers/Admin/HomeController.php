@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -28,9 +28,11 @@ class HomeController extends Controller
     {
 		$title = 'Admin Home';
 		$user_id = $_SESSION['admin'];
-		$user = User::find($user_id);
-		$count = new \StdClass;
+		$user = \App\Models\User::find($user_id);
+
+		$count = array();
 		$today = date('Y-m-d', strtotime('+1 day'));
+<<<<<<< HEAD
 		$count->users_total = User::all()->count();
 		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
 		    ->get();
@@ -40,6 +42,24 @@ class HomeController extends Controller
 			->get();
 		/*var_dump($count->users_last_week);
 		exit;*/
+=======
+
+		$ns = '\\App\\Models\\';
+		$models = ['User','Admin','Business','Group','Page','Chat','Contact','GroupMember','PageComment','PageFollower','PageLike','PagePost','Product','Call','Status'];
+		foreach($models as $i => $model) {
+			$count[$i] = new \StdClass;
+			$plural_snake = Str::snake(Str::plural($model));
+			$count[$i]->name = $model;
+			$count[$i]->icon = $model;
+			$model = $ns.$model;
+			if ($count[$i]->total = $model::all()->count()) {
+				$count[$i]->last = $model::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
+					->get()
+					->count();
+			}
+		}
+		var_dump($count);exit;
+>>>>>>> d0733412059b22673e5ef01877434e287f91baf9
 
 		return view('admin.index', compact('title', 'user', 'count'));
     }
