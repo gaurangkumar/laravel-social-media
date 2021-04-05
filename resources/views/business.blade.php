@@ -144,7 +144,7 @@
 
                                                 <!-- Message: content -->
                                                 <div class="message-content bg-light">
-                                                    <div>{{ $business->text }}</div>
+                                                    <div></div>
 
                                                     <div class="mt-1">
                                                         <small class="opacity-65">

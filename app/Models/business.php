@@ -17,4 +17,9 @@ class Business extends Model
         'description',
        
     );
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

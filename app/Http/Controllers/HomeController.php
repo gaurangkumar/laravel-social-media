@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Models\PageFollower;
 use App\Models\PagePost;
 use App\Models\User;
+use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -31,10 +32,11 @@ class HomeController extends Controller
         $friends = $this->get_friends($user->id);
 
         $pages = $this->get_pages($user->id);
+        $businesses = $this->get_businesses($user->id);
 
         $sender = null;
 
-        return view('index', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends'));
+        return view('index', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends','businesses'));
     }
 
     public function get_pages($uid)
@@ -46,6 +48,22 @@ class HomeController extends Controller
             ->get();
 
         return $pages;
+    }
+
+    public function get_businesses($uid)
+    {
+
+        $businesses = Business::whereIn('id', function ($query) {
+            $query->select('id')
+                ->from('Users')
+                ->where('user_id', auth()->user()->id);
+        })
+        ->orderBy('name', 'ASC')
+        ->get();
+
+            //echo "<pre>". var_dump($businesses->toArray());exit();
+
+        return $businesses;
     }
 
     public function post_create(Request $request)

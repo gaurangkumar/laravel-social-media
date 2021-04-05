@@ -675,9 +675,9 @@
                                     @endif
                                     <nav class="nav d-block list-discussions-js mb-n6">
 
-                                        @foreach($pages as $page)
+                                        @foreach($businesses as $business)
                                         <a class="text-reset nav-link p-0 mb-6"
-                                           href="{{ route('page.show', $page->pages->uname) }}">
+                                           href="{{ route('business.show', $business->id) }}">
                                             <div class="card card-active-listener">
                                                 <div class="card-body">
                                                     <div class="media">
@@ -686,24 +686,24 @@
                                                             <img class="avatar-img"
                                                                  src="
                                                                 {{
-                                                                   empty($page->pages->profile) ? asset('storage/index.jpg') :
-                                                                   asset(\Storage::url($page->pages->profile))
+                                                                   empty($business->profile) ? asset('storage/index.jpg') :
+                                                                   asset(\Storage::url($business->profile))
                                                                 }}"
-                                                                 alt="{{ $page->pages->name }}">
+                                                                 alt="{{ $business->name }}">
                                                         </div>
                                                         <div class="media-body overflow-hidden">
                                                             <div class="d-flex align-items-center mb-1">
                                                                 <h6 class="text-truncate mb-0 mr-auto">
-                                                                    {{ $page->pages->name }}
+                                                                    {{ $business->name }}
                                                                 </h6>
                                                                 <p class="small text-muted text-nowrap ml-4">
-                                                                    {{ date("H:i a", strtotime($page->pages->created_at)) }}
+                                                                    {{ date("H:i a", strtotime($business->created_at)) }}
                                                                 </p>
                                                             </div>
                                                             <!-- last chat -->
                                                             <div class="text-truncate">
                                                                 <!--you send last msg '['.$chat->id.'] '. - <h6 class='d-inline'>You:</h6>-->
-                                                                {{ $page->pages->description }}
+                                                                {{ $business->description }}
                                                             </div>
                                                             <!-- typing <div class="text-truncate">is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span></div>-->
                                                         </div>
