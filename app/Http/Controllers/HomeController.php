@@ -50,22 +50,6 @@ class HomeController extends Controller
         return $pages;
     }
 
-    public function get_businesses($uid)
-    {
-
-        $businesses = Business::whereIn('id', function ($query) {
-            $query->select('id')
-                ->from('Users')
-                ->where('user_id', auth()->user()->id);
-        })
-        ->orderBy('name', 'ASC')
-        ->get();
-
-            //echo "<pre>". var_dump($businesses->toArray());exit();
-
-        return $businesses;
-    }
-
     public function post_create(Request $request)
     {
         $page_id = Route::current()->parameter('page_id');
@@ -119,9 +103,13 @@ class HomeController extends Controller
             ->whereIn('user_id', array($sender->id, $user->id))
             ->get();
 
+        $business = Business::where('user_id', $sender_id)
+            ->with('products')
+            ->first();
+
         $friends = $this->get_friends($user->id);
 
-        return view('chat', compact('title', 'side_chats', 'pages', 'chats', 'sender', 'user', 'friends'));
+        return view('chat', compact('title', 'side_chats', 'pages', 'chats', 'sender', 'user', 'friends', 'business'));
     }
 
     public function sendchat(Request $request)

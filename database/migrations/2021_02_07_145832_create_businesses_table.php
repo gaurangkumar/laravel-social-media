@@ -18,6 +18,7 @@ class CreateBusinessesTable extends Migration
             $table->string('name');
             $table->string('btype');
             $table->string('address');
+            $table->string('website');
             $table->text('description');
             $table->string('profile');
             $table->foreignId('user_id')->constrained();

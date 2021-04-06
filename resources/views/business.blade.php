@@ -45,9 +45,9 @@
                                     <div class="col-6 col-xl-6">
                                         <div class="media text-center text-xl-left">
                                             <div class="avatar avatar-sm avatar-online d-none d-lg-inline-block mr-5">
-                                                <img src="{{ empty($page->profile) ?
+                                                <img src="{{ empty($business->profile) ?
 																 asset('storage/index.jpg') :
-																 asset(\Storage::url($page->profile))
+																 asset(\Storage::url($business->profile))
 														  }}"
                                                      class="avatar-img" alt="{{ $business->name }}">
                                             </div>

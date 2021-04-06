@@ -85,7 +85,7 @@ class BusinessController extends Controller
 
         $businesses = $home->get_businesses($business->id);
 
-        return view('business', compact('title', 'side_chats', 'pages', 'user', 'friends', 'businesses', ));
+        return view('business', compact('title', 'side_chats', 'pages', 'user', 'friends', 'businesses', 'business' ));
     }
 
     /**

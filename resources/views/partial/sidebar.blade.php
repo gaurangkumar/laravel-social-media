@@ -234,7 +234,7 @@
                     </div>
 
                     <!-- chats-->
-                    <div class="tab-pane fade h-100" id="tab-content-dialogs" role="tabpanel">
+                    <div class="tab-pane fade h-100 show active" id="tab-content-dialogs" role="tabpanel">
                         <div class="d-flex flex-column h-100">
 
                             <div class="hide-scrollbar">
@@ -549,8 +549,8 @@
                     </div>
 
                     <!-- pages -->
-                    <div class="tab-pane fade h-100 show active" id="tab-content-bus" role="tabpanel">
-                        <div class="d-flex flex-column h-100">
+                    <div class="tab-pane fade h-100  " id="tab-content-bus" role="tabpanel">
+                        <?php /*<div class="d-flex flex-column h-100">
 
                             <div class="hide-scrollbar">
                                 <div class="container-fluid py-6">
@@ -717,8 +717,8 @@
 
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div>*/ ?>
+                    </div> 
 
                     <!-- user-profile -->
                     <div class="tab-pane fade h-100" id="tab-content-user" role="tabpanel">

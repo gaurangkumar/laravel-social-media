@@ -361,13 +361,17 @@
                                         <img class="avatar-img" src="{{ asset($sender->profile) }}" alt="{{ $sender->name }}">
                                     </div>
                                     <h5>{{ $sender->name }}</h5>
-                                    <p class="text-muted">Bootstrap is an open source toolkit for developing web with HTML, CSS, and JS.</p>
+                                    {!! is_null($business) ? '' : '<h3>'.ucwords($business->name).'</h3>' !!}
+                                    {!! is_null($business) ? '' : '<small>'.ucwords($business->btype).'</small>' !!}
+                                    <p class="text-muted">{{ is_null($business) ? '' : $business->description }}</p>
                                 </div>
 
                                 <!-- Navs -->
                                 <div class="nav nav-tabs nav-justified bg-light rounded-0" role="tablist">
                                     <a class="nav-item nav-link active" href="#chat-2-user-details" data-toggle="tab" aria-selected="true" role="tab">Details</a>
+                                    @if(!empty($business))
                                     <a class="nav-item nav-link" href="#chat-2-user-files" data-toggle="tab"  role="tab">Files</a>
+                                    @endif
                                 </div>
                                 <!-- Navs -->
 
@@ -378,10 +382,10 @@
                                             <li class="list-group-item py-6">
                                                 <div class="media align-items-center">
                                                     <div class="media-body">
-                                                        <p class="small text-muted mb-0">Country</p>
-                                                        <p>Warsaw, Poland</p>
+                                                        <p class="small text-muted mb-0">Address</p>
+                                                        <p>{{ is_null($business) ? '' : $business->address }}</p>
                                                     </div>
-                                                    <i class="text-muted icon-sm fe-globe"></i>
+                                                    <i class="text-muted icon-sm fas fa-map-marker-alt"></i>
                                                 </div>
                                             </li>
 
@@ -405,15 +409,17 @@
                                                 </div>
                                             </li>
 
+                                            @if( !empty($business) && !empty($business->website) )
                                             <li class="list-group-item py-6">
                                                 <div class="media align-items-center">
                                                     <div class="media-body">
-                                                        <p class="small text-muted mb-0">Time</p>
-                                                        <p>10:03 am</p>
+                                                        <p class="small text-muted mb-0">Website</p>
+                                                        <p><a href='{{$business->website}}' target='blank'>{{$business->website}}</a></p>
                                                     </div>
-                                                    <i class="text-muted icon-sm fe-clock"></i>
+                                                    <i class="text-muted icon-sm fas fa-globe"></i>
                                                 </div>
                                             </li>
+                                            @endif
                                         </ul>
 
                                         <ul class="list-group list-group-flush">
@@ -448,27 +454,37 @@
                                     <!-- Details -->
 
                                     <!-- Files -->
+                                    @if(!empty($business))
                                     <div id="chat-2-user-files" class="tab-pane fade" role="tabpanel">
                                         <ul class="list-group list-group-flush list-group-no-border-first">
+
                                             <!-- File -->
+                                            @if(!empty($business->products))
+                                                @foreach($business->products as $product)
                                             <li class="list-group-item py-6">
                                                 <div class="media">
 
                                                     <div class="icon-shape bg-primary text-white mr-5">
-                                                        <i class="fe-paperclip"></i>
+                                                        @if(empty($product->img))
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                        @else
+                                                        <img src="{{ asset(\Storage::url($product->img)) }}" class="rounded-circle" width="50">
+                                                        @endif
                                                     </div>
 
                                                     <div class="media-body align-self-center overflow-hidden">
                                                         <h6 class="text-truncate mb-0">
-                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">E5419783-047D-4B4C-B30E-F24DD8247731.JPG</a>
+                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">{{ $product->name }}</a>
                                                         </h6>
 
                                                         <ul class="list-inline small mb-0">
                                                             <li class="list-inline-item">
-                                                                <span class="text-muted">79.2 KB</span>
+                                                                <span class="text-muted"><i class="fas fa-rupee-sign"></i> {{$product->price}}</span>
                                                             </li>
                                                             <li class="list-inline-item">
-                                                                <span class="text-muted text-uppercase">txt</span>
+                                                                <span class="text-muted text-uppercase">
+                                                                    {{ strlen($product->description) > 10 ? substr($product->description, 0, 10).'...' : $product->description }}
+                                                                </span>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -494,195 +510,13 @@
 
                                                 </div>
                                             </li>
+                                                @endforeach
+                                            @endif
                                             <!-- File -->
-
-<!-- File -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media">
-
-                                                    <div class="icon-shape bg-primary text-white mr-5">
-                                                        <i class="fe-paperclip"></i>
-                                                    </div>
-
-                                                    <div class="media-body align-self-center overflow-hidden">
-                                                        <h6 class="text-truncate mb-0">
-                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">E5419783-047D-4B4C-B30E-F24DD8247731.JPG</a>
-                                                        </h6>
-
-                                                        <ul class="list-inline small mb-0">
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted">79.2 KB</span>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted text-uppercase">psd</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Download <span class="ml-auto fe-download"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Share <span class="ml-auto fe-share-2"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-trash-2"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- File -->
-
-<!-- File -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media">
-
-                                                    <div class="icon-shape bg-primary text-white mr-5">
-                                                        <i class="fe-paperclip"></i>
-                                                    </div>
-
-                                                    <div class="media-body align-self-center overflow-hidden">
-                                                        <h6 class="text-truncate mb-0">
-                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">E5419783-047D-4B4C-B30E-F24DD8247731.JPG</a>
-                                                        </h6>
-
-                                                        <ul class="list-inline small mb-0">
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted">79.2 KB</span>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted text-uppercase">pdf</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Download <span class="ml-auto fe-download"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Share <span class="ml-auto fe-share-2"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-trash-2"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- File -->
-
-<!-- File -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media">
-
-                                                    <div class="icon-shape bg-primary text-white mr-5">
-                                                        <i class="fe-paperclip"></i>
-                                                    </div>
-
-                                                    <div class="media-body align-self-center overflow-hidden">
-                                                        <h6 class="text-truncate mb-0">
-                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">E5419783-047D-4B4C-B30E-F24DD8247731.JPG</a>
-                                                        </h6>
-
-                                                        <ul class="list-inline small mb-0">
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted">79.2 KB</span>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted text-uppercase">txt</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Download <span class="ml-auto fe-download"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Share <span class="ml-auto fe-share-2"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-trash-2"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- File -->
-
-<!-- File -->
-                                            <li class="list-group-item py-6">
-                                                <div class="media">
-
-                                                    <div class="icon-shape bg-primary text-white mr-5">
-                                                        <i class="fe-paperclip"></i>
-                                                    </div>
-
-                                                    <div class="media-body align-self-center overflow-hidden">
-                                                        <h6 class="text-truncate mb-0">
-                                                            <a href="#" class="text-reset" title="E5419783-047D-4B4C-B30E-F24DD8247731.JPG">E5419783-047D-4B4C-B30E-F24DD8247731.JPG</a>
-                                                        </h6>
-
-                                                        <ul class="list-inline small mb-0">
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted">79.2 KB</span>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <span class="text-muted text-uppercase">pdf</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="align-self-center ml-5">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn btn-sm btn-ico btn-link text-muted w-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fe-more-vertical"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Download <span class="ml-auto fe-download"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Share <span class="ml-auto fe-share-2"></span>
-                                                                </a>
-                                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                    Delete <span class="ml-auto fe-trash-2"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                            <!-- File -->
-
 
                                         </ul>
                                     </div>
+                                    @endif
                                     <!-- Files -->
                                 </div>
 

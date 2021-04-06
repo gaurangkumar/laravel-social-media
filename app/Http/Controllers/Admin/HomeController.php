@@ -32,7 +32,8 @@ class HomeController extends Controller
 
 		$count = array();
 		$today = date('Y-m-d', strtotime('+1 day'));
-<<<<<<< HEAD
+
+        /*
 		$count->users_total = User::all()->count();
 		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
 		    ->get();
@@ -40,9 +41,7 @@ class HomeController extends Controller
 		//var_dump($count->users_last_week);
 		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
 			->get();
-		/*var_dump($count->users_last_week);
-		exit;*/
-=======
+        */
 
 		$ns = '\\App\\Models\\';
 		$models = ['User','Admin','Business','Group','Page','Chat','Contact','GroupMember','PageComment','PageFollower','PageLike','PagePost','Product','Call','Status'];
@@ -58,8 +57,7 @@ class HomeController extends Controller
 					->count();
 			}
 		}
-		var_dump($count);exit;
->>>>>>> d0733412059b22673e5ef01877434e287f91baf9
+		echo '<pre>';print_r($count);exit;
 
 		return view('admin.index', compact('title', 'user', 'count'));
     }
