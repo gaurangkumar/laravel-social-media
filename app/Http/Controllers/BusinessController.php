@@ -14,7 +14,7 @@ class BusinessController extends Controller
      */
     public function index()
     {
-       ini_set('memory_limit', '1024M');
+        ini_set('memory_limit', '1024M');
         $title = 'Agwis Messenger';
         $user = auth()->user();
     }
@@ -60,7 +60,6 @@ class BusinessController extends Controller
         );
         $business = Business::create($data);
 
-//echo '<pre>';var_dump($business->toArray());exit;
         return redirect()->back();
     }
 
@@ -83,7 +82,9 @@ class BusinessController extends Controller
 
         $pages = $home->get_pages($user->id);
 
-              return view('business', compact('title', 'side_chats', 'pages', 'user', 'friends','business'));
+        $businesses = $home->get_businesses($business->id);
+
+        return view('business', compact('title', 'side_chats', 'pages', 'user', 'friends', 'businesses', 'business'));
     }
 
     /**

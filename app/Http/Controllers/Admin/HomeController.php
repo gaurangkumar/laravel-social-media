@@ -26,40 +26,39 @@ class HomeController extends Controller
      */
     public function index()
     {
-		$title = 'Admin Home';
-		$user_id = $_SESSION['admin'];
-		$user = \App\Models\User::find($user_id);
+        $title = 'Admin Home';
+        $user_id = $_SESSION['admin'];
+        $user = \App\Models\User::find($user_id);
 
-		$count = array();
-		$today = date('Y-m-d', strtotime('+1 day'));
+        $count = array();
+        $today = date('Y-m-d', strtotime('+1 day'));
 
         /*
-		$count->users_total = User::all()->count();
-		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
-		    ->get();
-		  
-		//var_dump($count->users_last_week);
-		$count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
-			->get();
+        $count->users_total = User::all()->count();
+        $count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
+            ->get();
+
+        //var_dump($count->users_last_week);
+        $count->users_last_week = User::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
+            ->get();
         */
 
-		$ns = '\\App\\Models\\';
-		$models = ['User','Admin','Business','Group','Page','Chat','Contact','GroupMember','PageComment','PageFollower','PageLike','PagePost','Product','Call','Status'];
-		foreach($models as $i => $model) {
-			$count[$i] = new \StdClass;
-			//$plural_snake = Str::snake(Str::plural($model));
-			$count[$i]->name = $model;
-			$count[$i]->icon = $model;
-			$model = $ns.$model;
-			if ($count[$i]->total = $model::all()->count()) {
-				$count[$i]->last = $model::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
-					->get()
-					->count();
-			}
-		}
-		echo '<pre>';print_r($count);exit;
+        $ns = '\\App\\Models\\';
+        $models = array('User', 'Admin', 'Business', 'Group', 'Page', 'Chat', 'Contact', 'GroupMember', 'PageComment', 'PageFollower', 'PageLike', 'PagePost', 'Product', 'Call', 'Status');
+        foreach ($models as $i => $model) {
+            $count[$i] = new \StdClass();
+            $plural_snake = Str::snake(Str::plural($model));
+            $count[$i]->name = $model;
+            $count[$i]->icon = $model;
+            $model = $ns.$model;
+            if ($count[$i]->total = $model::all()->count()) {
+                $count[$i]->last = $model::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
+                    ->get()
+                    ->count();
+            }
+        }
 
-		return view('admin.index', compact('title', 'user', 'count'));
+        return view('admin.index', compact('title', 'user', 'count'));
     }
 
     /**
