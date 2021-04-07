@@ -44,22 +44,46 @@ class HomeController extends Controller
         */
 
         $ns = '\\App\\Models\\';
-        $models = array('User', 'Admin', 'Business', 'Group', 'Page', 'Chat', 'Contact', 'GroupMember', 'PageComment', 'PageFollower', 'PageLike', 'PagePost', 'Product', 'Call', 'Status');
-        foreach ($models as $i => $model) {
+        $models = array(
+			'User' => 'fa fa-user',
+			'Admin' => 'fa fa-user',
+			'Business' => 'fa fa-user',
+			'Group' => 'fa fa-user',
+			'Page' => 'fa fa-user',
+			'Chat' => 'fa fa-user',
+			'Contact' => 'fa fa-user',
+			'GroupMember' => 'fa fa-user',
+			'PageComment' => 'fa fa-user',
+			'PageFollower' => 'fa fa-user',
+			'PageLike' => 'fa fa-user',
+			'PagePost' => 'fa fa-user',
+			'Product' => 'fa fa-user',
+			'Call' => 'fa fa-user',
+			'Status' => 'fa fa-user',
+		);
+
+		$i = 0;
+		foreach ($models as $model => $icon) {
             $count[$i] = new \StdClass();
-            $plural_snake = Str::snake(Str::plural($model));
-            $count[$i]->name = $model;
-            $count[$i]->icon = $model;
+            $plural_caps = ucwords(str_replace('_', ' ', Str::snake(Str::plural($model))));
+            $count[$i]->name = $plural_caps;
+            $count[$i]->icon = $icon;
             $model = $ns.$model;
             if ($count[$i]->total = $model::all()->count()) {
                 $count[$i]->last = $model::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
                     ->get()
                     ->count();
             }
+			else {
+				$count[$i]->last = 0;
+			}
+			$i++;
         }
+/*
         echo '<pre>';
         print_r($count);
         exit;
+*/
 
         return view('admin.index', compact('title', 'user', 'count'));
     }

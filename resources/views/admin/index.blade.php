@@ -96,23 +96,28 @@
 			   <!--card stats start-->
 			   <div id="card-stats" class="pt-0">
 				  <div class="row">
+					 @foreach($count as $c)
 					 <div class="col s12 m6 l6 xl3">
 						<div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text animate fadeLeft">
 						   <div class="padding-4">
 							  <div class="row">
 								 <div class="col s7 m7">
 									<i class="material-icons background-round mt-5 fa fa-user"></i>
-									<p>Users</p>
+									<p style="font-size: 12px">{{ $c->name }}</p>
 								 </div>
 								 <div class="col s5 m5 right-align">
-									<h5 class="mb-0 white-text"><?php /*{{ $count->users_last_week }}*/?></h5>
+									<h5 class="mb-0 white-text">
+										{{ '' }}
+									 </h5>
 									<p class="no-margin">New</p>
-									<p>{{ $count->users_total }}</p>
+									<p>{{ '' }}</p>
 								 </div>
 							  </div>
 						   </div>
 						</div>
 					 </div>
+					 @endforeach
+<?php /*
 					 <div class="col s12 m6 l6 xl3">
 						<div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text animate fadeLeft">
 						   <div class="padding-4">
@@ -164,6 +169,7 @@
 						   </div>
 						</div>
 					 </div>
+					 */ ?>
 				  </div>
 			   </div>
 			</div><!-- START RIGHT SIDEBAR NAV -->
