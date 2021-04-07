@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\PageController   as AdminPageController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\HomeController;
@@ -55,6 +56,8 @@ Route::post('/social', array(HomeController::class, 'social'))->name('social');
 
 Route::resource('group', GroupController::class);
 Route::resource('business', BusinessController::class);
+
+Route::resource('product', ProductController::class);
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', array(AdminHomeController::class, 'index'))->name('home');

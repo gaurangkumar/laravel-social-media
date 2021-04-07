@@ -827,6 +827,73 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                    </div>
+                                    <div class="modal fade" id="createPage2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('product.store') }}"
+                                                          method="post"
+                                                          enctype="multipart/form-data">
+                                                        @csrf
+
+                                                        <div class="form-group">
+                                                            <label class="small" for="img">Photo</label>
+                                                            <div class="position-relative text-center bg-secondary rounded p-6">
+                                                                <div class="avatar bg-primary text-white mb-5">
+                                                                    <i class="icon-md fe-image"></i>
+                                                                </div>
+
+                                                                <p class="small text-muted mb-0">You can upload jpg, gif or png files. <br> Max file size 3mb.</p>
+                                                                <input id="busProfile" class="d-none" type="file" name="img">
+                                                                <label class="stretched-label mb-0" for="busProfile"></label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-title">Name</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-title" type="text" placeholder="Page Name" name="name">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-topic">Price
+                                                        </label>
+                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder="Business Type" name="btype">
+                                                        </div>
+
+                                                         <div class="form-group">
+                                                            <label class="small" for="new-chat-topic">Discount</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder="Adress" name="address">
+                                                        </div>
+                                                       
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-description">Description</label>
+                                                            <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Page Description" name="description"></textarea>
+                                                        </div>
+
+                                                        <div class="form-group mb-0">
+                                                            <div class="row">
+                                                                <div class=" col-6">
+                                                                    <button type="button" class="btn btn-lg btn-secondary btn-block" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                                <div class=" col-6">
+                                                                    <button class="btn btn-lg btn-primary btn-block" type="submit">AddProduct</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <div class="card mb-6">
@@ -839,7 +906,25 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <h5 class="mb-0">
-                                                        <a href="#" class="text-basic-inverse stretched-link text-primary" data-toggle="modal" data-target="#createPage1">Create New Page</a>
+                                                        <a href="#" class="text-basic-inverse stretched-link text-primary" data-toggle="modal" data-target="#createPage1">Create New Business</a>
+                                                    </h5>
+                                                    <!--p>Quick setup and build tools.</p-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card mb-6">
+                                        <div class="card-body">
+
+                                            <div class="media align-items-center text-primary">
+                                                <div class="mr-5">
+                                                    <i class="fas fa-2x fa-plus-circle"></i>
+                                                    <!--<img src="assets/images/brand.svg" class="fill-primary" data-inject-svg="" alt="" style="height: 46px; width: 46px;">-->
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="mb-0">
+                                                        <a href="#" class="text-basic-inverse stretched-link text-primary" data-toggle="modal" data-target="#createPage2">Add Product</a>
                                                     </h5>
                                                     <!--p>Quick setup and build tools.</p-->
                                                 </div>

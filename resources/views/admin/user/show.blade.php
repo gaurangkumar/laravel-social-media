@@ -5,7 +5,10 @@
 
 @section('content')
 
-@include('admin.layouts.topbar')      <!-- END: Header-->
+@include('admin.layouts.topbar') 
+ <!-- END: Head-->
+
+    <!-- END: Header-->
     <ul class="display-none" id="default-search-main">
       <li class="auto-suggestion-title"><a class="collection-item" href="#">
           <h6 class="search-title">FILES</h6></a></li>
@@ -46,7 +49,7 @@
       <li class="auto-suggestion"><a class="collection-item" href="#">
           <div class="display-flex">
             <div class="display-flex align-item-center flex-grow-1">
-              <div class="avatar"><img class="circle" src="/agwis.com/public/theme/app-assets/images/avatar/avatar-7.png" width="30" alt="sample image"></div>
+              <div class="avatar"><img class="circle" src="../../../app-assets/images/avatar/avatar-7.png" width="30" alt="sample image"></div>
               <div class="member-info display-flex flex-column"><span class="black-text">John Doe</span><small class="grey-text">UI designer</small></div>
             </div>
           </div></a></li>
@@ -128,19 +131,20 @@
         <div class="display-flex media">
           <a href="#" class="avatar">
             <img src="{{ empty($user->profile) ?
-                                 asset('storage/index.jpg') :
-                                 asset(\Storage::url($user->profile))}}" alt="users view avatar" class="z-depth-4 circle"
+                                                 asset('storage/index.jpg') :
+                                                 asset(\Storage::url($user->profile))
+                                             }}" alt="users view avatar" class="z-depth-4 circle"
               height="64" width="64">
           </a>
           <div class="media-body">
             <h6 class="media-heading">
-              <span class="users-view-name"> </span>
-              <<!-- span class="grey-text">@</span>
+              <span class="users-view-name">{{ $user->name }}</span>
+              <span class="grey-text">@</span>
               <span class="users-view-username grey-text">candy007</span>
-            </h6> -->
+            </h6>
             <span>ID:</span>
-            <span class="users-view-id"></span>
-          </div> 
+            <span class="users-view-id">{{ $user->id }}</span>
+          </div>
         </div>
       </div>
       <div class="col s12 m5 quick-action-btns display-flex justify-content-end align-items-center pt-2">
@@ -160,11 +164,11 @@
             <tbody>
               <tr>
                 <td>Registered:</td>
-                <td></td>
+                <td>01/01/2019</td>
               </tr>
               <tr>
                 <td>Latest Activity:</td>
-                <td class="users-view-latest-activity"></td>
+                <td class="users-view-latest-activity">30/04/2019</td>
               </tr>
               <tr>
                 <td>Verified:</td>
@@ -1109,7 +1113,7 @@
       </div>
     </footer>
 
-     @endsection
+      @endsection
 
 @section('scripts')
 @endsection

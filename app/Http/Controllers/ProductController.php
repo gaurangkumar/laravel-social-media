@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\product;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        ni_set('memory_limit', '1024M');
+        $title = 'Agwis Messenger';
+        $user = auth()->user();
     }
 
     /**
@@ -36,7 +38,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = auth()->user();
+      var_dump($request); exit;
+        $request->validate(array(
+            'name' => 'required|string',
+            'price' => 'required|float',
+            'discount' => 'required|float',
+            'description' => 'required|string',
+            'img' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+        ));
+
+        $image = $request->profile->store('product', array('disk' => 'public'));
+
+        $data = array(
+            'name' => $request->name,
+            'price' => $request->btype,
+            'discount' => $request->address,
+            'description' => $request->description,
+            'img' => $image,
+            'business_id' => $business->id,
+        );
+        $product = product::create($data);
+
+        return redirect()->back();
     }
 
     /**
