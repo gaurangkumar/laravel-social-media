@@ -33,7 +33,6 @@ class HomeController extends Controller
 
         $pages = $this->get_pages($user->id);
 
-
         $sender = null;
 
         return view('index', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends'));

@@ -64,10 +64,10 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-      /* echo "<pre>"; var_dump($user->toArray());
-        exit;
+        /* echo "<pre>"; var_dump($user->toArray());
+          exit;
 */
-        return view('admin.user.show', compact( 'user'));
+        return view('admin.user.show', compact('user'));
     }
 
     /**
