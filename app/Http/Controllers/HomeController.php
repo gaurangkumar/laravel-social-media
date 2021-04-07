@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use App\Models\Chat;
 use App\Models\Group;
 use App\Models\Page;
 use App\Models\PageFollower;
 use App\Models\PagePost;
 use App\Models\User;
-use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +36,7 @@ class HomeController extends Controller
 
         $sender = null;
 
-        return view('index', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends','businesses'));
+        return view('index', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends', 'businesses'));
     }
 
     public function get_pages($uid)

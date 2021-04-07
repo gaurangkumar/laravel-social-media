@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Business extends Model
+class business extends Model
 {
     use HasFactory;
     protected $fillable = array(
@@ -15,7 +15,7 @@ class Business extends Model
         'address',
         'user_id',
         'description',
-       
+
     );
 
     public function users()

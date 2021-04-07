@@ -6,11 +6,11 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\PageController   as AdminPageController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\BusinessController;
 use Illuminate\Support\Facades\Route;
 
 /*

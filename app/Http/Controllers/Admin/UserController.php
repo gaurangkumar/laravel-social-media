@@ -68,7 +68,6 @@ class UserController extends Controller
         exit;*/
 
         return view('admin.user.show', $user);
-
     }
 
     /**
