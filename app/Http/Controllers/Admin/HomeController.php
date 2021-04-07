@@ -47,7 +47,7 @@ class HomeController extends Controller
 		$models = ['User','Admin','Business','Group','Page','Chat','Contact','GroupMember','PageComment','PageFollower','PageLike','PagePost','Product','Call','Status'];
 		foreach($models as $i => $model) {
 			$count[$i] = new \StdClass;
-			$plural_snake = Str::snake(Str::plural($model));
+			//$plural_snake = Str::snake(Str::plural($model));
 			$count[$i]->name = $model;
 			$count[$i]->icon = $model;
 			$model = $ns.$model;

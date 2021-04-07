@@ -175,11 +175,12 @@
                 <th></th>
                 <th>id</th>
                 <th>name</th>
-                <th>email</th>
-                <th>created</th>
-                <th>verified</th>
+                <th>totalMembers</th>
+                <th>created_at</th>
+                <th>createdaBy</th>
+                <th>description</th>
                 <!--<th>role</th>-->
-                <th>status</th>
+                
                 <th>edit</th>
                 <th>view</th>
                 <th>block</th>
@@ -191,15 +192,11 @@
                 <td></td>
                 <td>{{ $group->id}}</td>
                 <td>{{ $group->name}}</td>
-                <td><a href="{{route('admin.group.show',$group->id)}}">{{ $group->email}}</a>
-                </td>
+                <td>{{ $group->members->count() }}</td>
                 <td>{{ $group->created_at}}</td>
-                <td>{{$group->email_verified_at== null ? 'No' :'Yes'}}</td>
+                <td>{{ $group->users->name }}</td>
+                <td>{{substr($group->description,0,10).'...'}}</td>
                 <!--<td>Staff</td>-->
-                <td><span class="chip green lighten-5">
-                    <span class="green-text">{{$group->blocked == 1 ? 'Blocked' : 'Active'}}</span>
-                  </span>
-                </td>
                 <td><a href="page-users-edit.html"><i class="material-icons">edit</i></a></td>
                 <td><a href="page-users-view.html"><i class="material-icons">remove_red_eye</i></a></td>
                 <td><a href="page-users-view.html"><i class="material-icons">close</i></a></td>

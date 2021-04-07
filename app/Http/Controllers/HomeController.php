@@ -32,11 +32,11 @@ class HomeController extends Controller
         $friends = $this->get_friends($user->id);
 
         $pages = $this->get_pages($user->id);
-        $businesses = $this->get_businesses($user->id);
+
 
         $sender = null;
 
-        return view('index', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends','businesses'));
+        return view('index', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends'));
     }
 
     public function get_pages($uid)

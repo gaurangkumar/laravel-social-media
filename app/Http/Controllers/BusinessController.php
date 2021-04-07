@@ -61,7 +61,7 @@ class BusinessController extends Controller
         $business = Business::create($data);
 
 //echo '<pre>';var_dump($business->toArray());exit;
-        return redirect()->route('business.show', $business->id);
+        return redirect()->back();
     }
 
     /**
@@ -83,9 +83,7 @@ class BusinessController extends Controller
 
         $pages = $home->get_pages($user->id);
 
-        $businesses = $home->get_businesses($business->id);
-
-        return view('business', compact('title', 'side_chats', 'pages', 'user', 'friends', 'businesses', 'business' ));
+              return view('business', compact('title', 'side_chats', 'pages', 'user', 'friends','business'));
     }
 
     /**
