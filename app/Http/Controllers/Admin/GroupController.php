@@ -26,10 +26,10 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return view('admin.group.index', array(
-            'groups' => Group::all(),
-            'title' => 'Group',
-        ));
+        $groups = Group::all();
+        $title = 'Group';
+        //echo '<pre>';print_r($groups[0]->users->toArray());exit;
+        return view('admin.group.index', compact('groups', 'title'));
     }
 
     /**

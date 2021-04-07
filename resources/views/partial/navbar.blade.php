@@ -18,11 +18,7 @@
 
 
                     <!-- Create group -->
-                     <li class="nav-item">
-                        <a class="nav-link position-relative p-0 py-xl-3 " data-toggle="tab" href="#tab-content-bus" title="Business" role="tab">
-                       <i  class=" icon-lg far fa-building"></i>
-                        </a>
-                    </li>
+
 
                     <li class="nav-item">
                         <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#tab-content-create-chat" title="Create chat" role="tab">

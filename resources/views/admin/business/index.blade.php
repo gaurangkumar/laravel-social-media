@@ -175,11 +175,14 @@
                 <th></th>
                 <th>id</th>
                 <th>name</th>
-                <th>email</th>
+                <th>btype</th>
                 <th>created</th>
-                <th>verified</th>
+                <th>createdBy</th>
+                <th>address</th>
+                <th>product</th>
                 <!--<th>role</th>-->
-                <th>status</th>
+                <th>website</th>
+                <th>description</th>
                 <th>edit</th>
                 <th>view</th>
                 <th>block</th>
@@ -191,15 +194,14 @@
                 <td></td>
                 <td>{{ $business->id}}</td>
                 <td>{{ $business->name}}</td>
-                <td><a href="{{route('admin.business.show',$business->id)}}">{{ $business->email}}</a>
-                </td>
+                <td>{{ $business->btype}}</td>
                 <td>{{ $business->created_at}}</td>
-                <td>{{$business->email_verified_at== null ? 'No' :'Yes'}}</td>
+                <td>{{ $business->users->name}}</td>
+                <td>{{$business->address}}</td>
+                <td>{{ $business->products->count()}}</td>
                 <!--<td>Staff</td>-->
-                <td><span class="chip green lighten-5">
-                    <span class="green-text">{{$business->blocked == 1 ? 'Blocked' : 'Active'}}</span>
-                  </span>
-                </td>
+                <td>{{$business->website}}</td>
+                <td>{{substr($business->description,0,10).'...'}}</td>
                 <td><a href="page-users-edit.html"><i class="material-icons">edit</i></a></td>
                 <td><a href="page-users-view.html"><i class="material-icons">remove_red_eye</i></a></td>
                 <td><a href="page-users-view.html"><i class="material-icons">close</i></a></td>

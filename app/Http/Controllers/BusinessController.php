@@ -60,8 +60,7 @@ class BusinessController extends Controller
         );
         $business = Business::create($data);
 
-        //echo '<pre>';var_dump($business->toArray());exit;
-        return redirect()->route('business.show', $business->id);
+        return redirect()->back();
     }
 
     /**

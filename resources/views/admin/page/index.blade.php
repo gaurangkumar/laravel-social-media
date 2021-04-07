@@ -175,14 +175,17 @@
                 <th></th>
                 <th>id</th>
                 <th>name</th>
-                <th>email</th>
+                <th>pagefollower</th>
                 <th>created</th>
-                <th>verified</th>
+                <th>post</th>
                 <!--<th>role</th>-->
-                <th>status</th>
+                <th>description</th>
+                <th>uname</th>
+                <th>createdBy</th>
                 <th>edit</th>
                 <th>view</th>
                 <th>block</th>
+
               </tr>
             </thead>
             <tbody>
@@ -191,15 +194,13 @@
                 <td></td>
                 <td>{{ $page->id}}</td>
                 <td>{{ $page->name}}</td>
-                <td><a href="{{route('admin.page.show',$page->id)}}">{{ $page->email}}</a>
-                </td>
+                <td>{{ $page->followers->count()}}</td>
                 <td>{{ $page->created_at}}</td>
-                <td>{{$page->email_verified_at== null ? 'No' :'Yes'}}</td>
+                <td>{{ $page->posts->count()}}</td>
                 <!--<td>Staff</td>-->
-                <td><span class="chip green lighten-5">
-                    <span class="green-text">{{$page->blocked == 1 ? 'Blocked' : 'Active'}}</span>
-                  </span>
-                </td>
+                <td>{{substr($page->description,0,10). "..."}}</td>
+                <td>{{$page->uname}}</td>
+                <td>{{$page->users->name}}</td>
                 <td><a href="page-users-edit.html"><i class="material-icons">edit</i></a></td>
                 <td><a href="page-users-view.html"><i class="material-icons">remove_red_eye</i></a></td>
                 <td><a href="page-users-view.html"><i class="material-icons">close</i></a></td>
