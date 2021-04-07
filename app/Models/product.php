@@ -17,5 +17,4 @@ class product extends Model
         'business_id',
 
     );
-
 }

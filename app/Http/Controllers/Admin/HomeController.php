@@ -45,25 +45,25 @@ class HomeController extends Controller
 
         $ns = '\\App\\Models\\';
         $models = array(
-			'User' => 'fa fa-user',
-			'Admin' => 'fa fa-user',
-			'Business' => 'fa fa-user',
-			'Group' => 'fa fa-user',
-			'Page' => 'fa fa-user',
-			'Chat' => 'fa fa-user',
-			'Contact' => 'fa fa-user',
-			'GroupMember' => 'fa fa-user',
-			'PageComment' => 'fa fa-user',
-			'PageFollower' => 'fa fa-user',
-			'PageLike' => 'fa fa-user',
-			'PagePost' => 'fa fa-user',
-			'Product' => 'fa fa-user',
-			'Call' => 'fa fa-user',
-			'Status' => 'fa fa-user',
-		);
+            'User' => 'fa fa-user',
+            'Admin' => 'fa fa-user',
+            'Business' => 'fa fa-user',
+            'Group' => 'fa fa-user',
+            'Page' => 'fa fa-user',
+            'Chat' => 'fa fa-user',
+            'Contact' => 'fa fa-user',
+            'GroupMember' => 'fa fa-user',
+            'PageComment' => 'fa fa-user',
+            'PageFollower' => 'fa fa-user',
+            'PageLike' => 'fa fa-user',
+            'PagePost' => 'fa fa-user',
+            'Product' => 'fa fa-user',
+            'Call' => 'fa fa-user',
+            'Status' => 'fa fa-user',
+        );
 
-		$i = 0;
-		foreach ($models as $model => $icon) {
+        $i = 0;
+        foreach ($models as $model => $icon) {
             $count[$i] = new \StdClass();
             $plural_caps = ucwords(str_replace('_', ' ', Str::snake(Str::plural($model))));
             $count[$i]->name = $plural_caps;
@@ -73,17 +73,16 @@ class HomeController extends Controller
                 $count[$i]->last = $model::whereRaw("created_at BETWEEN DATE_SUB('$today', INTERVAL 1 MONTH) AND '$today'")
                     ->get()
                     ->count();
+            } else {
+                $count[$i]->last = 0;
             }
-			else {
-				$count[$i]->last = 0;
-			}
-			$i++;
+            $i++;
         }
-/*
-        echo '<pre>';
-        print_r($count);
-        exit;
-*/
+        /*
+                echo '<pre>';
+                print_r($count);
+                exit;
+        */
 
         return view('admin.index', compact('title', 'user', 'count'));
     }

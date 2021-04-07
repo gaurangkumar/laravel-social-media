@@ -17,17 +17,19 @@ class Page extends Model
         'description',
         'banner',
     );
-     public function followers()
+
+    public function followers()
     {
         return $this->hasMany(PageFollower::class);
     }
+
     public function posts()
     {
         return $this->hasMany(PagePost::class);
     }
-     public function users()
+
+    public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
 }

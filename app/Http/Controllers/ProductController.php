@@ -39,7 +39,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-      var_dump($request); exit;
+        var_dump($request);
+        exit;
         $request->validate(array(
             'name' => 'required|string',
             'price' => 'required|float',
