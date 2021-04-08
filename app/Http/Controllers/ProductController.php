@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Business;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -39,17 +40,18 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        var_dump($request);
-        exit;
-        $request->validate(array(
+        /* echo "<pre>"; var_dump($request->toArray());
+        exit;*/
+
+        $validated = $request->validate(array(
             'name' => 'required|string',
-            'price' => 'required|float',
-            'discount' => 'required|float',
+            'price' => 'required|numeric',
+            'discount' => 'required|numeric',
             'description' => 'required|string',
             'img' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ));
 
-        $image = $request->profile->store('product', array('disk' => 'public'));
+         $image = $request->img->store('product', array('disk' => 'public'));
 
         $data = array(
             'name' => $request->name,
@@ -59,8 +61,9 @@ class ProductController extends Controller
             'img' => $image,
             'business_id' => $business->id,
         );
-        $product = product::create($data);
-
+        
+        $product = Product::create($data);
+    
         return redirect()->back();
     }
 

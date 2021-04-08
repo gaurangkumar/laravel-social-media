@@ -39,7 +39,7 @@ class BusinessController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-
+        
         $request->validate(array(
             'name' => 'required|string',
             'btype' => 'required|string',
