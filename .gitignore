@@ -19,3 +19,4 @@ public/storage/profile/*
 public/storage/group/*
 .env
 .env.pro
+composer.lock
