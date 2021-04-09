@@ -9,14 +9,14 @@ class Admin extends User
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = array('id');
 
-	protected $hidden = [
-     'password', 'remember_token',
-    ];
+    protected $hidden = array(
+        'password', 'remember_token',
+    );
 
-	public function getAuthPassword()
+    public function getAuthPassword()
     {
-		return $this->password;
+        return $this->password;
     }
 }

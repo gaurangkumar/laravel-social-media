@@ -12,49 +12,51 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     /**
      * Validate and update the given user's profile information.
      *
-     * @param  mixed  $user
-     * @param  array  $input
+     * @param mixed $user
+     * @param array $input
+     *
      * @return void
      */
     public function update($user, array $input)
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+        Validator::make($input, array(
+            'name' => array('required', 'string', 'max:255'),
 
-            'email' => [
+            'email' => array(
                 'required',
                 'string',
                 'email',
                 'max:255',
                 Rule::unique('users')->ignore($user->id),
-            ],
-        ])->validateWithBag('updateProfileInformation');
+            ),
+        ))->validateWithBag('updateProfileInformation');
 
         if ($input['email'] !== $user->email &&
             $user instanceof MustVerifyEmail) {
             $this->updateVerifiedUser($user, $input);
         } else {
-            $user->forceFill([
+            $user->forceFill(array(
                 'name' => $input['name'],
                 'email' => $input['email'],
-            ])->save();
+            ))->save();
         }
     }
 
     /**
      * Update the given verified user's profile information.
      *
-     * @param  mixed  $user
-     * @param  array  $input
+     * @param mixed $user
+     * @param array $input
+     *
      * @return void
      */
     protected function updateVerifiedUser($user, array $input)
     {
-        $user->forceFill([
+        $user->forceFill(array(
             'name' => $input['name'],
             'email' => $input['email'],
             'email_verified_at' => null,
-        ])->save();
+        ))->save();
 
         $user->sendEmailVerificationNotification();
     }

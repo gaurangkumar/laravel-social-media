@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\Business;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -51,7 +51,7 @@ class ProductController extends Controller
             'business_id' => 'required',
         ));
 
-         $image = $request->img->store('product', array('disk' => 'public'));
+        $image = $request->img->store('product', array('disk' => 'public'));
 
         $data = array(
             'name' => $request->name,
@@ -60,12 +60,12 @@ class ProductController extends Controller
             'description' => $request->description,
             'img' => $image,
             'business_id' => $request->business_id,
-            
+
         );
-//echo "<pre>"; print_r($data);exit;
-        
+        //echo "<pre>"; print_r($data);exit;
+
         $product = Product::create($data);
-    
+
         return redirect()->back();
     }
 

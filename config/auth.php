@@ -47,7 +47,7 @@ return array(
             'hash' => false,
         ),
         'admin' => array(
-			'redirectTo' => 'admin.home',
+            'redirectTo' => 'admin.home',
             'driver' => 'session',
             'provider' => 'admins',
         ),
