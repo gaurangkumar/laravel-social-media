@@ -9,7 +9,7 @@ class Admin extends User
 {
     use HasFactory;
 
-    protected $guarded = array('id');
+    protected $guarded = ['id'];
 
     protected $hidden = array(
         'password', 'remember_token',
