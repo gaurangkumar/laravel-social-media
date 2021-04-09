@@ -11,8 +11,8 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
-        /*
+		$this->middleware('auth:admin');
+		/*
                 session_start();
                 if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
                     header('Location: '.route('admin.login'));

@@ -48,9 +48,9 @@ return array(
         ),
 
 		'admin' => array(
-            'redirectTo' => 'admin.home',
+            'redirectTo' => 'admin.login',
             'driver' => 'session',
-            'provider' => 'admin',
+            'provider' => 'admins',
         ),
 
     ),
