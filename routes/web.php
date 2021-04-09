@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\BusinessController as AdminBusinessController;
 use App\Http\Controllers\Admin\GroupController as AdminGroupController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-use App\Http\Controllers\Admin\LoginController as AdminLoginController;
+//use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\PageController   as AdminPageController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BusinessController;
@@ -72,14 +73,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     //Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
     //Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
+
+	Route::get('login', '\Auth\AdminLoginController@showLoginForm')->name('login');
+	Route::post('login', '\Auth\AdminLoginController@login')->name('login.store');
+	Route::post('logout', '\Auth\AdminLoginController@logout')->name('logout');
 });
 
-Route::name('admin.')
-    ->group(function () {
-        Route::get('login', 'AdminController@showLoginForm')->name('login');
-        Route::post('login', 'AdminController@login')->name('login.store');
-        Route::post('logout', 'AdminController@logout')->name('logout');
-    });
 
 Route::get('/{user_id}', array(HomeController::class, 'chat'))
     ->name('chat')
