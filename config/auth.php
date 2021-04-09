@@ -46,6 +46,12 @@ return array(
             'provider' => 'users',
             'hash' => false,
         ),
+        'admin' => array(
+            'redirectTo' => 'admin.home',
+            'driver' => 'session',
+            'provider' => 'admins',
+        ),
+
     ),
 
     /*
@@ -69,6 +75,11 @@ return array(
         'users' => array(
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ),
+
+        'admins' => array(
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ),
 
         // 'users' => [
@@ -95,6 +106,12 @@ return array(
     'passwords' => array(
         'users' => array(
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ),
+        'admins' => array(
+            'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

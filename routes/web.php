@@ -69,9 +69,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/page/{page_id}', array(AdminPageController::class, 'show'))->name('page.show');
     Route::get('/business', array(AdminBusinessController::class, 'index'))->name('business');
     Route::get('/business/{business_id}', array(AdminBusinessController::class, 'show'))->name('business.show');
-    Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
-    Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
+
+    //Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
+    //Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
 });
+
+Route::name('admin.')
+    ->group(function () {
+        Route::get('login', 'AdminController@showLoginForm')->name('login');
+        Route::post('login', 'AdminController@login')->name('login.store');
+        Route::post('logout', 'AdminController@logout')->name('logout');
+    });
 
 Route::get('/{user_id}', array(HomeController::class, 'chat'))
     ->name('chat')
