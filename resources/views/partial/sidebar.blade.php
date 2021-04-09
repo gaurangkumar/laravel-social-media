@@ -877,7 +877,7 @@
 
                                                         <div class="form-group">
                                                             <label class="small" for="new-chat-title">Name</label>
-                                                            <input class="form-control form-control-lg" id="new-chat-title" type="text" placeholder="Business Name" name="name" value="">
+                                                            <input class="form-control form-control-lg" id="new-chat-title" type="text" placeholder="Business Name" name="name" value="{{ $user->businesses[0]->name }}">
                                                         </div>
 
                                                         <div class="form-group">
@@ -888,7 +888,8 @@
                                                                 @endphp
                                                                 
                                                                 @foreach($btypes as $btype)
-                                                                <option value="{{ $btype }}">
+                                                                <option value="{{ $btype }}"
+                                                                {{ $user->businesses[0]->btype == $btype ? 'selected' : '' }}>
                                                                     {{ $btype }}
                                                                 </option>
                                                                 @endforeach
@@ -899,12 +900,12 @@
 
                                                          <div class="form-group">
                                                             <label class="small" for="new-chat-topic">Address</label>
-                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder=" Business Address" name="address">
+                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder=" Business Address" name="address" value="{{$user->businesses[0]->address}}">
                                                         </div>
                                                        
                                                         <div class="form-group">
                                                             <label class="small" for="new-chat-description">Description</label>
-                                                            <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Business Description" name="description"></textarea>
+                                                            <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Business Description" name="description" value="{{$user->businesses[0]->description}}"></textarea>
                                                         </div>
 
                                                         <div class="form-group mb-0">
