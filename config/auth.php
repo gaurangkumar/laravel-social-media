@@ -46,10 +46,11 @@ return array(
             'provider' => 'users',
             'hash' => false,
         ),
-        'admin' => array(
+
+		'admin' => array(
             'redirectTo' => 'admin.home',
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'admin',
         ),
 
     ),
