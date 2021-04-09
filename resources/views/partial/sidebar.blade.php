@@ -578,10 +578,9 @@
                                             <div class="text-center py-6">
                                                 <!-- Photo -->
                                                 <div class="avatar avatar-xl mb-5">
-                                                    <img class="avatar-img" src="{{ empty($user->profile) ?
-																						 asset('storage/index.jpg') :
-																						 asset(\Storage::url($user->profile))
-																				 }}" alt="">
+                                                    <img class="avatar-img" src="{{ empty($user->profile) ? asset('storage/index.jpg') :
+														asset(\Storage::url($user->profile))
+													}}" alt="">
                                                 </div>
 
                                                 <h5>{{ $user->name }}</h5>
@@ -591,84 +590,59 @@
                                     </div>
                                     <!-- Card -->
   
-                                    <div class="modal fade" id="createBusiness" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Create New Business</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                    
+                                    @if( $user->businesses->count() )
+                                    <div class="card mb-6">
+                                        <div class="card-body">
+                                            <div class="media align-items-center text-primary">
+                                                <div class="mr-5">
+                                                        <!-- <i class="fas fa-shopping-cart"></i> -->
+                                                    <img src="{{ asset(\Storage::url($user->businesses[0]->profile)) }}" class="fill-primary rounded-circle" data-inject-svg="" alt="" style="height: 46px; width: 46px;">
                                                 </div>
-                                                <div class="modal-body">
-                                                    <form action="{{ route('business.store') }}"
-                                                          method="post"
-                                                          enctype="multipart/form-data">
-                                                        @csrf
-
-                                                        <div class="form-group">
-                                                            <label class="small" for="profile">Photo</label>
-                                                            <div class="position-relative text-center bg-secondary rounded p-6">
-                                                                <div class="avatar bg-primary text-white mb-5">
-                                                                    <i class="icon-md fe-image"></i>
-                                                                </div>
-
-                                                                <p class="small text-muted mb-0">You can upload jpg, gif or png files. <br> Max file size 3mb.</p>
-                                                                <input id="busProfile" class="d-none" type="file" name="profile">
-                                                                <label class="stretched-label mb-0" for="busProfile"></label>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label class="small" for="new-chat-title">Name</label>
-                                                            <input class="form-control form-control-lg" id="new-chat-title" type="text" placeholder="Business Name" name="name">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label class="small" for="new-chat-topic">Business Type</label>
-                                                            <select class="form-control form-control-lg" id="new-chat-topic" placeholder="Business Type" name="btype">
-                                                                @php
-                                                                    $btypes = ['Apparel & clothes','Arts &entertainment','Beauty & Cosmetic','Eduction','Eventaplanner','Finance','Grocery Store','Hotel','Medical $ Health','Nonprofit  Oraganization','Restaurant','Travel &Transportation'];
-                                                                @endphp
-                                                                
-                                                                @foreach($btypes as $btype)
-                                                                <option value="{{ $btype }}">
-                                                                    {{ $btype }}
-                                                                </option>
-                                                                @endforeach
-                                                            
-                                                            </select>
-
-                                                        </div>
-
-                                                         <div class="form-group">
-                                                            <label class="small" for="new-chat-topic">Address</label>
-                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder=" Business Address" name="address">
-                                                        </div>
-                                                       
-                                                        <div class="form-group">
-                                                            <label class="small" for="new-chat-description">Description</label>
-                                                            <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Business Description" name="description"></textarea>
-                                                        </div>
-
-                                                        <div class="form-group mb-0">
-                                                            <div class="row">
-                                                                <div class=" col-6">
-                                                                    <button type="button" class="btn btn-lg btn-secondary btn-block" data-dismiss="modal">Close</button>
-                                                                </div>
-                                                                <div class=" col-6">
-                                                                    <button class="btn btn-lg btn-primary btn-block" type="submit">Create Business</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </form>
+                                                <div class="media-body">
+                                                    <h5 class="mb-0">
+                                                        <a href="#" class="text-basic-inverse stretched-link text-primary" data-toggle="modal" data-target="#showBusiness">{{ ucwords($user->businesses[0]->name)}}</a>
+                                                    </h5>
+                                                    <p>{{ $user->businesses[0]->btype}}</p>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
-                                    <div class="modal fade" id="showBusiness" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="card mb-6">
+                                        <div class="card-body">
+
+                                            <div class="media align-items-center text-primary">
+                                                <div class="mr-5">
+                                                    <i class="fas fa-2x fa-plus-circle"></i>
+                                                    <!--<img src="assets/images/brand.svg" class="fill-primary" data-inject-svg="" alt="" style="height: 46px; width: 46px;">-->
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="mb-0">
+                                                        <a href="#" class="text-basic-inverse stretched-link text-primary" data-toggle="modal" data-target="#createProduct">Add Product</a>
+                                                    </h5>
+                                                    <!--p>Quick setup and build tools.</p-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div id="showBusiness" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -753,7 +727,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="modal fade" id="createProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div id="createProduct" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -820,57 +794,6 @@
                                         </div>
 
                                     </div>
-
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-                                    
-                                    @if( $user->businesses->count() )
-                                    <div class="card mb-6">
-                                        <div class="card-body">
-                                            <div class="media align-items-center text-primary">
-                                                <div class="mr-5">
-                                                        <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                    <img src="{{ asset(\Storage::url($user->businesses[0]->profile)) }}" class="fill-primary rounded-circle" data-inject-svg="" alt="" style="height: 46px; width: 46px;">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h5 class="mb-0">
-                                                        <a href="#" class="text-basic-inverse stretched-link text-primary" data-toggle="modal" data-target="#showBusiness">{{ ucwords($user->businesses[0]->name)}}</a>
-                                                    </h5>
-                                                    <p>{{ $user->businesses[0]->btype}}</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="card mb-6">
-                                        <div class="card-body">
-
-                                            <div class="media align-items-center text-primary">
-                                                <div class="mr-5">
-                                                    <i class="fas fa-2x fa-plus-circle"></i>
-                                                    <!--<img src="assets/images/brand.svg" class="fill-primary" data-inject-svg="" alt="" style="height: 46px; width: 46px;">-->
-                                                </div>
-                                                <div class="media-body">
-                                                    <h5 class="mb-0">
-                                                        <a href="#" class="text-basic-inverse stretched-link text-primary" data-toggle="modal" data-target="#createProduct">Add Product</a>
-                                                    </h5>
-                                                    <!--p>Quick setup and build tools.</p-->
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
                                     @else
                                     <div class="card mb-6">
                                         <div class="card-body">
@@ -892,7 +815,84 @@
 
                                         </div>
                                     </div>
-                                    @endif
+
+                                    <div id="createBusiness" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Create New Business</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('business.store') }}"
+                                                          method="post"
+                                                          enctype="multipart/form-data">
+                                                        @csrf
+
+                                                        <div class="form-group">
+                                                            <label class="small" for="profile">Photo</label>
+                                                            <div class="position-relative text-center bg-secondary rounded p-6">
+                                                                <div class="avatar bg-primary text-white mb-5">
+                                                                    <i class="icon-md fe-image"></i>
+                                                                </div>
+
+                                                                <p class="small text-muted mb-0">You can upload jpg, gif or png files. <br> Max file size 3mb.</p>
+                                                                <input id="busProfile" class="d-none" type="file" name="profile">
+                                                                <label class="stretched-label mb-0" for="busProfile"></label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-title">Name</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-title" type="text" placeholder="Business Name" name="name">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-topic">Business Type</label>
+                                                            <select class="form-control form-control-lg" id="new-chat-topic" placeholder="Business Type" name="btype">
+                                                                @php
+                                                                    $btypes = ['Apparel & clothes','Arts &entertainment','Beauty & Cosmetic','Eduction','Eventaplanner','Finance','Grocery Store','Hotel','Medical $ Health','Nonprofit  Oraganization','Restaurant','Travel &Transportation'];
+                                                                @endphp
+                                                                
+                                                                @foreach($btypes as $btype)
+                                                                <option value="{{ $btype }}">
+                                                                    {{ $btype }}
+                                                                </option>
+                                                                @endforeach
+                                                            
+                                                            </select>
+
+                                                        </div>
+
+                                                         <div class="form-group">
+                                                            <label class="small" for="new-chat-topic">Address</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder=" Business Address" name="address">
+                                                        </div>
+                                                       
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-description">Description</label>
+                                                            <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Business Description" name="description"></textarea>
+                                                        </div>
+
+                                                        <div class="form-group mb-0">
+                                                            <div class="row">
+                                                                <div class=" col-6">
+                                                                    <button type="button" class="btn btn-lg btn-secondary btn-block" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                                <div class=" col-6">
+                                                                    <button class="btn btn-lg btn-primary btn-block" type="submit">Create Business</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+									@endif
 
                                     <!-- Card -->
                                     <div class="card mb-6">
