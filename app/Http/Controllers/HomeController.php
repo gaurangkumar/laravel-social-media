@@ -111,7 +111,7 @@ class HomeController extends Controller
 
         $friends = $this->get_friends($user->id);
 
-        return view('chat', compact('title', 'side_chats', 'pages', 'chats', 'sender', 'friends', 'business'));
+        return view('chat', compact('title', 'side_chats', 'pages', 'chats', 'sender', 'friends', 'business', 'user'));
     }
 
     public function sendchat(Request $request)
@@ -189,7 +189,7 @@ class HomeController extends Controller
         $friends = $this->get_friends($user->id);
         $sender = null;
 
-        return view('settings', compact('title', 'side_chats', 'pages', 'sender', 'friends'));
+        return view('settings', compact('title', 'side_chats', 'pages', 'sender', 'friends', 'user'));
     }
 
     public function time_elapsed_string($datetime, $full = false)
