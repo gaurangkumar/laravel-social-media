@@ -26,7 +26,7 @@ class HomeController extends Controller
         ini_set('memory_limit', '1024M');
         $title = 'Agwis Messenger';
         $user = auth()->user();
-
+        //echo "<pre>" ; var_dump($user->businesses->count());exit;
         $side_chats = $this->get_last_chats($user->id);
 
         $friends = $this->get_friends($user->id);
