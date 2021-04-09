@@ -17,16 +17,18 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+		$this->middleware('auth');
         \View::share('currentRoute', Route::currentRouteName());
-    }
+	}
 
     public function index()
     {
         ini_set('memory_limit', '1024M');
         $title = 'Agwis Messenger';
         $user = auth()->user();
-        //echo "<pre>" ; var_dump($user->businesses->count());exit;
+        $business = $user->businesses->count() ? $user->businesses[0] : null;
+        //echo "<pre>";var_dump($user->businesses->count());exit;
+		
         $side_chats = $this->get_last_chats($user->id);
 
         $friends = $this->get_friends($user->id);
@@ -35,7 +37,8 @@ class HomeController extends Controller
 
         $sender = null;
 
-        return view('index', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends'));
+        return view('index', compact('title', 'side_chats', 'pages', 'sender', 'friends',
+									'user', 'business'));
     }
 
     public function get_pages($uid)
@@ -108,7 +111,7 @@ class HomeController extends Controller
 
         $friends = $this->get_friends($user->id);
 
-        return view('chat', compact('title', 'side_chats', 'pages', 'chats', 'sender', 'user', 'friends', 'business'));
+        return view('chat', compact('title', 'side_chats', 'pages', 'chats', 'sender', 'friends', 'business'));
     }
 
     public function sendchat(Request $request)
@@ -186,7 +189,7 @@ class HomeController extends Controller
         $friends = $this->get_friends($user->id);
         $sender = null;
 
-        return view('settings', compact('title', 'side_chats', 'pages', 'sender', 'user', 'friends'));
+        return view('settings', compact('title', 'side_chats', 'pages', 'sender', 'friends'));
     }
 
     public function time_elapsed_string($datetime, $full = false)
@@ -289,6 +292,7 @@ class HomeController extends Controller
 
     public function social(Request $request)
     {
+		//
     }
 
     public static function number_abbr($number)
