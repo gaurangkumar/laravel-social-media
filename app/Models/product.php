@@ -17,6 +17,7 @@ class product extends Model
         'business_id',
 
     );
+
     public function businesses()
     {
         return $this->belongsTo(Business::class, 'business_id');

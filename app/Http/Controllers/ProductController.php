@@ -40,27 +40,29 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        /* echo "<pre>"; var_dump($request->toArray());
-        exit;*/
+        //$business= Business::find('id');
 
         $validated = $request->validate(array(
             'name' => 'required|string',
             'price' => 'required|numeric',
-            'discount' => 'required|numeric',
+            'discount' => 'numeric|nullable',
             'description' => 'required|string',
             'img' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            'business_id' => 'required',
         ));
 
          $image = $request->img->store('product', array('disk' => 'public'));
 
         $data = array(
             'name' => $request->name,
-            'price' => $request->btype,
-            'discount' => $request->address,
+            'price' => $request->price,
+            'discount' => $request->discount,
             'description' => $request->description,
             'img' => $image,
-            'business_id' => $business->id,
+            'business_id' => $request->business_id,
+            
         );
+//echo "<pre>"; print_r($data);exit;
         
         $product = Product::create($data);
     
