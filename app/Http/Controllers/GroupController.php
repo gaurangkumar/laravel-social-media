@@ -125,7 +125,7 @@ class GroupController extends Controller
 
     public function edit_members($group_id)
     {
-        $gmembers = User::whereIn('id', function ($query) use ($group_id) {
+         $gmembers = User::whereIn('id', function ($query) use ($group_id) {
             $query->select('user_id')
                 ->from('group_members')
                 ->where('group_id', $group_id);

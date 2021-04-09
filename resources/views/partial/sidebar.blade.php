@@ -852,8 +852,8 @@
                                                                 </div>
 
                                                                 <p class="small text-muted mb-0">You can upload jpg, gif or png files. <br> Max file size 3mb.</p>
-                                                                <input id="busProfile" class="d-none" type="file" name="img">
-                                                                <label class="stretched-label mb-0" for="busProfile"></label>
+                                                                <input id="img" class="d-none" type="file" name="img">
+                                                                <label class="stretched-label mb-0" for="img"></label>
                                                             </div>
                                                         </div>
 
@@ -865,12 +865,12 @@
                                                         <div class="form-group">
                                                             <label class="small" for="new-chat-topic">Price
                                                         </label>
-                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder="Business Type" name="btype">
+                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder="Business Type" name="price">
                                                         </div>
 
                                                          <div class="form-group">
                                                             <label class="small" for="new-chat-topic">Discount</label>
-                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder="Adress" name="address">
+                                                            <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder="Adress" name="discount">
                                                         </div>
                                                        
                                                         <div class="form-group">
