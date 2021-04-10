@@ -15,7 +15,7 @@
  -->
         <li class=" bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.home' ? 'active' : ''}}" href="{{ route('admin.home') }}"><i class="fas fa-home"></i><span class="menu-title" data-i18n="Home">Home</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.user' ? 'active' : ''}}" href="{{ route('admin.user') }}"><i class="far fa-user"></i><span class="menu-title" data-i18n="Home">Users</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan @if($currentRoute == 'admin.user' || $currentRoute == 'admin.user.show'){{ 'active' }} @endif " href="{{ route('admin.user') }}"><i class="far fa-user"></i><span class="menu-title" data-i18n="Home">Users</span></a>
         </li>
          <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.group' ? 'active' : ''}}" href="{{ route('admin.group') }}"><i class="fas fa-users"></i><span class="menu-title" data-i18n="Home">Group</span></a>
         </li>
