@@ -14,9 +14,11 @@ yarn-error.log
 /_notes
 composer.lock
 package-lock.json
-public/storage/page/*
-public/storage/profile/*
+public/storage/business/*
 public/storage/group/*
+public/storage/page/*
+public/storage/product/*
+public/storage/profile/*
 .env
 .env.pro
 composer.lock
