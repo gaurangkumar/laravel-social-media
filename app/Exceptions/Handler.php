@@ -24,12 +24,14 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = array(
+/*
         AuthenticationException::class,
         AuthorizationException::class,
         HttpException::class,
         ModelNotFoundException::class,
         TokenMismatchException::class,
         ValidationException::class,
+*/
     );
 
     /**
@@ -64,6 +66,7 @@ class Handler extends ExceptionHandler
         return parent::render($request, $exception);
     }
 	
+/*
     protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
@@ -77,4 +80,5 @@ class Handler extends ExceptionHandler
 
         return redirect()->guest(route('login'));
     }
+*/
 }
