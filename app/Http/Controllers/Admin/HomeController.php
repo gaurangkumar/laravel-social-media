@@ -60,12 +60,12 @@ class HomeController extends Controller
             'Contact' => 'far fa-address-card',
             'GroupMember' => 'fas fa-user-friends',
             'PageComment' => 'far fa-comment',
-            'PageFollower' => 'fa fa-user',
-            'PageLike' => 'fa fa-user',
-            'PagePost' => 'fa fa-user',
-            'Product' => 'fa fa-user',
-            'Call' => 'fa fa-user',
-            'Status' => 'fa fa-user',
+            'PageFollower' => 'far fa-thumbs-up',
+            'PageLike' => 'far fa-heart',
+            'PagePost' => 'fas fa-scroll',
+            'Product' => 'fas fa-shopping-cart',
+            'Call' => 'fas fa-phone-alt',
+            'Status' => 'fas fa-photo-video',
         );
 
         $i = 0;
