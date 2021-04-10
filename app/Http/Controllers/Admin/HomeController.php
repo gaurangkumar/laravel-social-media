@@ -12,13 +12,16 @@ class HomeController extends Controller
     public function __construct()
     {
 		//$this->middleware('auth:admin');
-		/*
-                session_start();
-                if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
-                    header('Location: '.route('admin.login'));
-                    //exit;
-                }
-        */
+		
+		session_start();
+		$_SESSION['admin'] = 1;
+/*
+		if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
+			header('Location: '.route('admin.login'));
+			exit;
+		}
+*/
+		
         \View::share('currentRoute', Route::currentRouteName());
     }
 
@@ -81,11 +84,13 @@ class HomeController extends Controller
             }
             $i++;
         }
-        /*
+/*
+        
                 echo '<pre>';
                 print_r($count);
                 exit;
-        */
+        
+*/
 
         return view('admin.index', compact('title', 'user', 'count'));
     }

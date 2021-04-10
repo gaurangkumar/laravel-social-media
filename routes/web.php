@@ -71,8 +71,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/business', array(AdminBusinessController::class, 'index'))->name('business');
     Route::get('/business/{business_id}', array(AdminBusinessController::class, 'show'))->name('business.show');
 
-    //Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
-    //Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
+    Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
+    Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
 
 	/*
 	Route::get('login', array(AdminLoginController::class, 'showLoginForm'))->name('login');

@@ -102,15 +102,15 @@
 						   <div class="padding-4">
 							  <div class="row">
 								 <div class="col s7 m7">
-									<i class="material-icons background-round mt-5 fa fa-user"></i>
+									<i class="material-icons background-round mt-5 {{ $c->icon }}"></i>
 									<p style="font-size: 12px">{{ $c->name }}</p>
 								 </div>
 								 <div class="col s5 m5 right-align">
 									<h5 class="mb-0 white-text">
-										{{ '' }}
+										{{ $c->last }}
 									 </h5>
 									<p class="no-margin">New</p>
-									<p>{{ '' }}</p>
+									<p>{{ $c->total }}</p>
 								 </div>
 							  </div>
 						   </div>
