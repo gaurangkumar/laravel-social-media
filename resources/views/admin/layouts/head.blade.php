@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/themes/vertical-modern-menu-template/style.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/dashboard-modern.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/intro.min.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/page-users.min.css')}}">
     <!-- END: Page Level CSS-->
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/custom/custom.css') }}">

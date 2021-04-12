@@ -5,7 +5,8 @@
 
 @section('content')
 
-@include('admin.layouts.topbar')  <!-- END: Head-->
+<!-- BEGIN: Header-->
+@include('admin.layouts.topbar')
     <!-- END: Header-->
     <ul class="display-none" id="default-search-main">
       <li class="auto-suggestion-title"><a class="collection-item" href="#">
@@ -1102,14 +1103,15 @@
     
     <!-- BEGIN: Footer-->
 
-    <footer class="page-footer footer footer-static footer-dark gradient-45deg-indigo-purple gradient-shadow navbar-border navbar-shadow">
-      <div class="footer-copyright">
-        <div class="container"><span>&copy; 2020          <a href="http://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT</a> All rights reserved.</span><span class="right hide-on-small-only">Design and Developed by <a href="https://pixinvent.com/">PIXINVENT</a></span></div>
-      </div>
-    </footer>
-
+    <@include('admin.layouts.footer')
     <!-- END: Footer-->
-      @endsection
+
+    <!-- END PAGE LEVEL JS-->
+
+@endsection
 
 @section('scripts')
+
 @endsection
+    
+  

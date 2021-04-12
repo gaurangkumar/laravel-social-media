@@ -52,4 +52,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Business::class);
     }
+     public function posts()
+    {
+        return $this->hasMany(PagePost::class);
+    }
+     public function followers()
+    {
+        return $this->hasMany(PageFollower::class);
+    }
 }

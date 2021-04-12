@@ -17,4 +17,5 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="{{ asset('theme/app-assets/js/scripts/dashboard-modern.js') }}"></script>
     <script src="{{ asset('theme/app-assets/js/scripts/intro.min.js') }}"></script>
+    <script src="{{ asset('theme/app-assets/js/scripts/page-users.min.js')}}"></script>
     <!-- END PAGE LEVEL JS-->
