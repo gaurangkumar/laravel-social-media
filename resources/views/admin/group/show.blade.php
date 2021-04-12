@@ -6,8 +6,6 @@
 @section('content')
 
 @include('admin.layouts.topbar')  <!-- END: Head-->
-
-    <!-- BEGIN: Header-->
     <!-- END: Header-->
     <ul class="display-none" id="default-search-main">
       <li class="auto-suggestion-title"><a class="collection-item" href="#">
@@ -15,7 +13,7 @@
       <li class="auto-suggestion"><a class="collection-item" href="#">
           <div class="display-flex">
             <div class="display-flex align-item-center flex-grow-1">
-              <div class="avatar"><img src="{{ asset('theme/app-assets/images/icon/pdf-image.png') }}" width="24" height="30" alt="sample image"></div>
+              <div class="avatar"><img src="../../../app-assets/images/icon/pdf-image.png" width="24" height="30" alt="sample image"></div>
               <div class="member-info display-flex flex-column"><span class="black-text">Two new item submitted</span><small class="grey-text">Marketing Manager</small></div>
             </div>
             <div class="status"><small class="grey-text">17kb</small></div>
@@ -23,7 +21,7 @@
       <li class="auto-suggestion"><a class="collection-item" href="#">
           <div class="display-flex">
             <div class="display-flex align-item-center flex-grow-1">
-              <div class="avatar"><img src="{{ asset('theme/app-assets/images/icon/doc-image.png') }}" width="24" height="30" alt="sample image"></div>
+              <div class="avatar"><img src="../../../app-assets/images/icon/doc-image.png" width="24" height="30" alt="sample image"></div>
               <div class="member-info display-flex flex-column"><span class="black-text">52 Doc file Generator</span><small class="grey-text">FontEnd Developer</small></div>
             </div>
             <div class="status"><small class="grey-text">550kb</small></div>
@@ -83,9 +81,11 @@
       <li class="auto-suggestion"><a class="collection-item display-flex align-items-center" href="#"><span class="material-icons">error_outline</span><span class="member-info">No results found.</span></a></li>
     </ul>
 
+
+
     <!-- BEGIN: SideNav-->
-	@include('admin.layouts.sidebar')
-	<!-- END: SideNav-->
+    @include('admin.layouts.sidebar')
+    <!-- END: SideNav-->
 
     <!-- BEGIN: Page Main-->
     <div id="main">
@@ -96,13 +96,13 @@
           <div class="container">
             <div class="row">
               <div class="col s10 m6 l6">
-                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Users List</span></h5>
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Users View</span></h5>
                 <ol class="breadcrumbs mb-0">
                   <li class="breadcrumb-item"><a href="index-2.html">Home</a>
                   </li>
                   <li class="breadcrumb-item"><a href="#">User</a>
                   </li>
-                  <li class="breadcrumb-item active">Users List
+                  <li class="breadcrumb-item active">Users View
                   </li>
                 </ol>
               </div>
@@ -120,100 +120,191 @@
         </div>
         <div class="col s12">
           <div class="container">
-            <!-- users list start -->
-<section class="users-list-wrapper section">
-  <div class="users-list-filter">
-    <div class="card-panel">
-      <div class="row">
-        <form>
-          <div class="col s12 m6 l3">
-            <label for="users-list-verified">Verified</label>
-            <div class="input-field">
-              <select class="form-control" id="users-list-verified">
-                <option value="">Any</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
-            </div>
+            <!-- users view start -->
+<div class="section users-view">
+  <!-- users view media object start -->
+  <div class="card-panel">
+    <div class="row">
+      <div class="col s12 m7">
+        <div class="display-flex media">
+          <a href="#" class="avatar">
+            <img src="../../../app-assets/images/avatar/avatar-15.png" alt="users view avatar" class="z-depth-4 circle"
+              height="64" width="64">
+          </a>
+          <div class="media-body">
+            <h6 class="media-heading">
+              <span class="users-view-name">Dean Stanley </span>
+              <span class="grey-text">@</span>
+              <span class="users-view-username grey-text">candy007</span>
+            </h6>
+            <span>ID:</span>
+            <span class="users-view-id">305</span>
           </div>
-          <div class="col s12 m6 l3">
-            <label for="users-list-role">Role</label>
-            <div class="input-field">
-              <select class="form-control" id="users-list-role">
-                <option value="">Any</option>
-                <option value="User">User</option>
-                <option value="Staff">Admin</option>
-              </select>
-            </div>
-          </div>
-          <div class="col s12 m6 l3">
-            <label for="users-list-status">Status</label>
-            <div class="input-field">
-              <select class="form-control" id="users-list-status">
-                <option value="">Any</option>
-                <option value="Active">Active</option>
-                <option value="Close">Close</option>
-                <option value="Banned">Banned</option>
-              </select>
-            </div>
-          </div>
-          <div class="col s12 m6 l3 display-flex align-items-center show-btn">
-            <button type="submit" class="btn btn-block indigo waves-effect waves-light">Show</button>
-          </div>
-        </form>
+        </div>
+      </div>
+      <div class="col s12 m5 quick-action-btns display-flex justify-content-end align-items-center pt-2">
+        <a href="app-email.html" class="btn-small btn-light-indigo"><i class="material-icons">mail_outline</i></a>
+        <a href="user-profile-page.html" class="btn-small btn-light-indigo">Profile</a>
+        <a href="page-users-edit.html" class="btn-small indigo">Edit</a>
       </div>
     </div>
   </div>
-  <div class="users-list-table">
-    <div class="card">
-      <div class="card-content">
-        <!-- datatable start -->
-        <div class="responsive-table">
-          <table id="users-list-datatable" class="table">
+  <!-- users view media object ends -->
+  <!-- users view card data start -->
+  <div class="card">
+    <div class="card-content">
+      <div class="row">
+        <div class="col s12 m4">
+          <table class="striped">
+            <tbody>
+              <tr>
+                <td>Registered:</td>
+                <td>01/01/2019</td>
+              </tr>
+              <tr>
+                <td>Latest Activity:</td>
+                <td class="users-view-latest-activity">30/04/2019</td>
+              </tr>
+              <tr>
+                <td>Verified:</td>
+                <td class="users-view-verified">Yes</td>
+              </tr>
+              <tr>
+                <td>Role:</td>
+                <td class="users-view-role">Staff</td>
+              </tr>
+              <tr>
+                <td>Status:</td>
+                <td><span class=" users-view-status chip green lighten-5 green-text">Active</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col s12 m8">
+          <table class="responsive-table">
             <thead>
               <tr>
-                <th></th>
-                <th>id</th>
-                <th>name/email</th>
-                <th>created</th>
-                <th>verified</th>
-                <!--<th>role</th>-->
-                <th>status</th>
-                <th>edit</th>
-                <th>view</th>
-                <th>block</th>
+                <th>Module Permission</th>
+                <th>Read</th>
+                <th>Write</th>
+                <th>Create</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              @foreach($users as $user)
               <tr>
-                <td></td>
-                <td>{{ $user->id}}</td>
-<!--                 <td>{{ $user->name}}</td> -->
-                <td>{{ $user->name}}</br><a href="{{route('admin.user.show',$user->id)}}">{{ $user->email}} </a>
-                </td>
-                <td>{{ $user->created_at}}</td>
-                <td>{{$user->email_verified_at== null ? 'No' :'Yes'}}</td>
-                <!--<td>Staff</td>-->
-                <td><span class="chip green lighten-5">
-                    <span class="green-text">{{$user->blocked == 1 ? 'Blocked' : 'Active'}}</span>
-                  </span>
-                </td>
-                <td><a href="page-users-edit.html"><i class="material-icons">edit</i></a></td>
-                <td><a href="page-users-view.html"><i class="material-icons">remove_red_eye</i></a></td>
-                <td><a href="page-users-view.html"><i class="material-icons">close</i></a></td>
+                <td>Users</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Yes</td>
               </tr>
-              @endforeach
-            </tbody>              
-
+              <tr>
+                <td>Articles</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Staff</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>No</td>
+              </tr>
+            </tbody>
           </table>
         </div>
-        <!-- datatable ends -->
       </div>
     </div>
   </div>
-</section>
-<!-- users list ends --><!-- START RIGHT SIDEBAR NAV -->
+  <!-- users view card data ends -->
+
+  <!-- users view card details start -->
+  <div class="card">
+    <div class="card-content">
+      <div class="row indigo lighten-5 border-radius-4 mb-2">
+        <div class="col s12 m4 users-view-timeline">
+          <h6 class="indigo-text m-0">Posts: <span>125</span></h6>
+        </div>
+        <div class="col s12 m4 users-view-timeline">
+          <h6 class="indigo-text m-0">Followers: <span>534</span></h6>
+        </div>
+        <div class="col s12 m4 users-view-timeline">
+          <h6 class="indigo-text m-0">Following: <span>256</span></h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <table class="striped">
+            <tbody>
+              <tr>
+                <td>Username:</td>
+                <td class="users-view-username">dean3004</td>
+              </tr>
+              <tr>
+                <td>Name:</td>
+                <td class="users-view-name">Dean Stanley</td>
+              </tr>
+              <tr>
+                <td>E-mail:</td>
+                <td class="users-view-email">deanstanley@gmail.com</td>
+              </tr>
+              <tr>
+                <td>Comapny:</td>
+                <td>XYZ Corp. Ltd.</td>
+              </tr>
+
+            </tbody>
+          </table>
+          <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Social Links</h6>
+          <table class="striped">
+            <tbody>
+              <tr>
+                <td>Twitter:</td>
+                <td><a href="#">https://www.twitter.com/</a></td>
+              </tr>
+              <tr>
+                <td>Facebook:</td>
+                <td><a href="#">https://www.facebook.com/</a></td>
+              </tr>
+              <tr>
+                <td>Instagram:</td>
+                <td><a href="#">https://www.instagram.com/</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <h6 class="mb-2 mt-2"><i class="material-icons">error_outline</i> Personal Info</h6>
+          <table class="striped">
+            <tbody>
+              <tr>
+                <td>Birthday:</td>
+                <td>03/04/1990</td>
+              </tr>
+              <tr>
+                <td>Country:</td>
+                <td>USA</td>
+              </tr>
+              <tr>
+                <td>Languages:</td>
+                <td>English</td>
+              </tr>
+              <tr>
+                <td>Contact:</td>
+                <td>+(305) 254 24668</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+  <!-- users view card details ends -->
+
+</div>
+<!-- users view ends --><!-- START RIGHT SIDEBAR NAV -->
 <aside id="right-sidebar-nav">
   <div id="slide-out-right" class="slide-out-right-sidenav sidenav rightside-navigation">
     <div class="row">
@@ -999,6 +1090,7 @@
    </div>
 </div>
 <!--/ Theme Customizer -->
+
 <a
    href="https://1.envato.market/materialize_admin"
    target="_blank"
@@ -1016,10 +1108,8 @@
       </div>
     </footer>
 
-
-    <!-- BEGIN: Footer-->
-
-    @endsection
+    <!-- END: Footer-->
+      @endsection
 
 @section('scripts')
 @endsection

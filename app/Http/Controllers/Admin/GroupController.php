@@ -70,7 +70,7 @@ class GroupController extends Controller
     {
         $group = Group::find($id);
 
-        return view('admin.group.show', $group);
+        return view('admin.group.show',compact('group') );
     }
 
     /**
