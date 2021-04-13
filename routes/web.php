@@ -63,7 +63,9 @@ Route::resource('product', ProductController::class);
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', array(AdminHomeController::class, 'index'))->name('home');
     Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
+     Route::get('/user', array(AdminUserController::class, 'edit'))->name('user.edit');
     Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
+   
     Route::get('/group', array(AdminGroupController::class, 'index'))->name('group');
     Route::get('/group/{group_id}', array(AdminGroupController::class, 'show'))->name('group.show');
     Route::get('/page', array(AdminPageController::class, 'index'))->name('page');

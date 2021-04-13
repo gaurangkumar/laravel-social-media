@@ -138,18 +138,18 @@
           </a>
           <div class="media-body">
             <h6 class="media-heading">
-              <span class="users-view-name">{{ $user->name }}</span>
+              <span class="users-view">{{ $user->name }}</span>
               
             </h6>
             <span>ID:</span>
-            <span class="users-view-id">{{ $user->id }}</span>
+            <span class="users-view">{{ $user->id }}</span>
           </div>
         </div>
       </div>
       <div class="col s12 m5 quick-action-btns display-flex justify-content-end align-items-center pt-2">
         <a href="app-email.html" class="btn-small btn-light-indigo"><i class="material-icons">mail_outline</i></a>
-        <a href="user-profile-page.html" class="btn-small btn-light-indigo">Profile</a>
-        <a href="page-users-edit.html" class="btn-small indigo">Edit</a>
+        <a href="{{route('admin.user.show', $user->id)}}" class="btn-small btn-light-indigo">Profile</a>
+        <a href="{{route('admin.user.edit', $user->id)}}" class="btn-small indigo">Edit</a>
       </div>
     </div>
   </div>
@@ -233,7 +233,7 @@
           <h6 class="indigo-text m-0">Followers: <span>{{ $user->followers->count()}}</span></h6>
         </div>
         <div class="col s12 m4 users-view-timeline">
-          <h6 class="indigo-text m-0">Following: <span>256</span></h6>
+          <h6 class="indigo-text m-0">Business: <span>{{ $user->businesses->count()}}</span></h6>
         </div>
       </div>
       <div class="row">
@@ -242,7 +242,7 @@
             <tbody>
               <tr>
                 <td>Photo</td>
-                <td class="users-view-username">
+                <td class="users-view">
                   
                  <img src="{{ empty($user->profile) ?
                                                  asset('storage/index.jpg') :
@@ -252,11 +252,11 @@
               </tr>
               <tr>
                 <td>Name:</td>
-                <td class="users-view-name">{{$user->name}}</td>
+                <td class="users-view">{{ $user->name }}</td>
               </tr>
               <tr>
                 <td>E-mail:</td>
-                <td class="users-view-email">{{$user->email}}/td>
+                <td class="users-view-email">{{$user->email}} </td>
               </tr>
               <tr>
                 <td>Phone</td>
@@ -287,7 +287,7 @@
             <tbody>
               <tr>
                 <td>Birthday:</td>
-                <td>03/04/1990</td>
+                <td>{{$user->dob}}</td>
               </tr>
               <tr>
                 <td>Country:</td>
@@ -299,7 +299,7 @@
               </tr>
               <tr>
                 <td>Contact:</td>
-                <td>+(305) 254 24668</td>
+                <td>{{$user->mobile}}</td>
               </tr>
             </tbody>
           </table>

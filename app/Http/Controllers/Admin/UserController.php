@@ -69,7 +69,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        /* echo "<pre>"; var_dump($user->toArray());
+        /* echo "<pre>"; var_dump($user->name);
           exit;
 */
         return view('admin.user.show', compact('user'));
@@ -84,7 +84,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
