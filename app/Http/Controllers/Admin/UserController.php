@@ -84,7 +84,16 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $user = User::find($id);
         
+        return view('admin.user.edit',compact('user'));
+        //echo "<pre>";var_dump($id);exit;
+        
+    
+
+
+        
+
     }
 
     /**
@@ -97,7 +106,37 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+         $request->validate(array(
+            'name' => 'required|string|max:255',
+            'mobile' => 'required|digits:10',
+        ));
+
+        if ($user->email !== $request->email) {
+            $request->validate(array(
+                'email' => 'required|string|email|max:255|unique:users',
+            ));
+        }
+
+        $data = array(
+            'name' => $request->name,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+        );
+
+        if (!empty($request->profile)) {
+            $request->validate(array(
+                'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            ));
+
+            $image = $request->profile->store('profile', array('disk' => 'public'));
+
+            $data['profile'] = $image;
+        }
+
+        $result = $user->update($data);
+
+        return view('admin.user.edit',compact('user'));
     }
 
     /**
