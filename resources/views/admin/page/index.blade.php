@@ -202,7 +202,7 @@
                 <td>{{$page->uname}}</td>
                 <td>{{$page->users->name}}</td>
                 <td><a href="page-users-edit.html"><i class="material-icons">edit</i></a></td>
-                <td><a href="page-users-view.html"><i class="material-icons">remove_red_eye</i></a></td>
+                <td><a href="{{route('admin.page.show',$page->id)}}"><i class="material-icons">remove_red_eye</i></a></td>
                 <td><a href="page-users-view.html"><i class="material-icons">close</i></a></td>
               </tr>
               @endforeach

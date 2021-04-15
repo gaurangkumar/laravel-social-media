@@ -66,11 +66,11 @@ class BusinessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Business $id)
+    public function show($id)
     {
-        $businesses = page::find($id);
+        $businesses = Business::find($id);
 
-        return view('admin.business.show', $business);
+        return view('admin.business.show',compact('businesses'));
     }
 
     /**

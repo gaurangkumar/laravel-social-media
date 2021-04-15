@@ -66,11 +66,11 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Page $id)
+    public function show($id)
     {
         $page = page::find($id);
 
-        return view('admin.page.show', $page);
+        return view('admin.page.show', compact('page'));
     }
 
     /**

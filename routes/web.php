@@ -67,6 +67,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/user/{user_id}/edit', array(AdminUserController::class, 'edit'))->name('user.edit');
      Route::post('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
     Route::get('/group', array(AdminGroupController::class, 'index'))->name('group');
+    Route::get('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
     Route::get('/group/{group_id}', array(AdminGroupController::class, 'show'))->name('group.show');
    // Route::resource('group', GroupController::class);
 

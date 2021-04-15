@@ -23,7 +23,9 @@ class User extends Authenticatable
         'mobile',
         'profile',
         'address',
+        ''
     );
+    
 
     /**
      * The attributes that should be hidden for arrays.

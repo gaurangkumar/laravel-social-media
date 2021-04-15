@@ -71,7 +71,7 @@ class UserController extends Controller
         $user = User::find($id);
         /* echo "<pre>"; var_dump($user->name);
           exit;
-*/
+*/        
         return view('admin.user.show', compact('user'));
     }
 
@@ -150,4 +150,5 @@ class UserController extends Controller
     {
         //
     }
+
 }
