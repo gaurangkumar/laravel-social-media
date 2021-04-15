@@ -73,14 +73,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 	Route::resource('page', GroupController::class);
 	Route::resource('business', GroupController::class);
 
-    Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
-    Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
-
-	/*
-	Route::get('login', array(AdminLoginController::class, 'showLoginForm'))->name('login');
-	Route::post('login', array(AdminLoginController::class, 'login'))->name('login.store');
-	Route::post('logout', array(AdminLoginController::class, 'logout'))->name('logout');
-	*/
+	Route::get('login', array(AdminLoginController::class, 'index'))->name('login');
+	Route::post('login', array(AdminLoginController::class, 'store'));
+	Route::post('logout', array(AdminLoginController::class, 'destroy'))->name('logout');
 });
 
 
