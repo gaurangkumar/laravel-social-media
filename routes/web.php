@@ -68,6 +68,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
      Route::post('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
     Route::get('/group', array(AdminGroupController::class, 'index'))->name('group');
     Route::get('/group/{group_id}', array(AdminGroupController::class, 'show'))->name('group.show');
+   // Route::resource('group', GroupController::class);
+
     Route::get('/page', array(AdminPageController::class, 'index'))->name('page');
     Route::get('/page/{page_id}', array(AdminPageController::class, 'show'))->name('page.show');
     Route::get('/business', array(AdminBusinessController::class, 'index'))->name('business');

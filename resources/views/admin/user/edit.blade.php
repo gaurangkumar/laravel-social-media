@@ -143,14 +143,16 @@
           <!-- users edit media object start -->
           <div class="media display-flex align-items-center mb-2">
             <a class="mr-2" href="#">
-              <img src="../../../app-assets/images/avatar/avatar-11.png" alt="users avatar" class="z-depth-4 circle"
+              <img src="{{ empty($user->profile) ?
+                                                 asset('storage/index.jpg') :
+                                                 asset(\Storage::url($user->profile))
+                                             }}" alt="users view avatar" class="z-depth-4 circle"
+" alt="users avatar" class="z-depth-4 circle"
                 height="64" width="64">
             </a>
             <div class="media-body">
               <h5 class="media-heading mt-0">Avatar</h5>
               <div class="user-edit-btns display-flex">
-                <a href="#" class="btn-small indigo">Change</a>
-                <a href="#" class="btn-small btn-light-pink">Reset</a>
               </div>
             </div>
           </div>
@@ -161,6 +163,7 @@
             <div class="row">
               <div class="col s12 m6">
                 <div class="row">
+                  
                   <div class="col s12 input-field">
                     <input id="name" name="name" type="text" class="validate" value="{{$user->name}}"
                       data-error=".errorTxt1">
@@ -184,11 +187,10 @@
               <div class="col s12 m6">
                 <div class="row">
                   <div class="col s12 input-field">
-                    <select>
-                      <option>User</option>
-                      <option>Staff</option>
-                    </select>
-                    <label>Role</label>
+                    <input id="dob" name="dob" type="text" class="validate" value="{{$user->dob}}"
+                      data-error=".errorTxt3">
+                    <label for="dob">E-mail</label>
+
                   </div>
                   <div class="col s12 input-field">
                     <select>
@@ -199,8 +201,8 @@
                     <label>Status</label>
                   </div>
                   <div class="col s12 input-field">
-                    <input id="company" name="company" type="text" class="validate">
-                    <label for="company">Company</label>
+                    <input id="address" name="address" type="text" class="validate" value="{{ $user->address}}">
+                    <label for="address">Address</label>
                   </div>
                 </div>
               </div>

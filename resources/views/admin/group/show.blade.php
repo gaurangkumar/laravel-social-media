@@ -129,17 +129,19 @@
       <div class="col s12 m7">
         <div class="display-flex media">
           <a href="#" class="avatar">
-            <img src="../../../app-assets/images/avatar/avatar-15.png" alt="users view avatar" class="z-depth-4 circle"
-              height="64" width="64">
+            <img src="{{ empty($group->profile) ?
+                                                 asset('storage/index.jpg') :
+                                                 asset(\Storage::url($group->profile))
+                                             }}" alt="users view avatar" class="z-depth-4 circle"
+              height="64" width="64"></td>
           </a>
           <div class="media-body">
             <h6 class="media-heading">
-              <span class="users-view-name">Dean Stanley </span>
-              <span class="grey-text">@</span>
-              <span class="users-view-username grey-text">candy007</span>
+              <span class="users-view">{{$group->name}}</span>
+
             </h6>
             <span>ID:</span>
-            <span class="users-view-id">305</span>
+            <span class="users-view">{{$group->name}}</span>
           </div>
         </div>
       </div>
@@ -159,8 +161,8 @@
           <table class="striped">
             <tbody>
               <tr>
-                <td>Registered:</td>
-                <td>01/01/2019</td>
+                <td>Created Date</td>
+                <td>{{$group->created_at}}</td>
               </tr>
               <tr>
                 <td>Latest Activity:</td>
@@ -170,10 +172,7 @@
                 <td>Verified:</td>
                 <td class="users-view-verified">Yes</td>
               </tr>
-              <tr>
-                <td>Role:</td>
-                <td class="users-view-role">Staff</td>
-              </tr>
+             
               <tr>
                 <td>Status:</td>
                 <td><span class=" users-view-status chip green lighten-5 green-text">Active</span></td>
@@ -227,13 +226,12 @@
     <div class="card-content">
       <div class="row indigo lighten-5 border-radius-4 mb-2">
         <div class="col s12 m4 users-view-timeline">
-          <h6 class="indigo-text m-0">Posts: <span>125</span></h6>
+          <h6 class="indigo-text m-0">GroupMember: <span>{{$group->members->count()}}</span></h6>
         </div>
         <div class="col s12 m4 users-view-timeline">
-          <h6 class="indigo-text m-0">Followers: <span>534</span></h6>
+          <h6 class="indigo-text m-0">Created By <span>{{ $group->users->name }}</span></h6>
         </div>
-        <div class="col s12 m4 users-view-timeline">
-          <h6 class="indigo-text m-0">Following: <span>256</span></h6>
+
         </div>
       </div>
       <div class="row">
@@ -241,21 +239,20 @@
           <table class="striped">
             <tbody>
               <tr>
-                <td>Username:</td>
-                <td class="users-view-username">dean3004</td>
+                <td>Photo:</td>
+                <td class="users-view">
+                  <img src="{{ empty($group->profile) ?
+                                                 asset('storage/index.jpg') :
+                                                 asset(\Storage::url($group->profile))
+                                             }}" alt="users view avatar" class="z-depth-4 circle"
+              height="64" width="64"></td>
+                </td>
               </tr>
               <tr>
                 <td>Name:</td>
-                <td class="users-view-name">Dean Stanley</td>
+                <td class="users-view-name">{{ $group->name }}</td>
               </tr>
-              <tr>
-                <td>E-mail:</td>
-                <td class="users-view-email">deanstanley@gmail.com</td>
-              </tr>
-              <tr>
-                <td>Comapny:</td>
-                <td>XYZ Corp. Ltd.</td>
-              </tr>
+              
 
             </tbody>
           </table>
