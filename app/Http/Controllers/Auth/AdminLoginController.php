@@ -12,28 +12,28 @@ use App\Http\Controllers\Auth\LoginController;*/
 
 class AdminLoginController extends Controller
 {
-	use AuthenticatesUsers;
+    use AuthenticatesUsers;
 
-	protected $redirectTo = '/admin/login';
+    protected $redirectTo = '/admin/login';
 
-	public function __construct()
+    public function __construct()
     {
-		//$this->middleware('guest:admin')->except('logout');
+        //$this->middleware('guest:admin')->except('logout');
     }
 
-	public function showLoginForm()
+    public function showLoginForm()
     {
         return view('admin.login');
     }
 
-/*
-	public function username()
-    {
-        return 'email';
-    }
-*/
+    /*
+        public function username()
+        {
+            return 'email';
+        }
+    */
 
-	protected function guard()
+    protected function guard()
     {
         return Auth::guard('admin');
     }

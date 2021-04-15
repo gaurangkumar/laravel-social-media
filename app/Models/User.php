@@ -53,11 +53,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Business::class);
     }
-     public function posts()
+
+    public function posts()
     {
         return $this->hasMany(PagePost::class);
     }
-     public function followers()
+
+    public function followers()
     {
         return $this->hasMany(PageFollower::class);
     }
