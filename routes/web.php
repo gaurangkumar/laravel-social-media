@@ -26,34 +26,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/user', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(array('auth'))->name('dashboard');
-
 require __DIR__.'/auth.php';
 
-Route::get('/', array(HomeController::class, 'index'))->name('home');
-Route::get('/settings', array(HomeController::class, 'settings'))->name('settings');
+Route::get('/', array(HomeController::class, 'index'))
+	->name('home');
+Route::get('/settings', array(HomeController::class, 'settings'))
+	->name('settings');
 
-Route::post('/page/create', array(PageController::class, 'store'))->name('page.store');
-Route::get('/page/{page_uname}', array(PageController::class, 'show'))->name('page.show');
+Route::post('/page/create', array(PageController::class, 'store'))
+	->name('page.store');
+Route::get('/page/{page_uname}', array(PageController::class, 'show'))
+	->name('page.show');
 
-Route::post('/post/{page_id}', array(HomeController::class, 'post_create'))->name('post_create');
+Route::post('/post/{page_id}', array(HomeController::class, 'post_create'))
+	->name('post_create');
 
-Route::post('/group/{group_id}', array(HomeController::class, 'group_chat'))->name('group_chat');
-Route::post('/group_members/{group_id}', array(GroupMemberController::class, 'group_members'))->name('group_members');
+Route::post('/group/{group_id}', array(HomeController::class, 'group_chat'))
+	->name('group_chat');
+Route::post('/group_members/{group_id}', array(GroupMemberController::class, 'group_members'))
+	->name('group_members');
 
-Route::get('/call', array(HomeController::class, 'call'))->name('call');
-Route::get('/status', array(HomeController::class, 'status'))->name('status');
+Route::get('/call', array(HomeController::class, 'call'))
+	->name('call');
+Route::get('/status', array(HomeController::class, 'status'))
+	->name('status');
 
-Route::post('/profile', array(HomeController::class, 'profile'))->name('profile');
-Route::post('/delete-profile', array(HomeController::class, 'delete_profile'))->name('delete-profile');
-Route::post('/password', array(HomeController::class, 'password'))->name('password');
-Route::post('/social', array(HomeController::class, 'social'))->name('social');
+Route::post('/profile', array(HomeController::class, 'profile'))
+	->name('profile');
+Route::post('/delete-profile', array(HomeController::class, 'delete_profile'))
+	->name('delete-profile');
+Route::post('/password', array(HomeController::class, 'password'))
+	->name('password');
+Route::post('/social', array(HomeController::class, 'social'))
+	->name('social');
 
 Route::resource('group', GroupController::class);
 Route::resource('business', BusinessController::class);
@@ -62,18 +67,11 @@ Route::resource('product', ProductController::class);
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', array(AdminHomeController::class, 'index'))->name('home');
-    Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
-    Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
-    Route::get('/user/{user_id}/edit', array(AdminUserController::class, 'edit'))->name('user.edit');
-     Route::post('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
-    Route::get('/group', array(AdminGroupController::class, 'index'))->name('group');
-    Route::get('/group/{group_id}', array(AdminGroupController::class, 'show'))->name('group.show');
-   // Route::resource('group', GroupController::class);
 
-    Route::get('/page', array(AdminPageController::class, 'index'))->name('page');
-    Route::get('/page/{page_id}', array(AdminPageController::class, 'show'))->name('page.show');
-    Route::get('/business', array(AdminBusinessController::class, 'index'))->name('business');
-    Route::get('/business/{business_id}', array(AdminBusinessController::class, 'show'))->name('business.show');
+	Route::resource('user', GroupController::class);
+	Route::resource('group', GroupController::class);
+	Route::resource('page', GroupController::class);
+	Route::resource('business', GroupController::class);
 
     Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
     Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
