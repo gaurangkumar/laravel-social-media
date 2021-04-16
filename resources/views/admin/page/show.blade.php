@@ -263,16 +263,16 @@
           <table class="striped">
             <tbody>
               <tr>
-                <td>Twitter:</td>
-                <td><a href="#">https://www.twitter.com/</a></td>
+                <td>Postlike:</td>
+                <td><a href="#">{{$page->followers->count()}}</a></td>
               </tr>
               <tr>
-                <td>Facebook:</td>
-                <td><a href="#">https://www.facebook.com/</a></td>
+                <td>Comment:</td>
+                <td><a href="#">{{$page->comments->count()}}/</a></td>
               </tr>
               <tr>
-                <td>Instagram:</td>
-                <td><a href="#">https://www.instagram.com/</a></td>
+                <td>Like:</td>
+                <td><a href="#">{{$page->likes->count()}}</a></td>
               </tr>
             </tbody>
           </table>

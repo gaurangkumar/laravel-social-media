@@ -32,4 +32,12 @@ class Page extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+     public function comments()
+    {
+        return $this->hasMany(PageComment::class);
+    }
+    public function likes()
+    {
+        return $this->hasMany(PageLike::class);
+    }
 }
