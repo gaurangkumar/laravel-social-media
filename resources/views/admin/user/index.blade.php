@@ -47,8 +47,8 @@
         <div class="col s12">
           <div class="container">
             <!-- users list start -->
-	<section class="users-list-wrapper section">
-	  <div class="users-list-filter">
+			<section class="users-list-wrapper section">
+				<div class="users-list-filter">
 		<div class="card-panel">
 		  <div class="row">
 			<form>
@@ -90,7 +90,7 @@
 		  </div>
 		</div>
 	  </div>
-	  <div class="users-list-table">
+				<div class="users-list-table">
 		<div class="card">
 		  <div class="card-content">
 			<!-- datatable start -->
@@ -138,12 +138,13 @@
 		  </div>
 		</div>
 	  </div>
-	</section>
-	<!-- users list ends --><!-- START RIGHT SIDEBAR NAV -->
-		<aside id="right-sidebar-nav">
-		  <div id="slide-out-right" class="slide-out-right-sidenav sidenav rightside-navigation">
-			<div class="row">
-			  <div class="slide-out-right-title">
+			</section>
+
+			<!-- users list ends --><!-- START RIGHT SIDEBAR NAV -->
+			<aside id="right-sidebar-nav">
+				<div id="slide-out-right" class="slide-out-right-sidenav sidenav rightside-navigation">
+					<div class="row">
+						<div class="slide-out-right-title">
 				<div class="col s12 border-bottom-1 pb-0 pt-1">
 				  <div class="row">
 					<div class="col s2 pr-0 center">
@@ -171,7 +172,7 @@
 				  </div>
 				</div>
 			  </div>
-			  <div class="slide-out-right-body row pl-3">
+						<div class="slide-out-right-body row pl-3">
 				<div id="messages" class="col s12 pb-0">
 				  <div class="collection border-none mb-0">
 					<input class="header-search-input mt-4 mb-2" type="text" name="Search" placeholder="Search Messages" />
@@ -559,131 +560,125 @@
 				  </div>
 				</div>
 			  </div>
-			</div>
-		  </div>
-
-		  <!-- Slide Out Chat -->
-		  <ul id="slide-out-chat" class="sidenav slide-out-right-sidenav-chat">
-			<li class="center-align pt-2 pb-2 sidenav-close chat-head">
-			  <a href="#!"><i class="material-icons mr-0">chevron_left</i>Elizabeth Elliott</a>
-			</li>
-			<li class="chat-body">
-			  <ul class="collection">
-				<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
-				  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
-					  alt="avatar" />
-				  </span>
-				  <div class="user-content speech-bubble">
-					<p class="medium-small">hello!</p>
-				  </div>
-				</li>
-				<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
-				  <div class="user-content speech-bubble-right">
-					<p class="medium-small">How can we help? We're here for you!</p>
-				  </div>
-				</li>
-				<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
-				  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
-					  alt="avatar" />
-				  </span>
-				  <div class="user-content speech-bubble">
-					<p class="medium-small">I am looking for the best admin template.?</p>
-				  </div>
-				</li>
-				<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
-				  <div class="user-content speech-bubble-right">
-					<p class="medium-small">Materialize admin is the responsive materializecss admin template.</p>
-				  </div>
-				</li>
-
-				<li class="collection-item display-grid width-100 center-align">
-				  <p>8:20 a.m.</p>
-				</li>
-
-				<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
-				  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
-					  alt="avatar" />
-				  </span>
-				  <div class="user-content speech-bubble">
-					<p class="medium-small">Ohh! very nice</p>
-				  </div>
-				</li>
-				<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
-				  <div class="user-content speech-bubble-right">
-					<p class="medium-small">Thank you.</p>
-				  </div>
-				</li>
-				<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
-				  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
-					  alt="avatar" />
-				  </span>
-				  <div class="user-content speech-bubble">
-					<p class="medium-small">How can I purchase it?</p>
-				  </div>
-				</li>
-
-				<li class="collection-item display-grid width-100 center-align">
-				  <p>9:00 a.m.</p>
-				</li>
-
-				<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
-				  <div class="user-content speech-bubble-right">
-					<p class="medium-small">From ThemeForest.</p>
-				  </div>
-				</li>
-				<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
-				  <div class="user-content speech-bubble-right">
-					<p class="medium-small">Only $24</p>
-				  </div>
-				</li>
-				<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
-				  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
-					  alt="avatar" />
-				  </span>
-				  <div class="user-content speech-bubble">
-					<p class="medium-small">Ohh! Thank you.</p>
-				  </div>
-				</li>
-				<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
-				  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
-					  alt="avatar" />
-				  </span>
-				  <div class="user-content speech-bubble">
-					<p class="medium-small">I will purchase it for sure.</p>
-				  </div>
-				</li>
-				<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
-				  <div class="user-content speech-bubble-right">
-					<p class="medium-small">Great, Feel free to get in touch on</p>
-				  </div>
-				</li>
-				<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
-				  <div class="user-content speech-bubble-right">
-					<p class="medium-small">https://pixinvent.ticksy.com/</p>
-				  </div>
-				</li>
-			  </ul>
-			</li>
-			<li class="center-align chat-footer">
-			  <form class="col s12" onsubmit="slideOutChat()" action="javascript:void(0);">
-				<div class="input-field">
-				  <input id="icon_prefix" type="text" class="search" />
-				  <label for="icon_prefix">Type here..</label>
-				  <a onclick="slideOutChat()"><i class="material-icons prefix">send</i></a>
+					</div>
 				</div>
-			  </form>
-			</li>
-		  </ul>
-		</aside>
+
+				<!-- Slide Out Chat -->
+				<ul id="slide-out-chat" class="sidenav slide-out-right-sidenav-chat">
+					<li class="center-align pt-2 pb-2 sidenav-close chat-head">
+					  <a href="#!"><i class="material-icons mr-0">chevron_left</i>Elizabeth Elliott</a>
+					</li>
+					<li class="chat-body">
+					  <ul class="collection">
+						<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
+						  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
+							  alt="avatar" />
+						  </span>
+						  <div class="user-content speech-bubble">
+							<p class="medium-small">hello!</p>
+						  </div>
+						</li>
+						<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
+						  <div class="user-content speech-bubble-right">
+							<p class="medium-small">How can we help? We're here for you!</p>
+						  </div>
+						</li>
+						<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
+						  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
+							  alt="avatar" />
+						  </span>
+						  <div class="user-content speech-bubble">
+							<p class="medium-small">I am looking for the best admin template.?</p>
+						  </div>
+						</li>
+						<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
+						  <div class="user-content speech-bubble-right">
+							<p class="medium-small">Materialize admin is the responsive materializecss admin template.</p>
+						  </div>
+						</li>
+
+						<li class="collection-item display-grid width-100 center-align">
+						  <p>8:20 a.m.</p>
+						</li>
+
+						<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
+						  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
+							  alt="avatar" />
+						  </span>
+						  <div class="user-content speech-bubble">
+							<p class="medium-small">Ohh! very nice</p>
+						  </div>
+						</li>
+						<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
+						  <div class="user-content speech-bubble-right">
+							<p class="medium-small">Thank you.</p>
+						  </div>
+						</li>
+						<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
+						  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
+							  alt="avatar" />
+						  </span>
+						  <div class="user-content speech-bubble">
+							<p class="medium-small">How can I purchase it?</p>
+						  </div>
+						</li>
+
+						<li class="collection-item display-grid width-100 center-align">
+						  <p>9:00 a.m.</p>
+						</li>
+
+						<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
+						  <div class="user-content speech-bubble-right">
+							<p class="medium-small">From ThemeForest.</p>
+						  </div>
+						</li>
+						<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
+						  <div class="user-content speech-bubble-right">
+							<p class="medium-small">Only $24</p>
+						  </div>
+						</li>
+						<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
+						  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
+							  alt="avatar" />
+						  </span>
+						  <div class="user-content speech-bubble">
+							<p class="medium-small">Ohh! Thank you.</p>
+						  </div>
+						</li>
+						<li class="collection-item display-flex avatar pl-5 pb-0" data-target="slide-out-chat">
+						  <span class="avatar-status avatar-online avatar-50"><img src="../../../app-assets/images/avatar/avatar-7.png"
+							  alt="avatar" />
+						  </span>
+						  <div class="user-content speech-bubble">
+							<p class="medium-small">I will purchase it for sure.</p>
+						  </div>
+						</li>
+						<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
+						  <div class="user-content speech-bubble-right">
+							<p class="medium-small">Great, Feel free to get in touch on</p>
+						  </div>
+						</li>
+						<li class="collection-item display-flex avatar justify-content-end pl-5 pb-0" data-target="slide-out-chat">
+						  <div class="user-content speech-bubble-right">
+							<p class="medium-small">https://pixinvent.ticksy.com/</p>
+						  </div>
+						</li>
+					  </ul>
+					</li>
+					<li class="center-align chat-footer">
+					  <form class="col s12" onsubmit="slideOutChat()" action="javascript:void(0);">
+						<div class="input-field">
+						  <input id="icon_prefix" type="text" class="search" />
+						  <label for="icon_prefix">Type here..</label>
+						  <a onclick="slideOutChat()"><i class="material-icons prefix">send</i></a>
+						</div>
+					  </form>
+					</li>
+				</ul>
+			</aside>
+
 			<!-- END RIGHT SIDEBAR NAV -->
-			<div style="bottom: 50px; right: 19px;" class="fixed-action-btn direction-top"><a class="btn-floating btn-large gradient-45deg-light-blue-cyan gradient-shadow"><i class="material-icons">add</i></a>
-		<ul>
-			<li><a href="css-helpers.html" class="btn-floating blue"><i class="material-icons">help_outline</i></a></li>
-			<li><a href="cards-extended.html" class="btn-floating green"><i class="material-icons">widgets</i></a></li>
-			<li><a href="app-calendar.html" class="btn-floating amber"><i class="material-icons">today</i></a></li>
-			<li><a href="app-email.html" class="btn-floating red"><i class="material-icons">mail_outline</i></a></li>
-		</ul>
-	</div>
+@include('admin.layouts.hover-add-button')
           </div>
           <div class="content-overlay"></div>
         </div>
