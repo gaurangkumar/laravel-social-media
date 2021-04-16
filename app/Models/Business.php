@@ -27,4 +27,5 @@ class Business extends Model
     {
         return $this->hasMany(Product::class);
     }
+   
 }

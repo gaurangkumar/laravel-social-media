@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Business;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -77,6 +78,9 @@ class BusinessController extends Controller
     public function show($id)
     {
         $businesses = Business::find($id);
+        
+       
+
 
         return view('admin.business.show', compact('businesses'));
     }

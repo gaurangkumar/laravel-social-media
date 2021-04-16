@@ -151,12 +151,13 @@
     <div class="card-content">
       <div class="row indigo lighten-5 border-radius-4 mb-2">
         <div class="col s12 m4 users-view-timeline">
-          <h6 class="indigo-text m-0">PagePosts: <span>{{$businesses->products->count()}}</span></h6>
+          <h6 class="indigo-text m-0">Product: <span>{{$businesses->products->count()}}</span></h6>
         </div>
         
         <div class="col s12 m4 users-view-timeline">
           <h6 class="indigo-text m-0">Users<span>{{ $businesses->users->count() }}</span></h6>
         </div>
+        
 
         </div>
       </div>
@@ -164,38 +165,38 @@
         <div class="col s12">
           <table class="striped">
             <tbody>
+               @if(!empty($businesses->products))
+                  @foreach($businesses->products as $product)
               <tr>
                 <td>Photo:</td>
                 <td class="users-view">
-                  <img src="{{ empty($businesses->profile) ?
+                  <img src="{{ empty($product->profile) ?
                                                  asset('storage/index.jpg') :
-                                                 asset(\Storage::url($businesses->profile))
+                                                 asset(\Storage::url($product->profile))
                                              }}" alt="users view avatar" class="z-depth-4 circle"
               height="64" width="64"></td>
                 </td>
               </tr>
               <tr>
                 <td>Name:</td>
-                <td class="users-view">{{ $businesses->name }}</td>
+                <td class="users-view">{{ $product->name }}</td>
               </tr>
-              
-
+               <tr>
+                <td>Price:</td>
+                <td class="users-view">{{ $product->price }}</td>
+              </tr>
+              @endforeach
+              @endif
             </tbody>
           </table>
-          <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Social Links</h6>
+          <h6 class="mb-2 mt-2">Products</h6>
           <table class="striped">
             <tbody>
+
+              
               <tr>
-                <td>Twitter:</td>
-                <td><a href="#">https://www.twitter.com/</a></td>
-              </tr>
-              <tr>
-                <td>Facebook:</td>
-                <td><a href="#">https://www.facebook.com/</a></td>
-              </tr>
-              <tr>
-                <td>Instagram:</td>
-                <td><a href="#">https://www.instagram.com/</a></td>
+                <td>Product:</td>
+                <td><a href="#">{{$businesses->products->count()}}</a></td>
               </tr>
             </tbody>
           </table>
@@ -203,8 +204,8 @@
           <table class="striped">
             <tbody>
               <tr>
-                <td>Birthday:</td>
-                <td>03/04/1990</td>
+                <td>Website:</td>
+                <td>{{$businesses->website}}</td>
               </tr>
               <tr>
                 <td>Country:</td>
@@ -215,8 +216,8 @@
                 <td>English</td>
               </tr>
               <tr>
-                <td>Contact:</td>
-                <td>+(305) 254 24668</td>
+                <td>BusinessType:</td>
+                <td>{{$businesses->btype}}</td>
               </tr>
             </tbody>
           </table>
