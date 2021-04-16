@@ -35,12 +35,12 @@ class Page extends Model
 
 	public function comments()
     {
-        return $this->hasMany(PageComment::class);
+        return $this->hasMany(PageComment::class, 'id');
     }
 
 	public function likes()
     {
-        return $this->hasMany(PageLike::class);
+        return $this->hasMany(PageLike::class, 'id');
     }
 
 	/**

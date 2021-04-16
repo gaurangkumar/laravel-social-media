@@ -19,7 +19,7 @@
         </li>
          <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.group' ? 'active' : ''}}" href="{{ route('admin.group') }}"><i class="fas fa-users"></i><span class="menu-title" data-i18n="Home">Group</span></a>
         </li>
-        <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.page' ? 'active' : ''}}" href="{{ route('admin.page') }}"><i class="fas fa-file-alt"></i><span class="menu-title" data-i18n="Home">Page</span></a>
+        <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.page.index' ? 'active' : ''}}" href="{{ route('admin.page.index') }}"><i class="fas fa-file-alt"></i><span class="menu-title" data-i18n="Home">Page</span></a>
         </li>
         <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.business' ? 'active' : ''}}" href="{{ route('admin.business') }}"><i class="far fa-building"></i><span class="menu-title" data-i18n="Home">Business</span></a>
         </li>
