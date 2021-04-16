@@ -79,12 +79,8 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($page_uname)
+    public function show(Page $page)
     {
-        $page_uname = Route::current()->parameter('page_uname');
-        $page = Page::where('uname', $page_uname)
-            ->first();
-
         $followers_count = HomeController::number_abbr(
             PageFollower::where('page_id', $page->id)
             ->count()
