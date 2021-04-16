@@ -17,9 +17,9 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-		$this->middleware('auth');
+        $this->middleware('auth');
         \View::share('currentRoute', Route::currentRouteName());
-	}
+    }
 
     public function index()
     {
@@ -28,7 +28,7 @@ class HomeController extends Controller
         $user = auth()->user();
         $business = $user->businesses->count() ? $user->businesses[0] : null;
         //echo "<pre>";var_dump($user->businesses->count());exit;
-		
+
         $side_chats = $this->get_last_chats($user->id);
 
         $friends = $this->get_friends($user->id);
@@ -37,8 +37,15 @@ class HomeController extends Controller
 
         $sender = null;
 
-        return view('index', compact('title', 'side_chats', 'pages', 'sender', 'friends',
-									'user', 'business'));
+        return view('index', compact(
+            'title',
+            'side_chats',
+            'pages',
+            'sender',
+            'friends',
+            'user',
+            'business'
+        ));
     }
 
     public function get_pages($uid)
@@ -292,7 +299,7 @@ class HomeController extends Controller
 
     public function social(Request $request)
     {
-		//
+        //
     }
 
     public static function number_abbr($number)

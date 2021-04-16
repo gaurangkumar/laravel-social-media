@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+
 //use App\Http\Controllers\Auth\AdminLoginController;
 
 /*
@@ -25,14 +26,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/user', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(array('auth'))->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -65,11 +58,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
     Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
     Route::get('/user/{user_id}/edit', array(AdminUserController::class, 'edit'))->name('user.edit');
-     Route::post('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
+    Route::post('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
     Route::get('/group', array(AdminGroupController::class, 'index'))->name('group');
     Route::get('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
     Route::get('/group/{group_id}', array(AdminGroupController::class, 'show'))->name('group.show');
-   // Route::resource('group', GroupController::class);
+    // Route::resource('group', GroupController::class);
 
     Route::get('/page', array(AdminPageController::class, 'index'))->name('page');
     Route::get('/page/{page_id}', array(AdminPageController::class, 'show'))->name('page.show');
@@ -79,13 +72,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
     Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
 
-	/*
-	Route::get('login', array(AdminLoginController::class, 'showLoginForm'))->name('login');
-	Route::post('login', array(AdminLoginController::class, 'login'))->name('login.store');
-	Route::post('logout', array(AdminLoginController::class, 'logout'))->name('logout');
-	*/
+    /*
+    Route::get('login', array(AdminLoginController::class, 'showLoginForm'))->name('login');
+    Route::post('login', array(AdminLoginController::class, 'login'))->name('login.store');
+    Route::post('logout', array(AdminLoginController::class, 'logout'))->name('logout');
+    */
 });
-
 
 Route::get('/{user_id}', array(HomeController::class, 'chat'))
     ->name('chat')

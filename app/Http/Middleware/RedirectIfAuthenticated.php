@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? array(null) : $guards;
 
         foreach ($guards as $guard) {
-        switch ($guard) {
+            switch ($guard) {
 /*
             case 'admin' :
                 if (Auth::guard($guard)->check()) {
@@ -34,12 +34,12 @@ class RedirectIfAuthenticated
             default:
                 if (Auth::guard($guard)->check()) {
                     //return redirect()->route('home');
-					return redirect(RouteServiceProvider::HOME);
+                    return redirect(RouteServiceProvider::HOME);
                 }
                 break;
         }
 
-			/*if (Auth::guard($guard)->check()) {
+            /*if (Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);
             }*/
         }

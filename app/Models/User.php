@@ -23,9 +23,8 @@ class User extends Authenticatable
         'mobile',
         'profile',
         'address',
-        ''
+        '',
     );
-    
 
     /**
      * The attributes that should be hidden for arrays.
@@ -55,11 +54,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Business::class);
     }
-     public function posts()
+
+    public function posts()
     {
         return $this->hasMany(PagePost::class);
     }
-     public function followers()
+
+    public function followers()
     {
         return $this->hasMany(PageFollower::class);
     }

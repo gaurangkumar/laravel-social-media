@@ -12,16 +12,24 @@ class BusinessController extends Controller
 {
     public function __construct()
     {
-        
-                session_start();
+		if ( php_sapi_name() !== 'cli' ) {
+			if ( version_compare(phpversion(), '5.4.0', '>=') )
+				if (session_status() !== PHP_SESSION_ACTIVE) {
+					session_start();
+				}
+			else {
+				if (session_id() === '') {
+					session_start();
+				}
+			}
+		}
+		else {
+			if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
+				session_start();
+			}
+		}
 		$_SESSION['admin'] = 1;
-/*
-                if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
-                    header('Location: '.route('admin.login'));
-                    //exit;
-                }
-*/
-        
+
         \View::share('currentRoute', Route::currentRouteName());
     }
 
@@ -74,7 +82,7 @@ class BusinessController extends Controller
        
 
 
-        return view('admin.business.show',compact('businesses'));
+        return view('admin.business.show', compact('businesses'));
     }
 
     /**
