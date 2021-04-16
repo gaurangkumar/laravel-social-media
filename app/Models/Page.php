@@ -37,7 +37,8 @@ class Page extends Model
     {
         return $this->hasMany(PageComment::class);
     }
-    public function likes()
+
+	public function likes()
     {
         return $this->hasMany(PageLike::class);
     }
