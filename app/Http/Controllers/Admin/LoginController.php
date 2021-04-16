@@ -10,14 +10,12 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-        
-                session_start();
-		$_SESSION['admin'] = 1;
-                if (isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
-                    header('Location: '.route('admin.home'));
-                    //exit;
-                }
-        
+        session_start();
+        $_SESSION['admin'] = 1;
+        if (isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
+            header('Location: '.route('admin.home'));
+            //exit;
+        }
     }
 
     /**

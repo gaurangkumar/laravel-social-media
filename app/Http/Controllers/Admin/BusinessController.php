@@ -11,16 +11,15 @@ class BusinessController extends Controller
 {
     public function __construct()
     {
-        
-                session_start();
-		$_SESSION['admin'] = 1;
-/*
-                if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
-                    header('Location: '.route('admin.login'));
-                    //exit;
-                }
-*/
-        
+        session_start();
+        $_SESSION['admin'] = 1;
+        /*
+                        if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
+                            header('Location: '.route('admin.login'));
+                            //exit;
+                        }
+        */
+
         \View::share('currentRoute', Route::currentRouteName());
     }
 
@@ -70,7 +69,7 @@ class BusinessController extends Controller
     {
         $businesses = Business::find($id);
 
-        return view('admin.business.show',compact('businesses'));
+        return view('admin.business.show', compact('businesses'));
     }
 
     /**
