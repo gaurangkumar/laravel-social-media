@@ -76,9 +76,9 @@ class PageController extends Controller
      */
     public function show($id)
     {
-		//echo '<pre>';print_r();exit;
 		$page = Page::find($id);
-        return view('admin.page.show', compact('page'));
+
+		return view('admin.page.show', compact('page'));
     }
 
     /**
