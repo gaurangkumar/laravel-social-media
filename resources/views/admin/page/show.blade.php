@@ -166,59 +166,65 @@
         <div class="col s12">
           <table class="striped">
             <tbody>
+               @if(!empty($page->posts))
+                @foreach($page->posts as $post)
+              
               <tr>
-                <td>Photo:</td>
+                <td>Posts:</td>
                 <td class="users-view">
-                  <img src="{{ empty($page->profile) ?
+                  @if(is_null($post->text))
+                              <img src="{{ empty($post->media) ?
                                                  asset('storage/index.jpg') :
-                                                 asset(\Storage::url($page->profile))
+                                                 asset(\Storage::url($post->media))
                                              }}" alt="users view avatar" class="z-depth-4 circle"
-              height="64" width="64"></td>
+              height="64" width="64">
+              @else
+                  <span>{{$post->text}}</span>
+                  @endif
                 </td>
               </tr>
-              <tr>
-                <td>Name:</td>
-                <td class="users-view">{{ $page->name }}</td>
-              </tr>
               
-
+              
+            @endforeach
+            @endif
             </tbody>
           </table>
-          <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Social Links</h6>
+          <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Page details</h6>
           <table class="striped">
             <tbody>
               <tr>
-                <td>Postlike:</td>
+                <td>Follower:</td>
                 <td><a href="#">{{$page->followers->count()}}</a></td>
               </tr>
               <tr>
                 <td>Comment:</td>
-                <td><a href="#">{{$page->comments->count()}}/</a></td>
+                <td><a href="#">{{$page->followers->count()}}</a></td>
               </tr>
-              <tr>
-                <td>Like:</td>
+               <tr>
+                <td>Likes:</td>
                 <td><a href="#">{{$page->likes->count()}}</a></td>
               </tr>
+              
             </tbody>
           </table>
-          <h6 class="mb-2 mt-2"><i class="material-icons">error_outline</i> Personal Info</h6>
+          <h6 class="mb-2 mt-2"><i class="material-icons">error_outline</i> Page Info</h6>
           <table class="striped">
             <tbody>
               <tr>
-                <td>Birthday:</td>
-                <td>03/04/1990</td>
+                <td>Created At</td>
+                <td>{{$page->created_at}}</td>
               </tr>
               <tr>
-                <td>Country:</td>
-                <td>USA</td>
+                <td>Page unique Name:</td>
+                <td>{{$page->uname}}</td>
               </tr>
               <tr>
-                <td>Languages:</td>
-                <td>English</td>
+                <td>Description:</td>
+                <td>{{$page->description}}</td>
               </tr>
               <tr>
-                <td>Contact:</td>
-                <td>+(305) 254 24668</td>
+                <td>CreatedBy</td>
+                <td>{{$page->users->name}}</td>
               </tr>
             </tbody>
           </table>

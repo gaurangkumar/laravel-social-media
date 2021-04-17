@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Group;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -78,7 +79,15 @@ class GroupController extends Controller
     {
         $group = Group::find($id);
 
-        return view('admin.group.show', compact('group'));
+        $members = User::whereIn('id', function ($query) use ($group) {
+            $query->select('user_id')
+                ->from('group_members')
+                ->where('group_id', $group->id);
+        })
+        ->get();
+        //echo "<pre>";print_r($members);exit();
+
+        return view('admin.group.show', compact('group','members'));
     }
 
     /**

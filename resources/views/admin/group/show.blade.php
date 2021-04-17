@@ -162,23 +162,31 @@
       <div class="row">
         <div class="col s12">
           <table class="striped">
+             <h6>Group members List:</h6>
             <tbody>
+               @if(!empty($group->members))
+                  @foreach($members as $member)
+ 
               <tr>
+               
                 <td>Photo:</td>
+
                 <td class="users-view">
-                  <img src="{{ empty($group->profile) ?
+
+                  <img src="{{ empty($member->profile) ?
                                                  asset('storage/index.jpg') :
-                                                 asset(\Storage::url($group->profile))
+                                                 asset(\Storage::url($member->profile))
                                              }}" alt="users view avatar" class="z-depth-4 circle"
               height="64" width="64"></td>
                 </td>
+                 <td>Name:</td>
+                <td class="users-view">{{ $member->name }}</td>
               </tr>
-              <tr>
-                <td>Name:</td>
-                <td class="users-view-name">{{ $group->name }}</td>
-              </tr>
+             
               
-
+               
+              @endforeach
+              @endif
             </tbody>
           </table>
           <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Social Links</h6>

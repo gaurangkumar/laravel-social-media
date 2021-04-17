@@ -170,9 +170,9 @@
               <tr>
                 <td>Photo:</td>
                 <td class="users-view">
-                  <img src="{{ empty($product->profile) ?
+                  <img src="{{ empty($product->img) ?
                                                  asset('storage/index.jpg') :
-                                                 asset(\Storage::url($product->profile))
+                                                 asset(\Storage::url($product->img))
                                              }}" alt="users view avatar" class="z-depth-4 circle"
               height="64" width="64"></td>
                 </td>
@@ -208,12 +208,12 @@
                 <td>{{$businesses->website}}</td>
               </tr>
               <tr>
-                <td>Country:</td>
-                <td>USA</td>
+                <td>Address:</td>
+                <td>{{$businesses->address}}</td>
               </tr>
               <tr>
-                <td>Languages:</td>
-                <td>English</td>
+                <td>Description:</td>
+                <td>{{$businesses->description}}</td>
               </tr>
               <tr>
                 <td>BusinessType:</td>
