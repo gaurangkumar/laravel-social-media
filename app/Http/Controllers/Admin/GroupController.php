@@ -112,7 +112,13 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         $group = Group::find($id);
-        return view('admin.group.update', compact('group'));
+         $members = User::whereIn('id', function ($query) use ($group) {
+            $query->select('user_id')
+                ->from('group_members')
+                ->where('group_id', $group->id);
+        })
+        ->get();
+        return view('admin.group.update', compact('group','members'));
 
     }
 

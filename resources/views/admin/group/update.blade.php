@@ -123,24 +123,28 @@
                 <table class="mt-1">
                   <thead>
                     <tr>
-                      <th>Module Permission</th>
-                      <
+                      <th>Group Members</th>
+                      
+                     
                       <th>Add/Delete</th>
                     </tr>
                   </thead>
                   <tbody>
+
+                     @foreach($members as $member)
                     <tr>
-                      <td>Users</td>
+                      <td>{{$member->name}}</td>
                       
                       <td>
                         <label>
-                          <input type="checkbox" checked />
+                          <input type="checkbox" />
                           <span></span>
                         </label>
                       </td>
                     </tr>
                     <tr>
-                                       </tbody>
+                      @endforeach
+                  </tbody>
                 </table>
                 <!-- </div> -->
               </div>
