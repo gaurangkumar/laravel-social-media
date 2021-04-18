@@ -6,7 +6,6 @@ use App\Models\Page;
 use App\Models\PageFollower;
 use App\Models\PagePost;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 class PageController extends Controller
 {

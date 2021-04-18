@@ -33,23 +33,23 @@ class Page extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-	public function comments()
+    public function comments()
     {
         return $this->hasMany(PageComment::class, 'id');
     }
 
-	public function likes()
+    public function likes()
     {
         return $this->hasMany(PageLike::class, 'id');
     }
 
-	/**
-	 * Get the route key for the model.
-	 *
-	 * @return string
-	 */
-	public function getRouteKeyName()
-	{
-		return 'uname';
-	}
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uname';
+    }
 }

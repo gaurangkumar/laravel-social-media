@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Business;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,23 +11,22 @@ class BusinessController extends Controller
 {
     public function __construct()
     {
-		if ( php_sapi_name() !== 'cli' ) {
-			if ( version_compare(phpversion(), '5.4.0', '>=') )
-				if (session_status() !== PHP_SESSION_ACTIVE) {
-					session_start();
-				}
-			else {
-				if (session_id() === '') {
-					session_start();
-				}
-			}
-		}
-		else {
-			if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
-				session_start();
-			}
-		}
-		$_SESSION['admin'] = 1;
+        if (php_sapi_name() !== 'cli') {
+            if (version_compare(phpversion(), '5.4.0', '>=')) {
+                if (session_status() !== PHP_SESSION_ACTIVE) {
+                    session_start();
+                } else {
+                    if (session_id() === '') {
+                        session_start();
+                    }
+                }
+            }
+        } else {
+            if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
+                session_start();
+            }
+        }
+        $_SESSION['admin'] = 1;
 
         \View::share('currentRoute', Route::currentRouteName());
     }
@@ -78,9 +76,6 @@ class BusinessController extends Controller
     public function show($id)
     {
         $businesses = Business::find($id);
-        
-       
-
 
         return view('admin.business.show', compact('businesses'));
     }

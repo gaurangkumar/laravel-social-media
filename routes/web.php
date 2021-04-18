@@ -29,36 +29,36 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [HomeController::class, 'index'])
+Route::get('/', array(HomeController::class, 'index'))
     ->name('home');
-Route::get('/settings', [HomeController::class, 'settings'])
+Route::get('/settings', array(HomeController::class, 'settings'))
     ->name('settings');
 
-Route::post('/page/create', [PageController::class, 'store'])
+Route::post('/page/create', array(PageController::class, 'store'))
     ->name('page.store');
-Route::get('/page/{page:uname}', [PageController::class, 'show'])
+Route::get('/page/{page:uname}', array(PageController::class, 'show'))
     ->name('page.show');
 
-Route::post('/post/{page_id}', [HomeController::class, 'post_create'])
+Route::post('/post/{page_id}', array(HomeController::class, 'post_create'))
     ->name('post_create');
 
-Route::post('/group/{group_id}', [HomeController::class, 'group_chat'])
+Route::post('/group/{group_id}', array(HomeController::class, 'group_chat'))
     ->name('group_chat');
-Route::post('/group_members/{group_id}', [GroupMemberController::class, 'group_members'])
+Route::post('/group_members/{group_id}', array(GroupMemberController::class, 'group_members'))
     ->name('group_members');
 
-Route::get('/call', [HomeController::class, 'call'])
+Route::get('/call', array(HomeController::class, 'call'))
     ->name('call');
-Route::get('/status', [HomeController::class, 'status'])
+Route::get('/status', array(HomeController::class, 'status'))
     ->name('status');
 
-Route::post('/profile', [HomeController::class, 'profile'])
+Route::post('/profile', array(HomeController::class, 'profile'))
     ->name('profile');
-Route::post('/delete-profile', [HomeController::class, 'delete_profile'])
+Route::post('/delete-profile', array(HomeController::class, 'delete_profile'))
     ->name('delete-profile');
-Route::post('/password', [HomeController::class, 'password'])
+Route::post('/password', array(HomeController::class, 'password'))
     ->name('password');
-Route::post('/social', [HomeController::class, 'social'])
+Route::post('/social', array(HomeController::class, 'social'))
     ->name('social');
 
 Route::resource('group', GroupController::class);
@@ -76,11 +76,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/group/{group_id}', array(AdminGroupController::class, 'show'))->name('group.show');
     // Route::resource('group', GroupController::class);
 
-	Route::resource('page', AdminPageController::class);
+    Route::resource('page', AdminPageController::class);
     /*
-	Route::get('/page', array(AdminPageController::class, 'index'))->name('page');
+    Route::get('/page', array(AdminPageController::class, 'index'))->name('page');
     Route::get('/page/{page_id}', array(AdminPageController::class, 'show'))->name('page.show');
-	*/
+    */
 
     Route::get('/business', array(AdminBusinessController::class, 'index'))->name('business');
     Route::get('/business/{business_id}', array(AdminBusinessController::class, 'show'))->name('business.show');
