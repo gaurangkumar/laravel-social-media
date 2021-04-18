@@ -12,23 +12,22 @@ class GroupController extends Controller
 {
     public function __construct()
     {
-		if ( php_sapi_name() !== 'cli' ) {
-			if ( version_compare(phpversion(), '5.4.0', '>=') )
-				if (session_status() !== PHP_SESSION_ACTIVE) {
-					session_start();
-				}
-			else {
-				if (session_id() === '') {
-					session_start();
-				}
-			}
-		}
-		else {
-			if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
-				session_start();
-			}
-		}
-		$_SESSION['admin'] = 1;
+        if (php_sapi_name() !== 'cli') {
+            if (version_compare(phpversion(), '5.4.0', '>=')) {
+                if (session_status() !== PHP_SESSION_ACTIVE) {
+                    session_start();
+                } else {
+                    if (session_id() === '') {
+                        session_start();
+                    }
+                }
+            }
+        } else {
+            if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
+                session_start();
+            }
+        }
+        $_SESSION['admin'] = 1;
 
         \View::share('currentRoute', Route::currentRouteName());
     }
@@ -87,7 +86,7 @@ class GroupController extends Controller
         ->get();
         //echo "<pre>";print_r($members);exit();
 
-        return view('admin.group.show', compact('group','members'));
+        return view('admin.group.show', compact('group', 'members'));
     }
 
     /**

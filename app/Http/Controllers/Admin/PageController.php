@@ -11,23 +11,22 @@ class PageController extends Controller
 {
     public function __construct()
     {
-		if ( php_sapi_name() !== 'cli' ) {
-			if ( version_compare(phpversion(), '5.4.0', '>=') )
-				if (session_status() !== PHP_SESSION_ACTIVE) {
-					session_start();
-				}
-			else {
-				if (session_id() === '') {
-					session_start();
-				}
-			}
-		}
-		else {
-			if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
-				session_start();
-			}
-		}
-		$_SESSION['admin'] = 1;
+        if (php_sapi_name() !== 'cli') {
+            if (version_compare(phpversion(), '5.4.0', '>=')) {
+                if (session_status() !== PHP_SESSION_ACTIVE) {
+                    session_start();
+                } else {
+                    if (session_id() === '') {
+                        session_start();
+                    }
+                }
+            }
+        } else {
+            if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
+                session_start();
+            }
+        }
+        $_SESSION['admin'] = 1;
 
         \View::share('currentRoute', Route::currentRouteName());
     }
@@ -76,9 +75,9 @@ class PageController extends Controller
      */
     public function show($id)
     {
-		$page = Page::find($id);
+        $page = Page::find($id);
 
-		return view('admin.page.show', compact('page'));
+        return view('admin.page.show', compact('page'));
     }
 
     /**
