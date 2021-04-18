@@ -15,20 +15,20 @@
 
     <!-- BEGIN: Page Main-->
     <div id="main">
-      <div class="row">
-        <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
-        <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
-          <!-- Search for small screen-->
-          <div class="container">
-            <div class="row">
+    <div class="row">
+          <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
+          <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+            <!-- Search for small screen-->
+            <div class="container">
+                <div class="row">
               <div class="col s10 m6 l6">
-                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Users View</span></h5>
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Users edit</span></h5>
                 <ol class="breadcrumbs mb-0">
                   <li class="breadcrumb-item"><a href="index-2.html">Home</a>
                   </li>
                   <li class="breadcrumb-item"><a href="#">User</a>
                   </li>
-                  <li class="breadcrumb-item active">Users View
+                  <li class="breadcrumb-item active">Users Edit
                   </li>
                 </ol>
               </div>
@@ -42,188 +42,238 @@
                 </ul>
               </div>
             </div>
+              </div>
           </div>
-        </div>
-        <div class="col s12">
+          <div class="col s12">
           <div class="container">
-            <!-- users view start -->
-<div class="section users-view">
-  <!-- users view media object start -->
-  <div class="card-panel">
-    <div class="row">
-      <div class="col s12 m7">
-        <div class="display-flex media">
-          <a href="#" class="avatar">
-            <img src="{{ empty($group->profile) ?
+            <!-- users edit start -->
+<div class="section users-edit">
+  <div class="card">
+    <div class="card-content">
+      <!-- <div class="card-body"> -->
+      <ul class="tabs mb-2 row">
+        <li class="tab">
+          <a class="display-flex align-items-center active" id="account-tab" href="#account">
+            <i class="material-icons mr-1">person_outline</i><span>Account</span>
+          </a>
+        </li>
+        <li class="tab">
+          <a class="display-flex align-items-center" id="information-tab" href="#information">
+            <i class="material-icons mr-2">error_outline</i><span>Information</span>
+          </a>
+        </li>
+      </ul>
+      <div class="divider mb-3"></div>
+      <div class="row">
+        <div class="col s12" id="account">
+          <!-- users edit media object start -->
+          <div class="media display-flex align-items-center mb-2">
+            <a class="mr-2" href="#">
+              <img src="{{ empty($group->profile) ?
                                                  asset('storage/index.jpg') :
                                                  asset(\Storage::url($group->profile))
                                              }}" alt="users view avatar" class="z-depth-4 circle"
-              height="64" width="64"></td>
-          </a>
-          <div class="media-body">
-            <h6 class="media-heading">
-              <span class="users-view">{{$group->name}}</span>
-
-            </h6>
-            <span>ID:</span>
-            <span class="users-view">{{$group->id}}</span>
+" alt="users avatar" class="z-depth-4 circle"
+                height="64" width="64">
+            </a>
+            <div class="media-body">
+              <h5 class="media-heading mt-0">{{$group->name}}</h5>
+              <div class="user-edit-btns display-flex">
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col s12 m5 quick-action-btns display-flex justify-content-end align-items-center pt-2">
-        <a href="app-email.html" class="btn-small btn-light-indigo"><i class="material-icons">mail_outline</i></a>
-        <a href="user-profile-page.html" class="btn-small btn-light-indigo">Profile</a>
-        <a href="{{ route('admin.group.update',$group->id)}}" class="btn-small indigo">Edit</a>
-      </div>
-    </div>
-  </div>
-  <!-- users view media object ends -->
-  <!-- users view card data start -->
-  <div class="card">
-    <div class="card-content">
-      <div class="row">
-        <div class="col s12 m4">
-          <table class="striped">
-            <tbody>
-              <tr>
-                <td>Created Date</td>
-                <td>{{$group->created_at}}</td>
-              </tr>
-              <tr>
-                <td>Latest Activity:</td>
-                <td class="users-view-latest-activity">30/04/2019</td>
-              </tr>
-              <tr>
-                <td>Verified:</td>
-                <td class="users-view-verified">Yes</td>
-              </tr>
-             
-              <tr>
-                <td>Status:</td>
-                <td><span class=" users-view-status chip green lighten-5 green-text">Active</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col s12 m8">
-          <table class="responsive-table">
-            <thead>
-              <tr>
-                <th>Module Permission</th>
-                <th>Read</th>
-                <th>Write</th>
-                <th>Create</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Users</td>
-                <td>Yes</td>
-                <td>No</td>
-                <td>No</td>
-                <td>Yes</td>
-              </tr>
-              <tr>
-                <td>Articles</td>
-                <td>No</td>
-                <td>Yes</td>
-                <td>No</td>
-                <td>Yes</td>
-              </tr>
-              <tr>
-                <td>Staff</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>No</td>
-                <td>No</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- users view card data ends -->
+          <!-- users edit media object ends -->
+          <!-- users edit account form start -->
+          <form id="accountForm" method="post" action="{{ route('admin.group.update',$group->id)}}">
+            @csrf
+            <div class="row">
+              <div class="col s12 m6">
+                <div class="row">
+                  
+                  <div class="col s12 input-field">
+                    <input id="name" name="name" type="text" class="validate" value="{{$group->name}}"
+                      data-error=".errorTxt1">
+                    <label for="name">Name</label>
+                    <small class="errorTxt1"></small>
+                  </div>
+                 
+                  
+                </div>
+              </div>
+              <div class="col s12 m6">
+                <div class="row">
+                  <div class="col s12 input-field">
+                    <input id="description" name="description" type="text" class="validate" value="{{$group->description}}"
+                      data-error=".errorTxt3">
+                    <label for="description">Description</label>
 
-  <!-- users view card details start -->
-  <div class="card">
-    <div class="card-content">
-      <div class="row indigo lighten-5 border-radius-4 mb-2">
-        <div class="col s12 m4 users-view-timeline">
-          <h6 class="indigo-text m-0">GroupMember: <span>{{$group->members->count()}}</span></h6>
+                  </div>
+                  <div class="col s12 input-field">
+                    <select>
+                      <option>Active</option>
+                      <option>Banned</option>
+                      <option>Close</option>
+                    </select>
+                    <label>Status</label>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="col s12">
+                <table class="mt-1">
+                  <thead>
+                    <tr>
+                      <th>Module Permission</th>
+                      <
+                      <th>Add/Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Users</td>
+                      
+                      <td>
+                        <label>
+                          <input type="checkbox" checked />
+                          <span></span>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                                       </tbody>
+                </table>
+                <!-- </div> -->
+              </div>
+              <div class="col s12 display-flex justify-content-end mt-3">
+                <button type="submit" class="btn indigo">
+                  Save changes</button>
+                <button type="button" class="btn btn-light">Cancel</button>
+              </div>
+            </div>
+          </form>
+          <!-- users edit account form ends -->
         </div>
-        <div class="col s12 m4 users-view-timeline">
-          <h6 class="indigo-text m-0">Created By <span>{{ $group->users->name }}</span></h6>
-        </div>
-
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <table class="striped">
-             <h6>Group members List:</h6>
-            <tbody>
-               @if(!empty($group->members))
-                  @foreach($members as $member)
- 
-              <tr>
-               
-                <td>Photo:</td>
-
-                <td class="users-view">
-
-                  <img src="{{ empty($member->profile) ?
-                                                 asset('storage/index.jpg') :
-                                                 asset(\Storage::url($member->profile))
-                                             }}" alt="users view avatar" class="z-depth-4 circle"
-              height="64" width="64"></td>
-                </td>
-                 <td>Name:</td>
-                <td class="users-view">{{ $member->name }}</td>
-              </tr>
-             
-              
-               
-              @endforeach
-              @endif
-            </tbody>
-          </table>
-          <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Group Info</h6>
-          <table class="striped">
-            <tbody>
-              <tr>
-                <td>Group :</td>
-                <td><a href="#">{{ $group->members->count() }}</a></td>
-              </tr>
-              <tr>
-                <td>Group Chat</td>
-                <td><a href="#">{{ $group->chats->count() }}</a></td>
-              </tr>
-
-            </tbody>
-          </table>
-          <h6 class="mb-2 mt-2"><i class="material-icons">error_outline</i> Group Info</h6>
-          <table class="striped">
-            <tbody>
-              <tr>
-                <td>Description</td>
-                <td>{{$group->description}}</td>
-              </tr>
-              
-             
-              </tr>
-            </tbody>
-          </table>
+        <div class="col s12" id="information">
+          <!-- users edit Info form start -->
+          <form id="infotabForm">
+            <div class="row">
+              <div class="col s12 m6">
+                <div class="row">
+                  <div class="col s12">
+                    <h6 class="mb-2"><i class="material-icons mr-1">link</i>Social Links</h6>
+                  </div>
+                  <div class="col s12 input-field">
+                    <input class="validate" type="text" value="https://www.twitter.com/">
+                    <label>Twitter</label>
+                  </div>
+                  <div class="col s12 input-field">
+                    <input class="validate" type="text" value="https://www.facebook.com/">
+                    <label>Facebook</label>
+                  </div>
+                  <div class="col s12 input-field">
+                    <input class="validate" type="text">
+                    <label>Google+</label>
+                  </div>
+                  <div class="col s12 input-field">
+                    <input id="linkedin" name="linkedin" class="validate" type="text">
+                    <label for="linkedin">LinkedIn</label>
+                  </div>
+                  <div class="col s12 input-field">
+                    <input class="validate" type="text" value="https://www.instagram.com/">
+                    <label>Instagram</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col s12 m6">
+                <div class="row">
+                  <div class="col s12">
+                    <h6 class="mb-4"><i class="material-icons mr-1">person_outline</i>Personal Info</h6>
+                  </div>
+                  <div class="col s12 input-field">
+                    <input id="datepicker" name="datepicker" type="text" class="birthdate-picker datepicker"
+                      placeholder="Pick a birthday" data-error=".errorTxt4">
+                    <label for="datepicker">Birth date</label>
+                    <small class="errorTxt4"></small>
+                  </div>
+                  <div class="col s12 input-field">
+                    <select id="accountSelect">
+                      <option>USA</option>
+                      <option>India</option>
+                      <option>Canada</option>
+                    </select>
+                    <label>Country</label>
+                  </div>
+                  <div class="col s12">
+                    <label>Languages</label>
+                    <select class="browser-default" id="users-language-select2" multiple="multiple">
+                      <option value="English" selected>English</option>
+                      <option value="Spanish">Spanish</option>
+                      <option value="French">French</option>
+                      <option value="Russian">Russian</option>
+                      <option value="German">German</option>
+                      <option value="Arabic" selected>Arabic</option>
+                      <option value="Sanskrit">Sanskrit</option>
+                    </select>
+                  </div>
+                  <div class="col s12 input-field">
+                    <input id="phonenumber" type="text" class="validate" value="(+656) 254 2568">
+                    <label for="phonenumber">Phone</label>
+                  </div>
+                  <div class="col s12 input-field">
+                    <input id="address" name="address" type="text" class="validate" data-error=".errorTxt5">
+                    <label for="address">Address</label>
+                    <small class="errorTxt5"></small>
+                  </div>
+                </div>
+              </div>
+              <div class="col s12">
+                <div class="input-field">
+                  <input id="websitelink" name="websitelink" type="text" class="validate">
+                  <label for="websitelink">Website</label>
+                </div>
+                <label>Favourite Music</label>
+                <div class="input-field">
+                  <select class="browser-default" id="users-music-select2" multiple="multiple">
+                    <option value="Rock">Rock</option>
+                    <option value="Jazz" selected>Jazz</option>
+                    <option value="Disco">Disco</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Techno">Techno</option>
+                    <option value="Folk" selected>Folk</option>
+                    <option value="Hip hop">Hip hop</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col s12">
+                <label>Favourite movies</label>
+                <div class="input-field">
+                  <select class="browser-default" id="users-movies-select2" multiple="multiple">
+                    <option value="The Dark Knight" selected>The Dark Knight
+                    </option>
+                    <option value="Harry Potter" selected>Harry Potter</option>
+                    <option value="Airplane!">Airplane!</option>
+                    <option value="Perl Harbour">Perl Harbour</option>
+                    <option value="Spider Man">Spider Man</option>
+                    <option value="Iron Man" selected>Iron Man</option>
+                    <option value="Avatar">Avatar</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col s12 display-flex justify-content-end mt-1">
+                <button type="submit" class="btn indigo">
+                  Save changes</button>
+                <button type="button" class="btn btn-light">Cancel</button>
+              </div>
+            </div>
+          </form>
+          <!-- users edit Info form ends -->
         </div>
       </div>
       <!-- </div> -->
     </div>
   </div>
-  <!-- users view card details ends -->
-
 </div>
-<!-- users view ends --><!-- START RIGHT SIDEBAR NAV -->
+<!-- users edit ends --><!-- START RIGHT SIDEBAR NAV -->
 <aside id="right-sidebar-nav">
   <div id="slide-out-right" class="slide-out-right-sidenav sidenav rightside-navigation">
     <div class="row">
@@ -777,11 +827,8 @@
 <!-- BEGIN: Footer-->
 @include('admin.layouts.footer')
 <!-- END: Footer-->
-
+    
 @endsection
 
 @section('scripts')
-
 @endsection
-    
-  

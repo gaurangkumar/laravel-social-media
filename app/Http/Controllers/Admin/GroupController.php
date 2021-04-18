@@ -111,7 +111,9 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $group = Group::find($id);
+        return view('admin.group.update', compact('group'));
+
     }
 
     /**
