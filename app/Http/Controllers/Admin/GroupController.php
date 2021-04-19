@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\User;
+use App\Models\GroupMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -132,7 +133,6 @@ class GroupController extends Controller
             'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ));
 
-       echo "<pre>";var_dump($request);exit;
 
         $data = array(
             'user_id' => $user->id,
@@ -159,7 +159,6 @@ class GroupController extends Controller
             ));
         }
 
-
         return view('admin.group.update', compact('group','members'));
 
     }
@@ -171,8 +170,18 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Group $group)
     {
-        //
+		$members = GroupMember::whereIn('id', function ($query) use ($group) {
+            $query->select('user_id')
+                ->from('group_members')
+                ->where('group_id', $group->id);
+        })
+        ->delete();
+
+		$delete = $group->delete();
+       echo "<pre>";var_dump([$members, $delete]);exit;
+
+        return redirect('admin.group.index');
     }
 }
