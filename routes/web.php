@@ -65,16 +65,21 @@ Route::resource('product', ProductController::class);
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', array(AdminHomeController::class, 'index'))->name('home');
-    Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
+
+	Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
     Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
     Route::get('/user/{user_id}/edit', array(AdminUserController::class, 'edit'))->name('user.edit');
     Route::post('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
     Route::get('/group', array(AdminGroupController::class, 'index'))->name('group');
     Route::get('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
-    Route::get('/group/{group_id}', array(AdminGroupController::class, 'show'))->name('group.show');
+
+	/*
+	Route::get('/group/{group_id}', array(AdminGroupController::class, 'show'))->name('group.show');
     Route::get('/group/{group_id}/edit', array(AdminGroupController::class, 'edit'))->name('group.edit');
     Route::post('/group/{group_id}/update', array(AdminGroupController::class, 'update'))->name('group.update');
-    // Route::resource('group', GroupController::class);
+	*/
+
+	Route::resource('group', AdminGroupController::class);
 
     Route::resource('page', AdminPageController::class);
     /*
