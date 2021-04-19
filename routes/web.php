@@ -80,8 +80,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
 	*/
 
 	Route::resource('group', AdminGroupController::class);
+	/**
+| GET|HEAD  | admin/group			   | admin.group.index	 | AdminGroupController@index   |
+| POST      | admin/group			   | admin.group.store	 | AdminGroupController@store   |
+| GET|HEAD  | admin/group/create	   | admin.group.create	 | AdminGroupController@create  |
+| GET|HEAD  | admin/group/{group}      | admin.group.show	 | AdminGroupController@show    |
+| PUT|PATCH | admin/group/{group}	   | admin.group.update	 | AdminGroupController@update  |
+| DELETE    | admin/group/{group}	   | admin.group.destroy | AdminGroupController@destroy |
+| GET|HEAD  | admin/group/{group}/edit | admin.group.edit	 | AdminGroupController@edit    |
+	*/
 
-    Route::resource('page', AdminPageController::class);
+	Route::resource('page', AdminPageController::class);
     /*
     Route::get('/page', array(AdminPageController::class, 'index'))->name('page');
     Route::get('/page/{page_id}', array(AdminPageController::class, 'show'))->name('page.show');
