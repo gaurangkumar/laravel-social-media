@@ -73,7 +73,7 @@
       <div class="col s12 m5 quick-action-btns display-flex justify-content-end align-items-center pt-2">
         <a href="app-email.html" class="btn-small btn-light-indigo"><i class="material-icons">mail_outline</i></a>
         <a href="user-profile-page.html" class="btn-small btn-light-indigo">Profile</a>
-        <a href="{{ route('admin.group.update',$group->id)}}" class="btn-small indigo">Edit</a>
+        <a href="{{ route('admin.group.edit',$group->id)}}" class="btn-small indigo">Edit</a>
       </div>
     </div>
   </div>

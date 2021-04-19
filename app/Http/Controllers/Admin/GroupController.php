@@ -98,7 +98,17 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        //
+         $group = Group::find($id);
+
+        $members = User::whereIn('id', function ($query) use ($group) {
+            $query->select('user_id')
+                ->from('group_members')
+                ->where('group_id', $group->id);
+        })
+        ->get();
+        //echo "<pre>";print_r($members);exit();
+
+        return view('admin.group.edit', compact('group', 'members'));
     }
 
     /**
@@ -118,6 +128,41 @@ class GroupController extends Controller
                 ->where('group_id', $group->id);
         })
         ->get();
+        $request->validate(array(
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'members' => 'required|array|min:2',
+            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+        ));
+
+       echo "<pre>";var_dump($request);exit;
+
+        $data = array(
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'description' => $request->description,
+        );
+
+        if (!empty($request->profile)) {
+            $request->validate(array(
+                'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            ));
+
+            $image = $request->profile->store('profile', array('disk' => 'public'));
+
+            $data['profile'] = $image;
+        }
+            $result = $group->update($data);
+        array_push($validated['members'], $user->id);
+
+        foreach ($validated['members'] as $member) {
+            GroupMember::create(array(
+                'user_id' => $member,
+                'group_id' => $group->id,
+            ));
+        }
+
+
         return view('admin.group.update', compact('group','members'));
 
     }
