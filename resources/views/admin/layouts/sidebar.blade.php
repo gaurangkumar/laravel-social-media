@@ -17,7 +17,7 @@
         </li>
         <li class="bold"><a class="waves-effect waves-cyan @if($currentRoute == 'admin.user' || $currentRoute == 'admin.user.show'){{ 'active' }} @endif " href="{{ route('admin.user') }}"><i class="far fa-user"></i><span class="menu-title" data-i18n="Home">Users</span></a>
         </li>
-         <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.group' ? 'active' : ''}}" href="{{ route('admin.group') }}"><i class="fas fa-users"></i><span class="menu-title" data-i18n="Home">Group</span></a>
+         <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.group.index' ? 'active' : ''}}" href="{{ route('admin.group.index') }}"><i class="fas fa-users"></i><span class="menu-title" data-i18n="Home">Group</span></a>
         </li>
         <li class="bold"><a class="waves-effect waves-cyan {{ $currentRoute == 'admin.page.index' ? 'active' : ''}}" href="{{ route('admin.page.index') }}"><i class="fas fa-file-alt"></i><span class="menu-title" data-i18n="Home">Page</span></a>
         </li>
