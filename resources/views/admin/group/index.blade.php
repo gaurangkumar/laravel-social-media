@@ -91,9 +91,18 @@
     </div>
   </div>
   <div class="users-list-table">
+@if (session('status'))
     <div class="card">
       <div class="card-content">
-        <!-- datatable start -->
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    </div>
+    </div>
+@endif
+    <div class="card">
+      <div class="card-content">
+		<!-- datatable start -->
         <div class="responsive-table">
           <table id="users-list-datatable" class="table">
             <thead>

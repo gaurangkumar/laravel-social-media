@@ -172,16 +172,13 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-		$members = GroupMember::whereIn('id', function ($query) use ($group) {
-            $query->select('user_id')
-                ->from('group_members')
-                ->where('group_id', $group->id);
-        })
-        ->delete();
+		$members = GroupMember::where('group_id', $group->id)->delete();
 
-		$delete = $group->delete();
-       echo "<pre>";var_dump([$members, $delete]);exit;
-
-        return redirect('admin.group.index');
+		if($members !== false && $group->delete()) {
+			return redirect()->route('admin.group.index')->with(['msg'=>'']);
+		}
+		else {
+			return back()->with('status', 'Error in deleting group!');
+		}
     }
 }
