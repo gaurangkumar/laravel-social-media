@@ -73,7 +73,7 @@
                                                  asset('storage/index.jpg') :
                                                  asset(\Storage::url($group->profile))
                                              }}" alt="users view avatar" class="z-depth-4 circle"
-" alt="users avatar" class="z-depth-4 circle"
+alt="users avatar" class="z-depth-4 circle"
                 height="64" width="64">
             </a>
             <div class="media-body">
