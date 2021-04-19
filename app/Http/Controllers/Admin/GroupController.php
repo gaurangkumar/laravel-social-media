@@ -125,17 +125,15 @@ class GroupController extends Controller
         })
         ->get();
 
-		echo '<pre>';print_r($request->toArray());exit;
-		$request->validate(array(
+		$validated = $request->validate(array(
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'members' => 'required|array|min:2',
-            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            //'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ));
-
+		echo '<pre>';print_r($request->toArray());exit;
 
         $data = array(
-            'user_id' => $user->id,
             'name' => $request->name,
             'description' => $request->description,
         );
@@ -149,8 +147,14 @@ class GroupController extends Controller
 
             $data['profile'] = $image;
         }
-            $result = $group->update($data);
-        array_push($validated['members'], $user->id);
+
+		if ($group->update($data) === false) {
+			return back()->with('status', 'Error in updating group!');
+		}
+
+		if (!in_array($group->user_id, $validated['members'])) {
+			
+		}
 
         foreach ($validated['members'] as $member) {
             GroupMember::create(array(
