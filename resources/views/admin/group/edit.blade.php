@@ -84,7 +84,7 @@ alt="users avatar" class="z-depth-4 circle"
           </div>
           <!-- users edit media object ends -->
           <!-- users edit account form start -->
-          <form id="accountForm" method="put" action="{{ route('admin.group.update',$group->id)}}">
+          <form id="accountForm" method="post" action="{{ route('admin.group.update',$group->id)}}">
             @csrf
             <div class="row">
               <div class="col s12 m6">
@@ -149,7 +149,7 @@ alt="users avatar" class="z-depth-4 circle"
                 <!-- </div> -->
               </div>
               <div class="col s12 display-flex justify-content-end mt-3">
-                <button type="submit" class="btn indigo">
+                <button type="submit" class="btn indigo" onclick="$(#accountForm).submit()">
                   Save changes</button>
                 <button type="button" class="btn btn-light">Cancel</button>
               </div>
