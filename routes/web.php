@@ -73,12 +73,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/group', array(AdminGroupController::class, 'index'))->name('group');
     Route::post('/group/{group_id}/update', array(AdminGroupController::class, 'update'))->name('group.update');
 
-	/*
-	Route::get('/group/{group_id}', array(AdminGroupController::class, 'show'))->name('group.show');
-    Route::get('/group/{group_id}/edit', array(AdminGroupController::class, 'edit'))->name('group.edit');
-    Route::post('/group/{group_id}/update', array(AdminGroupController::class, 'update'))->name('group.update');
-	*/
-
 	Route::resource('group', AdminGroupController::class);
 	/**
 | GET|HEAD  | admin/group			   | admin.group.index	 | AdminGroupController@index   |
@@ -102,11 +96,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
     Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
 
-    /*
-    Route::get('login', array(AdminLoginController::class, 'showLoginForm'))->name('login');
-    Route::post('login', array(AdminLoginController::class, 'login'))->name('login.store');
-    Route::post('logout', array(AdminLoginController::class, 'logout'))->name('logout');
-    */
 });
 
 Route::get('/{user_id}', array(HomeController::class, 'chat'))
