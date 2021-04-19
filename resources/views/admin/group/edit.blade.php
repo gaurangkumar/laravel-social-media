@@ -70,12 +70,9 @@
           <div class="media display-flex align-items-center mb-2">
             <a class="mr-2" href="#">
               <img src="{{ empty($group->profile) ?
-                                                 asset('storage/index.jpg') :
-                                                 asset(\Storage::url($group->profile))
-                                             }}" alt="users view avatar" class="z-depth-4 circle"
-" alt="users avatar" class="z-depth-4 circle"
-                height="64" width="64">
-            </a>
+						asset('storage/index.jpg') :
+						asset(\Storage::url($group->profile))}}" alt="users view avatar" class="z-depth-4 circle" alt="users avatar" class="z-depth-4 circle" height="64" width="64">
+			  </a>
             <div class="media-body">
               <h5 class="media-heading mt-0">{{$group->name}}</h5>
               <div class="user-edit-btns display-flex">
@@ -84,8 +81,9 @@
           </div>
           <!-- users edit media object ends -->
           <!-- users edit account form start -->
-          <form id="accountForm" method="put" action="{{ route('admin.group.update',$group->id)}}">
-            @csrf
+          <form id="accountForm" method="post" action="{{ route('admin.group.update', $group->id)}}">
+			@method('put')
+			@csrf
             <div class="row">
               <div class="col s12 m6">
                 <div class="row">
