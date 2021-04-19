@@ -74,10 +74,8 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Group $group)
     {
-        $group = Group::find($id);
-
         $members = User::whereIn('id', function ($query) use ($group) {
             $query->select('user_id')
                 ->from('group_members')
@@ -96,10 +94,8 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Group $group)
     {
-         $group = Group::find($id);
-
         $members = User::whereIn('id', function ($query) use ($group) {
             $query->select('user_id')
                 ->from('group_members')
@@ -119,16 +115,17 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Group $group)
     {
-        $group = Group::find($id);
-         $members = User::whereIn('id', function ($query) use ($group) {
+		$members = User::whereIn('id', function ($query) use ($group) {
             $query->select('user_id')
                 ->from('group_members')
                 ->where('group_id', $group->id);
         })
         ->get();
-        $request->validate(array(
+
+		echo '<pre>';print_r($request->toArray());exit;
+		$request->validate(array(
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'members' => 'required|array|min:2',
