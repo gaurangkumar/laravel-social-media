@@ -22,9 +22,14 @@
 			   <!--card stats start-->
 			   <div id="card-stats" class="pt-0">
 				  <div class="row">
-					 @foreach($count as $c)
+					@php
+						$color = ['light-blue-cyan', 'red-pink', 'amber-amber', 'green-teal', ];
+						$i = 0;
+					@endphp
+
+					@foreach($count as $k => $c)
 					 <div class="col s12 m6 l6 xl3">
-						<div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text animate fadeLeft">
+						<div class="card gradient-45deg-{{ $color[$i] }} gradient-shadow min-height-100 white-text animate {{ $k % 2 ? 'fadeLeft' : 'fadeRight' }}">
 						   <div class="padding-4">
 							  <div class="row">
 								 <div class="col s7 m7">
@@ -42,60 +47,13 @@
 						   </div>
 						</div>
 					 </div>
-					 @endforeach
-<?php /*
-					 <div class="col s12 m6 l6 xl3">
-						<div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text animate fadeLeft">
-						   <div class="padding-4">
-							  <div class="row">
-								 <div class="col s7 m7">
-									<i class="material-icons background-round mt-5 fas fa-users-cog"></i>
-									<p>Admins</p>
-								 </div>
-								 <div class="col s5 m5 right-align">
-									<h5 class="mb-0 white-text">{{ $count->admins_last_week }}</h5>
-									<p class="no-margin">New</p>
-									<p>{{ $count->admins_total }}</p>
-								 </div>
-							  </div>
-						   </div>
-						</div>
-					 </div>
-					 <div class="col s12 m6 l6 xl3">
-						<div class="card gradient-45deg-amber-amber gradient-shadow min-height-100 white-text animate fadeRight">
-						   <div class="padding-4">
-							  <div class="row">
-								 <div class="col s7 m7">
-									<i class="material-icons background-round mt-5">timeline</i>
-									<p>Sales</p>
-								 </div>
-								 <div class="col s5 m5 right-align">
-									<h5 class="mb-0 white-text">80%</h5>
-									<p class="no-margin">Growth</p>
-									<p>3,42,230</p>
-								 </div>
-							  </div>
-						   </div>
-						</div>
-					 </div>
-					 <div class="col s12 m6 l6 xl3">
-						<div class="card gradient-45deg-green-teal gradient-shadow min-height-100 white-text animate fadeRight">
-						   <div class="padding-4">
-							  <div class="row">
-								 <div class="col s7 m7">
-									<i class="material-icons background-round mt-5">attach_money</i>
-									<p>Profit</p>
-								 </div>
-								 <div class="col s5 m5 right-align">
-									<h5 class="mb-0 white-text">$890</h5>
-									<p class="no-margin">Today</p>
-									<p>$25,000</p>
-								 </div>
-							  </div>
-						   </div>
-						</div>
-					 </div>
-					 */ ?>
+						@php
+							if($i != 3)
+								$i++;	  
+							else
+								$i = 0;
+						@endphp
+					@endforeach
 				  </div>
 			   </div>
 			</div><!-- START RIGHT SIDEBAR NAV -->
