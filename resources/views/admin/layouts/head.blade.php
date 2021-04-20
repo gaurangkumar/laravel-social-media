@@ -17,14 +17,16 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/vendors/chartist-js/chartist.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/vendors/chartist-js/chartist-plugin-tooltip.css') }}">
     <!-- END: VENDOR CSS-->
-    <!-- BEGIN: Page Level CSS-->
+
+	<!-- BEGIN: Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/themes/vertical-modern-menu-templ/materialize.min.6.delay') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/themes/vertical-modern-menu-template/style.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/dashboard-modern.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/intro.min.css') }}">
-     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/page-users.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/page-users.min.css')}}">
     <!-- END: Page Level CSS-->
-    <!-- BEGIN: Custom CSS-->
+
+	<!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/custom/custom.css') }}">
     <!-- END: Custom CSS-->
 
