@@ -70,25 +70,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
     Route::get('/user/{user_id}/edit', array(AdminUserController::class, 'edit'))->name('user.edit');
     Route::post('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
+<<<<<<< HEAD
     Route::get('/group', array(AdminGroupController::class, 'index'))->name('group');
     Route::put('/group/{group_id}/update', array(AdminGroupController::class, 'update'))->name('group.update');
+=======
+>>>>>>> 00a441319fa1152ccb935c60ab7017afbb59c03a
 
 	Route::resource('group', AdminGroupController::class);
-	/**
-| GET|HEAD  | admin/group			   | admin.group.index	 | AdminGroupController@index   |
-| POST      | admin/group			   | admin.group.store	 | AdminGroupController@store   |
-| GET|HEAD  | admin/group/create	   | admin.group.create	 | AdminGroupController@create  |
-| GET|HEAD  | admin/group/{group}      | admin.group.show	 | AdminGroupController@show    |
-| PUT|PATCH | admin/group/{group}	   | admin.group.update	 | AdminGroupController@update  |
-| DELETE    | admin/group/{group}	   | admin.group.destroy | AdminGroupController@destroy |
-| GET|HEAD  | admin/group/{group}/edit | admin.group.edit	 | AdminGroupController@edit    |
-	*/
-
 	Route::resource('page', AdminPageController::class);
-    /*
-    Route::get('/page', array(AdminPageController::class, 'index'))->name('page');
-    Route::get('/page/{page_id}', array(AdminPageController::class, 'show'))->name('page.show');
-    */
 
     Route::get('/business', array(AdminBusinessController::class, 'index'))->name('business');
     Route::get('/business/{business_id}', array(AdminBusinessController::class, 'show'))->name('business.show');

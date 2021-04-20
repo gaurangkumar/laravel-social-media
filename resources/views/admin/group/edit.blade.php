@@ -84,8 +84,8 @@ alt="users avatar" class="z-depth-4 circle"
           </div>
           <!-- users edit media object ends -->
           <!-- users edit account form start -->
-          <form id="accountForm" method="post" action="{{ route('admin.group.update',$group->id)}}">
-            @method('put')
+          <form id="accountForm" method="post" action="{{ route('admin.group.update', $group->id) }}">
+			@method('put')
             @csrf
             <div class="row">
               <div class="col s12 m6">
@@ -97,7 +97,6 @@ alt="users avatar" class="z-depth-4 circle"
                     <label for="name">Name</label>
                     <small class="errorTxt1"></small>
                   </div>
-                 
                   
                 </div>
               </div>
@@ -125,8 +124,6 @@ alt="users avatar" class="z-depth-4 circle"
                   <thead>
                     <tr>
                       <th>Group Members</th>
-                      
-                     
                       <th>Add/Delete</th>
                     </tr>
                   </thead>
@@ -134,11 +131,11 @@ alt="users avatar" class="z-depth-4 circle"
 
                      @foreach($members as $member)
                     <tr>
-                      <td>{{$member->name}}</td>
+                      <td>{{ $member->name }}</td>
                       
                       <td>
                         <label>
-                          <input type="checkbox" />
+                          <input type="checkbox" name="members[]" value="{{ $member->id }}" {{ $member->id == $group->user_id ? 'readonly' : '' }} checked />
                           <span></span>
                         </label>
                       </td>

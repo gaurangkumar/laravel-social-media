@@ -91,9 +91,18 @@
     </div>
   </div>
   <div class="users-list-table">
+@if (session('status'))
     <div class="card">
       <div class="card-content">
-        <!-- datatable start -->
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    </div>
+    </div>
+@endif
+    <div class="card">
+      <div class="card-content">
+		<!-- datatable start -->
         <div class="responsive-table">
           <table id="users-list-datatable" class="table">
             <thead>
@@ -105,11 +114,9 @@
                 <th>created_at</th>
                 <th>createdaBy</th>
                 <th>description</th>
-                <!--<th>role</th>-->
-                
                 <th>edit</th>
                 <th>view</th>
-                <th>block</th>
+                <th>delete</th>
               </tr>
             </thead>
             <tbody>
@@ -123,9 +130,17 @@
                 <td>{{ $group->users->name }}</td>
                 <td>{{substr($group->description,0,10).'...'}}</td>
                 <!--<td>Staff</td>-->
-                <td><a href="page-users-edit.html"><i class="material-icons">edit</i></a></td>
+                <td><a href="{{ route('admin.group.edit',$group->id) }}"><i class="material-icons">edit</i></a></td>
                 <td><a href="{{ route('admin.group.show',$group->id) }}"><i class="material-icons">remove_red_eye</i></a></td>
-                <td><a href="page-users-view.html"><i class="material-icons">close</i></a></td>
+                <td>
+					<a href="#" onClick="$('#delete_{{ $group->id }}').submit()">
+						<i class="material-icons fa fa-trash"></i>
+					</a>
+					<form id="delete_{{ $group->id }}" method="post" action="{{ route('admin.group.destroy',$group->id) }}">
+						@method('delete')
+						@csrf
+					</form>
+				  </td>
               </tr>
               @endforeach
             </tbody>              

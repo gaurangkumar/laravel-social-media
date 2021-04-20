@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\User;
+use App\Models\GroupMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -124,17 +125,17 @@ class GroupController extends Controller
         })
         ->get();
 
-		//echo '<pre>';print_r($request->toArray());exit;
-		$request->validate(array(
+
+		$validated = $request->validate(array(
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'members' => 'required|array|min:2',
-           // 'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            //'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ));
+		echo '<pre>';print_r($request->toArray());exit;
 
-       
+
         $data = array(
-            'user_id' => $user->id,
             'name' => $request->name,
             'description' => $request->description,
         );
@@ -150,8 +151,16 @@ echo "<pre>";var_dump($data);exit;
 
             $data['profile'] = $image;
         }
-            
-        array_push($validated['members'], $user->id);
+
+
+		if ($group->update($data) === false) {
+			return back()->with('status', 'Error in updating group!');
+		}
+
+		if (!in_array($group->user_id, $validated['members'])) {
+			
+		}
+
 
         foreach ($validated['members'] as $member) {
             GroupMember::create(array(
@@ -160,9 +169,8 @@ echo "<pre>";var_dump($data);exit;
             ));
         }
 
-        $result = $group->update($data);    
 
-        return view('admin.group.edit', compact('group','members'));
+        return view('admin.group.update', compact('group','members'));
 
     }
 
@@ -173,8 +181,15 @@ echo "<pre>";var_dump($data);exit;
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Group $group)
     {
-        //
+		$members = GroupMember::where('group_id', $group->id)->delete();
+
+		if($members !== false && $group->delete()) {
+			return redirect()->route('admin.group.index')->with(['msg'=>'']);
+		}
+		else {
+			return back()->with('status', 'Error in deleting group!');
+		}
     }
 }
