@@ -85,6 +85,7 @@ alt="users avatar" class="z-depth-4 circle"
           <!-- users edit media object ends -->
           <!-- users edit account form start -->
           <form id="accountForm" method="post" action="{{ route('admin.group.update',$group->id)}}">
+            @method('put')
             @csrf
             <div class="row">
               <div class="col s12 m6">
