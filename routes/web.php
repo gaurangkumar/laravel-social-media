@@ -66,6 +66,16 @@ Route::resource('product', ProductController::class);
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', array(AdminHomeController::class, 'index'))->name('home');
 
+	Route::delete('/user/{user_id}/profile/delete', array(AdminUserController::class, 'profile_delete'))
+		->name('user.profile.delete');
+	Route::put('/user/{user_id}/profile/update', array(AdminUserController::class, 'profile_update'))
+		->name('user.profile.update');
+
+	Route::delete('/group/{group:id}/profile/delete', array(AdminGroupController::class, 'profile_delete'))
+		->name('group.profile.delete');
+	Route::put('/group/{group_id}/profile/update', array(AdminGroupController::class, 'profile_update'))
+		->name('group.profile.update');
+
 	Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
     Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
     Route::get('/user/{user_id}/edit', array(AdminUserController::class, 'edit'))->name('user.edit');

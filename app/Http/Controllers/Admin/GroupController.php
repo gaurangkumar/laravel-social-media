@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\GroupMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class GroupController extends Controller
 {
@@ -41,9 +43,9 @@ class GroupController extends Controller
     public function index()
     {
         $groups = Group::all();
-        $title = 'Group';
-        //echo '<pre>';print_r($groups[0]->users->toArray());exit;
-        return view('admin.group.index', compact('groups', 'title'));
+        $title = 'All Groups | Agwis Admin';
+
+		return view('admin.group.index', compact('groups', 'title'));
     }
 
     /**
@@ -71,48 +73,50 @@ class GroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Group $group
      *
      * @return \Illuminate\Http\Response
      */
     public function show(Group $group)
     {
-        $members = User::whereIn('id', function ($query) use ($group) {
+        $title = ucwords($group->name).' Group | Agwis Admin';
+
+		$members = User::whereIn('id', function ($query) use ($group) {
             $query->select('user_id')
                 ->from('group_members')
                 ->where('group_id', $group->id);
         })
         ->get();
-        //echo "<pre>";print_r($members);exit();
 
-        return view('admin.group.show', compact('group', 'members'));
+        return view('admin.group.show', compact('group', 'members', 'title'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Group $group
      *
      * @return \Illuminate\Http\Response
      */
     public function edit(Group $group)
     {
+        $title = 'Edit #'.ucwords($group->id).' Group | Agwis Admin';
+
         $members = User::whereIn('id', function ($query) use ($group) {
             $query->select('user_id')
                 ->from('group_members')
                 ->where('group_id', $group->id);
         })
         ->get();
-        //echo "<pre>";print_r($members);exit();
 
-        return view('admin.group.edit', compact('group', 'members'));
+        return view('admin.group.edit', compact('group', 'members', 'title'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param Group $group
      *
      * @return \Illuminate\Http\Response
      */
@@ -177,7 +181,7 @@ echo "<pre>";var_dump($data);exit;
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Group $group
      *
      * @return \Illuminate\Http\Response
      */
@@ -192,4 +196,38 @@ echo "<pre>";var_dump($data);exit;
 			return back()->with('status', 'Error in deleting group!');
 		}
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Group $group
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profile_delete(Group $group)
+	{
+		// $isExists = File::exists( public_path( $group->profile ) );
+		$isExist = Storage::disk('public')->exists( $group->profile );
+		if( $isExist ) {
+			$isDeleted = Storage::disk('public')->delete( $group->profile );
+			if( !$isDeleted ) {
+				//
+			}
+		}
+		$group->update(['profile' => null]);
+
+        return redirect()->back()->with('status', 'Group profile picture is deleted!');
+	}
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Group $group
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profile_update(Group $group)
+	{
+		
+	}
 }

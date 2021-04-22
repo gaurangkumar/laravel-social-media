@@ -20,7 +20,7 @@ class CreateBusinessesTable extends Migration
             $table->string('address');
             $table->string('website');
             $table->text('description');
-            $table->string('profile');
+            $table->string('profile')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

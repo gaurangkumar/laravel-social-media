@@ -58,7 +58,7 @@
 		  <div class="container">
 			<div class="row">
               <div class="col s10 m6 l6">
-                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Group #{{ $group->id }} edit</span></h5>
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Group #{{ $group->id }} Edit</span></h5>
                 <ol class="breadcrumbs mb-0">
                   <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a>
                   </li>
@@ -102,6 +102,23 @@
 				  </ul>
 				  <div class="divider mb-3"></div>
 				  <div class="row">
+<div class="card gradient-45deg-light-blue-cyan gradient-shadow">
+            <div class="card-content white-text">
+    <div class="alert alert-success">
+		asjdasdjkaskdjasdhsakjhdkjhkjh
+    </div>
+              <span class="card-title">Group profile picture is deleted!</span>
+            </div>
+          </div>    <div class="card">
+    <div class="card-content">
+    <div class="alert alert-success">
+		asjdasdjkaskdjasdhsakjhdkjhkjh
+    </div>
+    </div>
+    </div>
+@if (session('status'))
+        {{ session('status') }}
+@endif
 					<div class="col s12" id="account">
 					  <!-- users edit media object start -->
 					  <div class="media display-flex align-items-center mb-2">
@@ -112,7 +129,13 @@
 						  <h5 class="media-heading mt-0">{{ ucwords($group->name) }}</h5>
 						  <div class="user-edit-btns display-flex">
 							<a href="#" class="btn-small indigo">Change</a>
-							<a href="#" class="btn-small btn-light-pink">Remove</a>
+							  @if(!empty($group->profile))
+							<form action="{{ route('admin.group.profile.delete', $group->id) }}" method="post">
+							  @method('delete')
+							  @csrf
+							  <button href="#" class="btn-small btn-light-pink">Remove</button>
+							</form>
+							  @endif
 						  </div>
 						</div>
 					  </div>
@@ -130,22 +153,22 @@
 								<label for="name">Name</label>
 								<small class="errorTxt1"></small>
 							  </div>
-							  <div class="col s12 input-field">
-								<input id="description" name="description" type="text" class="validate" value="{{ $group->description }}" data-error=".errorTxt2">
-								<label for="description">Description</label>
-								<small class="errorTxt2"></small>
-							  </div>
-							  <div class="col s12 input-field">
+							  <!--<div class="col s12 input-field">
 								<input id="email" name="email" type="email" class="validate" value="deanstanley@gmail.com"
 								  data-error=".errorTxt3">
 								<label for="email">E-mail</label>
 								<small class="errorTxt3"></small>
-							  </div>
+							  </div>-->
 							</div>
 						  </div>
 						  <div class="col s12 m6">
 							<div class="row">
 							  <div class="col s12 input-field">
+								<input id="description" name="description" type="text" class="validate" value="{{ $group->description }}" data-error=".errorTxt2">
+								<label for="description">Description</label>
+								<small class="errorTxt2"></small>
+							  </div>
+							  <!--<div class="col s12 input-field">
 								<select>
 								  <option>User</option>
 								  <option>Staff</option>
@@ -163,7 +186,7 @@
 							  <div class="col s12 input-field">
 								<input id="company" name="company" type="text" class="validate">
 								<label for="company">Company</label>
-							  </div>
+							  </div>-->
 							</div>
 						  </div>
 						  <div class="col s12">
