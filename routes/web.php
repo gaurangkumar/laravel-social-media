@@ -66,10 +66,12 @@ Route::resource('product', ProductController::class);
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', array(AdminHomeController::class, 'index'))->name('home');
 
+/*
 	Route::delete('/user/{user:id}/profile/delete', array(AdminUserController::class, 'profile_delete'))
 		->name('user.profile.delete');
 	Route::put('/user/{user:id}/profile/update', array(AdminUserController::class, 'profile_update'))
 		->name('user.profile.update');
+*/
 
 	Route::delete('/group/{group:id}/profile/delete', array(AdminGroupController::class, 'profile_delete'))
 		->name('group.profile.delete');
@@ -81,11 +83,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 	Route::put('/page/{page:id}/profile/update', array(AdminPageController::class, 'profile_update'))
 		->name('page.profile.update');
 
+/*
 	Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
     Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
     Route::get('/user/{user_id}/edit', array(AdminUserController::class, 'edit'))->name('user.edit');
-    Route::post('/user/{user_id}/update', array(AdminUserController::class, 'update'))->name('user.update');
+*/
+    Route::get('/user/{user:id}/delete', array(AdminUserController::class, 'delete'))->name('user.delete');
 
+	Route::resource('user', AdminUserController::class);
 	Route::resource('group', AdminGroupController::class);
 	Route::resource('page', AdminPageController::class);
 
@@ -94,7 +99,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/login', array(AdminLoginController::class, 'index'))->name('login');
     Route::post('/login', array(AdminLoginController::class, 'store'))->name('login.store');
-
+    Route::get('/logout', array(AdminLoginController::class, 'logout'))->name('logout');
 });
 
 Route::get('/{user_id}', array(HomeController::class, 'chat'))

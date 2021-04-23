@@ -11,22 +11,11 @@ class BusinessController extends Controller
 {
     public function __construct()
     {
-        if (php_sapi_name() !== 'cli') {
-            if (version_compare(phpversion(), '5.4.0', '>=')) {
-                if (session_status() !== PHP_SESSION_ACTIVE) {
-                    session_start();
-                } else {
-                    if (session_id() === '') {
-                        session_start();
-                    }
-                }
-            }
-        } else {
-            if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
-                session_start();
-            }
+		session_start();
+        if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
+            header('Location: '.route('admin.login'));
+            exit;
         }
-        $_SESSION['admin'] = 1;
 
         \View::share('currentRoute', Route::currentRouteName());
     }

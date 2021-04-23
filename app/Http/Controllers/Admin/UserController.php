@@ -11,6 +11,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
+/*
         if (php_sapi_name() !== 'cli') {
             if (version_compare(phpversion(), '5.4.0', '>=')) {
                 if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -26,7 +27,12 @@ class UserController extends Controller
                 session_start();
             }
         }
-        $_SESSION['admin'] = 1;
+*/
+		session_start();
+        if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
+            header('Location: '.route('admin.login'));
+            exit;
+        }
 
         \View::share('currentRoute', Route::currentRouteName());
     }
@@ -39,7 +45,7 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.user.index', array(
-            'users' => User::all(),
+            'users' => User::get(),
             'title' => 'Users',
         ));
     }
@@ -73,12 +79,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::find($id);
-        /* echo "<pre>"; var_dump($user->name);
-          exit;
-*/
         return view('admin.user.show', compact('user'));
     }
 
@@ -89,12 +91,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
-
         return view('admin.user.edit', compact('user'));
-        //echo "<pre>";var_dump($id);exit;
     }
 
     /**
@@ -105,9 +104,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::find($id);
         $request->validate(array(
             'name' => 'required|string|max:255',
             'mobile' => 'required|digits:10',
@@ -137,7 +135,7 @@ class UserController extends Controller
 
         $result = $user->update($data);
 
-        return view('admin.user.edit', compact('user'));
+        return redirect()->route('admin.user.index');
     }
 
     /**
@@ -147,8 +145,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->trashed();
+        return redirect()->route('admin.user.index');
+    }
+
+	public function delete(User $user)
+    {
+		$d = User::where('id', $user->id)->update(['deleted_at'=>'2021-04-01']);
+        //$user->trashed();
+        return redirect()->route('admin.user.index');
     }
 }

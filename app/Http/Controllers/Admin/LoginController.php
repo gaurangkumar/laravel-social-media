@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class LoginController extends Controller
 {
     public function __construct()
     {
+/*
         if (php_sapi_name() !== 'cli') {
             if (version_compare(phpversion(), '5.4.0', '>=')) {
                 if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -25,10 +27,12 @@ class LoginController extends Controller
                 session_start();
             }
         }
-        $_SESSION['admin'] = 1;
-        if (isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
+*/
+		session_start();
+		//$_SESSION['admin'] = 1;
+        if (Route::currentRouteName() != 'admin.logout' && isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
             header('Location: '.route('admin.home'));
-            //exit;
+            exit;
         }
     }
 
@@ -123,7 +127,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function logout()
     {
         unset($_SESSION['admin']);
         header('Location: '.route('admin.login'));
