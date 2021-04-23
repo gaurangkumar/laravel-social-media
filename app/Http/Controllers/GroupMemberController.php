@@ -95,10 +95,8 @@ class GroupMemberController extends Controller
         //
     }
 
-    public function group_members(Request $request, $group_id)
+    public function group_members(Group $group, Request $request)
     {
-        $group = Group::find($group_id);
-
         $group_members = array_column($group->members->toArray(), 'user_id');
         $user = auth()->user();
 

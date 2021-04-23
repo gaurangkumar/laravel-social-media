@@ -42,7 +42,7 @@ Route::post('/post/{page_id}', array(HomeController::class, 'post_create'))
 
 Route::post('/group/{group_id}', array(HomeController::class, 'group_chat'))
     ->name('group_chat');
-Route::post('/group_members/{group_id}', array(GroupMemberController::class, 'group_members'))
+Route::post('/group_members/{group:id}', array(GroupMemberController::class, 'group_members'))
     ->name('group_members');
 
 Route::get('/call', array(HomeController::class, 'call'))
@@ -66,14 +66,14 @@ Route::resource('product', ProductController::class);
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', array(AdminHomeController::class, 'index'))->name('home');
 
-	Route::delete('/user/{user_id}/profile/delete', array(AdminUserController::class, 'profile_delete'))
+	Route::delete('/user/{user:id}/profile/delete', array(AdminUserController::class, 'profile_delete'))
 		->name('user.profile.delete');
-	Route::put('/user/{user_id}/profile/update', array(AdminUserController::class, 'profile_update'))
+	Route::put('/user/{user:id}/profile/update', array(AdminUserController::class, 'profile_update'))
 		->name('user.profile.update');
 
 	Route::delete('/group/{group:id}/profile/delete', array(AdminGroupController::class, 'profile_delete'))
 		->name('group.profile.delete');
-	Route::put('/group/{group_id}/profile/update', array(AdminGroupController::class, 'profile_update'))
+	Route::put('/group/{group:id}/profile/update', array(AdminGroupController::class, 'profile_update'))
 		->name('group.profile.update');
 
 	Route::get('/user', array(AdminUserController::class, 'index'))->name('user');

@@ -122,49 +122,27 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-		$members = User::whereIn('id', function ($query) use ($group) {
-            $query->select('user_id')
-                ->from('group_members')
-                ->where('group_id', $group->id);
-        })
-        ->get();
-
+        $group_members = array_column($group->members->toArray(), 'user_id');
 
 		$validated = $request->validate(array(
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'members' => 'required|array|min:2',
-            //'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            'members' => 'required|array|min:3',
         ));
-		echo '<pre>';print_r($request->toArray());exit;
-
+		dd([$request->toArray()]);
 
         $data = array(
             'name' => $request->name,
             'description' => $request->description,
         );
 
-echo "<pre>";var_dump($data);exit;
-
-        if (!empty($request->profile)) {
-            $request->validate(array(
-                'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-            ));
-
-            $image = $request->profile->store('profile', array('disk' => 'public'));
-
-            $data['profile'] = $image;
-        }
-
-
 		if ($group->update($data) === false) {
 			return back()->with('status', 'Error in updating group!');
 		}
 
 		if (!in_array($group->user_id, $validated['members'])) {
-			
+			//
 		}
-
 
         foreach ($validated['members'] as $member) {
             GroupMember::create(array(
@@ -173,6 +151,24 @@ echo "<pre>";var_dump($data);exit;
             ));
         }
 
+        foreach ($request->members as $member) {
+            $key = array_search($member, $group_members);
+            if ($key === false) {
+                $obj = GroupMember::create(array(
+                    'user_id' => $member,
+                    'group_id' => $group_id,
+                ));
+            }
+        }
+
+        foreach ($group_members as $member) {
+            $key = in_array($member, $request->members);
+            if ($key === false) {
+                $result = GroupMember::where('user_id', $member)
+                ->where('group_id', $group_id)
+                ->delete();
+            }
+        }
 
         return view('admin.group.update', compact('group','members'));
 
@@ -226,8 +222,26 @@ echo "<pre>";var_dump($data);exit;
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile_update(Group $group)
+    public function profile_update(Group $group, Request $request)
 	{
-		
+		$isExist = Storage::disk('public')->exists( $group->profile );
+		if( $isExist ) {
+			$isDeleted = Storage::disk('public')->delete( $group->profile );
+			if( !$isDeleted ) {
+				//
+			}
+		}
+
+		$request->validate(array(
+			'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+		));
+
+		$image = $request->profile->store('group', array('disk' => 'public'));
+
+        $data['profile'] = $image;
+
+		$result = $group->update($data);
+
+        return redirect()->back()->with('status', 'Group profile picture is updated!');
 	}
 }
