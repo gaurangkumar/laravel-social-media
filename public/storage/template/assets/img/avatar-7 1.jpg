@@ -1,0 +1,456 @@
+   rAttr[j].value !== sAttr[j].value) {
+            match = false;
+            break;
+          }
+        }
+
+        if(match) {
+          return r;
+        }
+      }
+
+      return null;
+    },
+
+    /**
+     * Decrypt enveloped content
+     *
+     * @param recipient The recipient object related to the private key
+     * @param privKey The (RSA) private key object
+     */
+    decrypt: function(recipient, privKey) {
+      if(msg.encryptedContent.key === undefined && recipient !== undefined &&
+        privKey !== undefined) {
+        switch(recipient.encryptedContent.algorithm) {
+          case forge.pki.oids.rsaEncryption:
+          case forge.pki.oids.desCBC:
+            var key = privKey.decrypt(recipient.encryptedContent.content);
+            msg.encryptedContent.key = forge.util.createBuffer(key);
+            break;
+
+          default:
+            throw new Error('Unsupported asymmetric cipher, ' +
+              'OID ' + recipient.encryptedContent.algorithm);
+        }
+      }
+
+      _decryptContent(msg);
+    },
+
+    /**
+     * Add (another) entity to list of recipients.
+     *
+     * @param cert The certificate of the entity to add.
+     */
+    addRecipient: function(cert) {
+      msg.recipients.push({
+        version: 0,
+        issuer: cert.issuer.attributes,
+        serialNumber: cert.serialNumber,
+        encryptedContent: {
+          // We simply assume rsaEncryption here, since forge.pki only
+          // supports RSA so far.  If the PKI module supports other
+          // ciphers one day, we need to modify this one as well.
+          algorithm: forge.pki.oids.rsaEncryption,
+          key: cert.publicKey
+        }
+      });
+    },
+
+    /**
+     * Encrypt enveloped content.
+     *
+     * This function supports two optional arguments, cipher and key, which
+     * can be used to influence symmetric encryption.  Unless cipher is
+     * provided, the cipher specified in encryptedContent.algorithm is used
+     * (defaults to AES-256-CBC).  If no key is provided, encryptedContent.key
+     * is (re-)used.  If that one's not set, a random key will be generated
+     * automatically.
+     *
+     * @param [key] The key to be used for symmetric encryption.
+     * @param [cipher] The OID of the symmetric cipher to use.
+     */
+    encrypt: function(key, cipher) {
+      // Part 1: Symmetric encryption
+      if(msg.encryptedContent.content === undefined) {
+        cipher = cipher || msg.encryptedContent.algorithm;
+        key = key || msg.encryptedContent.key;
+
+        var keyLen, ivLen, ciphFn;
+        switch(cipher) {
+          case forge.pki.oids['aes128-CBC']:
+            keyLen = 16;
+            ivLen = 16;
+            ciphFn = forge.aes.createEncryptionCipher;
+            break;
+
+          case forge.pki.oids['aes192-CBC']:
+            keyLen = 24;
+            ivLen = 16;
+            ciphFn = forge.aes.createEncryptionCipher;
+            break;
+
+          case forge.pki.oids['aes256-CBC']:
+            keyLen = 32;
+            ivLen = 16;
+            ciphFn = forge.aes.createEncryptionCipher;
+            break;
+
+          case forge.pki.oids['des-EDE3-CBC']:
+            keyLen = 24;
+            ivLen = 8;
+            ciphFn = forge.des.createEncryptionCipher;
+            break;
+
+          default:
+            throw new Error('Unsupported symmetric cipher, OID ' + cipher);
+        }
+
+        if(key === undefined) {
+          key = forge.util.createBuffer(forge.random.getBytes(keyLen));
+        } else if(key.length() != keyLen) {
+          throw new Error('Symmetric key has wrong length; ' +
+            'got ' + key.length() + ' bytes, expected ' + keyLen + '.');
+        }
+
+        // Keep a copy of the key & IV in the object, so the caller can
+        // use it for whatever reason.
+        msg.encryptedContent.algorithm = cipher;
+        msg.encryptedContent.key = key;
+        msg.encryptedContent.parameter = forge.util.createBuffer(
+          forge.random.getBytes(ivLen));
+
+        var ciph = ciphFn(key);
+        ciph.start(msg.encryptedContent.parameter.copy());
+        ciph.update(msg.content);
+
+        // The finish function does PKCS#7 padding by default, therefore
+        // no action required by us.
+        if(!ciph.finish()) {
+          throw new Error('Symmetric encryption failed.');
+        }
+
+        msg.encryptedContent.content = ciph.output;
+      }
+
+      // Part 2: asymmetric encryption for each recipient
+      for(var i = 0; i < msg.recipients.length; ++i) {
+        var recipient = msg.recipients[i];
+
+        // Nothing to do, encryption already done.
+        if(recipient.encryptedContent.content !== undefined) {
+          continue;
+        }
+
+        switch(recipient.encryptedContent.algorithm) {
+          case forge.pki.oids.rsaEncryption:
+            recipient.encryptedContent.content =
+              recipient.encryptedContent.key.encrypt(
+                msg.encryptedContent.key.data);
+            break;
+
+          default:
+            throw new Error('Unsupported asymmetric cipher, OID ' +
+              recipient.encryptedContent.algorithm);
+        }
+      }
+    }
+  };
+  return msg;
+};
+
+/**
+ * Converts a single recipient from an ASN.1 object.
+ *
+ * @param obj the ASN.1 RecipientInfo.
+ *
+ * @return the recipient object.
+ */
+function _recipientFromAsn1(obj) {
+  // validate EnvelopedData content block and capture data
+  var capture = {};
+  var errors = [];
+  if(!asn1.validate(obj, p7.asn1.recipientInfoValidator, capture, errors)) {
+    var error = new Error('Cannot read PKCS#7 RecipientInfo. ' +
+      'ASN.1 object is not an PKCS#7 RecipientInfo.');
+    error.errors = errors;
+    throw error;
+  }
+
+  return {
+    version: capture.version.charCodeAt(0),
+    issuer: forge.pki.RDNAttributesAsArray(capture.issuer),
+    serialNumber: forge.util.createBuffer(capture.serial).toHex(),
+    encryptedContent: {
+      algorithm: asn1.derToOid(capture.encAlgorithm),
+      parameter: capture.encParameter.value,
+      content: capture.encKey
+    }
+  };
+}
+
+/**
+ * Converts a single recipient object to an ASN.1 object.
+ *
+ * @param obj the recipient object.
+ *
+ * @return the ASN.1 RecipientInfo.
+ */
+function _recipientToAsn1(obj) {
+  return asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, [
+    // Version
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.INTEGER, false,
+      asn1.integerToDer(obj.version).getBytes()),
+    // IssuerAndSerialNumber
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, [
+      // Name
+      forge.pki.distinguishedNameToAsn1({attributes: obj.issuer}),
+      // Serial
+      asn1.create(asn1.Class.UNIVERSAL, asn1.Type.INTEGER, false,
+        forge.util.hexToBytes(obj.serialNumber))
+    ]),
+    // KeyEncryptionAlgorithmIdentifier
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, [
+      // Algorithm
+      asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OID, false,
+        asn1.oidToDer(obj.encryptedContent.algorithm).getBytes()),
+      // Parameter, force NULL, only RSA supported for now.
+      asn1.create(asn1.Class.UNIVERSAL, asn1.Type.NULL, false, '')
+    ]),
+    // EncryptedKey
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OCTETSTRING, false,
+      obj.encryptedContent.content)
+  ]);
+}
+
+/**
+ * Map a set of RecipientInfo ASN.1 objects to recipient objects.
+ *
+ * @param infos an array of ASN.1 representations RecipientInfo (i.e. SET OF).
+ *
+ * @return an array of recipient objects.
+ */
+function _recipientsFromAsn1(infos) {
+  var ret = [];
+  for(var i = 0; i < infos.length; ++i) {
+    ret.push(_recipientFromAsn1(infos[i]));
+  }
+  return ret;
+}
+
+/**
+ * Map an array of recipient objects to ASN.1 RecipientInfo objects.
+ *
+ * @param recipients an array of recipientInfo objects.
+ *
+ * @return an array of ASN.1 RecipientInfos.
+ */
+function _recipientsToAsn1(recipients) {
+  var ret = [];
+  for(var i = 0; i < recipients.length; ++i) {
+    ret.push(_recipientToAsn1(recipients[i]));
+  }
+  return ret;
+}
+
+/**
+ * Converts a single signer from an ASN.1 object.
+ *
+ * @param obj the ASN.1 representation of a SignerInfo.
+ *
+ * @return the signer object.
+ */
+function _signerFromAsn1(obj) {
+  // validate EnvelopedData content block and capture data
+  var capture = {};
+  var errors = [];
+  if(!asn1.validate(obj, p7.asn1.signerInfoValidator, capture, errors)) {
+    var error = new Error('Cannot read PKCS#7 SignerInfo. ' +
+      'ASN.1 object is not an PKCS#7 SignerInfo.');
+    error.errors = errors;
+    throw error;
+  }
+
+  var rval = {
+    version: capture.version.charCodeAt(0),
+    issuer: forge.pki.RDNAttributesAsArray(capture.issuer),
+    serialNumber: forge.util.createBuffer(capture.serial).toHex(),
+    digestAlgorithm: asn1.derToOid(capture.digestAlgorithm),
+    signatureAlgorithm: asn1.derToOid(capture.signatureAlgorithm),
+    signature: capture.signature,
+    authenticatedAttributes: [],
+    unauthenticatedAttributes: []
+  };
+
+  // TODO: convert attributes
+  var authenticatedAttributes = capture.authenticatedAttributes || [];
+  var unauthenticatedAttributes = capture.unauthenticatedAttributes || [];
+
+  return rval;
+}
+
+/**
+ * Converts a single signerInfo object to an ASN.1 object.
+ *
+ * @param obj the signerInfo object.
+ *
+ * @return the ASN.1 representation of a SignerInfo.
+ */
+function _signerToAsn1(obj) {
+  // SignerInfo
+  var rval = asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, [
+    // version
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.INTEGER, false,
+      asn1.integerToDer(obj.version).getBytes()),
+    // issuerAndSerialNumber
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, [
+      // name
+      forge.pki.distinguishedNameToAsn1({attributes: obj.issuer}),
+      // serial
+      asn1.create(asn1.Class.UNIVERSAL, asn1.Type.INTEGER, false,
+        forge.util.hexToBytes(obj.serialNumber))
+    ]),
+    // digestAlgorithm
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, [
+      // algorithm
+      asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OID, false,
+        asn1.oidToDer(obj.digestAlgorithm).getBytes()),
+      // parameters (null)
+      asn1.create(asn1.Class.UNIVERSAL, asn1.Type.NULL, false, '')
+    ])
+  ]);
+
+  // authenticatedAttributes (OPTIONAL)
+  if(obj.authenticatedAttributesAsn1) {
+    // add ASN.1 previously generated during signing
+    rval.value.push(obj.authenticatedAttributesAsn1);
+  }
+
+  // digestEncryptionAlgorithm
+  rval.value.push(asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, [
+    // algorithm
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OID, false,
+      asn1.oidToDer(obj.signatureAlgorithm).getBytes()),
+    // parameters (null)
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.NULL, false, '')
+  ]));
+
+  // encryptedDigest
+  rval.value.push(asn1.create(
+    asn1.Class.UNIVERSAL, asn1.Type.OCTETSTRING, false, obj.signature));
+
+  // unauthenticatedAttributes (OPTIONAL)
+  if(obj.unauthenticatedAttributes.length > 0) {
+    // [1] IMPLICIT
+    var attrsAsn1 = asn1.create(asn1.Class.CONTEXT_SPECIFIC, 1, true, []);
+    for(var i = 0; i < obj.unauthenticatedAttributes.length; ++i) {
+      var attr = obj.unauthenticatedAttributes[i];
+      attrsAsn1.values.push(_attributeToAsn1(attr));
+    }
+    rval.value.push(attrsAsn1);
+  }
+
+  return rval;
+}
+
+/**
+ * Map a set of SignerInfo ASN.1 objects to an array of signer objects.
+ *
+ * @param signerInfoAsn1s an array of ASN.1 SignerInfos (i.e. SET OF).
+ *
+ * @return an array of signers objects.
+ */
+function _signersFromAsn1(signerInfoAsn1s) {
+  var ret = [];
+  for(var i = 0; i < signerInfoAsn1s.length; ++i) {
+    ret.push(_signerFromAsn1(signerInfoAsn1s[i]));
+  }
+  return ret;
+}
+
+/**
+ * Map an array of signer objects to ASN.1 objects.
+ *
+ * @param signers an array of signer objects.
+ *
+ * @return an array of ASN.1 SignerInfos.
+ */
+function _signersToAsn1(signers) {
+  var ret = [];
+  for(var i = 0; i < signers.length; ++i) {
+    ret.push(_signerToAsn1(signers[i]));
+  }
+  return ret;
+}
+
+/**
+ * Convert an attribute object to an ASN.1 Attribute.
+ *
+ * @param attr the attribute object.
+ *
+ * @return the ASN.1 Attribute.
+ */
+function _attributeToAsn1(attr) {
+  var value;
+
+  // TODO: generalize to support more attributes
+  if(attr.type === forge.pki.oids.contentType) {
+    value = asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OID, false,
+      asn1.oidToDer(attr.value).getBytes());
+  } else if(attr.type === forge.pki.oids.messageDigest) {
+    value = asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OCTETSTRING, false,
+      attr.value.bytes());
+  } else if(attr.type === forge.pki.oids.signingTime) {
+    /* Note per RFC 2985: Dates between 1 January 1950 and 31 December 2049
+      (inclusive) MUST be encoded as UTCTime. Any dates with year values
+      before 1950 or after 2049 MUST be encoded as GeneralizedTime. [Further,]
+      UTCTime values MUST be expressed in Greenwich Mean Time (Zulu) and MUST
+      include seconds (i.e., times are YYMMDDHHMMSSZ), even where the
+      number of seconds is zero.  Midnight (GMT) must be represented as
+      "YYMMDD000000Z". */
+    // TODO: make these module-level constants
+    var jan_1_1950 = new Date('1950-01-01T00:00:00Z');
+    var jan_1_2050 = new Date('2050-01-01T00:00:00Z');
+    var date = attr.value;
+    if(typeof date === 'string') {
+      // try to parse date
+      var timestamp = Date.parse(date);
+      if(!isNaN(timestamp)) {
+        date = new Date(timestamp);
+      } else if(date.length === 13) {
+        // YYMMDDHHMMSSZ (13 chars for UTCTime)
+        date = asn1.utcTimeToDate(date);
+      } else {
+        // assume generalized time
+        date = asn1.generalizedTimeToDate(date);
+      }
+    }
+
+    if(date >= jan_1_1950 && date < jan_1_2050) {
+      value = asn1.create(
+        asn1.Class.UNIVERSAL, asn1.Type.UTCTIME, false,
+        asn1.dateToUtcTime(date));
+    } else {
+      value = asn1.create(
+        asn1.Class.UNIVERSAL, asn1.Type.GENERALIZEDTIME, false,
+        asn1.dateToGeneralizedTime(date));
+    }
+  }
+
+  // TODO: expose as common API call
+  // create a RelativeDistinguishedName set
+  // each value in the set is an AttributeTypeAndValue first
+  // containing the type (an OID) and second the value
+  return asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SEQUENCE, true, [
+    // AttributeType
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.OID, false,
+      asn1.oidToDer(attr.type).getBytes()),
+    asn1.create(asn1.Class.UNIVERSAL, asn1.Type.SET, true, [
+      // AttributeValue
+      value
+    ])
+  ]);
+}
+
+/**
+ * Map messages encrypted

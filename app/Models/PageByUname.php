@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class PageByUname extends Page
 {
     use HasFactory;
 
+/*
     protected $fillable = array(
         'name',
         'profile',
@@ -41,5 +42,16 @@ class Page extends Model
     public function likes()
     {
         return $this->hasMany(PageLike::class, 'id');
+    }
+*/
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uname';
     }
 }

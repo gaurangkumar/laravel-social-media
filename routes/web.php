@@ -76,6 +76,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 	Route::put('/group/{group:id}/profile/update', array(AdminGroupController::class, 'profile_update'))
 		->name('group.profile.update');
 
+	Route::delete('/page/{page:id}/profile/delete', array(AdminPageController::class, 'profile_delete'))
+		->name('page.profile.delete');
+	Route::put('/page/{page:id}/profile/update', array(AdminPageController::class, 'profile_update'))
+		->name('page.profile.update');
+
 	Route::get('/user', array(AdminUserController::class, 'index'))->name('user');
     Route::get('/user/{user_id}', array(AdminUserController::class, 'show'))->name('user.show');
     Route::get('/user/{user_id}/edit', array(AdminUserController::class, 'edit'))->name('user.edit');
