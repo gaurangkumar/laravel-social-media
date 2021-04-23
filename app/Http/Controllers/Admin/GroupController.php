@@ -129,7 +129,6 @@ class GroupController extends Controller
             'description' => 'required|string|max:255',
             'members' => 'required|array|min:3',
         ));
-		dd([$request->toArray()]);
 
         $data = array(
             'name' => $request->name,
@@ -137,19 +136,12 @@ class GroupController extends Controller
         );
 
 		if ($group->update($data) === false) {
-			return back()->with('status', 'Error in updating group!');
+			return back()->with('error', 'Error in updating group!');
 		}
 
 		if (!in_array($group->user_id, $validated['members'])) {
 			//
 		}
-
-        foreach ($validated['members'] as $member) {
-            GroupMember::create(array(
-                'user_id' => $member,
-                'group_id' => $group->id,
-            ));
-        }
 
         foreach ($request->members as $member) {
             $key = array_search($member, $group_members);
@@ -170,8 +162,7 @@ class GroupController extends Controller
             }
         }
 
-        return view('admin.group.update', compact('group','members'));
-
+        return redirect()->back()->with('status', 'Group updated!');
     }
 
     /**
