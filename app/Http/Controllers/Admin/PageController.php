@@ -117,11 +117,10 @@ class PageController extends Controller
 
 		$validated = $request->validate(array(
             'name' => 'required|string|max:255',
-            'uname' => 'required|unique:pages',
+            'uname' => 'required',//|unique:pages
             'description' => 'required|string|max:255',
             'followers' => 'required|array|min:1',
         ));
-dd($validated);
 
         $data = array(
             'name' => $request->name,
@@ -140,9 +139,9 @@ dd($validated);
         foreach ($request->followers as $member) {
             $key = array_search($member, $page_followers);
             if ($key === false) {
-                $obj = PageMember::create(array(
+                $obj = PageFollower::create(array(
                     'user_id' => $member,
-                    'page_id' => $page_id,
+                    'page_id' => $page->id,
                 ));
             }
         }
@@ -150,8 +149,8 @@ dd($validated);
         foreach ($page_followers as $member) {
             $key = in_array($member, $request->followers);
             if ($key === false) {
-                $result = PageMember::where('user_id', $member)
-                ->where('page_id', $page_id)
+                $result = PageFollower::where('user_id', $member)
+                ->where('page_id', $page->id)
                 ->delete();
             }
         }
