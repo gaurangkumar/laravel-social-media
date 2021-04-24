@@ -154,7 +154,9 @@ class UserController extends Controller
 	public function delete(User $user)
     {
 		$d = User::where('id', $user->id)->update(['deleted_at'=>'2021-04-01']);
-        //$user->trashed();
-        return redirect()->route('admin.user.index');
+
+		//$user->trashed();
+
+		return redirect()->route('admin.user.index');
     }
 }
