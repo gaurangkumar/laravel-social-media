@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Admin;
 
 class AdminSeeder extends Seeder
 {
@@ -13,6 +14,11 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Admin::create(array(
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'profile' => 'template\assets\img\avatar-1.jpg',
+            'password' => 'admin',
+        ));
     }
 }
