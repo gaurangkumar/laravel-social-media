@@ -11,24 +11,24 @@ class UserController extends Controller
 {
     public function __construct()
     {
-/*
-        if (php_sapi_name() !== 'cli') {
-            if (version_compare(phpversion(), '5.4.0', '>=')) {
-                if (session_status() !== PHP_SESSION_ACTIVE) {
-                    session_start();
+        /*
+                if (php_sapi_name() !== 'cli') {
+                    if (version_compare(phpversion(), '5.4.0', '>=')) {
+                        if (session_status() !== PHP_SESSION_ACTIVE) {
+                            session_start();
+                        } else {
+                            if (session_id() === '') {
+                                session_start();
+                            }
+                        }
+                    }
                 } else {
-                    if (session_id() === '') {
+                    if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
                         session_start();
                     }
                 }
-            }
-        } else {
-            if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
-                session_start();
-            }
-        }
-*/
-		session_start();
+        */
+        session_start();
         if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
             header('Location: '.route('admin.login'));
             exit;
@@ -148,15 +148,16 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->trashed();
+
         return redirect()->route('admin.user.index');
     }
 
-	public function delete(User $user)
+    public function delete(User $user)
     {
-		$d = User::where('id', $user->id)->update(['deleted_at'=>'2021-04-01']);
+        $d = User::where('id', $user->id)->update(array('deleted_at' => '2021-04-01'));
 
-		//$user->trashed();
+        //$user->trashed();
 
-		return redirect()->route('admin.user.index');
+        return redirect()->route('admin.user.index');
     }
 }

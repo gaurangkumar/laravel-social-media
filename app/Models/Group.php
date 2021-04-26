@@ -25,8 +25,9 @@ class Group extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-     public function chats()
+
+    public function chats()
     {
-        return $this->hasMany(Chat::class,'id');
+        return $this->hasMany(Chat::class, 'id');
     }
 }

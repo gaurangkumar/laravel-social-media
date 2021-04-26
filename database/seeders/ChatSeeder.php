@@ -38,14 +38,14 @@ class ChatSeeder extends Seeder
         $u = 8;
         for ($s = 1; $s <= $u; $s++) {
             for ($r = 1; $r <= 2; $r++) {
-                    $n = mt_rand(0, count($msgs) - 1);
-                    Chat::create(array(
-                        'user_id' => $s,
-                        'group_id' => $r,
-                        'msg' => $msgs[$n],
-                        'created_at' => date('Y-m-d H:i:s', $datetime),
-                    ));
-                    $datetime = strtotime('+1 minutes', $datetime);
+                $n = mt_rand(0, count($msgs) - 1);
+                Chat::create(array(
+                    'user_id' => $s,
+                    'group_id' => $r,
+                    'msg' => $msgs[$n],
+                    'created_at' => date('Y-m-d H:i:s', $datetime),
+                ));
+                $datetime = strtotime('+1 minutes', $datetime);
             }
         }
 

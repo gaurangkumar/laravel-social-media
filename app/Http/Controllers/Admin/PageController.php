@@ -7,15 +7,15 @@ use App\Models\Page;
 use App\Models\PageFollower;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
     public function __construct()
     {
-		session_start();
+        session_start();
         if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
             header('Location: '.route('admin.login'));
             exit;
@@ -104,9 +104,9 @@ class PageController extends Controller
     {
         $page_followers = array_column($page->followers->toArray(), 'user_id');
 
-		$validated = $request->validate(array(
+        $validated = $request->validate(array(
             'name' => 'required|string|max:255',
-            'uname' => 'required',//|unique:pages
+            'uname' => 'required', //|unique:pages
             'description' => 'required|string|max:255',
             'followers' => 'required|array|min:1',
         ));
@@ -117,13 +117,13 @@ class PageController extends Controller
             'description' => $request->description,
         );
 
-		if ($page->update($data) === false) {
-			return back()->with('error', 'Error in updating Page!');
-		}
+        if ($page->update($data) === false) {
+            return back()->with('error', 'Error in updating Page!');
+        }
 
-		if (!in_array($page->user_id, $validated['followers'])) {
-			//
-		}
+        if (!in_array($page->user_id, $validated['followers'])) {
+            //
+        }
 
         foreach ($request->followers as $member) {
             $key = array_search($member, $page_followers);
@@ -156,14 +156,13 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-		$followers = PageFollower::where('page_id', $page->id)->delete();
+        $followers = PageFollower::where('page_id', $page->id)->delete();
 
-		if($followers !== false && $page->delete()) {
-			return redirect()->route('admin.page.index')->with(['msg'=>'']);
-		}
-		else {
-			return back()->with('status', 'Error in deleting page!');
-		}
+        if ($followers !== false && $page->delete()) {
+            return redirect()->route('admin.page.index')->with(array('msg' => ''));
+        } else {
+            return back()->with('status', 'Error in deleting page!');
+        }
     }
 
     /**
@@ -174,19 +173,19 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function profile_delete(Page $page)
-	{
-		// $isExists = File::exists( public_path( $page->profile ) );
-		$isExist = Storage::disk('public')->exists( $page->profile );
-		if( $isExist ) {
-			$isDeleted = Storage::disk('public')->delete( $page->profile );
-			if( !$isDeleted ) {
-				//
-			}
-		}
-		$page->update(['profile' => null]);
+    {
+        // $isExists = File::exists( public_path( $page->profile ) );
+        $isExist = Storage::disk('public')->exists($page->profile);
+        if ($isExist) {
+            $isDeleted = Storage::disk('public')->delete($page->profile);
+            if (!$isDeleted) {
+                //
+            }
+        }
+        $page->update(array('profile' => null));
 
         return redirect()->back()->with('status', 'Page profile picture is deleted!');
-	}
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -196,25 +195,25 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function profile_update(Page $page, Request $request)
-	{
-		$isExist = Storage::disk('public')->exists( $page->profile );
-		if( $isExist ) {
-			$isDeleted = Storage::disk('public')->delete( $page->profile );
-			if( !$isDeleted ) {
-				//
-			}
-		}
+    {
+        $isExist = Storage::disk('public')->exists($page->profile);
+        if ($isExist) {
+            $isDeleted = Storage::disk('public')->delete($page->profile);
+            if (!$isDeleted) {
+                //
+            }
+        }
 
-		$request->validate(array(
-			'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-		));
+        $request->validate(array(
+            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+        ));
 
-		$image = $request->profile->store('page', array('disk' => 'public'));
+        $image = $request->profile->store('page', array('disk' => 'public'));
 
         $data['profile'] = $image;
 
-		$result = $page->update($data);
+        $result = $page->update($data);
 
         return redirect()->back()->with('status', 'Page profile picture is updated!');
-	}
+    }
 }
