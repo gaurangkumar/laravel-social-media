@@ -19,17 +19,17 @@ class DatabaseSeeder extends Seeder
         $this->call(array(
             AdminSeeder::class,
             UserSeeder::class,
-			ContactSeeder::class,
-			PageSeeder::class,
-			PageFollowerSeeder::class,
-			PagePostSeeder::class,
-			PageLikeSeeder::class,
-			PageCommentSeeder::class,
+            ContactSeeder::class,
+            PageSeeder::class,
+            PageFollowerSeeder::class,
+            PagePostSeeder::class,
+            PageLikeSeeder::class,
+            PageCommentSeeder::class,
             GroupSeeder::class,
             GroupMemberSeeder::class,
             ChatSeeder::class,
-			BusinessSeeder::class,
-			ProductSeeder::class,
+            BusinessSeeder::class,
+            ProductSeeder::class,
         ));
 
         // \App\Models\User::factory(10)->create();

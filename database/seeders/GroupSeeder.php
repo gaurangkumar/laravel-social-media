@@ -17,13 +17,13 @@ class GroupSeeder extends Seeder
         Group::create(array(
             'name' => 'MCA',
             'description' => 'MCA Group',
-			'user_id' => 1,
+            'user_id' => 1,
             'profile' => 'template\assets\img\avatar-1.jpg',
         ));
         Group::create(array(
             'name' => 'BCA',
             'description' => 'BCA Group',
-			'user_id' => 2,
+            'user_id' => 2,
             'profile' => 'template\assets\img\avatar-2.jpg',
         ));
     }

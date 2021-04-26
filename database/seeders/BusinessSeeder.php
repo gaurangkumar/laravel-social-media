@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Business;
+use Illuminate\Database\Seeder;
 
 class BusinessSeeder extends Seeder
 {
@@ -20,7 +20,7 @@ class BusinessSeeder extends Seeder
             'address' => 'Delhi',
             'description' => 'Grocery',
             'user_id' => 1,
-			'website' => 'abc.com',
+            'website' => 'abc.com',
             'profile' => 'template\assets\img\avatar-1.jpg',
         ));
         Business::create(array(
@@ -29,7 +29,7 @@ class BusinessSeeder extends Seeder
             'address' => 'Mumbai',
             'description' => 'Grocery',
             'user_id' => 2,
-			'website' => 'abc.com',
+            'website' => 'abc.com',
             'profile' => 'template\assets\img\avatar-2.jpg',
         ));
     }

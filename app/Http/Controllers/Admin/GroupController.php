@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Group;
-use App\Models\User;
 use App\Models\GroupMember;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
 class GroupController extends Controller
 {
     public function __construct()
     {
-		session_start();
+        session_start();
         if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
             header('Location: '.route('admin.login'));
             exit;
@@ -34,7 +34,7 @@ class GroupController extends Controller
         $groups = Group::all();
         $title = 'All Groups | Agwis Admin';
 
-		return view('admin.group.index', compact('groups', 'title'));
+        return view('admin.group.index', compact('groups', 'title'));
     }
 
     /**
@@ -70,7 +70,7 @@ class GroupController extends Controller
     {
         $title = ucwords($group->name).' Group | Agwis Admin';
 
-		$members = User::whereIn('id', function ($query) use ($group) {
+        $members = User::whereIn('id', function ($query) use ($group) {
             $query->select('user_id')
                 ->from('group_members')
                 ->where('group_id', $group->id);
@@ -105,7 +105,7 @@ class GroupController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param Group $group
+     * @param Group                    $group
      *
      * @return \Illuminate\Http\Response
      */
@@ -113,7 +113,7 @@ class GroupController extends Controller
     {
         $group_members = array_column($group->members->toArray(), 'user_id');
 
-		$validated = $request->validate(array(
+        $validated = $request->validate(array(
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'members' => 'required|array|min:3',
@@ -124,13 +124,13 @@ class GroupController extends Controller
             'description' => $request->description,
         );
 
-		if ($group->update($data) === false) {
-			return back()->with('error', 'Error in updating group!');
-		}
+        if ($group->update($data) === false) {
+            return back()->with('error', 'Error in updating group!');
+        }
 
-		if (!in_array($group->user_id, $validated['members'])) {
-			//
-		}
+        if (!in_array($group->user_id, $validated['members'])) {
+            //
+        }
 
         foreach ($request->members as $member) {
             $key = array_search($member, $group_members);
@@ -163,14 +163,13 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-		$members = GroupMember::where('group_id', $group->id)->delete();
+        $members = GroupMember::where('group_id', $group->id)->delete();
 
-		if($members !== false && $group->delete()) {
-			return redirect()->route('admin.group.index')->with(['msg'=>'']);
-		}
-		else {
-			return back()->with('status', 'Error in deleting group!');
-		}
+        if ($members !== false && $group->delete()) {
+            return redirect()->route('admin.group.index')->with(array('msg' => ''));
+        } else {
+            return back()->with('status', 'Error in deleting group!');
+        }
     }
 
     /**
@@ -181,19 +180,19 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function profile_delete(Group $group)
-	{
-		// $isExists = File::exists( public_path( $group->profile ) );
-		$isExist = Storage::disk('public')->exists( $group->profile );
-		if( $isExist ) {
-			$isDeleted = Storage::disk('public')->delete( $group->profile );
-			if( !$isDeleted ) {
-				//
-			}
-		}
-		$group->update(['profile' => null]);
+    {
+        // $isExists = File::exists( public_path( $group->profile ) );
+        $isExist = Storage::disk('public')->exists($group->profile);
+        if ($isExist) {
+            $isDeleted = Storage::disk('public')->delete($group->profile);
+            if (!$isDeleted) {
+                //
+            }
+        }
+        $group->update(array('profile' => null));
 
         return redirect()->back()->with('status', 'Group profile picture is deleted!');
-	}
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -203,25 +202,25 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function profile_update(Group $group, Request $request)
-	{
-		$isExist = Storage::disk('public')->exists( $group->profile );
-		if( $isExist ) {
-			$isDeleted = Storage::disk('public')->delete( $group->profile );
-			if( !$isDeleted ) {
-				//
-			}
-		}
+    {
+        $isExist = Storage::disk('public')->exists($group->profile);
+        if ($isExist) {
+            $isDeleted = Storage::disk('public')->delete($group->profile);
+            if (!$isDeleted) {
+                //
+            }
+        }
 
-		$request->validate(array(
-			'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-		));
+        $request->validate(array(
+            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+        ));
 
-		$image = $request->profile->store('group', array('disk' => 'public'));
+        $image = $request->profile->store('group', array('disk' => 'public'));
 
         $data['profile'] = $image;
 
-		$result = $group->update($data);
+        $result = $group->update($data);
 
         return redirect()->back()->with('status', 'Group profile picture is updated!');
-	}
+    }
 }
