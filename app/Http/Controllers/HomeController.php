@@ -27,7 +27,7 @@ class HomeController extends Controller
         $title = 'Agwis Messenger';
         $user = auth()->user();
         $business = $user->businesses->count() ? $user->businesses[0] : null;
-        //echo "<pre>";var_dump($user->businesses->count());exit;
+        //echo "<pre>";var_dump($user->businesses[0]);exit;
 
         $side_chats = $this->get_last_chats($user->id);
 
