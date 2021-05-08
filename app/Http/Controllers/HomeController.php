@@ -123,7 +123,7 @@ class HomeController extends Controller
 
     public function sendchat(Request $request)
     {
-		print_r($request);exit;
+		//print_r($request);exit;
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
 
@@ -148,7 +148,8 @@ class HomeController extends Controller
     {
         $group_id = Route::current()->parameter('group_id');
         $group = Group::find($group_id);
-        $user = auth()->user();
+
+		$user = auth()->user();
 
         $request->validate(array(
             'msg' => 'required',
