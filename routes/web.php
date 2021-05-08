@@ -40,7 +40,7 @@ Route::get('/page/{page:uname}', array(PageController::class, 'show'))
 Route::post('/post/{page_id}', array(HomeController::class, 'post_create'))
     ->name('post_create');
 
-Route::post('/group_chat/{group:id}', array(HomeController::class, 'group_chat'))
+Route::post('/group_chat/{group_id}', array(HomeController::class, 'group_chat'))
     ->name('group_chat');
 Route::post('/group_members/{group:id}', array(GroupMemberController::class, 'group_members'))
     ->name('group_members');
