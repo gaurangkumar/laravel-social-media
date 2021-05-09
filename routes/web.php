@@ -40,8 +40,6 @@ Route::get('/page/{page:uname}', array(PageController::class, 'show'))
 Route::post('/post/{page_id}', array(HomeController::class, 'post_create'))
     ->name('post_create');
 
-Route::post('/group_chat/{group_id}', array(HomeController::class, 'group_chat'))
-    ->name('group_chat');
 Route::post('/group_members/{group:id}', array(GroupMemberController::class, 'group_members'))
     ->name('group_members');
 
@@ -102,7 +100,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/logout', array(AdminLoginController::class, 'logout'))->name('logout');
 });
 
-Route::get('/{user_id}', array(HomeController::class, 'chat'))
+Route::post('/groupchat/{group:id}', array(GroupController::class, 'groupchat'))
+    ->name('groupchat')
+    ->where('id', '[0-9]+');
+
+Route::get('/{user:id}', array(HomeController::class, 'chat'))
     ->name('chat')
     ->where('id', '[0-9]+');
 Route::post('/{user_id}', array(HomeController::class, 'sendchat'))

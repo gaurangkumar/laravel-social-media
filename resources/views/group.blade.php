@@ -271,14 +271,14 @@
                         <div class="chat-footer border-top py-4 py-lg-6 px-lg-8">
                             <div class="container-xxl">
 
-                                <form id="chat-id-1-form" method="post" action="{{ route('group_chat', $group->id) }}"  data-emoji-form="">
-                                    @csrf
+                                <form id="chat-id-2-form" action="{{ route('sendchat', $group->id) }}" data-emoji-form="" method="post">
+									@csrf
                                     <div class="form-row align-items-center">
                                         <div class="col">
                                             <div class="input-group">
 
                                                 <!-- Textarea -->
-                                                <textarea id="chat-id-1-input" name="msg" class="form-control bg-transparent border-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true"></textarea>
+                                                <textarea id="chat-id-2-input" name="msg" class="form-control bg-transparent border-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true"></textarea>
 
                                                 <!-- Emoji button -->
                                                 <div class="input-group-append">
@@ -289,7 +289,7 @@
 
                                                 <!-- Upload button -->
                                                 <div class="input-group-append">
-                                                    <button id="chat-upload-btn-1" class="btn btn-ico btn-secondary btn-minimal bg-transparent border-0 dropzone-button-js" type="button">
+                                                    <button id="chat-upload-btn-2" class="btn btn-ico btn-secondary btn-minimal bg-transparent border-0 dropzone-button-js" type="button">
                                                         <img src="assets/images/paperclip.svg" data-inject-svg="" alt="">
                                                     </button>
                                                 </div>
@@ -297,7 +297,6 @@
                                             </div>
 
                                         </div>
-
                                         <!-- Submit button -->
                                         <div class="col-auto">
                                             <button class="btn btn-ico btn-primary rounded-circle" type="submit">

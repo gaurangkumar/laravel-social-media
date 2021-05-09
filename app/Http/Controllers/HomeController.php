@@ -91,7 +91,7 @@ class HomeController extends Controller
         return view('status', array('title' => 'Status | Agwis Messenger'));
     }
 
-    public function chat(Request $request)
+    public function chat(User $sender, Request $request)
     {
         $title = 'Chat | Agwis Messenger';
         $user = auth()->user();
@@ -100,8 +100,8 @@ class HomeController extends Controller
 
         $pages = $this->get_pages($user->id);
 
-        $sender_id = Route::current()->parameter('user_id');
-        $sender = User::find($sender_id);
+        //$sender_id = Route::current()->parameter('user_id');
+        //$sender = User::find($sender_id);
         if (empty($sender)) {
             echo '<pre>';
             print_r($sender_id);
@@ -123,7 +123,7 @@ class HomeController extends Controller
 
     public function sendchat(Request $request)
     {
-		//print_r($request);exit;
+		print_r($request->toArray());exit;
         $sender_id = Route::current()->parameter('user_id');
         $sender = User::find($sender_id);
 
@@ -142,28 +142,6 @@ class HomeController extends Controller
         $data = Chat::create($data);
 
         return redirect()->route('chat', $sender->id);
-    }
-
-    public function group_chat(Request $request)
-    {
-        $group_id = Route::current()->parameter('group_id');
-        $group = Group::find($group_id);
-
-		$user = auth()->user();
-
-        $request->validate(array(
-            'msg' => 'required',
-        ));
-
-        $data = array(
-            'user_id' => $user->id,
-            'group_id' => $group->id,
-            'msg' => $request->msg,
-        );
-
-        $data = Chat::create($data);
-
-        return redirect()->route('group.show', $group->id);
     }
 
     public function get_last_chats($uid)
