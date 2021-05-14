@@ -91,7 +91,7 @@ class HomeController extends Controller
         return view('status', array('title' => 'Status | Agwis Messenger'));
     }
 
-    public function chat(User $sender, Request $request)
+    public function chat(User $sender)
     {
         $title = 'Chat | Agwis Messenger';
         $user = auth()->user();
@@ -104,7 +104,7 @@ class HomeController extends Controller
         //$sender = User::find($sender_id);
         if (empty($sender)) {
             echo '<pre>';
-            print_r($sender_id);
+            print_r('No user found: '.$sender_id);
             exit;
         }
 
@@ -112,7 +112,7 @@ class HomeController extends Controller
             ->whereIn('user_id', array($sender->id, $user->id))
             ->get();
 
-        $business = Business::where('user_id', $sender_id)
+        $business = Business::where('user_id', $sender->id)
             ->with('products')
             ->first();
 
@@ -121,12 +121,8 @@ class HomeController extends Controller
         return view('chat', compact('title', 'side_chats', 'pages', 'chats', 'sender', 'friends', 'business', 'user'));
     }
 
-    public function sendchat(Request $request)
+    public function sendchat(User $sender, Request $request)
     {
-		print_r($request->toArray());exit;
-        $sender_id = Route::current()->parameter('user_id');
-        $sender = User::find($sender_id);
-
         $user = auth()->user();
 
         $request->validate(array(
@@ -139,9 +135,9 @@ class HomeController extends Controller
             'msg' => $request->msg,
         );
 
-        $data = Chat::create($data);
+        $chat = Chat::create($data);
 
-        return redirect()->route('chat', $sender->id);
+        return redirect()->back();
     }
 
     public function get_last_chats($uid)

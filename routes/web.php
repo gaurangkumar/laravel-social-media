@@ -104,9 +104,9 @@ Route::post('/groupchat/{group:id}', array(GroupController::class, 'groupchat'))
     ->name('groupchat')
     ->where('id', '[0-9]+');
 
-Route::get('/{user:id}', array(HomeController::class, 'chat'))
+Route::get('/{sender:id}', array(HomeController::class, 'chat'))
     ->name('chat')
     ->where('id', '[0-9]+');
-Route::post('/{user_id}', array(HomeController::class, 'sendchat'))
+Route::post('/{sender:id}', array(HomeController::class, 'sendchat'))
     ->name('sendchat')
     ->where('id', '[0-9]+');
