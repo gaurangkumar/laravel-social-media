@@ -49,8 +49,9 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <form id="createGroup" action="{{route ('group.store')}}" method="post" enctype="multipart/form-data">
-                                    @csrf
+
+									<form id="createGroup" action="{{ route('group.store') }}" method="post" enctype="multipart/form-data">
+                                    	@csrf
 
                                         <div class="tab-content" role="tablist">
                                             <!-- Group details -->

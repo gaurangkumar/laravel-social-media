@@ -45,6 +45,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
+		//echo '<pre>';print_r($request->toArray());exit;
         $user = auth()->user();
 
         $validated = $request->validate(array(
@@ -184,28 +185,4 @@ class GroupController extends Controller
     {
         //
     }
-
-	public function groupchat(Request $request)
-    {
-		print_r($request->toArray());exit;
-        $group_id = Route::current()->parameter('group_id');
-        $group = Group::find($group_id);
-
-		$user = auth()->user();
-
-        $request->validate(array(
-            'msg' => 'required',
-        ));
-
-        $data = array(
-            'user_id' => $user->id,
-            'group_id' => $group->id,
-            'msg' => $request->msg,
-        );
-
-        $data = Chat::create($data);
-
-        return redirect()->route('group.show', $group->id);
-    }
-
 }

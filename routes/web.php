@@ -100,7 +100,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/logout', array(AdminLoginController::class, 'logout'))->name('logout');
 });
 
-Route::post('/groupchat/{group:id}', array(GroupController::class, 'groupchat'))
+Route::post('/group/chat/{group:id}', array(HomeController::class, 'groupchat'))
     ->name('groupchat')
     ->where('id', '[0-9]+');
 

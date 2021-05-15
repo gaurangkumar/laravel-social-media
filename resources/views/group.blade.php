@@ -19,7 +19,7 @@
             <div class="main main-visible" data-mobile-height="">
 
                 <!-- Chat -->
-                <div id="chat-1" class="chat dropzone-form-js" data-dz-url="some.html">
+                <div id="chat-2" class="chat dropzone-form-js" data-dz-url="some.html">
 
                     <!-- Chat: body -->
                     <div class="chat-body">
@@ -271,7 +271,7 @@
                         <div class="chat-footer border-top py-4 py-lg-6 px-lg-8">
                             <div class="container-xxl">
 
-                                <form id="chat-id-2-form" action="{{ route('sendchat', $group->id) }}" data-emoji-form="" method="post">
+                                <form id="chat-id-2-form" action="{{ route('groupchat', $group->id) }}" data-emoji-form="" method="post">
 									@csrf
                                     <div class="form-row align-items-center">
                                         <div class="col">
