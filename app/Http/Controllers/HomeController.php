@@ -140,9 +140,9 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-	public function groupchat(Group $group, Request $request)
+    public function groupchat(Group $group, Request $request)
     {
-		$user = auth()->user();
+        $user = auth()->user();
 
         $request->validate(array(
             'msg' => 'required',
@@ -157,9 +157,9 @@ class HomeController extends Controller
         $chat = Chat::create($data);
 
         return redirect()->back();
-	}
+    }
 
-	public function get_last_chats($uid)
+    public function get_last_chats($uid)
     {
         $send_chats = "id IN( SELECT MAX(id) FROM chats WHERE group_id = null AND user_id = {$uid} GROUP BY rid )";
 

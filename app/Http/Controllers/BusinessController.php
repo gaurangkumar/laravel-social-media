@@ -61,7 +61,7 @@ class BusinessController extends Controller
             'user_id' => $user->id,
         );
 
-		$business = Business::create($data);
+        $business = Business::create($data);
 
         return redirect()->back();
     }

@@ -45,7 +45,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-		//echo '<pre>';print_r($request->toArray());exit;
+        //echo '<pre>';print_r($request->toArray());exit;
         $user = auth()->user();
 
         $validated = $request->validate(array(
