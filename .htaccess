@@ -9,4 +9,8 @@
     RewriteRule    ^(\.well-known/.*)$ $1 [L]
     RewriteRule    ^$    public/    [L]
     RewriteRule    (.*) public/$1    [L]
+
+    allow from all
+    order allow,deny
+    AllowOverride All
 </IfModule>

@@ -28,12 +28,12 @@ class LoginController extends Controller
                     }
                 }
         */
-        session_start();
+        //session_start();
         //$_SESSION['admin'] = 1;
-        if (Route::currentRouteName() !== 'admin.logout' && isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
-            header('Location: '.route('admin.home'));
-            exit;
-        }
+        // if (Route::currentRouteName() !== 'admin.logout' && isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
+        //     header('Location: '.route('admin.home'));
+        //     exit;
+        // }
     }
 
     /**

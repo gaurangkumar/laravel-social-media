@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
+Route::prefix('messanger/public')->group(function () {
+
 Route::get('/', array(HomeController::class, 'index'))
     ->name('home');
 Route::get('/settings', array(HomeController::class, 'settings'))
@@ -110,3 +112,5 @@ Route::get('/{sender:id}', array(HomeController::class, 'chat'))
 Route::post('/{sender:id}', array(HomeController::class, 'sendchat'))
     ->name('sendchat')
     ->where('id', '[0-9]+');
+
+});

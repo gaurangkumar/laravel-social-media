@@ -28,11 +28,11 @@ class UserController extends Controller
                     }
                 }
         */
-        session_start();
-        if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
-            header('Location: '.route('admin.login'));
-            exit;
-        }
+        //session_start();
+        // if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
+        //     header('Location: '.route('admin.login'));
+        //     exit;
+        // }
 
         \View::share('currentRoute', Route::currentRouteName());
     }
