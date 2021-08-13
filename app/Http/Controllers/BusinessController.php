@@ -44,6 +44,7 @@ class BusinessController extends Controller
             'name' => 'required|string',
             'btype' => 'required|string',
             'address' => 'required|string',
+            'website' => 'string',
             'description' => 'required|string',
             'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ));
@@ -54,10 +55,12 @@ class BusinessController extends Controller
             'name' => $request->name,
             'btype' => $request->btype,
             'address' => $request->address,
+            'website' => $request->website,
             'description' => $request->description,
             'profile' => $image,
             'user_id' => $user->id,
         );
+
         $business = Business::create($data);
 
         return redirect()->back();

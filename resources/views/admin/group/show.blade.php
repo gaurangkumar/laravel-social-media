@@ -66,14 +66,14 @@
 
             </h6>
             <span>ID:</span>
-            <span class="users-view">{{$group->name}}</span>
+            <span class="users-view">{{$group->id}}</span>
           </div>
         </div>
       </div>
       <div class="col s12 m5 quick-action-btns display-flex justify-content-end align-items-center pt-2">
         <a href="app-email.html" class="btn-small btn-light-indigo"><i class="material-icons">mail_outline</i></a>
         <a href="user-profile-page.html" class="btn-small btn-light-indigo">Profile</a>
-        <a href="page-users-edit.html" class="btn-small indigo">Edit</a>
+        <a href="{{ route('admin.group.edit',$group->id)}}" class="btn-small indigo">Edit</a>
       </div>
     </div>
   </div>
@@ -189,41 +189,29 @@
               @endif
             </tbody>
           </table>
-          <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Social Links</h6>
+          <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Group Info</h6>
           <table class="striped">
             <tbody>
               <tr>
-                <td>Twitter:</td>
-                <td><a href="#">https://www.twitter.com/</a></td>
+                <td>Group :</td>
+                <td><a href="#">{{ $group->members->count() }}</a></td>
               </tr>
               <tr>
-                <td>Facebook:</td>
-                <td><a href="#">https://www.facebook.com/</a></td>
+                <td>Group Chat</td>
+                <td><a href="#">{{ $group->chats->count() }}</a></td>
               </tr>
-              <tr>
-                <td>Instagram:</td>
-                <td><a href="#">https://www.instagram.com/</a></td>
-              </tr>
+
             </tbody>
           </table>
-          <h6 class="mb-2 mt-2"><i class="material-icons">error_outline</i> Personal Info</h6>
+          <h6 class="mb-2 mt-2"><i class="material-icons">error_outline</i> Group Info</h6>
           <table class="striped">
             <tbody>
               <tr>
-                <td>Birthday:</td>
-                <td>03/04/1990</td>
+                <td>Description</td>
+                <td>{{$group->description}}</td>
               </tr>
-              <tr>
-                <td>Country:</td>
-                <td>USA</td>
-              </tr>
-              <tr>
-                <td>Languages:</td>
-                <td>English</td>
-              </tr>
-              <tr>
-                <td>Contact:</td>
-                <td>+(305) 254 24668</td>
+              
+             
               </tr>
             </tbody>
           </table>

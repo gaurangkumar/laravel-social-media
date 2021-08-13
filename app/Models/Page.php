@@ -42,14 +42,4 @@ class Page extends Model
     {
         return $this->hasMany(PageLike::class, 'id');
     }
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'uname';
-    }
 }

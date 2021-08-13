@@ -17,8 +17,19 @@ class DatabaseSeeder extends Seeder
         //DB::table('chats')->truncate();
 
         $this->call(array(
+            AdminSeeder::class,
             UserSeeder::class,
+            ContactSeeder::class,
+            PageSeeder::class,
+            PageFollowerSeeder::class,
+            PagePostSeeder::class,
+            PageLikeSeeder::class,
+            PageCommentSeeder::class,
+            GroupSeeder::class,
+            GroupMemberSeeder::class,
             ChatSeeder::class,
+            BusinessSeeder::class,
+            ProductSeeder::class,
         ));
 
         // \App\Models\User::factory(10)->create();

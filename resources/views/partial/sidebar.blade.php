@@ -49,8 +49,9 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <form id="createGroup" action="{{route ('group.store')}}" method="post" enctype="multipart/form-data">
-                                    @csrf
+
+									<form id="createGroup" action="{{ route('group.store') }}" method="post" enctype="multipart/form-data">
+                                    	@csrf
 
                                         <div class="tab-content" role="tablist">
                                             <!-- Group details -->
@@ -700,14 +701,19 @@
 
                                                         </div>
 
-                                                         <div class="form-group">
+                                                        <div class="form-group">
                                                             <label class="small" for="new-chat-topic">Address</label>
                                                             <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder=" Business Address" name="address" value="{{$user->businesses[0]->address}}">
                                                         </div>
-                                                       
+
+                                                        <div class="form-group">
+                                                            <label class="small" for="new-chat-website">Website</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-website" type="text" placeholder="Business Website" name="website" value="{{ $user->businesses[0]->website }}">
+                                                        </div>
+
                                                         <div class="form-group">
                                                             <label class="small" for="new-chat-description">Description</label>
-                                                            <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Business Description" name="description" value="{{$user->businesses[0]->description}}"></textarea>
+                                                            <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Business Description" name="description">{{ $user->businesses[0]->description }}</textarea>
                                                         </div>
 
                                                         <div class="form-group mb-0">
@@ -866,12 +872,17 @@
 
                                                         </div>
 
-                                                         <div class="form-group">
+                                                        <div class="form-group">
                                                             <label class="small" for="new-chat-topic">Address</label>
                                                             <input class="form-control form-control-lg" id="new-chat-topic" type="text" placeholder=" Business Address" name="address">
                                                         </div>
-                                                       
+
                                                         <div class="form-group">
+                                                            <label class="small" for="new-chat-website">Website</label>
+                                                            <input class="form-control form-control-lg" id="new-chat-website" type="text" placeholder="Business Website" name="website">
+                                                        </div>
+
+														<div class="form-group">
                                                             <label class="small" for="new-chat-description">Description</label>
                                                             <textarea class="form-control form-control-lg" id="new-chat-description" rows="6" placeholder="Business Description" name="description"></textarea>
                                                         </div>
