@@ -2,7 +2,7 @@ risky: true
 
 version: 7
 
-preset: recommended
+preset: laravel
 
 tab-width: 4
 
