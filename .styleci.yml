@@ -9,9 +9,12 @@ tab-width: 4
 use-tabs: false
 
 enabled:
-  - long_array_syntax
   - strict
 
 disabled:
-  - short_array_syntax
+  - no_unused_imports
 
+finder:
+  not-name:
+    - index.php
+    - server.php
