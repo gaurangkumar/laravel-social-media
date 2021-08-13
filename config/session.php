@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -113,7 +113,7 @@ return array(
     |
     */
 
-    'lottery' => array(2, 100),
+    'lottery' => [2, 100],
 
     /*
     |--------------------------------------------------------------------------
@@ -164,7 +164,7 @@ return array(
     |
     | By setting this option to true, session cookies will only be sent back
     | to the server if the browser has a HTTPS connection. This will keep
-    | the cookie from being sent to you if it can not be done securely.
+    | the cookie from being sent to you when it can't be done securely.
     |
     */
 
@@ -198,4 +198,4 @@ return array(
 
     'same_site' => 'lax',
 
-);
+];

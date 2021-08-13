@@ -1,1 +1,0 @@
-$(function(){$(".carousel").carousel(),$(".carousel.carousel-slider").carousel({fullWidth:!0}),$(".carousel.carousel-slider").carousel({fullWidth:!0}),$(".carousel.carousel-slider.carousel-indicators").carousel({fullWidth:!0,indicators:!0})});

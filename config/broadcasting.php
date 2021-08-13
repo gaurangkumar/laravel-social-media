@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -11,7 +11,7 @@ return array(
     | framework when an event needs to be broadcast. You may set this to
     | any of the connections defined in the "connections" array below.
     |
-    | Supported: "pusher", "redis", "log", "null"
+    | Supported: "pusher", "ably", "redis", "log", "null"
     |
     */
 
@@ -28,37 +28,37 @@ return array(
     |
     */
 
-    'connections' => array(
+    'connections' => [
 
-        'pusher' => array(
+        'pusher' => [
             'driver' => 'pusher',
             'key' => env('PUSHER_APP_KEY'),
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
-            'options' => array(
+            'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => true,
-            ),
-        ),
+            ],
+        ],
 
-        'ably' => array(
+        'ably' => [
             'driver' => 'ably',
             'key' => env('ABLY_KEY'),
-        ),
+        ],
 
-        'redis' => array(
+        'redis' => [
             'driver' => 'redis',
             'connection' => 'default',
-        ),
+        ],
 
-        'log' => array(
+        'log' => [
             'driver' => 'log',
-        ),
+        ],
 
-        'null' => array(
+        'null' => [
             'driver' => 'null',
-        ),
+        ],
 
-    ),
+    ],
 
-);
+];
