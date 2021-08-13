@@ -95,8 +95,10 @@ class GroupMemberController extends Controller
         //
     }
 
-    public function group_members(Group $group, Request $request)
+    public function group_members(Request $request, $group_id)
     {
+        $group = Group::find($group_id);
+
         $group_members = array_column($group->members->toArray(), 'user_id');
         $user = auth()->user();
 
@@ -109,7 +111,7 @@ class GroupMemberController extends Controller
             if ($key === false) {
                 $obj = GroupMember::create(array(
                     'user_id' => $member,
-                    'group_id' => $group->id,
+                    'group_id' => $group_id,
                 ));
             }
         }
@@ -118,11 +120,11 @@ class GroupMemberController extends Controller
             $key = in_array($member, $request->members);
             if ($key === false) {
                 $result = GroupMember::where('user_id', $member)
-                ->where('group_id', $group->id)
+                ->where('group_id', $group_id)
                 ->delete();
             }
         }
 
-        return redirect()->route('group.show', $group->id);
+        return redirect()->route('group.show', $group_id);
     }
 }

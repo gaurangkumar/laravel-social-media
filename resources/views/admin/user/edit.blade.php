@@ -32,7 +32,7 @@
                   </li>
                 </ol>
               </div>
-              <!--<div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl">Settings</span><i class="material-icons right">arrow_drop_down</i></a>
+              <div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl">Settings</span><i class="material-icons right">arrow_drop_down</i></a>
                 <ul class="dropdown-content" id="dropdown1" tabindex="0">
                   <li tabindex="0"><a class="grey-text text-darken-2" href="user-profile-page.html">Profile<span class="new badge red">2</span></a></li>
                   <li tabindex="0"><a class="grey-text text-darken-2" href="app-contacts.html">Contacts</a></li>
@@ -40,7 +40,7 @@
                   <li class="divider" tabindex="-1"></li>
                   <li tabindex="0"><a class="grey-text text-darken-2" href="user-login.html">Logout</a></li>
                 </ul>
-              </div>-->
+              </div>
             </div>
           		</div>
         	</div>
@@ -57,11 +57,11 @@
             <i class="material-icons mr-1">person_outline</i><span>Account</span>
           </a>
         </li>
-        <!--<li class="tab">
+        <li class="tab">
           <a class="display-flex align-items-center" id="information-tab" href="#information">
             <i class="material-icons mr-2">error_outline</i><span>Information</span>
           </a>
-        </li>-->
+        </li>
       </ul>
       <div class="divider mb-3"></div>
       <div class="row">
@@ -77,7 +77,7 @@
                 height="64" width="64">
             </a>
             <div class="media-body">
-              <h5 class="media-heading mt-0">{{ $user->name }}</h5>
+              <h5 class="media-heading mt-0">Avatar</h5>
               <div class="user-edit-btns display-flex">
               </div>
             </div>
@@ -102,11 +102,17 @@
                     <label for="mobile">Phone</label>
                     <small class="errorTxt2"></small>
                   </div>
+                  <div class="col s12 input-field">
+                    <input id="email" name="email" type="email" class="validate" value="{{$user->email}}"
+                      data-error=".errorTxt3">
+                    <label for="email">E-mail</label>
+                    <small class="errorTxt3"></small>
+                  </div>
                 </div>
               </div>
               <div class="col s12 m6">
                 <div class="row">
-                  <!--<div class="col s12 input-field">
+                  <div class="col s12 input-field">
                     <input id="dob" name="dob" type="text" class="validate" value="{{$user->dob}}"
                       data-error=".errorTxt3">
                     <label for="dob">E-mail</label>
@@ -119,12 +125,6 @@
                       <option>Close</option>
                     </select>
                     <label>Status</label>
-                  </div>-->
-                  <div class="col s12 input-field">
-                    <input id="email" name="email" type="email" class="validate" value="{{$user->email}}"
-                      data-error=".errorTxt3">
-                    <label for="email">E-mail</label>
-                    <small class="errorTxt3"></small>
                   </div>
                   <div class="col s12 input-field">
                     <input id="address" name="address" type="text" class="validate" value="{{ $user->address}}">
@@ -132,7 +132,103 @@
                   </div>
                 </div>
               </div>
-              
+              <div class="col s12">
+                <table class="mt-1">
+                  <thead>
+                    <tr>
+                      <th>Module Permission</th>
+                      <th>Read</th>
+                      <th>Write</th>
+                      <th>Create</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Users</td>
+                      <td>
+                        <label>
+                          <input type="checkbox" checked />
+                          <span></span>
+                        </label>
+                      </td>
+                      <td>
+                        <label>
+                          <input type="checkbox" />
+                          <span></span>
+                        </label>
+                      </td>
+                      <td>
+                        <label>
+                          <input type="checkbox" />
+                          <span></span>
+                        </label>
+                      </td>
+                      <td>
+                        <label>
+                          <input type="checkbox" checked />
+                          <span></span>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Articles</td>
+                      <td>
+                        <label>
+                          <input type="checkbox" />
+                          <span></span>
+                        </label>
+                      </td>
+                      <td>
+                        <label>
+                          <input type="checkbox" checked />
+                          <span></span>
+                        </label>
+                      </td>
+                      <td>
+                        <label>
+                          <input type="checkbox" />
+                          <span></span>
+                        </label>
+                      </td>
+                      <td>
+                        <label>
+                          <input type="checkbox" checked />
+                          <span></span>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Staff</td>
+                      <td>
+                        <label>
+                          <input type="checkbox" checked />
+                          <span></span>
+                        </label>
+                      </td>
+                      <td>
+                        <label>
+                          <input type="checkbox" checked />
+                          <span></span>
+                        </label>
+                      </td>
+                      <td>
+                        <label>
+                          <input type="checkbox" />
+                          <span></span>
+                        </label>
+                      </td>
+                      <td>
+                        <label>
+                          <input type="checkbox" />
+                          <span></span>
+                        </label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- </div> -->
+              </div>
               <div class="col s12 display-flex justify-content-end mt-3">
                 <button type="submit" class="btn indigo">
                   Save changes</button>
@@ -142,7 +238,8 @@
           </form>
           <!-- users edit account form ends -->
         </div>
-        <!--<div class="col s12" id="information">
+        <div class="col s12" id="information">
+          <!-- users edit Info form start -->
           <form id="infotabForm">
             <div class="row">
               <div class="col s12 m6">
@@ -254,9 +351,10 @@
               </div>
             </div>
           </form>
-           users edit Info form ends 
-        </div>-->
+          <!-- users edit Info form ends -->
+        </div>
       </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>
@@ -292,7 +390,7 @@
           </div>
         </div>
       </div>
-      <!--<div class="slide-out-right-body row pl-3">
+      <div class="slide-out-right-body row pl-3">
         <div id="messages" class="col s12 pb-0">
           <div class="collection border-none mb-0">
             <input class="header-search-input mt-4 mb-2" type="text" name="Search" placeholder="Search Messages" />
@@ -679,12 +777,12 @@
             </ul>
           </div>
         </div>
-      </div>-->
+      </div>
     </div>
   </div>
 
   <!-- Slide Out Chat -->
-  <!--<ul id="slide-out-chat" class="sidenav slide-out-right-sidenav-chat">
+  <ul id="slide-out-chat" class="sidenav slide-out-right-sidenav-chat">
     <li class="center-align pt-2 pb-2 sidenav-close chat-head">
       <a href="#!"><i class="material-icons mr-0">chevron_left</i>Elizabeth Elliott</a>
     </li>
@@ -794,17 +892,16 @@
         </div>
       </form>
     </li>
-  </ul>-->
+  </ul>
 </aside>
-<!-- END RIGHT SIDEBAR NAV -->
-	<!--<div style="bottom: 50px; right: 19px;" class="fixed-action-btn direction-top"><a class="btn-floating btn-large gradient-45deg-light-blue-cyan gradient-shadow"><i class="material-icons">add</i></a>
+<!-- END RIGHT SIDEBAR NAV --><div style="bottom: 50px; right: 19px;" class="fixed-action-btn direction-top"><a class="btn-floating btn-large gradient-45deg-light-blue-cyan gradient-shadow"><i class="material-icons">add</i></a>
     <ul>
         <li><a href="css-helpers.html" class="btn-floating blue"><i class="material-icons">help_outline</i></a></li>
         <li><a href="cards-extended.html" class="btn-floating green"><i class="material-icons">widgets</i></a></li>
         <li><a href="app-calendar.html" class="btn-floating amber"><i class="material-icons">today</i></a></li>
         <li><a href="app-email.html" class="btn-floating red"><i class="material-icons">mail_outline</i></a></li>
     </ul>
-</div>-->
+</div>
           </div>
           <div class="content-overlay"></div>
         </div>

@@ -32,7 +32,7 @@
                   </li>
                 </ol>
               </div>
-              <!--<div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl">Settings</span><i class="material-icons right">arrow_drop_down</i></a>
+              <div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl">Settings</span><i class="material-icons right">arrow_drop_down</i></a>
                 <ul class="dropdown-content" id="dropdown1" tabindex="0">
                   <li tabindex="0"><a class="grey-text text-darken-2" href="user-profile-page.html">Profile<span class="new badge red">2</span></a></li>
                   <li tabindex="0"><a class="grey-text text-darken-2" href="app-contacts.html">Contacts</a></li>
@@ -40,7 +40,7 @@
                   <li class="divider" tabindex="-1"></li>
                   <li tabindex="0"><a class="grey-text text-darken-2" href="user-login.html">Logout</a></li>
                 </ul>
-              </div>-->
+              </div>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
           <div class="container">
             <!-- users list start -->
 <section class="users-list-wrapper section">
-  <!--<div class="users-list-filter">
+  <div class="users-list-filter">
     <div class="card-panel">
       <div class="row">
         <form>
@@ -89,20 +89,11 @@
         </form>
       </div>
     </div>
-  </div>-->
+  </div>
   <div class="users-list-table">
-@if (session('status'))
     <div class="card">
       <div class="card-content">
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-    </div>
-    </div>
-@endif
-    <div class="card">
-      <div class="card-content">
-		<!-- datatable start -->
+        <!-- datatable start -->
         <div class="responsive-table">
           <table id="users-list-datatable" class="table">
             <thead>
@@ -114,9 +105,11 @@
                 <th>created_at</th>
                 <th>createdaBy</th>
                 <th>description</th>
+                <!--<th>role</th>-->
+                
                 <th>edit</th>
                 <th>view</th>
-                <th>delete</th>
+                <th>block</th>
               </tr>
             </thead>
             <tbody>
@@ -130,17 +123,9 @@
                 <td>{{ $group->users->name }}</td>
                 <td>{{substr($group->description,0,10).'...'}}</td>
                 <!--<td>Staff</td>-->
-                <td><a href="{{ route('admin.group.edit',$group->id) }}"><i class="material-icons">edit</i></a></td>
+                <td><a href="page-users-edit.html"><i class="material-icons">edit</i></a></td>
                 <td><a href="{{ route('admin.group.show',$group->id) }}"><i class="material-icons">remove_red_eye</i></a></td>
-                <td>
-					<a href="#" onClick="$('#delete_{{ $group->id }}').submit()">
-						<i class="material-icons fa fa-trash"></i>
-					</a>
-					<form id="delete_{{ $group->id }}" method="post" action="{{ route('admin.group.destroy',$group->id) }}">
-						@method('delete')
-						@csrf
-					</form>
-				  </td>
+                <td><a href="page-users-view.html"><i class="material-icons">close</i></a></td>
               </tr>
               @endforeach
             </tbody>              

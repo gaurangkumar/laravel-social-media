@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Group;
 use Illuminate\Database\Seeder;
 
 class GroupSeeder extends Seeder
@@ -14,17 +13,11 @@ class GroupSeeder extends Seeder
      */
     public function run()
     {
-        Group::create(array(
-            'name' => 'MCA',
-            'description' => 'MCA Group',
-            'user_id' => 1,
+        User::create(array(
+            'name' => 'Himani Prajapati',
+            'email' => 'himani@abc.com',
             'profile' => 'template\assets\img\avatar-1.jpg',
-        ));
-        Group::create(array(
-            'name' => 'BCA',
-            'description' => 'BCA Group',
-            'user_id' => 2,
-            'profile' => 'template\assets\img\avatar-2.jpg',
+            'password' => bcrypt('12345678'), //Hash::make($data['password']),
         ));
     }
 }

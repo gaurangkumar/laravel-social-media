@@ -11,28 +11,22 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        /*
-                if (php_sapi_name() !== 'cli') {
-                    if (version_compare(phpversion(), '5.4.0', '>=')) {
-                        if (session_status() !== PHP_SESSION_ACTIVE) {
-                            session_start();
-                        } else {
-                            if (session_id() === '') {
-                                session_start();
-                            }
-                        }
-                    }
+        if (php_sapi_name() !== 'cli') {
+            if (version_compare(phpversion(), '5.4.0', '>=')) {
+                if (session_status() !== PHP_SESSION_ACTIVE) {
+                    session_start();
                 } else {
-                    if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
+                    if (session_id() === '') {
                         session_start();
                     }
                 }
-        */
-        //session_start();
-        // if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
-        //     header('Location: '.route('admin.login'));
-        //     exit;
-        // }
+            }
+        } else {
+            if (session_id() === '' || session_status() !== PHP_SESSION_ACTIVE) {
+                session_start();
+            }
+        }
+        $_SESSION['admin'] = 1;
 
         \View::share('currentRoute', Route::currentRouteName());
     }
@@ -45,7 +39,7 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.user.index', array(
-            'users' => User::get(),
+            'users' => User::all(),
             'title' => 'Users',
         ));
     }
@@ -79,8 +73,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
+        $user = User::find($id);
+        /* echo "<pre>"; var_dump($user->name);
+          exit;
+*/
         return view('admin.user.show', compact('user'));
     }
 
@@ -91,9 +89,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
+        $user = User::find($id);
+
         return view('admin.user.edit', compact('user'));
+        //echo "<pre>";var_dump($id);exit;
     }
 
     /**
@@ -104,8 +105,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
+        $user = User::find($id);
         $request->validate(array(
             'name' => 'required|string|max:255',
             'mobile' => 'required|digits:10',
@@ -135,7 +137,7 @@ class UserController extends Controller
 
         $result = $user->update($data);
 
-        return redirect()->route('admin.user.index');
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -145,19 +147,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->trashed();
-
-        return redirect()->route('admin.user.index');
-    }
-
-    public function delete(User $user)
-    {
-        $d = User::where('id', $user->id)->update(array('deleted_at' => '2021-04-01'));
-
-        //$user->trashed();
-
-        return redirect()->route('admin.user.index');
+        //
     }
 }

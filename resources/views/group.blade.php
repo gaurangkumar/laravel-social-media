@@ -19,7 +19,7 @@
             <div class="main main-visible" data-mobile-height="">
 
                 <!-- Chat -->
-                <div id="chat-2" class="chat dropzone-form-js" data-dz-url="some.html">
+                <div id="chat-1" class="chat dropzone-form-js" data-dz-url="some.html">
 
                     <!-- Chat: body -->
                     <div class="chat-body">
@@ -245,6 +245,55 @@
                                         </div>
                                         <!-- Message: row -->
 
+                                        <!-- Message: row -->
+                                        <div class="message-row">
+                                            <div class="d-flex align-items-center justify-content-end">
+
+                                                <!-- Message: dropdown -->
+                                                <div class="dropdown">
+                                                    <a class="text-muted opacity-60 mr-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fe-more-vertical"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                                            Edit <span class="ml-auto fe-edit-3"></span>
+                                                        </a>
+                                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                                            Share <span class="ml-auto fe-share-2"></span>
+                                                        </a>
+                                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                                            Delete <span class="ml-auto fe-trash-2"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!-- Message: dropdown -->
+
+                                                <!-- Message: content -->
+                                                <div class="message-content bg-primary text-white">
+                                                    <div class="media">
+                                                        <a href="#" class="icon-shape mr-5">
+                                                            <i class="fe-paperclip"></i>
+                                                        </a>
+                                                        <div class="media-body overflow-hidden flex-fill">
+                                                            <a href="#" class="d-block text-truncate font-medium text-reset">bootstrap.min.js</a>
+                                                            <ul class="list-inline small mb-0">
+                                                                <li class="list-inline-item">
+                                                                    <span class="t">79.2 KB</span>
+                                                                </li>
+                                                                <li class="list-inline-item">
+                                                                    <span class="text-uppercase">js</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Message: content -->
+
+                                            </div>
+                                        </div>
+                                        <!-- Message: row -->
+
                                     </div>
                                     <!-- Message: body -->
                                 </div>
@@ -271,14 +320,14 @@
                         <div class="chat-footer border-top py-4 py-lg-6 px-lg-8">
                             <div class="container-xxl">
 
-                                <form id="chat-id-2-form" action="{{ route('groupchat', $group->id) }}" data-emoji-form="" method="post">
-									@csrf
+                                <form id="chat-id-1-form" action="{{ route('group_chat', $group->id) }}"  data-emoji-form="">
+                                    @csrf
                                     <div class="form-row align-items-center">
                                         <div class="col">
                                             <div class="input-group">
 
                                                 <!-- Textarea -->
-                                                <textarea id="chat-id-2-input" name="msg" class="form-control bg-transparent border-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true"></textarea>
+                                                <textarea id="chat-id-1-input" name="msg" class="form-control bg-transparent border-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true"></textarea>
 
                                                 <!-- Emoji button -->
                                                 <div class="input-group-append">
@@ -289,7 +338,7 @@
 
                                                 <!-- Upload button -->
                                                 <div class="input-group-append">
-                                                    <button id="chat-upload-btn-2" class="btn btn-ico btn-secondary btn-minimal bg-transparent border-0 dropzone-button-js" type="button">
+                                                    <button id="chat-upload-btn-1" class="btn btn-ico btn-secondary btn-minimal bg-transparent border-0 dropzone-button-js" type="button">
                                                         <img src="assets/images/paperclip.svg" data-inject-svg="" alt="">
                                                     </button>
                                                 </div>
@@ -297,6 +346,7 @@
                                             </div>
 
                                         </div>
+
                                         <!-- Submit button -->
                                         <div class="col-auto">
                                             <button class="btn btn-ico btn-primary rounded-circle" type="submit">

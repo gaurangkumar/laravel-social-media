@@ -17,7 +17,7 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
         \View::share('currentRoute', Route::currentRouteName());
     }
 
@@ -27,7 +27,7 @@ class HomeController extends Controller
         $title = 'Agwis Messenger';
         $user = auth()->user();
         $business = $user->businesses->count() ? $user->businesses[0] : null;
-        //echo "<pre>";var_dump($user->businesses[0]);exit;
+        //echo "<pre>";var_dump($user->businesses->count());exit;
 
         $side_chats = $this->get_last_chats($user->id);
 
@@ -91,7 +91,7 @@ class HomeController extends Controller
         return view('status', array('title' => 'Status | Agwis Messenger'));
     }
 
-    public function chat(User $sender)
+    public function chat(Request $request)
     {
         $title = 'Chat | Agwis Messenger';
         $user = auth()->user();
@@ -100,11 +100,11 @@ class HomeController extends Controller
 
         $pages = $this->get_pages($user->id);
 
-        //$sender_id = Route::current()->parameter('user_id');
-        //$sender = User::find($sender_id);
+        $sender_id = Route::current()->parameter('user_id');
+        $sender = User::find($sender_id);
         if (empty($sender)) {
             echo '<pre>';
-            print_r('No user found: '.$sender_id);
+            print_r($sender_id);
             exit;
         }
 
@@ -112,7 +112,7 @@ class HomeController extends Controller
             ->whereIn('user_id', array($sender->id, $user->id))
             ->get();
 
-        $business = Business::where('user_id', $sender->id)
+        $business = Business::where('user_id', $sender_id)
             ->with('products')
             ->first();
 
@@ -121,8 +121,11 @@ class HomeController extends Controller
         return view('chat', compact('title', 'side_chats', 'pages', 'chats', 'sender', 'friends', 'business', 'user'));
     }
 
-    public function sendchat(User $sender, Request $request)
+    public function sendchat(Request $request)
     {
+        $sender_id = Route::current()->parameter('user_id');
+        $sender = User::find($sender_id);
+
         $user = auth()->user();
 
         $request->validate(array(
@@ -135,28 +138,9 @@ class HomeController extends Controller
             'msg' => $request->msg,
         );
 
-        $chat = Chat::create($data);
+        $data = Chat::create($data);
 
-        return redirect()->back();
-    }
-
-    public function groupchat(Group $group, Request $request)
-    {
-        $user = auth()->user();
-
-        $request->validate(array(
-            'msg' => 'required',
-        ));
-
-        $data = array(
-            'user_id' => $user->id,
-            'group_id' => $group->id,
-            'msg' => $request->msg,
-        );
-
-        $chat = Chat::create($data);
-
-        return redirect()->back();
+        return redirect()->route('chat', $sender->id);
     }
 
     public function get_last_chats($uid)

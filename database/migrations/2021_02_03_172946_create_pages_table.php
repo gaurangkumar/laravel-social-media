@@ -16,8 +16,8 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('profile')->nullable();
-            $table->string('banner')->nullable();
+            $table->string('profile');
+            $table->string('banner');
             $table->string('uname')->unique();
             $table->foreignId('user_id')->constrained();
             $table->text('description')->nullable();

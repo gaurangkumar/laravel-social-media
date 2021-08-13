@@ -32,7 +32,7 @@
                   </li>
                 </ol>
               </div>
-              <!--<div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl">Settings</span><i class="material-icons right">arrow_drop_down</i></a>
+              <div class="col s2 m6 l6"><a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" href="#!" data-target="dropdown1"><i class="material-icons hide-on-med-and-up">settings</i><span class="hide-on-small-onl">Settings</span><i class="material-icons right">arrow_drop_down</i></a>
                 <ul class="dropdown-content" id="dropdown1" tabindex="0">
                   <li tabindex="0"><a class="grey-text text-darken-2" href="user-profile-page.html">Profile<span class="new badge red">2</span></a></li>
                   <li tabindex="0"><a class="grey-text text-darken-2" href="app-contacts.html">Contacts</a></li>
@@ -40,7 +40,7 @@
                   <li class="divider" tabindex="-1"></li>
                   <li tabindex="0"><a class="grey-text text-darken-2" href="user-login.html">Logout</a></li>
                 </ul>
-              </div>-->
+              </div>
             </div>
           </div>
         </div>
@@ -71,8 +71,8 @@
         </div>
       </div>
       <div class="col s12 m5 quick-action-btns display-flex justify-content-end align-items-center pt-2">
-        <!--<a href="app-email.html" class="btn-small btn-light-indigo"><i class="material-icons">mail_outline</i></a>-->
-        <!--<a href="{{route('admin.user.show', $user->id)}}" class="btn-small btn-light-indigo">Profile</a>-->
+        <a href="app-email.html" class="btn-small btn-light-indigo"><i class="material-icons">mail_outline</i></a>
+        <a href="{{route('admin.user.show', $user->id)}}" class="btn-small btn-light-indigo">Profile</a>
         <a href="{{route('admin.user.edit', $user->id)}}" class="btn-small indigo">Edit</a>
       </div>
     </div>
@@ -89,7 +89,7 @@
                 <td>Registered:</td>
                 <td>{{ $user->created_at}}</td>
               </tr>
-              <!--<tr>
+              <tr>
                 <td>Latest Activity:</td>
                 <td class="users-view-latest-activity">30/04/2019</td>
               </tr>
@@ -97,7 +97,7 @@
                 <td>Verified:</td>
                 <td class="users-view-verified">Yes</td>
               </tr>
-              -->
+              
               <tr>
                 <td>Status:</td>
                 <td><span class=" users-view-status chip green lighten-5 green-text">Active</span></td>
@@ -105,7 +105,7 @@
             </tbody>
           </table>
         </div>
-        <!--<div class="col s12 m8">
+        <div class="col s12 m8">
           <table class="responsive-table">
             <thead>
               <tr>
@@ -140,7 +140,7 @@
               </tr>
             </tbody>
           </table>
-        </div>-->
+        </div>
       </div>
     </div>
   </div>
@@ -189,7 +189,7 @@
 
             </tbody>
           </table>
-          <!--<h6 class="mb-2 mt-2"><i class="material-icons">link</i> Social Links</h6>
+          <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Social Links</h6>
           <table class="striped">
             <tbody>
               <tr>
@@ -205,7 +205,7 @@
                 <td><a href="#">https://www.instagram.com/</a></td>
               </tr>
             </tbody>
-          </table>-->
+          </table>
           <h6 class="mb-2 mt-2"><i class="material-icons">error_outline</i> Personal Info</h6>
           <table class="striped">
             <tbody>
@@ -213,7 +213,6 @@
                 <td>Birthday:</td>
                 <td>{{$user->dob}}</td>
               </tr>
-<!--
               <tr>
                 <td>Country:</td>
                 <td>USA</td>
@@ -222,13 +221,10 @@
                 <td>Languages:</td>
                 <td>English</td>
               </tr>
--->
-<!--
               <tr>
                 <td>Contact:</td>
                 <td>{{$user->mobile}}</td>
               </tr>
--->
             </tbody>
           </table>
         </div>
@@ -271,7 +267,7 @@
           </div>
         </div>
       </div>
-      <!--<div class="slide-out-right-body row pl-3">
+      <div class="slide-out-right-body row pl-3">
         <div id="messages" class="col s12 pb-0">
           <div class="collection border-none mb-0">
             <input class="header-search-input mt-4 mb-2" type="text" name="Search" placeholder="Search Messages" />
@@ -658,12 +654,12 @@
             </ul>
           </div>
         </div>
-      </div>-->
+      </div>
     </div>
   </div>
 
   <!-- Slide Out Chat -->
-  <!--<ul id="slide-out-chat" class="sidenav slide-out-right-sidenav-chat">
+  <ul id="slide-out-chat" class="sidenav slide-out-right-sidenav-chat">
     <li class="center-align pt-2 pb-2 sidenav-close chat-head">
       <a href="#!"><i class="material-icons mr-0">chevron_left</i>Elizabeth Elliott</a>
     </li>
@@ -773,17 +769,16 @@
         </div>
       </form>
     </li>
-  </ul>-->
+  </ul>
 </aside>
-<!-- END RIGHT SIDEBAR NAV -->
-			  <!--<div style="bottom: 50px; right: 19px;" class="fixed-action-btn direction-top"><a class="btn-floating btn-large gradient-45deg-light-blue-cyan gradient-shadow"><i class="material-icons">add</i></a>
+<!-- END RIGHT SIDEBAR NAV --><div style="bottom: 50px; right: 19px;" class="fixed-action-btn direction-top"><a class="btn-floating btn-large gradient-45deg-light-blue-cyan gradient-shadow"><i class="material-icons">add</i></a>
     <ul>
         <li><a href="css-helpers.html" class="btn-floating blue"><i class="material-icons">help_outline</i></a></li>
         <li><a href="cards-extended.html" class="btn-floating green"><i class="material-icons">widgets</i></a></li>
         <li><a href="app-calendar.html" class="btn-floating amber"><i class="material-icons">today</i></a></li>
         <li><a href="app-email.html" class="btn-floating red"><i class="material-icons">mail_outline</i></a></li>
     </ul>
-</div>-->
+</div>
           </div>
           <div class="content-overlay"></div>
         </div>

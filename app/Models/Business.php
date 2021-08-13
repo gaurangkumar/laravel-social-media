@@ -8,15 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Business extends Model
 {
     use HasFactory;
-
     protected $fillable = array(
         'name',
         'btype',
         'profile',
         'address',
-        'website',
         'user_id',
         'description',
+
     );
 
     public function users()
