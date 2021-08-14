@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -13,10 +13,10 @@ return array(
     |
     */
 
-    'defaults' => array(
+    'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
-    ),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -35,18 +35,18 @@ return array(
     |
     */
 
-    'guards' => array(
-        'web' => array(
+    'guards' => [
+        'web' => [
             'driver' => 'session',
             'provider' => 'users',
-        ),
+        ],
 
-        'api' => array(
+        'api' => [
             'driver' => 'token',
             'provider' => 'users',
             'hash' => false,
-        ),
-    ),
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -65,17 +65,17 @@ return array(
     |
     */
 
-    'providers' => array(
-        'users' => array(
+    'providers' => [
+        'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-        ),
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-    ),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -92,14 +92,14 @@ return array(
     |
     */
 
-    'passwords' => array(
-        'users' => array(
+    'passwords' => [
+        'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
-        ),
-    ),
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -114,4 +114,4 @@ return array(
 
     'password_timeout' => 10800,
 
-);
+];
