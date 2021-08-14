@@ -6,6 +6,7 @@ dist: trusty
 php:
   - 7.3
   - 7.4
+  - 8.0
 
 cache:
   directories:
@@ -15,6 +16,7 @@ matrix:
     include:
         - php: 7.3
         - php: 7.4
+        - php: 8.0
     fast_finish: true
 
 before_script:
@@ -23,6 +25,6 @@ before_script:
   - if [ "$deps" == "low" ]; then composer update --prefer-dist --prefer-lowest --prefer-stable; fi
   - if [ "$deps" != "low" ]; then composer install --prefer-dist; fi
   - php -r "copy('.env.example', '.env');"
-  - php jarvis key
+  - php artisan key:generate
 
-script: php jarvis
+script: php artisan
