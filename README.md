@@ -1,14 +1,8 @@
 <h1 align="center">Agwis Messanger</h1>
 
-# AGwis.com Website
-[agwis.com](http://agwis.com) Agwis Messanger is MCA project made by `Me` and `Himani`.
-
-# Features
-- 
-
 <p align="center">
     <a href="https://agwis.com" target="_blank">
-        <img src="https://raw.githubusercontent.com/Laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/Laravel-logolockup-cmyk-red.svg" width="400">
+        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400">
     </a>
 </p>
 
@@ -30,9 +24,9 @@
     </a>
 </p>
 
-## About AGwis.com
+## About Agwis Messanger
 
-Agwis Messanger is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Agwis takes the pain out of development by easing common tasks used in many web projects, such as:
+[agwis.com](http://agwis.com) Agwis Messanger is MCA project made by `Me` and `Himani`. We believe development must be an enjoyable and creative experience to be truly fulfilling. Agwis takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://Agwis.com/docs/routing).
 - [Powerful dependency injection container](https://Agwis.com/docs/container).
@@ -66,7 +60,7 @@ In order to ensure that the Agwis community is welcoming to all, please review a
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Agwis, please send an e-mail to Taylor Otwell via [taylor@Agwis.com](mailto:gk@agwis.com). All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within Agwis, please send an e-mail to Gaurang Kumar via [gk@Agwis.com](mailto:gk@agwis.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
