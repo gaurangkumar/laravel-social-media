@@ -26,7 +26,7 @@
 
 ## About Agwis Messanger
 
-[agwis.com](http://agwis.com) Agwis Messanger is MCA project made by `Me` and `Himani`. We believe development must be an enjoyable and creative experience to be truly fulfilling. Agwis takes the pain out of development by easing common tasks used in many web projects, such as:
+[agwis.com](http://agwis.com) Agwis Messanger is MCA project made by [`Me`](https://github.com/gaurangkumar) and [`Himani`](https://github.com/Himani-14p). We believe development must be an enjoyable and creative experience to be truly fulfilling. Agwis takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://Agwis.com/docs/routing).
 - [Powerful dependency injection container](https://Agwis.com/docs/container).
