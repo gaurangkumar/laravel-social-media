@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         //DB::table('chats')->truncate();
 
-        $this->call(array(
+        $this->call([
             AdminSeeder::class,
             UserSeeder::class,
             ContactSeeder::class,
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             ChatSeeder::class,
             BusinessSeeder::class,
             ProductSeeder::class,
-        ));
+        ]);
 
         // \App\Models\User::factory(10)->create();
     }

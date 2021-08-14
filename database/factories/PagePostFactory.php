@@ -21,8 +21,8 @@ class PagePostFactory extends Factory
      */
     public function definition()
     {
-        return array(
+        return [
             //
-        );
+        ];
     }
 }
