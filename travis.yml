@@ -1,0 +1,36 @@
+language: php
+
+sudo: false
+dist: trusty
+
+php:
+  - 5.6
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+  - 7.4
+  - 8.0
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+matrix:
+    include:
+        - php: 5.6
+        - php: 7.0
+        - php: 7.1
+        - php: 7.2
+        - php: 7.3
+        - php: 7.4
+        - php: 8.0
+    fast_finish: true
+
+before_script:
+  - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - if [ "$deps" == "low" ]; then composer update --prefer-dist --prefer-lowest --prefer-stable; fi
+  - if [ "$deps" != "low" ]; then composer install --prefer-dist; fi
+
+script: vendor/bin/phpunit
