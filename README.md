@@ -10,17 +10,20 @@
     <a href="https://github.styleci.io/repos/276014374">
         <img alt="StyleCI" src="https://github.styleci.io/repos/276014374/shield?branch=master">
     </a>
-    <a href="https://www.travis-ci.com/github/Agwis-Software/agwis-msg">
-        <img src="https://api.travis-ci.com/Agwis-Software/agwis-msg.svg?branch=master" alt="Build Status">
-    </a>
-    <a href="https://packagist.org/packages/Agwis-Software/agwis-msg">
-        <img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads">
-    </a>
     <a href="https://packagist.org/packages/laravel/framework">
-        <img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version">
+        <img src="https://img.shields.io/badge/Laravel-8.54-blue" alt="Laravel Version">
     </a>
-    <a href="https://packagist.org/packages/laravel/framework">
-        <img src="https://img.shields.io/packagist/l/laravel/framework" alt="License">
+    <a href="https://github.com/Agwis-Software/agwis-msg">
+        <img src="https://img.shields.io/github/stars/Agwis-Software/agwis-msg" alt="Stars">
+    </a>
+    <a href="https://github.com/Agwis-Software/agwis-msg">
+        <img src="https://img.shields.io/github/license/Agwis-Software/agwis-msg" alt="License">
+    </a>
+    <a href="https://github.com/Agwis-Software/agwis-msg">
+        <img src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FAgwis-Software%2Fagwis-msg" alt="Tweet">
+    </a>
+    <a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FAgwis-Software%2Fagwis-msg">
+        <img alt="Twitter" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fgaurangkumarp">
     </a>
 </p>
 
