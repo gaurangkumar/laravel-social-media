@@ -19,7 +19,7 @@
     <a href="https://github.com/Agwis-Software/agwis-msg">
         <img src="https://img.shields.io/github/license/Agwis-Software/agwis-msg" alt="License">
     </a>
-    <a href="https://twitter.com/intent/tweet?text=#Agwis #Messanger:&url=https%3A%2F%2Fgithub.com%2FAgwis-Software%2Fagwis-msg">
+    <a href="https://twitter.com/intent/tweet?text=%23Agwis %23Messanger:&url=https%3A%2F%2Fgithub.com%2FAgwis-Software%2Fagwis-msg">
         <img alt="Twitter" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fgaurangkumarp">
     </a>
 </p>
