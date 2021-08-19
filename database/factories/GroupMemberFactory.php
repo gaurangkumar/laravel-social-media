@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\groupMember;
+use App\Models\GroupMember;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GroupMemberFactory extends Factory
@@ -12,7 +12,7 @@ class GroupMemberFactory extends Factory
      *
      * @var string
      */
-    protected $model = groupMember::class;
+    protected $model = GroupMember::class;
 
     /**
      * Define the model's default state.
