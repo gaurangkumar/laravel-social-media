@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Group;
 use Illuminate\Database\Seeder;
 
 class GroupSeeder extends Seeder
@@ -13,6 +14,17 @@ class GroupSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Group::create(array(
+            'name' => 'MCA',
+            'description' => 'MCA Group',
+            'user_id' => 1,
+            'profile' => 'template\assets\img\avatar-1.jpg',
+        ));
+        Group::create(array(
+            'name' => 'BCA',
+            'description' => 'BCA Group',
+            'user_id' => 2,
+            'profile' => 'template\assets\img\avatar-2.jpg',
+        ));
     }
 }
