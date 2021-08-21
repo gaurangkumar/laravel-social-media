@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        ni_set('memory_limit', '1024M');
+        $title = 'Agwis Messenger';
+        $user = auth()->user();
     }
 
     /**
@@ -30,21 +33,50 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $user = auth()->user();
+        //$business= Business::find('id');
+
+        $validated = $request->validate(array(
+            'name' => 'required|string',
+            'price' => 'required|numeric',
+            'discount' => 'numeric|nullable',
+            'description' => 'required|string',
+            'img' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            'business_id' => 'required',
+        ));
+
+        $image = $request->img->store('product', array('disk' => 'public'));
+
+        $data = array(
+            'name' => $request->name,
+            'price' => $request->price,
+            'discount' => $request->discount,
+            'description' => $request->description,
+            'img' => $image,
+            'business_id' => $request->business_id,
+
+        );
+        //echo "<pre>"; print_r($data);exit;
+
+        $product = Product::create($data);
+
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\product $product
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(product $product)
     {
         //
     }
@@ -52,10 +84,11 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\product $product
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(product $product)
     {
         //
     }
@@ -63,11 +96,12 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\product      $product
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, product $product)
     {
         //
     }
@@ -75,10 +109,11 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\product $product
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(product $product)
     {
         //
     }
