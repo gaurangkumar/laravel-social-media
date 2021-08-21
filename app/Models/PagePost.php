@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class PagePost extends Model
 {
     use HasFactory;
+
+    protected $fillable = array(
+        'user_id',
+        'page_id',
+        'text',
+        'media',
+    );
 }
