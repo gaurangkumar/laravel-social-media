@@ -14,7 +14,7 @@ class BusinessSeeder extends Seeder
      */
     public function run()
     {
-        Business::create(array(
+        Business::create([
             'name' => 'XYZ',
             'btype' => 'Grocery Store',
             'address' => 'Delhi',
@@ -22,8 +22,8 @@ class BusinessSeeder extends Seeder
             'user_id' => 1,
             'website' => 'abc.com',
             'profile' => 'template\assets\img\avatar-1.jpg',
-        ));
-        Business::create(array(
+        ]);
+        Business::create([
             'name' => 'ABC',
             'btype' => 'Cloth Store',
             'address' => 'Mumbai',
@@ -31,6 +31,6 @@ class BusinessSeeder extends Seeder
             'user_id' => 2,
             'website' => 'abc.com',
             'profile' => 'template\assets\img\avatar-2.jpg',
-        ));
+        ]);
     }
 }

@@ -9,7 +9,7 @@ class Business extends Model
 {
     use HasFactory;
 
-    protected $fillable = array(
+    protected $fillable = [
         'name',
         'btype',
         'profile',
@@ -17,7 +17,7 @@ class Business extends Model
         'website',
         'user_id',
         'description',
-    );
+    ];
 
     public function users()
     {

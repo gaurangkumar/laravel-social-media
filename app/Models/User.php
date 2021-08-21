@@ -19,33 +19,33 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = array(
+    protected $fillable = [
         'name',
         'email',
         'password',
         'mobile',
         'profile',
         'address',
-    );
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = array(
+    protected $hidden = [
         'password',
         'remember_token',
-    );
+    ];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = array(
+    protected $casts = [
         'email_verified_at' => 'datetime',
-    );
+    ];
 
     public function chats()
     {

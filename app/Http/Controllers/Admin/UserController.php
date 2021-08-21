@@ -44,10 +44,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.index', array(
+        return view('admin.user.index', [
             'users' => User::get(),
             'title' => 'Users',
-        ));
+        ]);
     }
 
     /**
@@ -106,29 +106,29 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate(array(
+        $request->validate([
             'name' => 'required|string|max:255',
             'mobile' => 'required|digits:10',
-        ));
+        ]);
 
         if ($user->email !== $request->email) {
-            $request->validate(array(
+            $request->validate([
                 'email' => 'required|string|email|max:255|unique:users',
-            ));
+            ]);
         }
 
-        $data = array(
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
             'mobile' => $request->mobile,
-        );
+        ];
 
-        if (!empty($request->profile)) {
-            $request->validate(array(
+        if (! empty($request->profile)) {
+            $request->validate([
                 'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-            ));
+            ]);
 
-            $image = $request->profile->store('profile', array('disk' => 'public'));
+            $image = $request->profile->store('profile', ['disk' => 'public']);
 
             $data['profile'] = $image;
         }
@@ -154,7 +154,7 @@ class UserController extends Controller
 
     public function delete(User $user)
     {
-        $d = User::where('id', $user->id)->update(array('deleted_at' => '2021-04-01'));
+        $d = User::where('id', $user->id)->update(['deleted_at' => '2021-04-01']);
 
         //$user->trashed();
 

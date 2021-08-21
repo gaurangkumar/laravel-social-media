@@ -113,32 +113,32 @@ class GroupController extends Controller
     {
         $group_members = array_column($group->members->toArray(), 'user_id');
 
-        $validated = $request->validate(array(
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'members' => 'required|array|min:3',
-        ));
+        ]);
 
-        $data = array(
+        $data = [
             'name' => $request->name,
             'description' => $request->description,
-        );
+        ];
 
         if ($group->update($data) === false) {
             return back()->with('error', 'Error in updating group!');
         }
 
-        if (!in_array($group->user_id, $validated['members'])) {
+        if (! in_array($group->user_id, $validated['members'])) {
             //
         }
 
         foreach ($request->members as $member) {
             $key = array_search($member, $group_members);
             if ($key === false) {
-                $obj = GroupMember::create(array(
+                $obj = GroupMember::create([
                     'user_id' => $member,
                     'group_id' => $group_id,
-                ));
+                ]);
             }
         }
 
@@ -166,7 +166,7 @@ class GroupController extends Controller
         $members = GroupMember::where('group_id', $group->id)->delete();
 
         if ($members !== false && $group->delete()) {
-            return redirect()->route('admin.group.index')->with(array('msg' => ''));
+            return redirect()->route('admin.group.index')->with(['msg' => '']);
         } else {
             return back()->with('status', 'Error in deleting group!');
         }
@@ -185,11 +185,11 @@ class GroupController extends Controller
         $isExist = Storage::disk('public')->exists($group->profile);
         if ($isExist) {
             $isDeleted = Storage::disk('public')->delete($group->profile);
-            if (!$isDeleted) {
+            if (! $isDeleted) {
                 //
             }
         }
-        $group->update(array('profile' => null));
+        $group->update(['profile' => null]);
 
         return redirect()->back()->with('status', 'Group profile picture is deleted!');
     }
@@ -206,16 +206,16 @@ class GroupController extends Controller
         $isExist = Storage::disk('public')->exists($group->profile);
         if ($isExist) {
             $isDeleted = Storage::disk('public')->delete($group->profile);
-            if (!$isDeleted) {
+            if (! $isDeleted) {
                 //
             }
         }
 
-        $request->validate(array(
+        $request->validate([
             'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-        ));
+        ]);
 
-        $image = $request->profile->store('group', array('disk' => 'public'));
+        $image = $request->profile->store('group', ['disk' => 'public']);
 
         $data['profile'] = $image;
 

@@ -20,11 +20,11 @@ class ContactSeeder extends Seeder
         for ($s = 1; $s <= $u; $s++) {
             for ($r = 1; $r <= $u; $r++) {
                 if ($s !== $r) {
-                    Contact::create(array(
+                    Contact::create([
                         'user_id' => $s,
                         'cid' => $r,
                         'created_at' => date('Y-m-d H:i:s', $datetime),
-                    ));
+                    ]);
                     $datetime = strtotime('+1 minutes', $datetime);
                 }
             }

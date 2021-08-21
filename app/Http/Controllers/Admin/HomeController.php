@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         //$this->middleware('auth:admin');
         session_start();
-        if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
+        if (! isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
             header('Location: '.route('admin.login'));
             exit;
         }
@@ -32,7 +32,7 @@ class HomeController extends Controller
         $user_id = $_SESSION['admin'];
         $user = \App\Models\User::find($user_id);
 
-        $count = array();
+        $count = [];
         $today = date('Y-m-d', strtotime('+1 day'));
 
         /*
@@ -46,7 +46,7 @@ class HomeController extends Controller
         */
 
         $ns = '\\App\\Models\\';
-        $models = array(
+        $models = [
             'User' => 'fa fa-user',
             'Admin' => 'fas fa-user-cog',
             'Business' => 'fas fa-building',
@@ -62,7 +62,7 @@ class HomeController extends Controller
             'Product' => 'fas fa-shopping-cart',
             'Call' => 'fas fa-phone-alt',
             'Status' => 'fas fa-photo-video',
-        );
+        ];
 
         $i = 0;
         foreach ($models as $model => $icon) {
