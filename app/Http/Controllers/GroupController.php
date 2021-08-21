@@ -48,21 +48,21 @@ class GroupController extends Controller
         //echo '<pre>';print_r($request->toArray());exit;
         $user = auth()->user();
 
-        $validated = $request->validate(array(
+        $validated = $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
             'members' => 'required|array|min:2',
             'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-        ));
+        ]);
 
-        $image = $request->profile->store('group', array('disk' => 'public'));
+        $image = $request->profile->store('group', ['disk' => 'public']);
 
-        $data = array(
+        $data = [
             'user_id' => $user->id,
             'name' => $request->name,
             'profile' => $image,
             'description' => $request->description,
-        );
+        ];
 
         $group = Group::create($data);
 
@@ -70,10 +70,10 @@ class GroupController extends Controller
         array_push($validated['members'], $user->id);
 
         foreach ($validated['members'] as $member) {
-            GroupMember::create(array(
+            GroupMember::create([
                 'user_id' => $member,
                 'group_id' => $group->id,
-            ));
+            ]);
         }
 
         return redirect()->route('group.show', $group->id);
@@ -96,7 +96,7 @@ class GroupController extends Controller
         ->orderBy('name', 'ASC')
         ->get();
 
-        $group_members = array();
+        $group_members = [];
         foreach ($members as $member) {
             $group_members[
                 $member->name[0]
@@ -139,7 +139,7 @@ class GroupController extends Controller
         ->orderBy('name', 'ASC')
         ->get();
 
-        $edit_members = array();
+        $edit_members = [];
         foreach ($gmembers as $contact) {
             $edit_members[
                 $contact->name[0]

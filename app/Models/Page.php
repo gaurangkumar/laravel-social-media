@@ -9,14 +9,14 @@ class Page extends Model
 {
     use HasFactory;
 
-    protected $fillable = array(
+    protected $fillable = [
         'name',
         'profile',
         'uname',
         'user_id',
         'description',
         'banner',
-    );
+    ];
 
     public function followers()
     {

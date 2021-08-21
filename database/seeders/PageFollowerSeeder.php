@@ -18,11 +18,11 @@ class PageFollowerSeeder extends Seeder
         $datetime = strtotime('+1 minutes');
         for ($s = 1; $s <= $u; $s++) {
             for ($r = 1; $r <= 2; $r++) {
-                PageFollower::create(array(
+                PageFollower::create([
                     'user_id' => $s,
                     'page_id' => $r,
                     'created_at' => date('Y-m-d H:i:s', $datetime),
-                ));
+                ]);
                 $datetime = strtotime('+1 minutes', $datetime);
             }
         }

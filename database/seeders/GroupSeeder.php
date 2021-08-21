@@ -14,17 +14,17 @@ class GroupSeeder extends Seeder
      */
     public function run()
     {
-        Group::create(array(
+        Group::create([
             'name' => 'MCA',
             'description' => 'MCA Group',
             'user_id' => 1,
             'profile' => 'template\assets\img\avatar-1.jpg',
-        ));
-        Group::create(array(
+        ]);
+        Group::create([
             'name' => 'BCA',
             'description' => 'BCA Group',
             'user_id' => 2,
             'profile' => 'template\assets\img\avatar-2.jpg',
-        ));
+        ]);
     }
 }

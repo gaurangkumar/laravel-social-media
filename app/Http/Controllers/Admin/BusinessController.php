@@ -27,10 +27,10 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        return view('admin.business.index', array(
+        return view('admin.business.index', [
             'businesses' => Business::all(),
             'title' => 'Business',
-        ));
+        ]);
     }
 
     /**

@@ -40,18 +40,18 @@ class BusinessController extends Controller
     {
         $user = auth()->user();
 
-        $request->validate(array(
+        $request->validate([
             'name' => 'required|string',
             'btype' => 'required|string',
             'address' => 'required|string',
             'website' => 'string',
             'description' => 'required|string',
             'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-        ));
+        ]);
 
-        $image = $request->profile->store('business', array('disk' => 'public'));
+        $image = $request->profile->store('business', ['disk' => 'public']);
 
-        $data = array(
+        $data = [
             'name' => $request->name,
             'btype' => $request->btype,
             'address' => $request->address,
@@ -59,7 +59,7 @@ class BusinessController extends Controller
             'description' => $request->description,
             'profile' => $image,
             'user_id' => $user->id,
-        );
+        ];
 
         $business = Business::create($data);
 

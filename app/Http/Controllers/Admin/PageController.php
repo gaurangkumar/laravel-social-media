@@ -31,10 +31,10 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('admin.page.index', array(
+        return view('admin.page.index', [
             'pages' => Page::all(),
             'title' => 'Page',
-        ));
+        ]);
     }
 
     /**
@@ -104,34 +104,34 @@ class PageController extends Controller
     {
         $page_followers = array_column($page->followers->toArray(), 'user_id');
 
-        $validated = $request->validate(array(
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'uname' => 'required', //|unique:pages
             'description' => 'required|string|max:255',
             'followers' => 'required|array|min:1',
-        ));
+        ]);
 
-        $data = array(
+        $data = [
             'name' => $request->name,
             'uname' => $request->uname,
             'description' => $request->description,
-        );
+        ];
 
         if ($page->update($data) === false) {
             return back()->with('error', 'Error in updating Page!');
         }
 
-        if (!in_array($page->user_id, $validated['followers'])) {
+        if (! in_array($page->user_id, $validated['followers'])) {
             //
         }
 
         foreach ($request->followers as $member) {
             $key = array_search($member, $page_followers);
             if ($key === false) {
-                $obj = PageFollower::create(array(
+                $obj = PageFollower::create([
                     'user_id' => $member,
                     'page_id' => $page->id,
-                ));
+                ]);
             }
         }
 
@@ -159,7 +159,7 @@ class PageController extends Controller
         $followers = PageFollower::where('page_id', $page->id)->delete();
 
         if ($followers !== false && $page->delete()) {
-            return redirect()->route('admin.page.index')->with(array('msg' => ''));
+            return redirect()->route('admin.page.index')->with(['msg' => '']);
         } else {
             return back()->with('status', 'Error in deleting page!');
         }
@@ -178,11 +178,11 @@ class PageController extends Controller
         $isExist = Storage::disk('public')->exists($page->profile);
         if ($isExist) {
             $isDeleted = Storage::disk('public')->delete($page->profile);
-            if (!$isDeleted) {
+            if (! $isDeleted) {
                 //
             }
         }
-        $page->update(array('profile' => null));
+        $page->update(['profile' => null]);
 
         return redirect()->back()->with('status', 'Page profile picture is deleted!');
     }
@@ -199,16 +199,16 @@ class PageController extends Controller
         $isExist = Storage::disk('public')->exists($page->profile);
         if ($isExist) {
             $isDeleted = Storage::disk('public')->delete($page->profile);
-            if (!$isDeleted) {
+            if (! $isDeleted) {
                 //
             }
         }
 
-        $request->validate(array(
+        $request->validate([
             'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-        ));
+        ]);
 
-        $image = $request->profile->store('page', array('disk' => 'public'));
+        $image = $request->profile->store('page', ['disk' => 'public']);
 
         $data['profile'] = $image;
 

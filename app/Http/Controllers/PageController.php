@@ -42,31 +42,31 @@ class PageController extends Controller
     {
         $user = auth()->user();
 
-        $request->validate(array(
+        $request->validate([
             'name' => 'required|string',
             'uname' => 'required|unique:pages',
             'description' => 'required|string',
             'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-        ));
+        ]);
 
-        $image = $request->profile->store('page', array('disk' => 'public'));
+        $image = $request->profile->store('page', ['disk' => 'public']);
 
-        $data = array(
+        $data = [
             'name' => $request->name,
             'uname' => $request->uname,
             'description' => $request->description,
             'profile' => $image,
             'banner' => '',
             'user_id' => $user->id,
-        );
+        ];
 
         $page = Page::create($data);
 
-        $follow = PageFollower::create(array(
+        $follow = PageFollower::create([
             'user_id' => $user->id,
             'page_id' => $page->id,
             'follow' => true,
-        ));
+        ]);
 
         return redirect()->route('page.show', $page->uname);
     }

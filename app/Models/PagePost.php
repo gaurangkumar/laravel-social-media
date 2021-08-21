@@ -9,10 +9,10 @@ class PagePost extends Model
 {
     use HasFactory;
 
-    protected $fillable = array(
+    protected $fillable = [
         'user_id',
         'page_id',
         'text',
         'media',
-    );
+    ];
 }

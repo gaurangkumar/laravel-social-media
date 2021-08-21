@@ -66,15 +66,15 @@ class HomeController extends Controller
 
         $user = auth()->user();
 
-        $request->validate(array(
+        $request->validate([
             'msg' => 'required',
-        ));
+        ]);
 
-        $data = array(
+        $data = [
             'user_id' => $user->id,
             'page_id' => $page->id,
             'text' => $request->msg,
-        );
+        ];
 
         $post = PagePost::create($data);
 
@@ -83,12 +83,12 @@ class HomeController extends Controller
 
     public function call()
     {
-        return view('call', array('title' => 'Calls | Agwis Messenger'));
+        return view('call', ['title' => 'Calls | Agwis Messenger']);
     }
 
     public function status()
     {
-        return view('status', array('title' => 'Status | Agwis Messenger'));
+        return view('status', ['title' => 'Status | Agwis Messenger']);
     }
 
     public function chat(User $sender)
@@ -108,8 +108,8 @@ class HomeController extends Controller
             exit;
         }
 
-        $chats = Chat::whereIn('rid', array($sender->id, $user->id))
-            ->whereIn('user_id', array($sender->id, $user->id))
+        $chats = Chat::whereIn('rid', [$sender->id, $user->id])
+            ->whereIn('user_id', [$sender->id, $user->id])
             ->get();
 
         $business = Business::where('user_id', $sender->id)
@@ -125,15 +125,15 @@ class HomeController extends Controller
     {
         $user = auth()->user();
 
-        $request->validate(array(
+        $request->validate([
             'msg' => 'required',
-        ));
+        ]);
 
-        $data = array(
+        $data = [
             'user_id' => $user->id,
             'rid' => $sender->id,
             'msg' => $request->msg,
-        );
+        ];
 
         $chat = Chat::create($data);
 
@@ -144,15 +144,15 @@ class HomeController extends Controller
     {
         $user = auth()->user();
 
-        $request->validate(array(
+        $request->validate([
             'msg' => 'required',
-        ));
+        ]);
 
-        $data = array(
+        $data = [
             'user_id' => $user->id,
             'group_id' => $group->id,
             'msg' => $request->msg,
-        );
+        ];
 
         $chat = Chat::create($data);
 
@@ -179,17 +179,17 @@ class HomeController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
 
-        $side_chats = array();
-        $uids = array();
+        $side_chats = [];
+        $uids = [];
         foreach ($results as $result) {
             if ($result->user_id !== $result->rid) {
                 if ($result->user_id === $uid) {
-                    if (!in_array($result->rid, $uids)) {
+                    if (! in_array($result->rid, $uids)) {
                         array_push($side_chats, $result);
                         $uids[] = $result->rid;
                     }
                 } else {
-                    if (!in_array($result->user_id, $uids)) {
+                    if (! in_array($result->user_id, $uids)) {
                         $side_chats[] = $result;
                         $uids[] = $result->user_id;
                     }
@@ -224,7 +224,7 @@ class HomeController extends Controller
         $diff->w = floor($diff->d / 7);
         $diff->d -= $diff->w * 7;
 
-        $string = array(
+        $string = [
             'y' => 'year',
             'm' => 'month',
             'w' => 'week',
@@ -232,7 +232,7 @@ class HomeController extends Controller
             'h' => 'hour',
             'i' => 'minute',
             's' => 'second',
-        );
+        ];
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
                 $v = $diff->$k.' '.$v.($diff->$k > 1 ? 's' : '');
@@ -241,7 +241,7 @@ class HomeController extends Controller
             }
         }
 
-        if (!$full) {
+        if (! $full) {
             $string = array_slice($string, 0, 1);
         }
 
@@ -258,7 +258,7 @@ class HomeController extends Controller
         ->orderBy('name', 'ASC')
         ->get();
 
-        $friends = array();
+        $friends = [];
         foreach ($contacts as $contact) {
             $friends[
                 $contact->name[0]
@@ -272,29 +272,29 @@ class HomeController extends Controller
     {
         $user = auth()->user();
 
-        $request->validate(array(
+        $request->validate([
             'name' => 'required|string|max:255',
             'mobile' => 'required|digits:10',
-        ));
+        ]);
 
         if ($user->email !== $request->email) {
-            $request->validate(array(
+            $request->validate([
                 'email' => 'required|string|email|max:255|unique:users',
-            ));
+            ]);
         }
 
-        $data = array(
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
             'mobile' => $request->mobile,
-        );
+        ];
 
-        if (!empty($request->profile)) {
-            $request->validate(array(
+        if (! empty($request->profile)) {
+            $request->validate([
                 'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
-            ));
+            ]);
 
-            $image = $request->profile->store('profile', array('disk' => 'public'));
+            $image = $request->profile->store('profile', ['disk' => 'public']);
 
             $data['profile'] = $image;
         }
@@ -308,7 +308,7 @@ class HomeController extends Controller
     {
         $user = auth()->user();
 
-        $result = $user->update(array('profile' => null));
+        $result = $user->update(['profile' => null]);
 
         return redirect()->route('settings');
     }
@@ -320,8 +320,8 @@ class HomeController extends Controller
 
     public static function number_abbr($number)
     {
-        $abbrevs = array(12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => '');
-        $abbrevs = array(12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => '');
+        $abbrevs = [12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => ''];
+        $abbrevs = [12 => 'T', 9 => 'B', 6 => 'M', 3 => 'K', 0 => ''];
 
         foreach ($abbrevs as $exponent => $abbrev) {
             if (abs($number) >= pow(10, $exponent)) {

@@ -9,13 +9,13 @@ class Chat extends Model
 {
     use HasFactory;
 
-    protected $fillable = array(
+    protected $fillable = [
         'user_id',
         'rid',
         'group_id',
         'msg',
 
-    );
+    ];
 
     public function groups()
     {

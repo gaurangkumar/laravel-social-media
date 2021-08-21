@@ -65,10 +65,10 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(array(
+        $request->validate([
             'email' => 'required',
             'password' => 'required',
-        ));
+        ]);
 
         $admin = Admin::where('email', $request->email)
             ->where('password', $request->password)

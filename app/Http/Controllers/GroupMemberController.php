@@ -100,17 +100,17 @@ class GroupMemberController extends Controller
         $group_members = array_column($group->members->toArray(), 'user_id');
         $user = auth()->user();
 
-        $request->validate(array(
+        $request->validate([
             'members' => 'required|array|min:3',
-        ));
+        ]);
 
         foreach ($request->members as $member) {
             $key = array_search($member, $group_members);
             if ($key === false) {
-                $obj = GroupMember::create(array(
+                $obj = GroupMember::create([
                     'user_id' => $member,
                     'group_id' => $group->id,
-                ));
+                ]);
             }
         }
 

@@ -42,18 +42,18 @@ class ProductController extends Controller
         $user = auth()->user();
         //$business= Business::find('id');
 
-        $validated = $request->validate(array(
+        $validated = $request->validate([
             'name' => 'required|string',
             'price' => 'required|numeric',
             'discount' => 'numeric|nullable',
             'description' => 'required|string',
             'img' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
             'business_id' => 'required',
-        ));
+        ]);
 
-        $image = $request->img->store('product', array('disk' => 'public'));
+        $image = $request->img->store('product', ['disk' => 'public']);
 
-        $data = array(
+        $data = [
             'name' => $request->name,
             'price' => $request->price,
             'discount' => $request->discount,
@@ -61,7 +61,7 @@ class ProductController extends Controller
             'img' => $image,
             'business_id' => $request->business_id,
 
-        );
+        ];
         //echo "<pre>"; print_r($data);exit;
 
         $product = Product::create($data);
