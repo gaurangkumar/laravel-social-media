@@ -30,8 +30,7 @@ class PageLikeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,8 +41,7 @@ class PageLikeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\PageLike $pageLike
-     *
+     * @param  \App\Models\PageLike  $pageLike
      * @return \Illuminate\Http\Response
      */
     public function show(PageLike $pageLike)
@@ -54,8 +52,7 @@ class PageLikeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\PageLike $pageLike
-     *
+     * @param  \App\Models\PageLike  $pageLike
      * @return \Illuminate\Http\Response
      */
     public function edit(PageLike $pageLike)
@@ -66,9 +63,8 @@ class PageLikeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PageLike     $pageLike
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\PageLike  $pageLike
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PageLike $pageLike)
@@ -79,8 +75,7 @@ class PageLikeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\PageLike $pageLike
-     *
+     * @param  \App\Models\PageLike  $pageLike
      * @return \Illuminate\Http\Response
      */
     public function destroy(PageLike $pageLike)

@@ -39,8 +39,7 @@ class GroupController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -82,8 +81,7 @@ class GroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\group $group
-     *
+     * @param  \App\Models\group  $group
      * @return \Illuminate\Http\Response
      */
     public function show(Group $group)
@@ -152,8 +150,7 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\group $group
-     *
+     * @param  \App\Models\group  $group
      * @return \Illuminate\Http\Response
      */
     public function edit(Group $group)
@@ -164,9 +161,8 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\group        $group
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\group  $group
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Group $group)
@@ -177,8 +173,7 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\group $group
-     *
+     * @param  \App\Models\group  $group
      * @return \Illuminate\Http\Response
      */
     public function destroy(Group $group)

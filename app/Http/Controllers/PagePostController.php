@@ -30,8 +30,7 @@ class PagePostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,8 +41,7 @@ class PagePostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\PagePost $pagePost
-     *
+     * @param  \App\Models\PagePost  $pagePost
      * @return \Illuminate\Http\Response
      */
     public function show(PagePost $pagePost)
@@ -54,8 +52,7 @@ class PagePostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\PagePost $pagePost
-     *
+     * @param  \App\Models\PagePost  $pagePost
      * @return \Illuminate\Http\Response
      */
     public function edit(PagePost $pagePost)
@@ -66,9 +63,8 @@ class PagePostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PagePost     $pagePost
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\PagePost  $pagePost
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PagePost $pagePost)
@@ -79,8 +75,7 @@ class PagePostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\PagePost $pagePost
-     *
+     * @param  \App\Models\PagePost  $pagePost
      * @return \Illuminate\Http\Response
      */
     public function destroy(PagePost $pagePost)
