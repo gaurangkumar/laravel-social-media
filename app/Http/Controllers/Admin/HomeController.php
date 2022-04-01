@@ -66,7 +66,7 @@ class HomeController extends Controller
 
         $i = 0;
         foreach ($models as $model => $icon) {
-            $count[$i] = new \StdClass();
+            $count[$i] = new \stdClass();
             $plural_caps = ucwords(str_replace('_', ' ', Str::snake(Str::plural($model))));
             $count[$i]->name = $plural_caps;
             $count[$i]->icon = $icon;
