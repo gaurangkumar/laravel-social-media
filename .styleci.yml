@@ -1,20 +1,14 @@
-risky: true
-
-version: 8
-
-preset: laravel
-
-tab-width: 4
-
-use-tabs: false
-
-enabled:
-  - strict
-
-disabled:
-  - no_unused_imports
-
-finder:
-  not-name:
-    - index.php
-    - server.php
+php:
+  preset: laravel
+  version: 8
+  disabled:
+    - no_unused_imports
+  finder:
+    not-name:
+      - index.php
+      - server.php
+js:
+  finder:
+    not-name:
+      - webpack.mix.js
+css: true

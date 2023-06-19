@@ -25,8 +25,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-require __DIR__.'/auth.php';
-
     Route::get('/', [HomeController::class, 'index'])
         ->name('home');
     Route::get('/settings', [HomeController::class, 'settings'])
@@ -111,3 +109,9 @@ require __DIR__.'/auth.php';
     Route::post('/{sender:id}', [HomeController::class, 'sendchat'])
         ->name('sendchat')
         ->where('id', '[0-9]+');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
