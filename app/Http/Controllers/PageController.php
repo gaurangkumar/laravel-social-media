@@ -34,7 +34,8 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,21 +43,21 @@ class PageController extends Controller
         $user = auth()->user();
 
         $request->validate([
-            'name' => 'required|string',
-            'uname' => 'required|unique:pages',
+            'name'        => 'required|string',
+            'uname'       => 'required|unique:pages',
             'description' => 'required|string',
-            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            'profile'     => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ]);
 
         $image = $request->profile->store('page', ['disk' => 'public']);
 
         $data = [
-            'name' => $request->name,
-            'uname' => $request->uname,
+            'name'        => $request->name,
+            'uname'       => $request->uname,
             'description' => $request->description,
-            'profile' => $image,
-            'banner' => '',
-            'user_id' => $user->id,
+            'profile'     => $image,
+            'banner'      => '',
+            'user_id'     => $user->id,
         ];
 
         $page = Page::create($data);
@@ -64,7 +65,7 @@ class PageController extends Controller
         $follow = PageFollower::create([
             'user_id' => $user->id,
             'page_id' => $page->id,
-            'follow' => true,
+            'follow'  => true,
         ]);
 
         return redirect()->route('page.show', $page->uname);
@@ -73,7 +74,8 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Page  $page
+     * @param \App\Models\Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Page $page)
@@ -103,7 +105,8 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Page  $page
+     * @param \App\Models\Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Page $page)
@@ -114,8 +117,9 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Page  $page
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Page         $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Page $page)
@@ -126,7 +130,8 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Page  $page
+     * @param \App\Models\Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Page $page)

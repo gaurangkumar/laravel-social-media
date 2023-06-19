@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         //$this->middleware('auth:admin');
         session_start();
-        if (! isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
+        if (!isset($_SESSION['admin']) || empty($_SESSION['admin'])) {
             header('Location: '.route('admin.login'));
             exit;
         }
@@ -47,21 +47,21 @@ class HomeController extends Controller
 
         $ns = '\\App\\Models\\';
         $models = [
-            'User' => 'fa fa-user',
-            'Admin' => 'fas fa-user-cog',
-            'Business' => 'fas fa-building',
-            'Group' => 'fa fa-users',
-            'Page' => 'far fa-file-alt',
-            'Chat' => 'far fa-comment-alt',
-            'Contact' => 'far fa-address-card',
-            'GroupMember' => 'fas fa-user-friends',
-            'PageComment' => 'far fa-comment',
+            'User'         => 'fa fa-user',
+            'Admin'        => 'fas fa-user-cog',
+            'Business'     => 'fas fa-building',
+            'Group'        => 'fa fa-users',
+            'Page'         => 'far fa-file-alt',
+            'Chat'         => 'far fa-comment-alt',
+            'Contact'      => 'far fa-address-card',
+            'GroupMember'  => 'fas fa-user-friends',
+            'PageComment'  => 'far fa-comment',
             'PageFollower' => 'far fa-thumbs-up',
-            'PageLike' => 'far fa-heart',
-            'PagePost' => 'fas fa-scroll',
-            'Product' => 'fas fa-shopping-cart',
-            'Call' => 'fas fa-phone-alt',
-            'Status' => 'fas fa-photo-video',
+            'PageLike'     => 'far fa-heart',
+            'PagePost'     => 'fas fa-scroll',
+            'Product'      => 'fas fa-shopping-cart',
+            'Call'         => 'fas fa-phone-alt',
+            'Status'       => 'fas fa-photo-video',
         ];
 
         $i = 0;
@@ -104,7 +104,8 @@ class HomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -115,7 +116,8 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -126,7 +128,8 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -137,8 +140,9 @@ class HomeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -149,7 +153,8 @@ class HomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

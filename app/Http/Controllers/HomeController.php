@@ -73,7 +73,7 @@ class HomeController extends Controller
         $data = [
             'user_id' => $user->id,
             'page_id' => $page->id,
-            'text' => $request->msg,
+            'text'    => $request->msg,
         ];
 
         $post = PagePost::create($data);
@@ -131,8 +131,8 @@ class HomeController extends Controller
 
         $data = [
             'user_id' => $user->id,
-            'rid' => $sender->id,
-            'msg' => $request->msg,
+            'rid'     => $sender->id,
+            'msg'     => $request->msg,
         ];
 
         $chat = Chat::create($data);
@@ -149,9 +149,9 @@ class HomeController extends Controller
         ]);
 
         $data = [
-            'user_id' => $user->id,
+            'user_id'  => $user->id,
             'group_id' => $group->id,
-            'msg' => $request->msg,
+            'msg'      => $request->msg,
         ];
 
         $chat = Chat::create($data);
@@ -184,12 +184,12 @@ class HomeController extends Controller
         foreach ($results as $result) {
             if ($result->user_id !== $result->rid) {
                 if ($result->user_id === $uid) {
-                    if (! in_array($result->rid, $uids)) {
+                    if (!in_array($result->rid, $uids)) {
                         array_push($side_chats, $result);
                         $uids[] = $result->rid;
                     }
                 } else {
-                    if (! in_array($result->user_id, $uids)) {
+                    if (!in_array($result->user_id, $uids)) {
                         $side_chats[] = $result;
                         $uids[] = $result->user_id;
                     }
@@ -241,7 +241,7 @@ class HomeController extends Controller
             }
         }
 
-        if (! $full) {
+        if (!$full) {
             $string = array_slice($string, 0, 1);
         }
 
@@ -273,7 +273,7 @@ class HomeController extends Controller
         $user = auth()->user();
 
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name'   => 'required|string|max:255',
             'mobile' => 'required|digits:10',
         ]);
 
@@ -284,12 +284,12 @@ class HomeController extends Controller
         }
 
         $data = [
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'   => $request->name,
+            'email'  => $request->email,
             'mobile' => $request->mobile,
         ];
 
-        if (! empty($request->profile)) {
+        if (!empty($request->profile)) {
             $request->validate([
                 'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
             ]);

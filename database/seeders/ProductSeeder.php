@@ -15,18 +15,18 @@ class ProductSeeder extends Seeder
     public function run()
     {
         Product::create([
-            'name' => 'Item1',
-            'price' => 100,
+            'name'        => 'Item1',
+            'price'       => 100,
             'description' => 'Product description',
             'business_id' => 1,
-            'img' => 'template\assets\img\avatar-1.jpg',
+            'img'         => 'template\assets\img\avatar-1.jpg',
         ]);
         Product::create([
-            'name' => 'Item2',
-            'price' => 1000,
+            'name'        => 'Item2',
+            'price'       => 1000,
             'business_id' => 2,
             'description' => 'Product description',
-            'img' => 'template\assets\img\avatar-2.jpg',
+            'img'         => 'template\assets\img\avatar-2.jpg',
         ]);
     }
 }

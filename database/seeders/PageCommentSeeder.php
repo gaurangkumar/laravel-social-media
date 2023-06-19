@@ -19,10 +19,10 @@ class PageCommentSeeder extends Seeder
         for ($s = 1; $s <= $u; $s++) {
             for ($r = 1; $r <= 2; $r++) {
                 PageComment::create([
-                    'user_id' => $s,
+                    'user_id'      => $s,
                     'page_post_id' => $r,
-                    'comment' => $r,
-                    'created_at' => date('Y-m-d H:i:s', $datetime),
+                    'comment'      => $r,
+                    'created_at'   => date('Y-m-d H:i:s', $datetime),
                 ]);
                 $datetime = strtotime('+1 minutes', $datetime);
             }

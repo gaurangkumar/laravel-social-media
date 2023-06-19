@@ -15,22 +15,22 @@ class BusinessSeeder extends Seeder
     public function run()
     {
         Business::create([
-            'name' => 'XYZ',
-            'btype' => 'Grocery Store',
-            'address' => 'Delhi',
+            'name'        => 'XYZ',
+            'btype'       => 'Grocery Store',
+            'address'     => 'Delhi',
             'description' => 'Grocery',
-            'user_id' => 1,
-            'website' => 'abc.com',
-            'profile' => 'template\assets\img\avatar-1.jpg',
+            'user_id'     => 1,
+            'website'     => 'abc.com',
+            'profile'     => 'template\assets\img\avatar-1.jpg',
         ]);
         Business::create([
-            'name' => 'ABC',
-            'btype' => 'Cloth Store',
-            'address' => 'Mumbai',
+            'name'        => 'ABC',
+            'btype'       => 'Cloth Store',
+            'address'     => 'Mumbai',
             'description' => 'Grocery',
-            'user_id' => 2,
-            'website' => 'abc.com',
-            'profile' => 'template\assets\img\avatar-2.jpg',
+            'user_id'     => 2,
+            'website'     => 'abc.com',
+            'profile'     => 'template\assets\img\avatar-2.jpg',
         ]);
     }
 }

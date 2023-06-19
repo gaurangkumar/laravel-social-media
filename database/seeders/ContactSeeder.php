@@ -21,8 +21,8 @@ class ContactSeeder extends Seeder
             for ($r = 1; $r <= $u; $r++) {
                 if ($s !== $r) {
                     Contact::create([
-                        'user_id' => $s,
-                        'cid' => $r,
+                        'user_id'    => $s,
+                        'cid'        => $r,
                         'created_at' => date('Y-m-d H:i:s', $datetime),
                     ]);
                     $datetime = strtotime('+1 minutes', $datetime);

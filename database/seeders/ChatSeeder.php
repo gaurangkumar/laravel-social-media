@@ -25,9 +25,9 @@ class ChatSeeder extends Seeder
                 if ($s !== $r) {
                     $n = mt_rand(0, count($msgs) - 1);
                     Chat::create([
-                        'user_id' => $s,
-                        'rid' => $r,
-                        'msg' => $msgs[$n],
+                        'user_id'    => $s,
+                        'rid'        => $r,
+                        'msg'        => $msgs[$n],
                         'created_at' => date('Y-m-d H:i:s', $datetime),
                     ]);
                     $datetime = strtotime('+1 minutes', $datetime);
@@ -40,9 +40,9 @@ class ChatSeeder extends Seeder
             for ($r = 1; $r <= 2; $r++) {
                 $n = mt_rand(0, count($msgs) - 1);
                 Chat::create([
-                    'user_id' => $s,
-                    'group_id' => $r,
-                    'msg' => $msgs[$n],
+                    'user_id'    => $s,
+                    'group_id'   => $r,
+                    'msg'        => $msgs[$n],
                     'created_at' => date('Y-m-d H:i:s', $datetime),
                 ]);
                 $datetime = strtotime('+1 minutes', $datetime);
@@ -60,9 +60,9 @@ class ChatSeeder extends Seeder
                 }
             }
             Chat::create([
-                'user_id' => $s,
-                'rid' => $r,
-                'msg' => $msg,
+                'user_id'    => $s,
+                'rid'        => $r,
+                'msg'        => $msg,
                 'created_at' => date('Y-m-d H:i:s', $datetime),
             ]);
             $datetime = strtotime('+1 minutes', $datetime);

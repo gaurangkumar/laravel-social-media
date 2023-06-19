@@ -32,7 +32,8 @@ class BusinessController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,24 +41,24 @@ class BusinessController extends Controller
         $user = auth()->user();
 
         $request->validate([
-            'name' => 'required|string',
-            'btype' => 'required|string',
-            'address' => 'required|string',
-            'website' => 'string',
+            'name'        => 'required|string',
+            'btype'       => 'required|string',
+            'address'     => 'required|string',
+            'website'     => 'string',
             'description' => 'required|string',
-            'profile' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            'profile'     => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ]);
 
         $image = $request->profile->store('business', ['disk' => 'public']);
 
         $data = [
-            'name' => $request->name,
-            'btype' => $request->btype,
-            'address' => $request->address,
-            'website' => $request->website,
+            'name'        => $request->name,
+            'btype'       => $request->btype,
+            'address'     => $request->address,
+            'website'     => $request->website,
             'description' => $request->description,
-            'profile' => $image,
-            'user_id' => $user->id,
+            'profile'     => $image,
+            'user_id'     => $user->id,
         ];
 
         $business = Business::create($data);
@@ -68,7 +69,8 @@ class BusinessController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Business  $business
+     * @param \App\Models\Business $business
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Business $business)
@@ -91,7 +93,8 @@ class BusinessController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Business  $business
+     * @param \App\Models\Business $business
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Business $business)
@@ -102,8 +105,9 @@ class BusinessController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Business  $business
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Business     $business
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, business $business)
@@ -114,7 +118,8 @@ class BusinessController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Business  $business
+     * @param \App\Models\Business $business
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Business $business)

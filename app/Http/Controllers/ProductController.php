@@ -33,7 +33,8 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,22 +43,22 @@ class ProductController extends Controller
         //$business= Business::find('id');
 
         $validated = $request->validate([
-            'name' => 'required|string',
-            'price' => 'required|numeric',
-            'discount' => 'numeric|nullable',
+            'name'        => 'required|string',
+            'price'       => 'required|numeric',
+            'discount'    => 'numeric|nullable',
             'description' => 'required|string',
-            'img' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            'img'         => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
             'business_id' => 'required',
         ]);
 
         $image = $request->img->store('product', ['disk' => 'public']);
 
         $data = [
-            'name' => $request->name,
-            'price' => $request->price,
-            'discount' => $request->discount,
+            'name'        => $request->name,
+            'price'       => $request->price,
+            'discount'    => $request->discount,
             'description' => $request->description,
-            'img' => $image,
+            'img'         => $image,
             'business_id' => $request->business_id,
 
         ];
@@ -71,7 +72,8 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\product  $product
+     * @param \App\Models\product $product
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(product $product)
@@ -82,7 +84,8 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\product  $product
+     * @param \App\Models\product $product
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(product $product)
@@ -93,8 +96,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\product  $product
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\product      $product
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, product $product)
@@ -105,7 +109,8 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\product  $product
+     * @param \App\Models\product $product
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(product $product)

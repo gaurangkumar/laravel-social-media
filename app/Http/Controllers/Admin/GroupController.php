@@ -50,7 +50,8 @@ class GroupController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +62,8 @@ class GroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Group  $group
+     * @param Group $group
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Group $group)
@@ -81,7 +83,8 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Group  $group
+     * @param Group $group
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Group $group)
@@ -101,8 +104,9 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Group  $group
+     * @param \Illuminate\Http\Request $request
+     * @param Group                    $group
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Group $group)
@@ -110,13 +114,13 @@ class GroupController extends Controller
         $group_members = array_column($group->members->toArray(), 'user_id');
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name'        => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'members' => 'required|array|min:3',
+            'members'     => 'required|array|min:3',
         ]);
 
         $data = [
-            'name' => $request->name,
+            'name'        => $request->name,
             'description' => $request->description,
         ];
 
@@ -124,7 +128,7 @@ class GroupController extends Controller
             return back()->with('error', 'Error in updating group!');
         }
 
-        if (! in_array($group->user_id, $validated['members'])) {
+        if (!in_array($group->user_id, $validated['members'])) {
             //
         }
 
@@ -132,7 +136,7 @@ class GroupController extends Controller
             $key = array_search($member, $group_members);
             if ($key === false) {
                 $obj = GroupMember::create([
-                    'user_id' => $member,
+                    'user_id'  => $member,
                     'group_id' => $group_id,
                 ]);
             }
@@ -153,7 +157,8 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Group  $group
+     * @param Group $group
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Group $group)
@@ -170,7 +175,8 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Group  $group
+     * @param Group $group
+     *
      * @return \Illuminate\Http\Response
      */
     public function profile_delete(Group $group)
@@ -179,7 +185,7 @@ class GroupController extends Controller
         $isExist = Storage::disk('public')->exists($group->profile);
         if ($isExist) {
             $isDeleted = Storage::disk('public')->delete($group->profile);
-            if (! $isDeleted) {
+            if (!$isDeleted) {
                 //
             }
         }
@@ -191,7 +197,8 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Group  $group
+     * @param Group $group
+     *
      * @return \Illuminate\Http\Response
      */
     public function profile_update(Group $group, Request $request)
@@ -199,7 +206,7 @@ class GroupController extends Controller
         $isExist = Storage::disk('public')->exists($group->profile);
         if ($isExist) {
             $isDeleted = Storage::disk('public')->delete($group->profile);
-            if (! $isDeleted) {
+            if (!$isDeleted) {
                 //
             }
         }

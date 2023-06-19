@@ -50,7 +50,8 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +62,8 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Page  $page
+     * @param \App\Models\Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Page $page)
@@ -72,7 +74,8 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Page  $page
+     * @param \App\Models\Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Page $page)
@@ -92,8 +95,9 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Page  $page
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Page         $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Page $page)
@@ -101,15 +105,15 @@ class PageController extends Controller
         $page_followers = array_column($page->followers->toArray(), 'user_id');
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'uname' => 'required', //|unique:pages
+            'name'        => 'required|string|max:255',
+            'uname'       => 'required', //|unique:pages
             'description' => 'required|string|max:255',
-            'followers' => 'required|array|min:1',
+            'followers'   => 'required|array|min:1',
         ]);
 
         $data = [
-            'name' => $request->name,
-            'uname' => $request->uname,
+            'name'        => $request->name,
+            'uname'       => $request->uname,
             'description' => $request->description,
         ];
 
@@ -117,7 +121,7 @@ class PageController extends Controller
             return back()->with('error', 'Error in updating Page!');
         }
 
-        if (! in_array($page->user_id, $validated['followers'])) {
+        if (!in_array($page->user_id, $validated['followers'])) {
             //
         }
 
@@ -146,7 +150,8 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Page  $page
+     * @param \App\Models\Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Page $page)
@@ -163,7 +168,8 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Page  $page
+     * @param Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function profile_delete(Page $page)
@@ -172,7 +178,7 @@ class PageController extends Controller
         $isExist = Storage::disk('public')->exists($page->profile);
         if ($isExist) {
             $isDeleted = Storage::disk('public')->delete($page->profile);
-            if (! $isDeleted) {
+            if (!$isDeleted) {
                 //
             }
         }
@@ -184,7 +190,8 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Page  $page
+     * @param Page $page
+     *
      * @return \Illuminate\Http\Response
      */
     public function profile_update(Page $page, Request $request)
@@ -192,7 +199,7 @@ class PageController extends Controller
         $isExist = Storage::disk('public')->exists($page->profile);
         if ($isExist) {
             $isDeleted = Storage::disk('public')->delete($page->profile);
-            if (! $isDeleted) {
+            if (!$isDeleted) {
                 //
             }
         }

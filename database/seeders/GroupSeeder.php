@@ -15,16 +15,16 @@ class GroupSeeder extends Seeder
     public function run()
     {
         Group::create([
-            'name' => 'MCA',
+            'name'        => 'MCA',
             'description' => 'MCA Group',
-            'user_id' => 1,
-            'profile' => 'template\assets\img\avatar-1.jpg',
+            'user_id'     => 1,
+            'profile'     => 'template\assets\img\avatar-1.jpg',
         ]);
         Group::create([
-            'name' => 'BCA',
+            'name'        => 'BCA',
             'description' => 'BCA Group',
-            'user_id' => 2,
-            'profile' => 'template\assets\img\avatar-2.jpg',
+            'user_id'     => 2,
+            'profile'     => 'template\assets\img\avatar-2.jpg',
         ]);
     }
 }
